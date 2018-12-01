@@ -1,0 +1,47 @@
+.ninja-forms-app .jBox-Notice .jBox-container {
+    background: #ef4748;
+}
+
+.ninja-forms-app .jBox-Notice .jBox-container a:link, .ninja-forms-app .jBox-Notice .jBox-container a:active, .ninja-forms-app .jBox-Notice .jBox-container a:visited {
+    color: #46b;
+}
+
+.ninja-forms-app .jBox-Notice .jBox-container a:hover {
+    color: #ccc;
+}
+
+.ninja-forms-app .jBox-Modal .jBox-container #nfStripe {
+    padding: 10px 15px;
+}
+
+.ninja-forms-app .jBox-Modal .jBox-container #nfStripe label {
+    margin: 5px;
+}
+
+.ninja-forms-app .jBox-Modal .jBox-container #nfStripe input {
+    margin-bottom: 7px;
+}
+
+.ninja-forms-app .jBox-Modal .jBox-container #nfStripe hr {
+    margin: 15px 0px;
+}
+
+.ninja-forms-app .jBox-Modal .jBox-container #nfStripe .actions {
+    margin-top: 20px;
+    position: relative;
+}
+
+.ninja-forms-app .jBox-Modal .jBox-container #nfStripe .actions .spinner {
+    margin: 15px auto 0px;
+    float: none;
+}
+
+.ninja-forms-app .jBox-Modal .jBox-container #nfStripe .actions .nf-button {
+    margin: 0px 10px;
+    width: 145px;
+}
+
+.ninja-forms-app .single-cell .deprecated {
+    color: #ef4748;
+    border-color: #ef4748;
+}

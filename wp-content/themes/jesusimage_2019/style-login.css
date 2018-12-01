@@ -1,0 +1,27 @@
+body.login {
+  font-family: brandon-grotesque, sans-serif;
+  font-weight: 400;
+  font-style: normal;
+  color: #333333;
+  background-color: #F8F8F8; }
+  body.login #login h1 a {
+    background-image: url("images/wp-login.png");
+    height: 84px;
+    width: 84px;
+    background-size: 84px 84px;
+    background-repeat: no-repeat; }
+  body.login #login .message {
+    border-left-color: #b7a68c; }
+  body.login #login a:focus {
+    box-shadow: none; }
+  body.login #login a:hover {
+    color: #b7a68c; }
+  body.login #login input:focus {
+    border-color: #777777;
+    box-shadow: none; }
+  body.login #login #wp-submit {
+    background: #b7a68c;
+    border: none;
+    box-shadow: inset 0 2px 0 #ad9a7c;
+    text-shadow: none;
+    padding-top: 1px; }

@@ -1,0 +1,49 @@
+@import "base/font";
+@import "base/color";
+@import "base/functions";
+
+body.login {
+    @include brandon-grotesque();
+    color: $black;
+    background-color: $gray-light;
+
+    #login {
+        h1 a {
+            background-image: url('images/wp-login.png');
+            height: 84px;
+            width: 84px;
+            background-size: 84px 84px;
+            background-repeat: no-repeat;
+        }
+
+        .message {
+            border-left-color: $gold;
+        }
+
+        a {
+            &:focus {
+                box-shadow: none;
+            }
+
+            &:hover {
+                color: $gold;
+            }
+        }
+
+        input {
+            &:focus {
+                border-color: $gray;
+                box-shadow: none;
+            }
+        }
+
+        #wp-submit {
+            background: $gold;
+            border: none;
+            box-shadow: inset 0 2px 0 darken($gold, 5);
+            text-shadow: none;
+            padding-top: 1px;
+        }
+
+    }
+}

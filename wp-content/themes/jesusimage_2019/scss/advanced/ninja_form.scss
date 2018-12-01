@@ -1,0 +1,322 @@
+.nf-form-cont {
+
+    &.small,
+    &.medium {
+        display: block;
+        margin: 0 auto;
+    }
+
+    &.small {
+        max-width: 300px;
+    }
+
+    &.medium {
+        max-width: 540px;
+    }
+
+    .nf-form-title {
+
+    }
+
+    .nf-mp-header {
+
+        .nf-progress-container {
+            border-color: $gold;
+
+            .nf-progress {
+                background-color: $gold;
+                height: 4px;
+            }
+        }
+    }
+
+    .nf-form-wrap {
+
+        .nf-form-layout {
+
+            .nf-before-form-content {
+                margin: 10px 0 20px;
+                color: lighten($gray, 20);
+            }
+
+            .nf-form-content {
+
+                .nf-mp-body {
+
+                }
+            }
+        }
+
+    }
+
+    .nf-before-form-content div {
+        font-size: 0.8em;
+    }
+
+    .label-above {
+        .nf-field-label {
+            margin-bottom: 5px;
+        }
+    }
+
+    .ninja-forms-req-symbol,
+    .nf-error-msg {
+        color: $gold;
+        @include brandon-grotesque();
+    }
+
+    .nf-error-msg {
+        font-size: 0.8em;
+    }
+
+    .nf-help {
+        background-size: contain;
+        width: 10px;
+        height: 10px;
+        max-width: 300px;
+    }
+}
+
+.nf-multi-cell {
+    div.nf-cell {
+        padding: 0 2% 0 0;
+    }
+}
+
+.nf-row {
+    .nf-cell {
+
+        .donation {
+            .nf-field-label {
+                width: auto;
+            }
+
+            .nf-field-element {
+                width: 70px;
+
+                input {
+                    text-align: right;
+                }
+            }
+
+            .nf-field-description {
+                margin-left: 10px;
+                width: auto;
+                display: inline-block;
+                line-height: 36px;
+
+                span {
+                    line-height: 100%;
+                    margin: 0;
+                    font-size: 1.2em;
+                    @include brandon-grotesque();
+                }
+            }
+        }
+
+        .nf-field-container {
+            label {
+                @include brandon-grotesque-bold();
+                font-size: 1em;
+                color: $gray;
+            }
+
+            .nf-field-label {
+                padding-left: 0;
+            }
+
+            input,
+            textarea {
+                display: inline-block;
+                outline: none;
+                border: 1px solid lighten($gray, 45);
+                padding: 4px;
+                margin: 1px;
+                font-size: 1em;
+
+                &:focus {
+                    border: 1px solid lighten($gray, 30);
+                }
+
+                &[type="button"] {
+                    border: none;
+                    color: $white;
+                    padding: 7px 16px;
+                    font-size: 1.2em;
+                    line-height: 1.4em;
+                    @include brandon-grotesque-bold();
+                    text-transform: uppercase;
+                    display: inline-block;
+                    transition: all 300ms ease;
+                    letter-spacing: 0.04em;
+                    background-color: $gold;
+                    cursor: pointer;
+                    outline: none;
+                    -webkit-appearance: none;
+                    -moz-appearance: none;
+                    appearance: none;
+
+                    &:hover {
+
+                        background-color: $gold;
+                        color: $black;
+                        text-decoration: none;
+                    }
+                }
+
+                &[type="checkbox"] {
+                    cursor: pointer;
+                }
+            }
+
+        }
+    }
+}
+
+#content .nf-row .nf-cell {
+    .listcheckbox-wrap,
+    .listradio-wrap {
+
+        ul {
+            margin-top: 5px !important;
+
+            li {
+                margin-right: 15px !important;
+                font-size: 14px;
+                letter-spacing: normal;
+                cursor: pointer;
+
+                &:before {
+                    content: none;
+                }
+
+                input {
+                    margin-right: 6px;
+                    margin-top: 4px;
+                    vertical-align: top;
+                    cursor: pointer;
+                }
+
+                label {
+                    vertical-align: top;
+                    @include brandon-grotesque();
+                    text-transform: none;
+                    font-size: 14px;
+                    line-height: normal;
+                    padding: 0;
+                    margin: 0;
+                    display: inline;
+                    cursor: pointer;
+                }
+            }
+        }
+    }
+
+    .checkbox-wrap {
+        label {
+            cursor: pointer;
+        }
+    }
+}
+
+#content {
+    .nf-form-cont {
+        .nf-mp-header {
+            margin-bottom: 30px;
+
+            ul.nf-breadcrumbs {
+                margin: 10px 0 !important;
+
+                li {
+                    padding: 0;
+                    margin: 0;
+                    line-height: 1.54em;
+                    font-size: 1em;
+                    text-indent: 0;
+
+                    a {
+                        display: inline-block;
+                        margin: 0;
+                    }
+
+                    &::after {
+                        content: ">";
+                        color: $gold;
+                        padding: 0 8px;
+                    }
+
+                    &::before {
+                        display: none;
+                    }
+
+                    &:last-of-type {
+                        &::after {
+                            display: none;
+                        }
+                    }
+                }
+            }
+        }
+
+        .nf-mp-footer {
+            ul.nf-next-previous {
+                li {
+                    text-indent: 0;
+
+                    input[type="button"] {
+                        border: none;
+                        color: $gold;
+                        display: inline-block;
+                        transition: all 300ms ease;
+                        letter-spacing: 0.04em;
+                        background-color: transparent;
+                        cursor: pointer;
+                        outline: none;
+                        -webkit-appearance: none;
+                        -moz-appearance: none;
+                        appearance: none;
+                        //@include brandon-grotesque-bold();
+
+                        &:hover {
+                            text-decoration: underline;
+                        }
+
+                    }
+
+                    &.nf-next-item {
+                        &::after {
+                            content: ">";
+                            color: $gold;
+                            padding-left: 6px;
+                        }
+
+                        &::before {
+                            display: none;
+                        }
+                    }
+
+                    &.nf-previous-item {
+                        &::before {
+                            content: "<";
+                            color: $gold;
+                            padding-right: 6px;
+
+                        }
+
+                        &::after {
+                            display: none;
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
+.jBox-wrapper {
+    max-width: 400px;
+
+    p {
+        line-height: 1.3em;
+    }
+}

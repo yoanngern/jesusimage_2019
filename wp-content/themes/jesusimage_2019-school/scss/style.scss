@@ -1,0 +1,161 @@
+@import 'base/intro';
+@import 'base/functions';
+@import 'base/font';
+@import 'base/color';
+
+body > header {
+
+    .logo a {
+        background-image: url("images/top_logo-school.png");
+    }
+
+    nav {
+        ul {
+            li {
+                a {
+
+                    &:hover {
+                        color: $brown;
+
+                    }
+                }
+
+                &.current-menu-item,
+                &.current_page_item {
+                    a {
+                        color: $brown;
+                    }
+                }
+            }
+        }
+    }
+}
+
+body > footer {
+
+    #logo {
+        background-image: url('images/footer_logo-school.png');
+    }
+
+    #tagline {
+        background-image: url('images/footer_tagline-school.png');
+    }
+
+}
+
+#content {
+
+    .platter {
+
+        article.content-page,
+        article.home-default,
+        section.content-default {
+
+            a {
+                color: $brown;
+
+                &.button,
+                &.wp-block-button__link {
+                    background-color: $brown;
+                }
+            }
+
+            ul, ol {
+
+                li {
+
+                    &::before {
+                        color: $brown;
+                    }
+                }
+            }
+
+        }
+    }
+
+}
+
+.nf-form-cont {
+
+    .nf-form-title {
+
+    }
+
+    .nf-mp-header {
+
+        .nf-progress-container {
+            border-color: $brown;
+
+            .nf-progress {
+                background-color: $brown;
+            }
+        }
+    }
+
+    .ninja-forms-req-symbol,
+    .nf-error-msg {
+        color: $brown;
+    }
+}
+
+.nf-row {
+    .nf-cell {
+
+        .nf-field-container {
+
+            input,
+            textarea {
+
+                &[type="button"] {
+                    background-color: $brown;
+
+                    &:hover {
+
+                        background-color: $brown;
+                    }
+                }
+            }
+
+        }
+    }
+}
+
+#content {
+    .nf-form-cont {
+        .nf-mp-header {
+
+            ul.nf-breadcrumbs {
+
+                li {
+
+                    &::after {
+                        color: $brown;
+                    }
+                }
+            }
+        }
+
+        .nf-mp-footer {
+            ul.nf-next-previous {
+                li {
+
+                    input[type="button"] {
+                        color: $brown;
+
+                    }
+
+                    &.nf-next-item,
+                    &.nf-previous-item {
+                        &::after,
+                        &::before {
+                            color: $brown;
+
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
+

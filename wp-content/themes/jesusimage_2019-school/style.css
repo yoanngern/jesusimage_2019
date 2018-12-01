@@ -1,0 +1,72 @@
+/*
+Theme Name:     Jesus School 2019
+Theme URI:      http://jesusschool.tv
+Author:         Yoann Gern
+Author URI:     http://gerny-media.ch
+Description:    Template for Jesus School 2019
+Template:       jesusimage_2019
+Version:        0.1
+License:        GNU General Public License v2 or later
+License URI:    http://www.gnu.org/licenses/gpl-2.0.html
+Text Domain:    jesusimage_2019-school
+
+This theme, like WordPress, is licensed under the GPL.
+Use it to make something cool, have fun, and share what you've learned with others.
+*/
+body > header .logo a {
+  background-image: url("images/top_logo-school.png"); }
+
+body > header nav ul li a:hover {
+  color: #ad623a; }
+
+body > header nav ul li.current-menu-item a, body > header nav ul li.current_page_item a {
+  color: #ad623a; }
+
+body > footer #logo {
+  background-image: url("images/footer_logo-school.png"); }
+
+body > footer #tagline {
+  background-image: url("images/footer_tagline-school.png"); }
+
+#content .platter article.content-page a,
+#content .platter article.home-default a,
+#content .platter section.content-default a {
+  color: #ad623a; }
+  #content .platter article.content-page a.button, #content .platter article.content-page a.wp-block-button__link,
+  #content .platter article.home-default a.button,
+  #content .platter article.home-default a.wp-block-button__link,
+  #content .platter section.content-default a.button,
+  #content .platter section.content-default a.wp-block-button__link {
+    background-color: #ad623a; }
+
+#content .platter article.content-page ul li::before, #content .platter article.content-page ol li::before,
+#content .platter article.home-default ul li::before,
+#content .platter article.home-default ol li::before,
+#content .platter section.content-default ul li::before,
+#content .platter section.content-default ol li::before {
+  color: #ad623a; }
+
+.nf-form-cont .nf-mp-header .nf-progress-container {
+  border-color: #ad623a; }
+  .nf-form-cont .nf-mp-header .nf-progress-container .nf-progress {
+    background-color: #ad623a; }
+
+.nf-form-cont .ninja-forms-req-symbol,
+.nf-form-cont .nf-error-msg {
+  color: #ad623a; }
+
+.nf-row .nf-cell .nf-field-container input[type="button"],
+.nf-row .nf-cell .nf-field-container textarea[type="button"] {
+  background-color: #ad623a; }
+  .nf-row .nf-cell .nf-field-container input[type="button"]:hover,
+  .nf-row .nf-cell .nf-field-container textarea[type="button"]:hover {
+    background-color: #ad623a; }
+
+#content .nf-form-cont .nf-mp-header ul.nf-breadcrumbs li::after {
+  color: #ad623a; }
+
+#content .nf-form-cont .nf-mp-footer ul.nf-next-previous li input[type="button"] {
+  color: #ad623a; }
+
+#content .nf-form-cont .nf-mp-footer ul.nf-next-previous li.nf-next-item::after, #content .nf-form-cont .nf-mp-footer ul.nf-next-previous li.nf-next-item::before, #content .nf-form-cont .nf-mp-footer ul.nf-next-previous li.nf-previous-item::after, #content .nf-form-cont .nf-mp-footer ul.nf-next-previous li.nf-previous-item::before {
+  color: #ad623a; }

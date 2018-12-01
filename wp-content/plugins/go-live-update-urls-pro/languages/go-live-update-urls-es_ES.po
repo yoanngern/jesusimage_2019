@@ -1,0 +1,244 @@
+msgid ""
+msgstr ""
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"Project-Id-Version: Go Live Update URLS Pro\n"
+"POT-Creation-Date: 2018-05-17 10:57-0400\n"
+"PO-Revision-Date: 2018-05-17 11:16-0400\n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Poedit 2.0.7\n"
+"X-Poedit-Basepath: ..\n"
+"X-Poedit-Flags-xgettext: --add-comments=translators:\n"
+"X-Poedit-WPHeader: go-live-update-urls-pro.php\n"
+"X-Poedit-SourceCharset: UTF-8\n"
+"X-Poedit-KeywordsList: __;_e;_n:1,2;_x:1,2c;_ex:1,2c;_nx:4c,1,2;esc_attr__;esc_attr_e;esc_attr_x:1,2c;esc_html__;esc_html_e;"
+"esc_html_x:1,2c;_n_noop:1,2;_nx_noop:3c,1,2;__ngettext_noop:1,2\n"
+"Last-Translator: Mat Lipe <mat@matlipe.com>\n"
+"Language: es_ES\n"
+"X-Poedit-SearchPath-0: .\n"
+"X-Poedit-SearchPathExcluded-0: *.js\n"
+
+#. translators: {%1$s}[<a>]{%2$s}[</a>] https://wordpress.org/plugins/go-live-update-urls/
+#: go-live-update-urls-pro.php:88
+#, php-format
+msgctxt "{<a>}{</a>}"
+msgid "Go Live Update Urls Pro requires the basic version of %1$sGo Live Update Urls %3$s+%2$s to be installed and active."
+msgstr "Go Live Update Urls Pro requiere que la versión básica de %1$s Go Live Update Urls %3$s + %2$s esté instalada y activa."
+
+#: src/Checkboxes.php:109
+msgid "Comments"
+msgstr "Comentarios"
+
+#: src/Checkboxes.php:120
+msgid "Users"
+msgstr "Usuarios"
+
+#: src/Checkboxes.php:131
+msgid "Categories, Tags, Custom Taxonomies"
+msgstr "Categorías, Etiquetas, taxonomías personalizadas"
+
+#: src/Checkboxes.php:148
+msgid "Site Options, Widgets"
+msgstr "Opciones del sitio, widgets"
+
+#: src/Checkboxes.php:158
+msgid "Posts, Pages, Custom Post Types"
+msgstr "Publicaciones, páginas, tipos de publicaciones personalizadas"
+
+#: src/Checkboxes.php:170
+msgid "Network Settings"
+msgstr "Ajustes de Red"
+
+#: src/Checkboxes.php:204
+msgid "Custom tables created by plugins"
+msgstr "Tablas personalizadas creadas por complementos"
+
+#: src/Core.php:77
+msgid "The URLS in the checked sections have been updated."
+msgstr "Las URL en las secciones marcadas se han actualizado."
+
+#: src/Core.php:134
+msgid "Only the checked sections will be updated."
+msgstr "Solo las secciones marcadas serán actualizadas."
+
+#: src/Core.php:139
+msgid "All tables are safe to update."
+msgstr "Todas las tablas son seguras para actualizar."
+
+#: src/Styles.php:37
+msgid "Could not update test results at this time."
+msgstr "No se pudieron actualizar los resultados de la prueba en este momento."
+
+#: src/Styles.php:38
+msgid "Click to automatically fix New URL"
+msgstr "Haga clic para corregir automáticamente la nueva URL"
+
+#: src/Styles.php:39
+msgid "Close Results"
+msgstr "Cerrar resultados"
+
+#: src/Styles.php:40
+msgid "Date"
+msgstr "Fecha"
+
+#: src/Styles.php:41
+msgid "Fail"
+msgstr "Reprobado"
+
+#: src/Styles.php:42
+msgid "Fix Issue"
+msgstr "Reparar problema"
+
+#: src/Styles.php:43
+msgid "Site Address (URL) History"
+msgstr "Historial de dirección del sitio (URL)"
+
+#: src/Styles.php:44
+msgid "Click to choose from previous changes made to the Site Address (URL)."
+msgstr "Haga clic para elegir entre los cambios anteriores realizados en la Dirección del sitio (URL)."
+
+#: src/Styles.php:45
+msgid "No Site Address history could be found."
+msgstr "No se pudo encontrar el historial de dirección del sitio."
+
+#: src/Styles.php:46
+msgid "New URL"
+msgstr "Nueva URL"
+
+#: src/Styles.php:47
+msgid "Old URL"
+msgstr "URL antigua"
+
+#: src/Styles.php:48
+msgid "Pass"
+msgstr "Aprobado"
+
+#: src/Styles.php:49
+msgid "Something went wrong."
+msgstr "Algo salió mal."
+
+#: src/Styles.php:50
+msgid "Click to run some tests against the entered Old URL and New URL."
+msgstr "Haga clic para ejecutar algunas pruebas contra la URL antigua ingresada y la Nueva URL."
+
+#: src/Styles.php:50
+msgid "This will not make any changes to your site."
+msgstr "Esto no hará ningún cambio en su sitio."
+
+#: src/Styles.php:51
+msgid "Test the URLs"
+msgstr "Prueba las URL"
+
+#: src/Styles.php:52
+msgid "Test Results"
+msgstr "Resultados de la prueba"
+
+#: src/Styles.php:53
+msgid "Unable to test."
+msgstr "No se puede probar."
+
+#: src/Styles.php:54
+msgid "Use"
+msgstr "Usar"
+
+#: src/Styles.php:55
+msgid "Use this Old URL and New URL."
+msgstr "Use esta URL antigua y Nueva URL."
+
+#: src/Tests/Ajax.php:44 src/Tests/Ajax.php:69
+msgid "Incorrect test data supplied."
+msgstr "Datos de prueba incorrectos suministrados"
+
+#: src/Tests/Ajax.php:67
+msgid "Incorrect test class supplied."
+msgstr "Clase de prueba incorrecta suministrada."
+
+#: src/Tests/Domain.php:17
+msgid "Unable to verify whether or not this site is accessible from the new url."
+msgstr "No se puede verificar si este sitio es accesible desde la nueva url."
+
+#: src/Tests/Domain.php:18
+msgid "This site is not accessible when the Old URL is replaced with the New URL."
+msgstr "Este sitio no es accesible cuando la URL anterior se reemplaza por la Nueva URL."
+
+#: src/Tests/Domain.php:19
+msgid "This site is accessible from the New URL."
+msgstr "Este sitio es accesible desde la Nueva URL."
+
+#: src/Tests/Domain.php:128
+msgid "Verify this site is accessible from the New URL."
+msgstr "Verifique que este sitio sea accesible desde la Nueva URL."
+
+#: src/Tests/Scheme.php:17
+msgid "Both urls have a scheme."
+msgstr "Ambas urls tienen un esquema."
+
+#: src/Tests/Scheme.php:18
+msgid "Both urls do not have a scheme."
+msgstr "Ambas urls no tienen un esquema."
+
+#: src/Tests/Scheme.php:19
+msgid "The old url has a scheme. The new url does not."
+msgstr "La url anterior tiene un esquema. La nueva URL no."
+
+#: src/Tests/Scheme.php:20
+msgid "The new url has a scheme. The old url does not."
+msgstr "La nueva URL tiene un esquema. La vieja url no."
+
+#: src/Tests/Scheme.php:83
+msgid "Verify the Old URL and New URL have matching structures."
+msgstr "Verifique que la URL antigua y la Nueva URL tengan estructuras que coincidan."
+
+#: src/Tests/Trailing_Slash.php:18
+msgid "Both urls have a trailing slash."
+msgstr "Ambas urls tienen una barra inclinada."
+
+#: src/Tests/Trailing_Slash.php:19
+msgid "Both urls do not have a trailing slash."
+msgstr "Ambas direcciones URL no tienen una barra inclinada."
+
+#: src/Tests/Trailing_Slash.php:20
+msgid "The old url has a trailing slash. The new url does not."
+msgstr "La url anterior tiene una barra inclinada. La nueva URL no."
+
+#: src/Tests/Trailing_Slash.php:21
+msgid "The new url has a trailing slash. The old url does not."
+msgstr "La nueva URL tiene una barra inclinada. La vieja url no."
+
+#: src/Tests/Trailing_Slash.php:80
+msgid "Verify the Old URL and New URL have matching trailing slashes."
+msgstr "Verifique que la URL antigua y la Nueva URL tengan barras diagonales posteriores coincidentes."
+
+#: src/Update.php:97
+msgid "An Unexpected HTTP Error occurred during the API request."
+msgstr "Un HTTP inesperado error ocurrió durante la petición de la API."
+
+#: src/Update.php:97
+msgid "Try again"
+msgstr "Inténtalo de nuevo"
+
+#: src/Update.php:102
+msgid "An unknown error occurred"
+msgstr "Ocurrió un error desconocido"
+
+#. Plugin Name of the plugin/theme
+msgid "Go Live Update URLS Pro"
+msgstr "Go Live Update URLS Pro"
+
+#. Plugin URI of the plugin/theme
+msgid "https://matlipe.com/go-live-update-urls-pro/"
+msgstr "https://matlipe.com/go-live-update-urls-pro/"
+
+#. Description of the plugin/theme
+msgid "Make Go Live Update URLS smarter and easier to use."
+msgstr "Make Go Live Update URLS es más inteligente y fácil de usar."
+
+#. Author of the plugin/theme
+msgid "Mat Lipe"
+msgstr "Mat Lipe"
+
+#. Author URI of the plugin/theme
+msgid "https://matlipe.com/"
+msgstr "https://matlipe.com/"
