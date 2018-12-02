@@ -113,7 +113,7 @@ add_filter( 'as3cf_attachment_file_paths', 'wpos3_hipdi_add_hidpi_file_paths' );
 
 
 function register_my_menu() {
-	register_nav_menu( 'main', __( 'Main menu', 'jesusimage_2019' ) );
+	//register_nav_menu( 'main', __( 'Main menu', 'jesusimage_2019' ) );
 	register_nav_menu( 'private', __( 'Private menu', 'jesusimage_2019' ) );
 	register_nav_menu( 'public', __( 'Public menu', 'jesusimage_2019' ) );
 }
