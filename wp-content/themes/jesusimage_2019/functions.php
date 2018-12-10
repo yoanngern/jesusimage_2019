@@ -30,7 +30,18 @@ add_action( 'acf/init', 'jesusimage_acf_init' );
 function jesusimage_acf_init() {
 
 	if ( function_exists( 'acf_add_options_page' ) ) {
+		/**
+		 * Gospel Center - Settings
+		 */
+		acf_add_options_sub_page( array(
+			'page_title'  => __( 'Jesus Image - Settings', 'jesusimage_2019' ),
+			'menu_title'  => __( 'Jesus Image', 'jesusimage_2019' ),
+			'parent_slug' => 'options-general.php',
+			'menu_slug'   => 'ji',
+			'capability'  => 'delete_pages',
+			'autoload'    => true,
 
+		) );
 	}
 }
 
@@ -178,7 +189,7 @@ add_image_size( 'home', 800, 450, true );
 
 add_image_size( 'square', 450, 450, true );
 add_image_size( 'summary', 770, 433, true );
-add_image_size( 'logo', 160, 70, true );
+add_image_size( 'logo', 200, 40, true );
 
 add_image_size( 'full_hd', 1920, 1080, true );
 add_image_size( 'hd', 1280, 720, true );

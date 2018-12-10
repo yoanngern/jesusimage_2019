@@ -18,9 +18,11 @@ Use it to make something cool, have fun, and share what you've learned with othe
 html, body, div, ul, ol, li, dl, dt, dd, h1, h2, h3, h4, h5, h6, pre, form, p, blockquote, fieldset, input, abbr, article, aside, command, details, figcaption, figure, footer, header, hgroup, mark, meter, nav, output, progress, section, summary, time {
   margin: 0;
   padding: 0;
-  font-size: 14px;
-  line-height: 14px;
   letter-spacing: 0; }
+
+html, body {
+  font-size: 14px;
+  line-height: 14px; }
 
 h1, h2, h3, h4, h5, h6, pre, code, address, caption, cite, code, em, strong, th, figcaption {
   font-weight: normal;
@@ -55,10 +57,10 @@ body > header {
       vertical-align: top;
       display: table-cell; }
   body > header .logo {
-    width: 172px; }
+    width: 200px; }
     body > header .logo a {
       height: 40px;
-      width: 152px;
+      width: 200px;
       background-image: url("../images/logo.png");
       background-repeat: no-repeat;
       background-size: contain;
@@ -471,9 +473,8 @@ body > footer {
     padding: 40px 0; } }
 
 .elementor-text-editor p {
-  font-size: inherit;
-  line-height: inherit;
-  letter-spacing: inherit; }
+  padding: 5px 0 15px;
+  font-size: inherit; }
 
 .nf-form-cont.small, .nf-form-cont.medium {
   display: block;

@@ -8,7 +8,7 @@
             <span></span>
         </div>
         <div class="logo">
-            <a href="<?php echo home_url(); ?>" id="logo"></a>
+            <a href="<?php echo home_url(); ?>" style="background-image: url('<?php echo get_field( 'logo_top', 'option' )['sizes']['logo'] ?>')" id="logo"></a>
         </div>
         <nav>
 			<?php

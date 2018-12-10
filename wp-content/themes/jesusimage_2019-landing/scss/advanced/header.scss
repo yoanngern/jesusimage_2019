@@ -1,0 +1,21 @@
+body.landing {
+    & > header {
+        background: transparent;
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        z-index: 1000;
+
+        .content {
+            max-width: inherit;
+            padding: 0 2%;
+            display: block;
+            width: auto;
+
+            .logo {
+                display: inline-block;
+            }
+        }
+    }
+}

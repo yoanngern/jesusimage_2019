@@ -8,5 +8,6 @@
 	//require_once( __DIR__ . '/acf/buttons.php' );
 	//require_once( __DIR__ . '/acf/meta_facebook.php' );
 	//require_once( __DIR__ . '/acf/talk.php' );
+require_once( __DIR__ . '/acf/ji_settings.php' );
 
 

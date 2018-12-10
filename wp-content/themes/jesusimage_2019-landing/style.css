@@ -1,0 +1,29 @@
+/*
+Theme Name:     Jesus Image 2019 Landing page
+Theme URI:      https://jesusimage.tv
+Author:         Yoann Gern
+Author URI:     http://gerny-media.ch
+Description:    Template for the Jesus Image landing page
+Template:       jesusimage_2019
+Version:        0.1
+License:        GNU General Public License v2 or later
+License URI:    http://www.gnu.org/licenses/gpl-2.0.html
+Text Domain:    jesusimage_2019-landing
+
+This theme, like WordPress, is licensed under the GPL.
+Use it to make something cool, have fun, and share what you've learned with others.
+*/
+body.landing > header {
+  background: transparent;
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 1000; }
+  body.landing > header .content {
+    max-width: inherit;
+    padding: 0 2%;
+    display: block;
+    width: auto; }
+    body.landing > header .content .logo {
+      display: inline-block; }
