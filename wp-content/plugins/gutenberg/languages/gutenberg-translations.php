@@ -187,6 +187,7 @@ $generated_i18n_strings = array(
 	__( 'Columns', 'gutenberg' ),
 
 	// Reference: packages/block-library/build-module/cover/index.js:283
+	// Reference: packages/block-library/build-module/media-text/media-container.js:46
 	__( 'Edit media', 'gutenberg' ),
 
 	// Reference: packages/block-library/build-module/cover/index.js:289
@@ -683,9 +684,6 @@ $generated_i18n_strings = array(
 
 	// Reference: packages/block-library/build-module/media-text/index.js:69
 	__( 'Set media and words side-by-side for a richer layout.', 'gutenberg' ),
-
-	// Reference: packages/block-library/build-module/media-text/media-container.js:46
-	__( 'Edit Media', 'gutenberg' ),
 
 	// Reference: packages/block-library/build-module/media-text/media-container.js:89
 	__( 'Media area', 'gutenberg' ),
@@ -1402,14 +1400,14 @@ $generated_i18n_strings = array(
 	// Reference: packages/edit-post/build-module/plugins/keyboard-shortcuts-help-menu-item/index.js:19
 	__( 'Keyboard Shortcuts', 'gutenberg' ),
 
-	// Reference: packages/edit-post/build-module/components/layout/index.js:60
+	// Reference: packages/edit-post/build-module/components/layout/index.js:59
 	/* translators: accessibility text for the publish landmark region. */
 	__( 'Editor publish', 'gutenberg' ),
 
-	// Reference: packages/edit-post/build-module/components/layout/index.js:70
+	// Reference: packages/edit-post/build-module/components/layout/index.js:69
 	__( 'Editor content', 'gutenberg' ),
 
-	// Reference: packages/edit-post/build-module/components/layout/index.js:94
+	// Reference: packages/edit-post/build-module/components/layout/index.js:93
 	__( 'Open publish panel', 'gutenberg' ),
 
 	// Reference: packages/edit-post/build-module/components/options-modal/index.js:40
@@ -1475,24 +1473,17 @@ $generated_i18n_strings = array(
 	// Reference: packages/edit-post/build-module/components/sidebar/post-visibility/index.js:15
 	__( 'Visibility', 'gutenberg' ),
 
-	// Reference: packages/edit-post/build-module/components/sidebar/settings-header/index.js:20
-	__( 'Block', 'gutenberg' ),
-
 	// Reference: packages/edit-post/build-module/components/sidebar/settings-header/index.js:23
-	/* translators: ARIA label for the Document Settings sidebar tab, selected. */
-	__( 'Document settings (selected)', 'gutenberg' ),
-
-	// Reference: packages/edit-post/build-module/components/sidebar/settings-header/index.js:24
-	/* translators: ARIA label for the Document Settings sidebar tab, not selected. */
-	__( 'Document settings', 'gutenberg' ),
+	/* translators: ARIA label for the Document sidebar tab, selected. */
+	__( 'Document (selected)', 'gutenberg' ),
 
 	// Reference: packages/edit-post/build-module/components/sidebar/settings-header/index.js:30
-	/* translators: ARIA label for the Block Settings sidebar tab, selected. */
-	__( 'Block settings (selected)', 'gutenberg' ),
+	/* translators: ARIA label for the Block sidebar tab, selected. */
+	__( 'Block (selected)', 'gutenberg' ),
 
 	// Reference: packages/edit-post/build-module/components/sidebar/settings-header/index.js:31
-	/* translators: ARIA label for the Block Settings sidebar tab, not selected. */
-	__( 'Block settings', 'gutenberg' ),
+	/* translators: ARIA label for the Block sidebar tab, not selected. */
+	__( 'Block', 'gutenberg' ),
 
 	// Reference: packages/edit-post/build-module/components/sidebar/settings-header/index.js:38
 	__( 'Close settings', 'gutenberg' ),

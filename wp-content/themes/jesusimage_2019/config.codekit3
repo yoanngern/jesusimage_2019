@@ -5332,7 +5332,7 @@
 			}
 		},
 	"esLintSourceType": 0,
-	"externalServerAddress": "http://apply.jesusschool.local",
+	"externalServerAddress": "http://apply.jesusschool.tv",
 	"gitIgnoreBuildFolder": 1,
 	"hideConfigFile": 0,
 	"jsCheckerReservedNamesString": "",

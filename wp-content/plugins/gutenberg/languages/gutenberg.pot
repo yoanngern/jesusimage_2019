@@ -242,6 +242,7 @@ msgid "Columns"
 msgstr ""
 
 #: packages/block-library/build-module/cover/index.js:283
+#: packages/block-library/build-module/media-text/media-container.js:46
 msgid "Edit media"
 msgstr ""
 
@@ -902,10 +903,6 @@ msgstr ""
 
 #: packages/block-library/build-module/media-text/index.js:69
 msgid "Set media and words side-by-side for a richer layout."
-msgstr ""
-
-#: packages/block-library/build-module/media-text/media-container.js:46
-msgid "Edit Media"
 msgstr ""
 
 #: packages/block-library/build-module/media-text/media-container.js:89
@@ -1873,15 +1870,15 @@ msgid "Keyboard Shortcuts"
 msgstr ""
 
 # accessibility text for the publish landmark region.
-#: packages/edit-post/build-module/components/layout/index.js:60
+#: packages/edit-post/build-module/components/layout/index.js:59
 msgid "Editor publish"
 msgstr ""
 
-#: packages/edit-post/build-module/components/layout/index.js:70
+#: packages/edit-post/build-module/components/layout/index.js:69
 msgid "Editor content"
 msgstr ""
 
-#: packages/edit-post/build-module/components/layout/index.js:94
+#: packages/edit-post/build-module/components/layout/index.js:93
 msgid "Open publish panel"
 msgstr ""
 
@@ -1967,28 +1964,19 @@ msgstr ""
 msgid "Visibility"
 msgstr ""
 
-#: packages/edit-post/build-module/components/sidebar/settings-header/index.js:20
-msgid "Block"
-msgstr ""
-
-# ARIA label for the Document Settings sidebar tab, selected.
+# ARIA label for the Document sidebar tab, selected.
 #: packages/edit-post/build-module/components/sidebar/settings-header/index.js:23
-msgid "Document settings (selected)"
+msgid "Document (selected)"
 msgstr ""
 
-# ARIA label for the Document Settings sidebar tab, not selected.
-#: packages/edit-post/build-module/components/sidebar/settings-header/index.js:24
-msgid "Document settings"
-msgstr ""
-
-# ARIA label for the Block Settings sidebar tab, selected.
+# ARIA label for the Block sidebar tab, selected.
 #: packages/edit-post/build-module/components/sidebar/settings-header/index.js:30
-msgid "Block settings (selected)"
+msgid "Block (selected)"
 msgstr ""
 
-# ARIA label for the Block Settings sidebar tab, not selected.
+# ARIA label for the Block sidebar tab, not selected.
 #: packages/edit-post/build-module/components/sidebar/settings-header/index.js:31
-msgid "Block settings"
+msgid "Block"
 msgstr ""
 
 #: packages/edit-post/build-module/components/sidebar/settings-header/index.js:38

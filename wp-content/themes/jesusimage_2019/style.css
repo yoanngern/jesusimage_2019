@@ -470,6 +470,11 @@ body > footer {
   #content .platter section.content-default {
     padding: 40px 0; } }
 
+.elementor-text-editor p {
+  font-size: inherit;
+  line-height: inherit;
+  letter-spacing: inherit; }
+
 .nf-form-cont.small, .nf-form-cont.medium {
   display: block;
   margin: 0 auto; }

@@ -1,33 +1,49 @@
 <?php
 /**
- * Plugin Name: WooCommerce Gutenberg Products Block
+ * Plugin Name: WooCommerce Blocks
  * Plugin URI: https://github.com/woocommerce/woocommerce-gutenberg-products-block
- * Description: WooCommerce Products block for the Gutenberg editor.
- * Version: 1.1.2
+ * Description: WooCommerce blocks for the Gutenberg editor.
+ * Version: 1.2.0
  * Author: Automattic
  * Author URI: https://woocommerce.com
- * Text Domain:  woocommerce
- * Domain Path:  /languages
+ * Text Domain:  woo-gutenberg-products-block
  * WC requires at least: 3.3
- * WC tested up to: 3.4
+ * WC tested up to: 3.5
  */
 
 defined( 'ABSPATH' ) || die();
 
-define( 'WGPB_VERSION', '1.1.2' );
+define( 'WGPB_VERSION', '1.2.0' );
+
+define( 'WGPB_DEVELOPMENT_MODE', false );
 
 /**
  * Load up the assets if Gutenberg is active.
  */
 function wgpb_initialize() {
+	$files_exist = file_exists( plugin_dir_path( __FILE__ ) . '/build/products-block.js' );
 
-	if ( function_exists( 'register_block_type' ) ) {
+	if ( $files_exist && function_exists( 'register_block_type' ) ) {
 		add_action( 'init', 'wgpb_register_products_block' );
-		add_action( 'rest_api_init', 'wgpb_register_api_routes' );
+		add_action( 'enqueue_block_editor_assets', 'wgpb_extra_gutenberg_scripts' );
 	}
 
+	if ( defined( 'WGPB_DEVELOPMENT_MODE' ) && WGPB_DEVELOPMENT_MODE && ! $files_exist ) {
+		add_action( 'admin_notices', 'wgpb_plugins_notice' );
+	}
+
+	add_action( 'rest_api_init', 'wgpb_register_api_routes' );
 }
 add_action( 'woocommerce_loaded', 'wgpb_initialize' );
+
+/**
+ * Display a warning about building files.
+ */
+function wgpb_plugins_notice() {
+	echo '<div class="error"><p>';
+	echo __( 'WooCommerce Product Blocks development mode requires files to be built. From the plugin directory, run <code>npm install</code> to install dependencies, <code>npm run build</code> to build the files or <code>npm start</code> to build the files and watch for changes.', 'woo-gutenberg-products-block' );
+	echo '</p></div>';
+}
 
 /**
  * Register the Products block and its scripts.
@@ -47,18 +63,40 @@ function wgpb_extra_gutenberg_scripts() {
 		return;
 	}
 
+	// @todo Remove this dependency (as it adds a separate react instance).
 	wp_enqueue_script(
 		'react-transition-group',
 		plugins_url( 'assets/js/vendor/react-transition-group.js', __FILE__ ),
-		array( 'wp-blocks', 'wp-element' ),
-		'2.2.1'
+		array(),
+		'2.2.1',
+		true
+	);
+
+	wp_register_script(
+		'woocommerce-products-category-block',
+		plugins_url( 'build/product-category-block.js', __FILE__ ),
+		array(
+			'wp-api-fetch',
+			'wp-blocks',
+			'wp-components',
+			'wp-compose',
+			'wp-data',
+			'wp-element',
+			'wp-editor',
+			'wp-i18n',
+			'wp-url',
+			'lodash',
+		),
+		defined( 'SCRIPT_DEBUG' ) && SCRIPT_DEBUG ? filemtime( plugin_dir_path( __FILE__ ) . '/build/product-category-block.js' ) : WGPB_VERSION,
+		true
 	);
 
 	wp_register_script(
 		'woocommerce-products-block-editor',
-		plugins_url( 'assets/js/products-block.js', __FILE__ ),
-		array( 'wp-blocks', 'wp-element', 'react-transition-group' ),
-		WGPB_VERSION
+		plugins_url( 'build/products-block.js', __FILE__ ),
+		array( 'wp-api-fetch', 'wp-element', 'wp-components', 'wp-blocks', 'wp-editor', 'wp-i18n', 'react-transition-group' ),
+		defined( 'SCRIPT_DEBUG' ) && SCRIPT_DEBUG ? filemtime( plugin_dir_path( __FILE__ ) . '/build/products-block.js' ) : WGPB_VERSION,
+		true
 	);
 
 	$product_block_data = array(
@@ -71,26 +109,76 @@ function wgpb_extra_gutenberg_scripts() {
 	);
 	wp_localize_script( 'woocommerce-products-block-editor', 'wc_product_block_data', $product_block_data );
 
+	if ( function_exists( 'wp_set_script_translations' ) ) {
+		wp_set_script_translations( 'woocommerce-products-category-block', 'woo-gutenberg-products-block' );
+	}
+
 	wp_enqueue_script( 'woocommerce-products-block-editor' );
+	wp_enqueue_script( 'woocommerce-products-category-block' );
 
 	wp_enqueue_style(
 		'woocommerce-products-block-editor',
-		plugins_url( 'assets/css/gutenberg-products-block.css', __FILE__ ),
+		plugins_url( 'build/products-block.css', __FILE__ ),
 		array( 'wp-edit-blocks' ),
-		WGPB_VERSION
+		defined( 'SCRIPT_DEBUG' ) && SCRIPT_DEBUG ? filemtime( plugin_dir_path( __FILE__ ) . '/build/products-block.css' ) : WGPB_VERSION
+	);
+
+	wp_enqueue_style(
+		'woocommerce-products-category-block',
+		plugins_url( 'build/product-category-block.css', __FILE__ ),
+		array( 'wp-edit-blocks' ),
+		defined( 'SCRIPT_DEBUG' ) && SCRIPT_DEBUG ? filemtime( plugin_dir_path( __FILE__ ) . '/build/product-category-block.css' ) : WGPB_VERSION
 	);
 }
-add_action( 'enqueue_block_editor_assets', 'wgpb_extra_gutenberg_scripts' );
 
 /**
- * Register extra API routes with functionality not available in WC core yet.
- *
- * @todo Remove this function when merging into core because it won't be necessary.
+ * Output the wcSettings global before printing any script tags.
+ */
+function wgpb_print_script_settings() {
+	$code = get_woocommerce_currency();
+
+	// Settings and variables can be passed here for access in the app.
+	$settings = array(
+		'adminUrl'         => admin_url(),
+		'wcAssetUrl'       => plugins_url( 'assets/', WC_PLUGIN_FILE ),
+		'siteLocale'       => esc_attr( get_bloginfo( 'language' ) ),
+		'currency'         => array(
+			'code'      => $code,
+			'precision' => wc_get_price_decimals(),
+			'symbol'    => get_woocommerce_currency_symbol( $code ),
+		),
+		'date'             => array(
+			'dow' => get_option( 'start_of_week', 0 ),
+		),
+	);
+	?>
+	<script type="text/javascript">
+		var wcSettings = <?php echo json_encode( $settings ); ?>;
+	</script>
+	<?php
+}
+add_action( 'admin_print_footer_scripts', 'wgpb_print_script_settings', 1 );
+
+/**
+ * Register extra API routes with functionality specific for product blocks.
  */
 function wgpb_register_api_routes() {
-	include_once( dirname( __FILE__ ) . '/includes/class-wgpb-products-controller.php' );
-	$controller = new WGPB_Products_Controller();
-	$controller->register_routes();
+	include_once dirname( __FILE__ ) . '/includes/class-wgpb-products-controller.php';
+	include_once dirname( __FILE__ ) . '/includes/class-wgpb-product-categories-controller.php';
+	include_once dirname( __FILE__ ) . '/includes/class-wgpb-product-attributes-controller.php';
+	include_once dirname( __FILE__ ) . '/includes/class-wgpb-product-attribute-terms-controller.php';
+
+	$products = new WGPB_Products_Controller();
+	$products->register_routes();
+
+	$categories = new WGPB_Product_Categories_Controller();
+	$categories->register_routes();
+
+	$attributes = new WGPB_Product_Attributes_Controller();
+	$attributes->register_routes();
+
+	$attribute_terms = new WGPB_Product_Attribute_Terms_Controller();
+	$attribute_terms->register_routes();
 }
 
 /**
