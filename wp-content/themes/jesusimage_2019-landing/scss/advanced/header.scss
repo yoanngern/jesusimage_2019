@@ -19,3 +19,11 @@ body.landing {
         }
     }
 }
+
+@media only screen and (max-width: 767px) {
+
+
+    body.landing > main {
+        margin-top: 0;
+    }
+}

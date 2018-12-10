@@ -27,3 +27,7 @@ body.landing > header {
     width: auto; }
     body.landing > header .content .logo {
       display: inline-block; }
+
+@media only screen and (max-width: 767px) {
+  body.landing > main {
+    margin-top: 0; } }
