@@ -29,13 +29,21 @@ body > footer {
             }
 
             #tagline {
+                /*
                 background-position: center;
                 background-repeat: no-repeat;
                 background-size: contain;
                 width: 294px;
                 height: 40px;
                 display: block;
-                margin: 15px auto;
+                */
+
+                @include brandon-grotesque-bold();
+                font-size: 1.4em;
+                letter-spacing: 0.08em;
+                margin: 20px auto;
+                text-transform: uppercase;
+
             }
         }
     }

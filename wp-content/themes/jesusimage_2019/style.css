@@ -240,13 +240,21 @@ body > footer {
         body > footer .content .logo #logo:hover {
           opacity: 0.9; }
       body > footer .content .logo #tagline {
-        background-position: center;
-        background-repeat: no-repeat;
-        background-size: contain;
-        width: 294px;
-        height: 40px;
-        display: block;
-        margin: 15px auto; }
+        /*
+                background-position: center;
+                background-repeat: no-repeat;
+                background-size: contain;
+                width: 294px;
+                height: 40px;
+                display: block;
+                */
+        font-family: brandon-grotesque, sans-serif;
+        font-weight: 700;
+        font-style: normal;
+        font-size: 1.4em;
+        letter-spacing: 0.08em;
+        margin: 20px auto;
+        text-transform: uppercase; }
 
 #content .platter {
   max-width: 960px;

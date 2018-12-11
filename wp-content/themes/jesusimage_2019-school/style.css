@@ -13,20 +13,11 @@ Text Domain:    jesusimage_2019-school
 This theme, like WordPress, is licensed under the GPL.
 Use it to make something cool, have fun, and share what you've learned with others.
 */
-body > header .logo a {
-  background-image: url("images/top_logo-school.png"); }
-
 body > header nav ul li a:hover {
   color: #ad623a; }
 
 body > header nav ul li.current-menu-item a, body > header nav ul li.current_page_item a {
   color: #ad623a; }
-
-body > footer #logo {
-  background-image: url("images/footer_logo-school.png"); }
-
-body > footer #tagline {
-  background-image: url("images/footer_tagline-school.png"); }
 
 #content .platter article.content-page a,
 #content .platter article.home-default a,
