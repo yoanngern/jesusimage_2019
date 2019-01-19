@@ -66,15 +66,13 @@ class NF_FU_Integrations_NinjaForms_MergeTags {
 	 */
 	protected function get_default_tags() {
 		return array(
-			'default'       => 'html',
-			'plain'         => 'plain',
-			'embed'         => 'embed',
-			'link'          => 'link',
-			'url'           => 'url',
-			'attachment_id' => 'attachment_id',
+			'default' => 'html',
+			'plain'   => 'plain',
+			'embed'   => 'embed',
+			'link'    => 'link',
+			'url'     => 'url',
 		);
 	}
-
 	/**
 	 * Update mergetag(s) value
 	 *
@@ -133,9 +131,6 @@ class NF_FU_Integrations_NinjaForms_MergeTags {
 			$values['embed'][] = sprintf( '<img src="%s">', $file_url );
 			$values['url'][]   = $file_url;
 			$values['plain'][] = $file_url;
-			if ( isset( $upload->attachment_id ) ) {
-				$values['attachment_id'][] = $upload->attachment_id;
-			}
 		}
 
 		if ( isset( $values['html'] ) ) {
@@ -153,10 +148,6 @@ class NF_FU_Integrations_NinjaForms_MergeTags {
 		}
 		if ( isset( $values['url'] ) ) {
 			$values['url'] = implode( ',', $values['url'] );
-		}
-
-		if ( isset( $values['attachment_id'] ) ) {
-			$values['attachment_id'] = implode( ',', $values['attachment_id'] );
 		}
 
 		return $values;

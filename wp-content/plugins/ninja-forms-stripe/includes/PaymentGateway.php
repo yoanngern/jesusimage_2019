@@ -759,16 +759,10 @@ class NF_Stripe_PaymentGateway extends NF_Abstracts_PaymentGateway
             )
         );
 
-        // if the form isn't set yet, then we don't have a form id
-        $form_id = '';
-        if( isset( $data[ 'form_id' ] ) && 0 < strlen( $data[ 'form_id ' ] ) ) {
-            $form_id = $data[ 'form_id' ];
-        }
-
         wp_localize_script( 'nf-stripe-key-modal', 'nfStripeKeys',
 	        array (
 	        		'hasKeys' => $this->has_api_keys(),
-		            'hasStripeAction' => $this->has_active_stripe_action( $form_id ),
+		            'hasStripeAction' => $this->has_active_stripe_action( $data[ 'form_id' ] ),
 		            'keyFormatError' => sprintf( __( 'One or more of your entries are incorrectly formatted.' ) )
 
 	        )

@@ -25,6 +25,7 @@ return array(
 	'wp-block-library'                      => array(
 		'editor',
 		'lodash',
+		'moment',
 		'wp-api-fetch',
 		'wp-autop',
 		'wp-blob',

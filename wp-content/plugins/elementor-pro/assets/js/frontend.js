@@ -1,4 +1,4 @@
-/*! elementor-pro - v2.3.1 - 19-12-2018 */
+/*! elementor-pro - v2.2.0 - 19-11-2018 */
 /******/ (function(modules) { // webpackBootstrap
 /******/ 	// The module cache
 /******/ 	var installedModules = {};
@@ -848,33 +848,6 @@ module.exports = elementorFrontend.Module.extend({
 
 	bindEvents: function bindEvents() {
 		this.elements.$form.on('submit', this.handleSubmit);
-		var $fileInput = this.elements.$form.find('input[type=file]');
-		if ($fileInput.length) {
-			$fileInput.on('change', this.validateFileSize);
-		}
-	},
-
-	validateFileSize: function validateFileSize(event) {
-		var _this = this;
-
-		var $field = jQuery(event.currentTarget),
-		    files = $field[0].files;
-
-		if (!files.length) {
-			return;
-		}
-
-		var maxSize = parseInt($field.attr('data-maxsize')) * 1024 * 1024,
-		    maxSizeMessage = $field.attr('data-maxsize-message');
-
-		var filesArray = Array.prototype.slice.call(files);
-		filesArray.forEach(function (file) {
-			if (maxSize < file.size) {
-				$field.parent().addClass('elementor-error').append('<span class="elementor-message elementor-message-danger elementor-help-inline elementor-form-help-inline" role="alert">' + maxSizeMessage + '</span>').find(':input').attr('aria-invalid', 'true');
-
-				_this.elements.$form.trigger('error');
-			}
-		});
 	},
 
 	beforeSend: function beforeSend() {
@@ -1893,9 +1866,7 @@ var MenuHandler = elementorFrontend.Module.extend({
 
 	followMenuAnchor: function followMenuAnchor($element) {
 		var anchorSelector = $element[0].hash,
-
-		// `decodeURIComponent` for UTF8 characters in the hash.
-		$anchor = jQuery(decodeURIComponent(anchorSelector)),
+		    $anchor = jQuery(anchorSelector),
 		    offset = -300;
 
 		if (!$anchor.length) {

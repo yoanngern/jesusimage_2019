@@ -131,8 +131,6 @@ class Module extends Module_Base {
 	}
 
 	/**
-	 * TODO: Remove. On Elementor 2.3.3 it's handled by the Documents Manager.
-	 *
 	 * Remove user edit capabilities.
 	 *
 	 * Filters the user capabilities to disable editing in admin.

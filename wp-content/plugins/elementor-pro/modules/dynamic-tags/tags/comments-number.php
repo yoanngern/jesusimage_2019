@@ -55,7 +55,7 @@ class Comments_Number extends Tag {
 		$this->add_control(
 			'link_to',
 			[
-				'label' => __( 'Link', 'elementor-pro' ),
+				'label' => __( 'Link To', 'elementor-pro' ),
 				'type' => Controls_Manager::SELECT,
 				'default' => '',
 				'options' => [

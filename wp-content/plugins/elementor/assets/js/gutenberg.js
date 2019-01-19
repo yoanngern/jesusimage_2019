@@ -1,4 +1,4 @@
-/*! elementor - v2.4.1 - 15-01-2019 */
+/*! elementor - v2.3.4 - 29-11-2018 */
 /******/ (function(modules) { // webpackBootstrap
 /******/ 	// The module cache
 /******/ 	var installedModules = {};
@@ -82,12 +82,12 @@
 /******/
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 175);
+/******/ 	return __webpack_require__(__webpack_require__.s = 177);
 /******/ })
 /************************************************************************/
 /******/ ({
 
-/***/ 175:
+/***/ 177:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -152,28 +152,17 @@
 			var self = this;
 
 			self.cache.$switchModeButton.on('click', function () {
-				if (self.isElementorMode) {
-					elementorCommon.dialogsManager.createWidget('confirm', {
-						message: elementorAdmin.translate('back_to_wordpress_editor_message'),
-						headerMessage: elementorAdmin.translate('back_to_wordpress_editor_header'),
-						strings: {
-							confirm: elementorAdmin.translate('yes'),
-							cancel: elementorAdmin.translate('cancel')
-						},
-						defaultOption: 'confirm',
-						onConfirm: function onConfirm() {
-							var wpEditor = wp.data.dispatch('core/editor');
+				self.isElementorMode = !self.isElementorMode;
 
-							wpEditor.editPost({ gutenberg_elementor_mode: false });
-							wpEditor.savePost();
-							self.isElementorMode = !self.isElementorMode;
-							self.toggleStatus();
-						}
-					}).show();
-				} else {
-					self.isElementorMode = !self.isElementorMode;
-					self.toggleStatus();
+				self.toggleStatus();
+
+				if (self.isElementorMode) {
 					self.cache.$editorPanelButton.trigger('click');
+				} else {
+					var wpEditor = wp.data.dispatch('core/editor');
+
+					wpEditor.editPost({ gutenberg_elementor_mode: false });
+					wpEditor.savePost();
 				}
 			});
 		},

@@ -70,7 +70,6 @@ class Widgets_Manager {
 			'html',
 			'menu-anchor',
 			'sidebar',
-			'read-more',
 		];
 
 		$this->_widget_types = [];

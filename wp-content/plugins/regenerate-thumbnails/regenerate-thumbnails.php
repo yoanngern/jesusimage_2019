@@ -5,7 +5,7 @@
 Plugin Name:  Regenerate Thumbnails
 Description:  Regenerate the thumbnails for one or more of your image uploads. Useful when changing their sizes or your theme.
 Plugin URI:   https://alex.blog/wordpress-plugins/regenerate-thumbnails/
-Version:      3.1.0
+Version:      3.0.2
 Author:       Alex Mills (Viper007Bond)
 Author URI:   https://alex.blog/
 Text Domain:  regenerate-thumbnails
@@ -29,6 +29,9 @@ along with Regenerate Thumbnails. If not, see https://www.gnu.org/licenses/gpl-2
 
 **************************************************************************/
 
+require( dirname( __FILE__ ) . '/includes/class-regeneratethumbnails-regenerator.php' );
+require( dirname( __FILE__ ) . '/includes/class-regeneratethumbnails-rest-controller.php' );
+
 /**
  * Main plugin class.
  *
@@ -40,7 +43,7 @@ class RegenerateThumbnails {
 	 *
 	 * @var string
 	 */
-	public $version = '3.1.0';
+	public $version = '3.0.2';
 
 	/**
 	 * The menu ID of this plugin, as returned by add_management_page().
@@ -112,14 +115,6 @@ class RegenerateThumbnails {
 	 * Register all of the needed hooks and actions.
 	 */
 	public function setup() {
-		// Prevent fatals on old versions of WordPress
-		if ( ! class_exists( 'WP_REST_Controller' ) ) {
-			return;
-		}
-
-		require dirname( __FILE__ ) . '/includes/class-regeneratethumbnails-regenerator.php';
-		require dirname( __FILE__ ) . '/includes/class-regeneratethumbnails-rest-controller.php';
-
 		// Allow people to change what capability is required to use this plugin.
 		$this->capability = apply_filters( 'regenerate_thumbs_cap', $this->capability );
 
@@ -161,13 +156,7 @@ class RegenerateThumbnails {
 	 * Adds a the new item to the admin menu.
 	 */
 	public function add_admin_menu() {
-		$this->menu_id = add_management_page(
-			_x( 'Regenerate Thumbnails', 'admin page title', 'regenerate-thumbnails' ),
-			_x( 'Regenerate Thumbnails', 'admin menu entry title', 'regenerate-thumbnails' ),
-			$this->capability,
-			'regenerate-thumbnails',
-			array( $this, 'regenerate_interface' )
-		);
+		$this->menu_id = add_management_page( __( 'Regenerate Thumbnails', 'regenerate-thumbnails' ), __( 'Regenerate Thumbnails', 'regenerate-thumbnails' ), $this->capability, 'regenerate-thumbnails', array( $this, 'regenerate_interface' ) );
 
 		add_action( 'admin_head-' . $this->menu_id, array( $this, 'add_admin_notice_if_resizing_not_supported' ) );
 	}
@@ -207,7 +196,6 @@ class RegenerateThumbnails {
 			true
 		);
 
-		// phpcs:disable WordPress.Arrays.MultipleStatementAlignment
 		$script_data = array(
 			'data'    => array(
 				'thumbnailSizes' => $this->get_thumbnail_sizes(),
@@ -220,9 +208,10 @@ class RegenerateThumbnails {
 			),
 			'l10n'    => array(
 				'common'             => array(
+					'regenerateThumbnails'                      => __( 'Regenerate Thumbnails', 'regenerate-thumbnails' ),
 					'loading'                                   => __( 'Loading…', 'regenerate-thumbnails' ),
 					'onlyRegenerateMissingThumbnails'           => __( 'Skip regenerating existing correctly sized thumbnails (faster).', 'regenerate-thumbnails' ),
-					'deleteOldThumbnails'                       => __( "Delete thumbnail files for old unregistered sizes in order to free up server space. This may result in broken images in your posts and pages.", 'regenerate-thumbnails' ),
+					'deleteOldThumbnails'                       => __( "Delete thumbnail files for old unregistered sizes in order to free up server space. You risk broken images if you do this so it's strongly recommended that you update the content of posts to reduce the risk.", 'regenerate-thumbnails' ),
 					'thumbnailSizeItemWithCropMethodNoFilename' => __( '<strong>{label}:</strong> {width}×{height} pixels ({cropMethod})', 'regenerate-thumbnails' ),
 					'thumbnailSizeItemWithCropMethod'           => __( '<strong>{label}:</strong> {width}×{height} pixels ({cropMethod}) <code>{filename}</code>', 'regenerate-thumbnails' ),
 					'thumbnailSizeItemWithoutCropMethod'        => __( '<strong>{label}:</strong> {width}×{height} pixels <code>{filename}</code>', 'regenerate-thumbnails' ),
@@ -232,12 +221,10 @@ class RegenerateThumbnails {
 				),
 				'Home'               => array(
 					'intro1'                                     => sprintf(
-						/* translators: %s: Media options URL */
 						__( 'When you change WordPress themes or change the sizes of your thumbnails at <a href="%s">Settings → Media</a>, images that you have previously uploaded to you media library will be missing thumbnail files for those new image sizes. This tool will allow you to create those missing thumbnail files for all images.', 'regenerate-thumbnails' ),
 						esc_url( admin_url( 'options-media.php' ) )
 					),
 					'intro2'                                     => sprintf(
-						/* translators: %s: Media library URL */
 						__( 'To process a specific image, visit your media library and click the &quot;Regenerate Thumbnails&quot; link or button. To process multiple specific images, make sure you\'re in the <a href="%s">list view</a> and then use the Bulk Actions dropdown after selecting one or more images.', 'regenerate-thumbnails' ),
 						esc_url( admin_url( 'upload.php?mode=list' ) )
 					),
@@ -250,11 +237,10 @@ class RegenerateThumbnails {
 					'thumbnailSizesDescription'                  => __( 'These are all of the thumbnail sizes that are currently registered:', 'regenerate-thumbnails' ),
 					'alternatives'                               => __( 'Alternatives', 'regenerate-thumbnails' ),
 					'alternativesText1'                          => __( 'If you have <a href="{url-cli}">command-line</a> access to your site\'s server, consider using <a href="{url-wpcli}">WP-CLI</a> instead of this tool. It has a built-in <a href="{url-wpcli-regenerate}">regenerate command</a> that works similarly to this tool but should be significantly faster since it has the advantage of being a command-line tool.', 'regenerate-thumbnails' ),
-					'alternativesText2'                          => __( 'Another alternative is to use the <a href="{url-photon}">Photon</a> functionality that comes with the <a href="{url-jetpack}">Jetpack</a> plugin. It generates thumbnails on-demand using WordPress.com\'s infrastructure. <em>Disclaimer: The author of this plugin, Regenerate Thumbnails, is an employee of the company behind WordPress.com and Jetpack but I would recommend it even if I wasn\'t.</em>', 'regenerate-thumbnails' ),
+					'alternativesText2'                          => __( 'Another alternative is to use the <a href="{url-photon}">Photon</a> functionality that comes with the <a href="{url-jetpack}">Jetpack</a> plugin. It generates thumbnails on-demand using WordPress.com\'s infrastructure. <em>Disclaimer: The author of this plugin, Regenerate Thumbnails, is an employee of the company behind WordPress.com and Jetpack but I would recommend it even if I wasn\'t.', 'regenerate-thumbnails' ),
 				),
 				'RegenerateSingle'   => array(
-					'regenerateThumbnails'                      => _x( 'Regenerate Thumbnails', 'action for a single image', 'regenerate-thumbnails' ),
-					/* translators: single image sdmin page title */
+					/* translators: Admin screen title. */
 					'title'                    => __( 'Regenerate Thumbnails: {name} — WordPress', 'regenerate-thumbnails' ),
 					'errorWithMessage'         => __( '<strong>ERROR:</strong> {error}', 'regenerate-thumbnails' ),
 					'filenameAndDimensions'    => __( '<code>{filename}</code> {width}×{height} pixels', 'regenerate-thumbnails' ),
@@ -283,10 +269,8 @@ class RegenerateThumbnails {
 				),
 			),
 		);
-		// phpcs:enable
 
-		// Bulk regeneration
-		// phpcs:disable WordPress.Security.NonceVerification
+		// Bulk regeneration.
 		if ( ! empty( $_GET['ids'] ) ) {
 			$script_data['data']['thumbnailIDs'] = array_map( 'intval', explode( ',', $_GET['ids'] ) );
 
@@ -295,7 +279,6 @@ class RegenerateThumbnails {
 				count( $script_data['data']['thumbnailIDs'] )
 			);
 		}
-		// phpcs:enable
 
 		wp_localize_script( 'regenerate-thumbnails', 'regenerateThumbnails', $script_data );
 
@@ -314,7 +297,7 @@ class RegenerateThumbnails {
 		global $wp_version;
 
 		echo '<div class="wrap">';
-		echo '<h1>' . esc_html_x( 'Regenerate Thumbnails', 'admin page title', 'regenerate-thumbnails' ) . '</h1>';
+		echo '<h1>' . esc_html__( 'Regenerate Thumbnails', 'regenerate-thumbnails' ) . '</h1>';
 
 		if ( version_compare( $wp_version, '4.7', '<' ) ) {
 			echo '<p>' . sprintf(
@@ -426,7 +409,7 @@ class RegenerateThumbnails {
 			return $actions;
 		}
 
-		$actions['regenerate_thumbnails'] = '<a href="' . esc_url( $this->create_page_url( $post->ID ) ) . '" title="' . esc_attr( __( 'Regenerate the thumbnails for this single image', 'regenerate-thumbnails' ) ) . '">' . _x( 'Regenerate Thumbnails', 'action for a single image', 'regenerate-thumbnails' ) . '</a>';
+		$actions['regenerate_thumbnails'] = '<a href="' . esc_url( $this->create_page_url( $post->ID ) ) . '" title="' . esc_attr( __( 'Regenerate the thumbnails for this single image', 'regenerate-thumbnails' ) ) . '">' . __( 'Regenerate Thumbnails', 'regenerate-thumbnails' ) . '</a>';
 
 		return $actions;
 	}
@@ -442,7 +425,7 @@ class RegenerateThumbnails {
 		}
 
 		echo '<div class="misc-pub-section misc-pub-regenerate-thumbnails">';
-		echo '<a href="' . esc_url( $this->create_page_url( $post->ID ) ) . '" class="button-secondary button-large" title="' . esc_attr( __( 'Regenerate the thumbnails for this single image', 'regenerate-thumbnails' ) ) . '">' . _x( 'Regenerate Thumbnails', 'action for a single image', 'regenerate-thumbnails' ) . '</a>';
+		echo '<a href="' . esc_url( $this->create_page_url( $post->ID ) ) . '" class="button-secondary button-large" title="' . esc_attr( __( 'Regenerate the thumbnails for this single image', 'regenerate-thumbnails' ) ) . '">' . __( 'Regenerate Thumbnails', 'regenerate-thumbnails' ) . '</a>';
 		echo '</div>';
 	}
 
@@ -466,7 +449,7 @@ class RegenerateThumbnails {
 		$form_fields['regenerate_thumbnails'] = array(
 			'label'         => '',
 			'input'         => 'html',
-			'html'          => '<a href="' . esc_url( $this->create_page_url( $post->ID ) ) . '" class="button-secondary button-large" title="' . esc_attr( __( 'Regenerate the thumbnails for this single image', 'regenerate-thumbnails' ) ) . '">' . _x( 'Regenerate Thumbnails', 'action for a single image', 'regenerate-thumbnails' ) . '</a>',
+			'html'          => '<a href="' . esc_url( $this->create_page_url( $post->ID ) ) . '" class="button-secondary button-large" title="' . esc_attr( __( 'Regenerate the thumbnails for this single image', 'regenerate-thumbnails' ) ) . '">' . __( 'Regenerate Thumbnails', 'regenerate-thumbnails' ) . '</a>',
 			'show_in_modal' => true,
 			'show_in_edit'  => false,
 		);
@@ -488,7 +471,7 @@ class RegenerateThumbnails {
 				$('select[name^="action"] option:last-child').before(
 					$('<option/>')
 						.attr('value', 'bulk_regenerate_thumbnails')
-						.text('<?php echo esc_js( _x( 'Regenerate Thumbnails', 'bulk actions dropdown', 'regenerate-thumbnails' ) ); ?>')
+						.text('<?php echo esc_js( __( 'Regenerate Thumbnails', 'regenerate-thumbnails' ) ); ?>')
 				);
 			});
 		</script>

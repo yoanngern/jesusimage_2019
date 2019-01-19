@@ -855,7 +855,7 @@ class csstidy {
 						$this->str_char[] = $string{$i} == "(" ? ")" : $string{$i};
 						$this->from[] = 'instr';
 						$this->quoted_string[] = !($string{$i} === "(");
-						continue 2;
+						continue;
 					}
 
 					if ($_str_char !== ")" && ($string{$i} === "\n" || $string{$i} === "\r") && !($string{$i - 1} === '\\' && !csstidy::escaped($string, $i - 1))) {
@@ -1027,7 +1027,7 @@ class csstidy {
 			return $media;
 		}
 		end($this->css);
-		$at = current( $this->css );
+		list($at,) = each($this->css);
 		if ($at == $media){
 			return $media;
 		}
@@ -1066,7 +1066,7 @@ class csstidy {
 
 			// if last is the same, keep it
 			end($this->css[$media]);
-			$sel = current( $this->css[$media] );
+			list($sel,) = each($this->css[$media]);
 			if ($sel == $selector){
 				return $selector;
 			}

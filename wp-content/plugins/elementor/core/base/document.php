@@ -32,8 +32,6 @@ abstract class Document extends Controls_Stack {
 	 */
 	const TYPE_META_KEY = '_elementor_template_type';
 
-	private $main_id;
-
 	private static $properties = [];
 
 	/**
@@ -120,12 +118,11 @@ abstract class Document extends Controls_Stack {
 	 */
 	public static function get_property( $key ) {
 		$id = static::get_class_full_name();
-
 		if ( ! isset( self::$properties[ $id ] ) ) {
 			self::$properties[ $id ] = static::get_properties();
 		}
 
-		return self::get_items( self::$properties[ $id ], $key );
+		return self::_get_items( self::$properties[ $id ], $key );
 	}
 
 	/**
@@ -157,29 +154,24 @@ abstract class Document extends Controls_Stack {
 
 	/**
 	 * @since 2.0.12
-	 * @deprecated 2.4.0
 	 * @access public
 	 */
-	public function get_remote_library_type() {}
+	public function get_remote_library_type() {
+		return $this->get_name();
+	}
 
 	/**
 	 * @since 2.0.0
 	 * @access public
 	 */
 	public function get_main_id() {
-		if ( ! $this->main_id ) {
-			$post_id = $this->post->ID;
-
-			$parent_post_id = wp_is_post_revision( $post_id );
-
-			if ( $parent_post_id ) {
-				$post_id = $parent_post_id;
-			}
-
-			$this->main_id = $post_id;
+		$post_id = $this->post->ID;
+		$parent_post_id = wp_is_post_revision( $post_id );
+		if ( $parent_post_id ) {
+			$post_id = $parent_post_id;
 		}
 
-		return $this->main_id;
+		return $post_id;
 	}
 
 	/**
@@ -220,34 +212,10 @@ abstract class Document extends Controls_Stack {
 
 	/**
 	 * @since 2.0.6
-	 * @deprecated 2.4.0 Use `Document::get_container_attributes` instead
 	 * @access public
 	 */
 	public function get_container_classes() {
-		return '';
-	}
-
-	public function get_container_attributes() {
-		$id = $this->get_main_id();
-
-		$attributes = [
-			'data-elementor-type' => $this->get_name(),
-			'data-elementor-id' => $id,
-			'class' => 'elementor elementor-' . $id,
-		];
-
-		if ( ! Plugin::$instance->preview->is_preview_mode( $id ) ) {
-			$attributes['data-elementor-settings'] = wp_json_encode( $this->get_frontend_settings() );
-		}
-
-		// TODO: BC since 2.4.0
-		$classes = $this->get_container_classes();
-
-		if ( $classes ) {
-			$attributes['class'] .= ' ' . $classes;
-		}
-
-		return $attributes;
+		return 'elementor elementor-' . $this->get_main_id();
 	}
 
 	/**
@@ -256,7 +224,6 @@ abstract class Document extends Controls_Stack {
 	 */
 	public function get_wp_preview_url() {
 		$main_post_id = $this->get_main_id();
-
 		$url = get_preview_post_link(
 			$main_post_id,
 			[
@@ -413,10 +380,9 @@ abstract class Document extends Controls_Stack {
 		return [
 			'id' => $this->get_main_id(),
 			'type' => $this->get_name(),
-			'remoteLibrary' => $this->get_remote_library_config(),
+			'remote_type' => $this->get_remote_library_type(),
 			'last_edited' => $this->get_last_edited(),
 			'panel' => static::get_editor_panel_config(),
-			'container' => 'body',
 			'urls' => [
 				'exit_to_dashboard' => $this->get_exit_to_dashboard_url(),
 				'preview' => $this->get_preview_url(),
@@ -764,7 +730,7 @@ abstract class Document extends Controls_Stack {
 			$elements_data = $this->get_elements_data();
 		}
 		?>
-		<div <?php echo Utils::render_html_attributes( $this->get_container_attributes() ); ?>>
+		<div class="<?php echo esc_attr( $this->get_container_classes() ); ?>">
 			<div class="elementor-inner">
 				<div class="elementor-section-wrap">
 					<?php $this->print_elements( $elements_data ); ?>
@@ -1065,24 +1031,6 @@ abstract class Document extends Controls_Stack {
 		}
 
 		parent::__construct( $data );
-	}
-
-	protected function get_remote_library_config() {
-		$config = [
-			'type' => 'block',
-			'category' => $this->get_name(),
-			'autoImportSettings' => false,
-		];
-
-		// TODO: BC since 2.4.0
-		$bc_type = $this->get_remote_library_type();
-
-		if ( $bc_type ) {
-			$config['category'] = $bc_type;
-		}
-		// END BC
-
-		return $config;
 	}
 
 	/**

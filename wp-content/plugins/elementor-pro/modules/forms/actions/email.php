@@ -52,7 +52,7 @@ class Email extends Action_Base {
 		$widget->add_control(
 			$this->get_control_id( 'email_subject' ),
 			[
-				'label' => __( 'Subject', 'elementor-pro' ),
+				'label' => __( 'Email Subject', 'elementor-pro' ),
 				'type' => Controls_Manager::TEXT,
 				'default' => $default_message,
 				'placeholder' => $default_message,
@@ -64,7 +64,7 @@ class Email extends Action_Base {
 		$widget->add_control(
 			$this->get_control_id( 'email_content' ),
 			[
-				'label' => __( 'Message', 'elementor-pro' ),
+				'label' => __( 'Email Content', 'elementor-pro' ),
 				'type' => Controls_Manager::TEXTAREA,
 				'default' => '[all-fields]',
 				'placeholder' => '[all-fields]',
@@ -336,15 +336,10 @@ class Email extends Action_Base {
 		if ( false !== strpos( $email_content, $all_fields_shortcode ) ) {
 			$text = '';
 			foreach ( $record->get( 'fields' ) as $field ) {
-				$formatted = $this->field_formatted( $field );
-				if ( ( 'textarea' === $field['type'] ) && ( '<br>' === $line_break ) ) {
-					$formatted = str_replace( [ "\r\n", "\n", "\r" ], '<br />', $formatted );
-				}
-				$text .= $formatted . $line_break;
+				$text .= $this->field_formatted( $field ) . $line_break;
 			}
 
 			$email_content = str_replace( $all_fields_shortcode, $text, $email_content );
-
 		}
 
 		return $email_content;

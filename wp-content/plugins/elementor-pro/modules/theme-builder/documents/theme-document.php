@@ -44,22 +44,13 @@ abstract class Theme_Document extends Library_Document {
 		return $label;
 	}
 
-	public function before_get_content() {
+	public function get_content( $with_css = false ) {
 		$preview_manager = Module::instance()->get_preview_manager();
 		$preview_manager->switch_to_preview_query();
-	}
-
-	public function after_get_content() {
-		$preview_manager = Module::instance()->get_preview_manager();
-		$preview_manager->restore_current_query();
-	}
-
-	public function get_content( $with_css = false ) {
-		$this->before_get_content();
 
 		$content = parent::get_content( $with_css );
 
-		$this->after_get_content();
+		$preview_manager->restore_current_query();
 
 		return $content;
 	}
@@ -97,6 +88,11 @@ abstract class Theme_Document extends Library_Document {
 		$location = Module::instance()->get_locations_manager()->get_current_location();
 		if ( $location ) {
 			$classes .= ' elementor-location-' . $location;
+		}
+
+		if ( is_singular() ) {
+			$post_classes = get_post_class( '', get_the_ID() );
+			$classes .= ' ' . implode( ' ', $post_classes );
 		}
 
 		return $classes;

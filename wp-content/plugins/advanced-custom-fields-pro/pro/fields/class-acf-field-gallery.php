@@ -436,8 +436,7 @@ class acf_field_gallery extends acf_field {
 		// get posts
 		$posts = acf_get_posts(array(
 			'post_type'	=> 'attachment',
-			'post__in'	=> $post__in,
-			'update_post_meta_cache' => true
+			'post__in'	=> $post__in
 		));
 		
 		

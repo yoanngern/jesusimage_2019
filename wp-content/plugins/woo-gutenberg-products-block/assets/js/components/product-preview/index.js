@@ -26,10 +26,8 @@ const ProductPreview = ( { product } ) => {
 				className="wc-product-preview__price"
 				dangerouslySetInnerHTML={ { __html: product.price_html } }
 			/>
-			<span className="wp-block-button">
-				<span className="wc-product-preview__add-to-cart wp-block-button__link">
-					{ __( 'Add to cart', 'woo-gutenberg-products-block' ) }
-				</span>
+			<span className="wc-product-preview__add-to-cart">
+				{ __( 'Add to cart', 'woo-gutenberg-products-block' ) }
 			</span>
 		</div>
 	);

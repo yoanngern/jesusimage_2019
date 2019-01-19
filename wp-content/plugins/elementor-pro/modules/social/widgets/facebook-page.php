@@ -44,7 +44,7 @@ class Facebook_Page extends Widget_Base {
 		$this->add_control(
 			'url',
 			[
-				'label' => __( 'Link', 'elementor-pro' ),
+				'label' => __( 'URL', 'elementor-pro' ),
 				'placeholder' => 'https://www.facebook.com/your-page/',
 				'default' => 'https://www.facebook.com/elemntor/',
 				'label_block' => true,

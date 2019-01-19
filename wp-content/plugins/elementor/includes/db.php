@@ -346,21 +346,20 @@ class DB {
 	 *
 	 * @param array    $data_container Any type of elementor data.
 	 * @param callable $callback       A function to iterate data by.
-	 * @param array    $args           Array of args pointers for passing parameters in & out of the callback
 	 *
 	 * @return mixed Iterated data.
 	 */
-	public function iterate_data( $data_container, $callback, $args = [] ) {
+	public function iterate_data( $data_container, $callback ) {
 		if ( isset( $data_container['elType'] ) ) {
 			if ( ! empty( $data_container['elements'] ) ) {
-				$data_container['elements'] = $this->iterate_data( $data_container['elements'], $callback, $args );
+				$data_container['elements'] = $this->iterate_data( $data_container['elements'], $callback );
 			}
 
-			return call_user_func( $callback, $data_container, $args );
+			return $callback( $data_container );
 		}
 
 		foreach ( $data_container as $element_key => $element_value ) {
-			$element_data = $this->iterate_data( $data_container[ $element_key ], $callback, $args );
+			$element_data = $this->iterate_data( $data_container[ $element_key ], $callback );
 
 			if ( null === $element_data ) {
 				continue;

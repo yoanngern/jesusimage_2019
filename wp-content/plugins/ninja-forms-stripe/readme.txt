@@ -4,7 +4,7 @@ Donate link: http://ninjaforms.com
 Tags: form, forms
 Requires at least: 4.7
 Tested up to: 4.9
-Stable tag: 3.0.20
+Stable tag: 3.0.19
 
 License: GPLv2 or later
 
@@ -25,13 +25,6 @@ This section describes how to install the plugin and get it working.
 For help and video tutorials, please visit our website: [NinjaForms.com](http://ninjaforms.com)
 
 == Changelog ==
-
-= 3.0.20 (11 January 2019) =
-
-*Bugs:*
-
-* The Stripe action should no longer throw an error when previewing an unpublished form.
-* Resolved an issue that was preventing Stripe from loading on forms where Save Progress was enabled.
 
 = 3.0.19 (5 July 2018) =
 

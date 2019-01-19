@@ -163,7 +163,7 @@ class Media_Carousel extends Base {
 		$repeater->add_control(
 			'image_link_to_type',
 			[
-				'label' => __( 'Link', 'elementor-pro' ),
+				'label' => __( 'Link To', 'elementor-pro' ),
 				'type' => Controls_Manager::SELECT,
 				'options' => [
 					'' => __( 'None', 'elementor-pro' ),

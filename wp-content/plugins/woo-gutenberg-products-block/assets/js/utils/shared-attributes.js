@@ -1,5 +1,12 @@
 export default {
 	/**
+	 * Alignment of product grid
+	 */
+	align: {
+		type: 'string',
+	},
+
+	/**
 	 * Number of columns.
 	 */
 	columns: {
@@ -16,26 +23,10 @@ export default {
 	},
 
 	/**
-	 * Product category, used to display only products in the given categories.
+	 * How to order the products: 'date', 'popularity', 'price_asc', 'price_desc' 'rating', 'title'.
 	 */
-	categories: {
-		type: 'array',
-		default: [],
-	},
-
-	/**
-	 * Product category operator, used to restrict to products in all or any selected categories.
-	 */
-	catOperator: {
+	orderby: {
 		type: 'string',
-		default: 'any',
-	},
-
-	/**
-	 * Product attributes, used to display only products with the given attributes.
-	 */
-	attributes: {
-		type: 'array',
-		default: [],
+		default: 'date',
 	},
 };

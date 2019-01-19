@@ -169,7 +169,7 @@ class Facebook_Button extends Widget_Base {
 		$this->add_control(
 			'url',
 			[
-				'label' => __( 'Link', 'elementor-pro' ),
+				'label' => __( 'URL', 'elementor-pro' ),
 				'placeholder' => __( 'https://your-link.com', 'elementor-pro' ),
 				'label_block' => true,
 				'condition' => [

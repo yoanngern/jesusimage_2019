@@ -190,7 +190,9 @@ class acf_admin_options_page {
 		
 		// notices
 		if( !empty($_GET['message']) && $_GET['message'] == '1' ) {
-			acf_add_admin_notice( $this->page['updated_message'], 'success' );
+		
+			acf_add_admin_notice( $this->page['updated_message'] );
+			
 		}
 		
 		
@@ -200,8 +202,8 @@ class acf_admin_options_page {
 		
 		
 		if( empty($field_groups) ) {
-			
-			acf_add_admin_notice( sprintf( __('No Custom Field Groups found for this options page. <a href="%s">Create a Custom Field Group</a>', 'acf'), admin_url('post-new.php?post_type=acf-field-group') ), 'warning' );
+		
+			acf_add_admin_notice( sprintf( __('No Custom Field Groups found for this options page. <a href="%s">Create a Custom Field Group</a>', 'acf'), admin_url() . 'post-new.php?post_type=acf-field-group' ), 'error');
 		
 		} else {
 			

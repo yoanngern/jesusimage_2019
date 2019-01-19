@@ -4,7 +4,7 @@ Donate link: http://ninjaforms.com
 Tags: form, forms
 Requires at least: 4.6
 Tested up to: 4.9.8
-Stable tag: 3.0.22
+Stable tag: 3.0.20
 
 License: GPLv2 or later
 
@@ -26,19 +26,6 @@ This section describes how to install the plugin and get it working.
 For help and video tutorials, please visit our website: [NinjaForms.com](http://ninjaforms.com)
 
 == Changelog ==
-
-= 3.0.22 (30 November 2018) =
-
-*Changes:*
-
-* Attachment ID mergetag variation to be used when saving file upload to the media library, eg. {field:file_upload_22:attachment_id}
-
-= 3.0.21 (29 November 2018) =
-
-*Bugs:*
-
-* Form cannot be submitted if there was an error uploading a file, even after deleting it
-* PHP Warning: count(): Parameter must be an array or an object that implements Countable
 
 = 3.0.20 (11 October 2018) =
 

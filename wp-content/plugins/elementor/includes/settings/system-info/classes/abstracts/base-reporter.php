@@ -74,27 +74,21 @@ abstract class Base_Reporter {
 	 * @since 1.0.0
 	 * @access public
 	 *
-	 * @return \WP_Error | array {
+	 * @return array {
 	 *    Report fields.
 	 *
 	 *    @type string $name Field name.
 	 *    @type string $label Field label.
 	 * }
 	 */
-	final public function get_report( $format = '' ) {
+	final public function get_report() {
 		$result = [];
 
-		$format = ( empty( $format ) ) ? '' : $format . '_';
-
 		foreach ( $this->get_fields() as $field_name => $field_label ) {
-			$method = 'get_' . $format . $field_name;
+			$method = 'get_' . $field_name;
 
 			if ( ! method_exists( $this, $method ) ) {
-				$method = 'get_' . $field_name;
-				//fallback:
-				if ( ! method_exists( $this, $method ) ) {
-					return new \WP_Error( sprintf( "Getter method for the field '%s' wasn't found in %s.", $field_name, get_called_class() ) );
-				}
+				return new \WP_error( sprintf( "Getter method for the field '%s' wasn't found in %s.", $field_name, get_called_class() ) );
 			}
 
 			$reporter_field = [
@@ -171,7 +165,7 @@ abstract class Base_Reporter {
 			return;
 		}
 
-		if ( ! in_array( $key, self::get_properties_keys(), true ) ) {
+		if ( ! in_array( $key, self::get_properties_keys() ) ) {
 			return;
 		}
 

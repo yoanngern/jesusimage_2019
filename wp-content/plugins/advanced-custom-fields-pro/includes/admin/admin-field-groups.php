@@ -145,25 +145,23 @@ class acf_admin_field_groups {
 	
 	function check_duplicate() {
 		
-		// Display notice
+		// message
 		if( $ids = acf_maybe_get_GET('acfduplicatecomplete') ) {
 			
 			// explode
 			$ids = explode(',', $ids);
 			$total = count($ids);
 			
-			// Generate text.
-			$text = sprintf( _n( 'Field group duplicated.', '%s field groups duplicated.', $total, 'acf' ), $total );
-			
-			// Add links to text.
-			$links = array();
-			foreach( $ids as $id ) {
-				$links[] = '<a href="' . get_edit_post_link( $id ) . '">' . get_the_title( $id ) . '</a>';
+			if( $total == 1 ) {
+				
+				acf_add_admin_notice( sprintf(__('Field group duplicated. %s', 'acf'), '<a href="' . get_edit_post_link($ids[0]) . '">' . get_the_title($ids[0]) . '</a>') );
+				
+			} else {
+				
+				acf_add_admin_notice( sprintf(_n( '%s field group duplicated.', '%s field groups duplicated.', $total, 'acf' ), $total) );
+				
 			}
-			$text .= ' ' . implode( ', ', $links );
 			
-			// Add notice
-			acf_add_admin_notice( $text, 'success' );
 		}
 		
 		
@@ -232,25 +230,23 @@ class acf_admin_field_groups {
 	
 	function check_sync() {
 		
-		// Display notice
+		// message
 		if( $ids = acf_maybe_get_GET('acfsynccomplete') ) {
 			
 			// explode
 			$ids = explode(',', $ids);
 			$total = count($ids);
 			
-			// Generate text.
-			$text = sprintf( _n( 'Field group synchronised.', '%s field groups synchronised.', $total, 'acf' ), $total );
-			
-			// Add links to text.
-			$links = array();
-			foreach( $ids as $id ) {
-				$links[] = '<a href="' . get_edit_post_link( $id ) . '">' . get_the_title( $id ) . '</a>';
+			if( $total == 1 ) {
+				
+				acf_add_admin_notice( sprintf(__('Field group synchronised. %s', 'acf'), '<a href="' . get_edit_post_link($ids[0]) . '">' . get_the_title($ids[0]) . '</a>') );
+				
+			} else {
+				
+				acf_add_admin_notice( sprintf(_n( '%s field group synchronised.', '%s field groups synchronised.', $total, 'acf' ), $total) );
+				
 			}
-			$text .= ' ' . implode( ', ', $links );
 			
-			// Add notice
-			acf_add_admin_notice( $text, 'success' );
 		}
 		
 		

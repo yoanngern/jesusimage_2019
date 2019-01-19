@@ -47,7 +47,7 @@ class Tools extends Base_Category {
 				'title' => __( 'Tools', 'elementor' ),
 				'icon' => 'tools',
 				'url' => $tools_url,
-				'keywords' => [ 'tools', 'regenerate css', 'safe mode', 'debug bar', 'sync library', 'elementor' ],
+				'keywords' => [ 'tools', 'elementor' ],
 			],
 			'replace-url' => [
 				'title' => __( 'Replace URL', 'elementor' ),
@@ -59,7 +59,7 @@ class Tools extends Base_Category {
 				'title' => __( 'Version Control', 'elementor' ),
 				'icon' => 'time-line',
 				'url' => $tools_url . '#tab-versions',
-				'keywords' => [ 'tools', 'version', 'control', 'rollback', 'beta', 'elementor' ],
+				'keywords' => [ 'tools', 'version', 'control', 'beta', 'elementor' ],
 			],
 			'maintenance-mode' => [
 				'title' => __( 'Maintenance Mode', 'elementor' ),

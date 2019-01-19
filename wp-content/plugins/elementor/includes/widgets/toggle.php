@@ -92,7 +92,7 @@ class Widget_Toggle extends Widget_Base {
 		$repeater->add_control(
 			'tab_title',
 			[
-				'label' => __( 'Title & Description', 'elementor' ),
+				'label' => __( 'Title & Content', 'elementor' ),
 				'type' => Controls_Manager::TEXT,
 				'default' => __( 'Toggle Title', 'elementor' ),
 				'label_block' => true,

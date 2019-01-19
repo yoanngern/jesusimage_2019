@@ -229,7 +229,9 @@ class Manager {
 
 		return [
 			'templates' => $this->get_templates(),
-			'config' => $library_data['types_data'],
+			'config' => [
+				'categories' => $library_data['categories'],
+			],
 		];
 	}
 
@@ -629,7 +631,7 @@ class Manager {
 	 * @access private
 	 */
 	private function on_direct_import_template_success() {
-		wp_safe_redirect( admin_url( Source_Local::ADMIN_MENU_SLUG ) );
+		wp_safe_redirect( admin_url( 'edit.php?post_type=' . Source_Local::CPT ) );
 	}
 
 	/**

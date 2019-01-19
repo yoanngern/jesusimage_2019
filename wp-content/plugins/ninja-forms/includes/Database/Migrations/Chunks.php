@@ -25,7 +25,7 @@ class NF_Database_Migrations_Chunks extends NF_Abstracts_Migration
             `name` varchar(200),
             `value` longtext,
             UNIQUE KEY (`id`)
-        ) {$this->charset_collate( true )};";
+        ) {$this->charset_collate()};";
 
         dbDelta( $query );
     }

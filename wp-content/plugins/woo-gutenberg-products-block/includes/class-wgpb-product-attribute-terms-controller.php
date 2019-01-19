@@ -105,17 +105,14 @@ class WGPB_Product_Attribute_Terms_Controller extends WC_REST_Product_Attribute_
 	 * @return WP_REST_Response
 	 */
 	public function prepare_item_for_response( $item, $request ) {
-		// Get the attribute slug.
-		$attribute_id = absint( $request->get_param( 'attribute_id' ) );
-		$attribute    = wc_get_attribute( $attribute_id );
+		// Get term order.
+		$menu_order = get_woocommerce_term_meta( $item->term_id, 'order_' . $this->taxonomy );
 
 		$data = array(
-			'id'        => (int) $item->term_id,
-			'name'      => $item->name,
-			'slug'      => $item->slug,
-			'count'     => (int) $item->count,
-			'attr_name' => $attribute->name,
-			'attr_slug' => $attribute->slug,
+			'id'    => (int) $item->term_id,
+			'name'  => $item->name,
+			'slug'  => $item->slug,
+			'count' => (int) $item->count,
 		);
 
 		$context = ! empty( $request['context'] ) ? $request['context'] : 'view';
@@ -143,26 +140,10 @@ class WGPB_Product_Attribute_Terms_Controller extends WC_REST_Product_Attribute_
 			'properties' => array(),
 		);
 
-		$schema['properties']['id']        = $raw_schema['properties']['id'];
-		$schema['properties']['name']      = $raw_schema['properties']['name'];
-		$schema['properties']['slug']      = $raw_schema['properties']['slug'];
-		$schema['properties']['count']     = $raw_schema['properties']['count'];
-		$schema['properties']['attr_name'] = array(
-			'description' => __( 'Attribute group name.', 'woo-gutenberg-products-block' ),
-			'type'        => 'string',
-			'context'     => array( 'view', 'edit' ),
-			'arg_options' => array(
-				'sanitize_callback' => 'sanitize_text_field',
-			),
-		);
-		$schema['properties']['attr_slug'] = array(
-			'description' => __( 'An alphanumeric identifier for the resource unique to its type.', 'woo-gutenberg-products-block' ),
-			'type'        => 'string',
-			'context'     => array( 'view', 'edit' ),
-			'arg_options' => array(
-				'sanitize_callback' => 'sanitize_title',
-			),
-		);
+		$schema['properties']['id']    = $raw_schema['properties']['id'];
+		$schema['properties']['name']  = $raw_schema['properties']['name'];
+		$schema['properties']['slug']  = $raw_schema['properties']['slug'];
+		$schema['properties']['count'] = $raw_schema['properties']['count'];
 
 		return $this->add_additional_fields_schema( $schema );
 	}

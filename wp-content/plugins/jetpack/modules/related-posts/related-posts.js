@@ -194,13 +194,6 @@
 		}
 	};
 
-	function afterPostsHaveLoaded() {
-		jprp.setVisualExcerptHeights();
-		$( '#jp-relatedposts a.jp-relatedposts-post-a' ).click( function() {
-			this.href = jprp.getTrackedUrl( this );
-		} );
-	}
-
 	/**
 	 * Initialize Related Posts.
 	 */
@@ -209,11 +202,6 @@
 
 		var endpointURL = jprp.getEndpointURL(),
 			$relatedPosts = $( '#jp-relatedposts' );
-
-		if ( $( '#jp-relatedposts .jp-relatedposts-post' ).length ) {
-			afterPostsHaveLoaded();
-			return;
-		}
 
 		$.getJSON( endpointURL, function( response ) {
 			if ( 0 === response.items.length || 0 === $relatedPosts.length ) {
@@ -241,11 +229,15 @@
 			html = ! showThumbnails ? jprp.generateMinimalHtml( response.items, options ) : jprp.generateVisualHtml( response.items, options );
 
 			$relatedPosts.append( html );
+			jprp.setVisualExcerptHeights();
 			if ( options.showDate ) {
 				$relatedPosts.find( '.jp-relatedposts-post-date' ).show();
 			}
 			$relatedPosts.show();
-			afterPostsHaveLoaded();
+
+			$( '#jp-relatedposts a.jp-relatedposts-post-a' ).click(function() {
+				this.href = jprp.getTrackedUrl( this );
+			});
 		} );
 	}
 

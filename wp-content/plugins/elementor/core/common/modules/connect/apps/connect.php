@@ -30,7 +30,7 @@ class Connect extends Common_App {
 			$title = __( 'Connect to Elementor', 'elementor' );
 			$label = __( 'Connect', 'elementor' );
 			$url = $this->get_admin_url( 'authorize' );
-			$attr = 'class="elementor-connect-popup"';
+			$attr = 'class="elementor-connect-button"';
 		}
 
 		echo '<h1>' . __( 'Connect', 'elementor' ) . '</h1>';

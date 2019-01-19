@@ -279,18 +279,15 @@ class Form_Record {
 		return $value;
 	}
 
-	public function replace_setting_shortcodes( $setting, $urlencode = false ) {
+	public function replace_setting_shortcodes( $setting ) {
 		// Shortcode can be `[field id="fds21fd"]` or `[field title="Email" id="fds21fd"]`, multiple shortcodes are allowed
-		return preg_replace_callback( '/(\[field[^]]*id="(\w+)"[^]]*\])/', function( $matches ) use ( $urlencode ) {
+		return preg_replace_callback( '/(\[field[^]]*id="(\w+)"[^]]*\])/', function( $matches ) {
 			$value = '';
 
 			if ( isset( $this->fields[ $matches[2] ] ) ) {
 				$value = $this->fields[ $matches[2] ]['value'];
 			}
 
-			if ( $urlencode ) {
-				$value = urlencode( $value );
-			}
 			return $value;
 		}, $setting );
 	}

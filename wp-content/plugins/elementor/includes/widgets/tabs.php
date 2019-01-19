@@ -92,7 +92,7 @@ class Widget_Tabs extends Widget_Base {
 		$repeater->add_control(
 			'tab_title',
 			[
-				'label' => __( 'Title & Description', 'elementor' ),
+				'label' => __( 'Title & Content', 'elementor' ),
 				'type' => Controls_Manager::TEXT,
 				'default' => __( 'Tab Title', 'elementor' ),
 				'placeholder' => __( 'Tab Title', 'elementor' ),

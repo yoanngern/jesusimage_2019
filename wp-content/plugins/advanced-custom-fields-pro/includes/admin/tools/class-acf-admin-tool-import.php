@@ -96,7 +96,10 @@ class ACF_Admin_Tool_Import extends ACF_Admin_Tool {
 		
 		// validate
 		if( empty($_FILES['acf_import_file']['size']) ) {
-			return acf_add_admin_notice( __("No file selected", 'acf'), 'warning' );
+			
+			acf_add_admin_notice( __("No file selected", 'acf') , 'error');
+			return;
+		
 		}
 		
 		
@@ -106,13 +109,19 @@ class ACF_Admin_Tool_Import extends ACF_Admin_Tool {
 		
 		// validate error
 		if( $file['error'] ) {
-			return acf_add_admin_notice( __("Error uploading file. Please try again", 'acf'), 'warning' );
+			
+			acf_add_admin_notice(__('Error uploading file. Please try again', 'acf'), 'error');
+			return;
+		
 		}
 		
 		
 		// validate type
 		if( pathinfo($file['name'], PATHINFO_EXTENSION) !== 'json' ) {
-			return acf_add_admin_notice( __("Incorrect file type", 'acf'), 'warning' );
+		
+			acf_add_admin_notice(__('Incorrect file type', 'acf'), 'error');
+			return;
+			
 		}
 		
 		
@@ -126,7 +135,10 @@ class ACF_Admin_Tool_Import extends ACF_Admin_Tool {
 		
 		// validate json
     	if( empty($json) ) {
-    		return acf_add_admin_notice( __("Import file empty", 'acf'), 'warning' );
+    	
+    		acf_add_admin_notice(__('Import file empty', 'acf'), 'error');
+	    	return;
+    	
     	}
     	
     	
@@ -248,7 +260,8 @@ class ACF_Admin_Tool_Import extends ACF_Admin_Tool {
 	    	
 	    	
 	    	// add notice
-	    	acf_add_admin_notice( $message, 'success' );
+	    	acf_add_admin_notice( $message );
+    	
     	}
 		
 	}

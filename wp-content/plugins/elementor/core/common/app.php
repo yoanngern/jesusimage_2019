@@ -6,10 +6,6 @@ use Elementor\Core\Common\Modules\Ajax\Module as Ajax;
 use Elementor\Core\Common\Modules\Finder\Module as Finder;
 use Elementor\Core\Common\Modules\Connect\Module as Connect;
 
-if ( ! defined( 'ABSPATH' ) ) {
-	exit; // Exit if accessed directly.
-}
-
 /**
  * App
  *
@@ -84,14 +80,6 @@ class App extends BaseApp {
 	 */
 	public function register_scripts() {
 		wp_register_script(
-			'elementor-common-modules',
-			ELEMENTOR_ASSETS_URL . 'js/common-modules.js',
-			[],
-			ELEMENTOR_VERSION,
-			true
-		);
-
-		wp_register_script(
 			'backbone-marionette',
 			$this->get_js_assets_url( 'backbone.marionette', 'assets/lib/backbone/' ),
 			[
@@ -117,7 +105,7 @@ class App extends BaseApp {
 			[
 				'jquery-ui-position',
 			],
-			'4.7.1',
+			'4.5.1',
 			true
 		);
 
@@ -129,7 +117,6 @@ class App extends BaseApp {
 				'jquery-ui-draggable',
 				'backbone-marionette',
 				'backbone-radio',
-				'elementor-common-modules',
 				'elementor-dialog',
 			],
 			ELEMENTOR_VERSION,
@@ -152,7 +139,7 @@ class App extends BaseApp {
 			'elementor-icons',
 			$this->get_css_assets_url( 'elementor-icons', 'assets/lib/eicons/css/' ),
 			[],
-			'4.1.0'
+			'4.0.0'
 		);
 
 		wp_enqueue_style(

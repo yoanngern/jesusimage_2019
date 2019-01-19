@@ -184,6 +184,13 @@ class Jetpack_Core_Json_Api_Endpoints {
 			'permission_callback' => array( $site_endpoint , 'can_request' ),
 		) );
 
+		// Get related posts of a certain site post
+		register_rest_route( 'jetpack/v4', '/site/posts/related', array(
+			'methods' => WP_REST_Server::READABLE,
+			'callback' => array( $site_endpoint, 'get_related_posts' ),
+			'permission_callback' => array( $site_endpoint , 'can_request' ),
+		) );
+
 		// Confirm that a site in identity crisis should be in staging mode
 		register_rest_route( 'jetpack/v4', '/identity-crisis/confirm-safe-mode', array(
 			'methods' => WP_REST_Server::EDITABLE,
@@ -430,7 +437,7 @@ class Jetpack_Core_Json_Api_Endpoints {
 				array(
 					'methods'             => WP_REST_Server::EDITABLE,
 					'callback'            => __CLASS__ . '::update_service_api_key',
-					'permission_callback' => array( 'WPCOM_REST_API_V2_Endpoint_Service_API_Keys','edit_others_posts_check' ),
+					'permission_callback' => __CLASS__ . '::edit_others_posts_check',
 					'args'                => array(
 						'service_api_key' => array(
 							'required' => true,
@@ -441,7 +448,7 @@ class Jetpack_Core_Json_Api_Endpoints {
 				array(
 					'methods'             => WP_REST_Server::DELETABLE,
 					'callback'            => __CLASS__ . '::delete_service_api_key',
-					'permission_callback' => array( 'WPCOM_REST_API_V2_Endpoint_Service_API_Keys','edit_others_posts_check' ),
+					'permission_callback' => __CLASS__ . '::edit_others_posts_check',
 				),
 			)
 		);
@@ -3073,9 +3080,9 @@ class Jetpack_Core_Json_Api_Endpoints {
 		return array();
 	}
 
+
 	/**
-	 * Deprecated - Get third party plugin API keys.
-	 * @deprecated
+	 * Get third party plugin API keys.
 	 *
 	 * @param WP_REST_Request $request {
 	 *     Array of parameters received by request.
@@ -3084,13 +3091,22 @@ class Jetpack_Core_Json_Api_Endpoints {
 	 * }
 	 */
 	public static function get_service_api_key( $request ) {
-		_deprecated_function( __METHOD__, 'jetpack-6.9.0', 'WPCOM_REST_API_V2_Endpoint_Service_API_Keys::get_service_api_key' );
-		return WPCOM_REST_API_V2_Endpoint_Service_API_Keys::get_service_api_key( $request );
+		$service = self::validate_service_api_service( $request['service'] );
+		if ( ! $service ) {
+			return self::service_api_invalid_service_response();
+		}
+		$option  = self::key_for_api_service( $service );
+		$message = esc_html__( 'API key retrieved successfully.', 'jetpack' );
+		return array(
+			'code'            => 'success',
+			'service'         => $service,
+			'service_api_key' => Jetpack_Options::get_option( $option, '' ),
+			'message'         => $message,
+		);
 	}
 
 	/**
-	 * Deprecated - Update third party plugin API keys.
-	 * @deprecated
+	 * Update third party plugin API keys.
 	 *
 	 * @param WP_REST_Request $request {
 	 *     Array of parameters received by request.
@@ -3099,13 +3115,29 @@ class Jetpack_Core_Json_Api_Endpoints {
 	 * }
 	 */
 	public static function update_service_api_key( $request ) {
-		_deprecated_function( __METHOD__, 'jetpack-6.9.0', 'WPCOM_REST_API_V2_Endpoint_Service_API_Keys::update_service_api_key' );
-		return WPCOM_REST_API_V2_Endpoint_Service_API_Keys::update_service_api_key( $request ) ;
+		$service = self::validate_service_api_service( $request['service'] );
+		if ( ! $service ) {
+			return self::service_api_invalid_service_response();
+		}
+		$params     = $request->get_json_params();
+		$service_api_key    = trim( $params['service_api_key'] );
+		$option     = self::key_for_api_service( $service );
+		$validation = self::validate_service_api_key( $service_api_key, $service );
+		if ( ! $validation['status'] ) {
+			return new WP_Error( 'invalid_key', esc_html__( 'Invalid API Key', 'jetpack' ), array( 'status' => 404 ) );
+		}
+		$message = esc_html__( 'API key updated successfully.', 'jetpack' );
+		Jetpack_Options::update_option( $option, $service_api_key );
+		return array(
+			'code'            => 'success',
+			'service'         => $service,
+			'service_api_key' => Jetpack_Options::get_option( $option, '' ),
+			'message'         => $message,
+		);
 	}
 
 	/**
-	 * Deprecated - Delete a third party plugin API key.
-	 * @deprecated
+	 * Delete a third party plugin API key.
 	 *
 	 * @param WP_REST_Request $request {
 	 *     Array of parameters received by request.
@@ -3114,57 +3146,114 @@ class Jetpack_Core_Json_Api_Endpoints {
 	 * }
 	 */
 	public static function delete_service_api_key( $request ) {
-		_deprecated_function( __METHOD__, 'jetpack-6.9.0', 'WPCOM_REST_API_V2_Endpoint_Service_API_Keys::delete_service_api_key' );
-		return WPCOM_REST_API_V2_Endpoint_Service_API_Keys::delete_service_api_key( $request );
+		$service = self::validate_service_api_service( $request['service'] );
+		if ( ! $service ) {
+			return self::service_api_invalid_service_response();
+		}
+		$option = self::key_for_api_service( $service );
+		Jetpack_Options::delete_option( $option );
+		$message = esc_html__( 'API key deleted successfully.', 'jetpack' );
+		return array(
+			'code'            => 'success',
+			'service'         => $service,
+			'service_api_key' => Jetpack_Options::get_option( $option, '' ),
+			'message'         => $message,
+		);
 	}
 
 	/**
-	 * Deprecated - Validate the service provided in /service-api-keys/ endpoints.
+	 * Validate the service provided in /service-api-keys/ endpoints.
 	 * To add a service to these endpoints, add the service name to $valid_services
 	 * and add '{service name}_api_key' to the non-compact return array in get_option_names(),
 	 * in class-jetpack-options.php
-	 * @deprecated
 	 *
 	 * @param string $service The service the API key is for.
 	 * @return string Returns the service name if valid, null if invalid.
 	 */
 	public static function validate_service_api_service( $service = null ) {
-		_deprecated_function( __METHOD__, 'jetpack-6.9.0', 'WPCOM_REST_API_V2_Endpoint_Service_API_Keys::validate_service_api_service' );
-		return WPCOM_REST_API_V2_Endpoint_Service_API_Keys::validate_service_api_service( $service );
+		$valid_services = array(
+			'mapbox',
+		);
+		return in_array( $service, $valid_services, true ) ? $service : null;
 	}
 
 	/**
 	 * Error response for invalid service API key requests with an invalid service.
 	 */
 	public static function service_api_invalid_service_response() {
-		_deprecated_function( __METHOD__, 'jetpack-6.9.0', 'WPCOM_REST_API_V2_Endpoint_Service_API_Keys::service_api_invalid_service_response' );
-		return WPCOM_REST_API_V2_Endpoint_Service_API_Keys::service_api_invalid_service_response();
+		return new WP_Error(
+			'invalid_service',
+			esc_html__( 'Invalid Service', 'jetpack' ),
+			array( 'status' => 404 )
+		);
 	}
 
 	/**
-	 * Deprecated - Validate API Key
-	 * @deprecated
+	 * Validate API Key
 	 *
 	 * @param string $key The API key to be validated.
 	 * @param string $service The service the API key is for.
-	 *
 	 */
 	public static function validate_service_api_key( $key = null, $service = null ) {
-		_deprecated_function( __METHOD__, 'jetpack-6.9.0', 'WPCOM_REST_API_V2_Endpoint_Service_API_Keys::validate_service_api_key' );
-		return WPCOM_REST_API_V2_Endpoint_Service_API_Keys::validate_service_api_key( $key , $service  );
+		$validation = false;
+		switch ( $service ) {
+			case 'mapbox':
+				$validation = self::validate_service_api_key_mapbox( $key );
+				break;
+		}
+		return $validation;
 	}
 
 	/**
-	 * Deprecated - Validate Mapbox API key
+	 * Validate Mapbox API key
 	 * Based loosely on https://github.com/mapbox/geocoding-example/blob/master/php/MapboxTest.php
-	 * @deprecated
 	 *
 	 * @param string $key The API key to be validated.
 	 */
 	public static function validate_service_api_key_mapbox( $key ) {
-		_deprecated_function( __METHOD__, 'jetpack-6.9.0', 'WPCOM_REST_API_V2_Endpoint_Service_API_Keys::validate_service_api_key' );
-		return WPCOM_REST_API_V2_Endpoint_Service_API_Keys::validate_service_api_key_mapbox( $key );
+		$status          = true;
+		$msg             = null;
+		$mapbox_url      = sprintf(
+			'https://api.mapbox.com?%s',
+			$key
+		);
+		$mapbox_response = wp_safe_remote_get( esc_url_raw( $mapbox_url ) );
+		$mapbox_body     = wp_remote_retrieve_body( $mapbox_response );
+		if ( '{"api":"mapbox"}' !== $mapbox_body ) {
+			$status = false;
+			$msg    = esc_html__( 'Can\'t connect to Mapbox', 'jetpack' );
+			return array(
+				'status'        => $status,
+				'error_message' => $msg,
+			);
+		}
+		$mapbox_geocode_url      = esc_url_raw(
+			sprintf(
+				'https://api.mapbox.com/geocoding/v5/mapbox.places/%s.json?access_token=%s',
+				'1+broadway+new+york+ny+usa',
+				$key
+			)
+		);
+		$mapbox_geocode_response = wp_safe_remote_get( esc_url_raw( $mapbox_geocode_url ) );
+		$mapbox_geocode_body     = wp_remote_retrieve_body( $mapbox_geocode_response );
+		$mapbox_geocode_json     = json_decode( $mapbox_geocode_body );
+		if ( isset( $mapbox_geocode_json->message ) && ! isset( $mapbox_geocode_json->query ) ) {
+			$status = false;
+			$msg    = $mapbox_geocode_json->message;
+		}
+		return array(
+			'status'        => $status,
+			'error_message' => $msg,
+		);
+	}
 
+	/**
+	 * Create site option key for service
+	 *
+	 * @param string $service The service  to create key for.
+	 */
+	private static function key_for_api_service( $service ) {
+		return $service . '_api_key';
 	}
 
 	/**

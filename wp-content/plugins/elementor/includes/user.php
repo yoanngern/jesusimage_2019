@@ -24,6 +24,8 @@ class User {
 
 	const INTRODUCTION_KEY = 'elementor_introduction';
 
+	const INTRODUCTION_VERSION = 2;
+
 	/**
 	 * Init.
 	 *
@@ -224,12 +226,27 @@ class User {
 	 * @access public
 	 * @static
 	 */
-	public static function set_introduction_viewed( array $data ) {
+	public static function set_introduction_viewed() {
 		$user_introduction_meta = self::get_introduction_meta();
 
-		$user_introduction_meta[ $data['introductionKey'] ] = true;
+		if ( ! $user_introduction_meta ) {
+			$user_introduction_meta = [];
+		}
+
+		$user_introduction_meta[ self::INTRODUCTION_VERSION ] = true;
 
 		update_user_meta( get_current_user_id(), self::INTRODUCTION_KEY, $user_introduction_meta );
+	}
+
+	/**
+	 * @since 2.1.0
+	 * @access public
+	 * @static
+	 */
+	public static function is_should_view_introduction() {
+		$user_introduction_meta = self::get_introduction_meta();
+
+		return empty( $user_introduction_meta[ self::INTRODUCTION_VERSION ] );
 	}
 
 	/**
@@ -237,13 +254,7 @@ class User {
 	 * @access private
 	 * @static
 	 */
-	public static function get_introduction_meta() {
-		$user_introduction_meta = get_user_meta( get_current_user_id(), self::INTRODUCTION_KEY, true );
-
-		if ( ! $user_introduction_meta ) {
-			$user_introduction_meta = [];
-		}
-
-		return $user_introduction_meta;
+	private static function get_introduction_meta() {
+		return get_user_meta( get_current_user_id(), self::INTRODUCTION_KEY, true );
 	}
 }

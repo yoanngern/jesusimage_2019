@@ -155,8 +155,6 @@
 					if ( !self.checkFilesLimit( view, e, data ) ) {
 						return false;
 					}
-					// Remove any errors on this field.
-					nfRadio.channel( 'fields' ).request( 'remove:error', view.model.get( 'id' ), 'required-error' );
 				},
 				drop: function( e, data ) {
 					if ( !self.checkFilesLimit( view, e, data ) ) {
@@ -258,8 +256,6 @@
 
 			var fieldModel = nfRadio.channel( 'fields' ).request( 'get:field', model.get( 'fieldID' ) );
 			nfRadio.channel( 'fields' ).trigger( 'change:field', '', fieldModel );
-			// Remove any errors on this field.
-			nfRadio.channel( 'fields' ).request( 'remove:error', fieldModel, 'required-error' );
 		},
 
 		/**

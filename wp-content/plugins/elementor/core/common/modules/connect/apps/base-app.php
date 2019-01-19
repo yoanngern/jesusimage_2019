@@ -277,7 +277,6 @@ abstract class Base_App {
 		$response = wp_remote_post( $this->get_api_url() . '/' . $action, [
 			'body' => $request_body,
 			'headers' => $headers,
-			'timeout' => 25,
 		] );
 
 		if ( is_wp_error( $response ) ) {
@@ -309,9 +308,10 @@ abstract class Base_App {
 			$message = $body->message ? $body->message : wp_remote_retrieve_response_message( $response );
 			$code = $body->code ? $body->code : $response_code;
 
-			if ( 401 === $code ) {
+			if ( 'Reconnect' === $message ) {
 				$this->delete();
-				$this->action_authorize();
+				wp_redirect( $this->get_remote_authorize_url() );
+				die;
 			}
 
 			return new \WP_Error( $code, $message );
@@ -426,10 +426,8 @@ abstract class Base_App {
 	 * @access protected
 	 */
 	protected function disconnect() {
-		if ( $this->is_connected() ) {
-			// Try update the server, but not needed to handle errors.
-			$this->request( 'disconnect' );
-		}
+		// Try update the server, but not needed to handle errors.
+		$this->request( 'disconnect' );
 
 		$this->delete();
 	}

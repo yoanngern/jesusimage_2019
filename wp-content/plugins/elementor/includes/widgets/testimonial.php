@@ -104,9 +104,6 @@ class Widget_Testimonial extends Widget_Base {
 			[
 				'label' => __( 'Choose Image', 'elementor' ),
 				'type' => Controls_Manager::MEDIA,
-				'dynamic' => [
-					'active' => true,
-				],
 				'default' => [
 					'url' => Utils::get_placeholder_image_src(),
 				],
@@ -137,7 +134,7 @@ class Widget_Testimonial extends Widget_Base {
 		$this->add_control(
 			'testimonial_job',
 			[
-				'label' => __( 'Title', 'elementor' ),
+				'label' => __( 'Job', 'elementor' ),
 				'type' => Controls_Manager::TEXT,
 				'dynamic' => [
 					'active' => true,
@@ -149,11 +146,8 @@ class Widget_Testimonial extends Widget_Base {
 		$this->add_control(
 			'link',
 			[
-				'label' => __( 'Link', 'elementor' ),
+				'label' => __( 'Link to', 'elementor' ),
 				'type' => Controls_Manager::URL,
-				'dynamic' => [
-					'active' => true,
-				],
 				'placeholder' => __( 'https://your-link.com', 'elementor' ),
 			]
 		);
@@ -341,7 +335,7 @@ class Widget_Testimonial extends Widget_Base {
 		$this->start_controls_section(
 			'section_style_testimonial_job',
 			[
-				'label' => __( 'Title', 'elementor' ),
+				'label' => __( 'Job', 'elementor' ),
 				'tab' => Controls_Manager::TAB_STYLE,
 			]
 		);
