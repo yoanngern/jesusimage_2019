@@ -26,6 +26,8 @@ class Module extends TagsModule {
 
 	const MEDIA_GROUP = 'media';
 
+	const ACTION_GROUP = 'action';
+
 	public function __construct() {
 		parent::__construct();
 
@@ -96,8 +98,11 @@ class Module extends TagsModule {
 			self::SITE_GROUP => [
 				'title' => __( 'Site', 'elementor-pro' ),
 			],
-			self::MEDIA_CATEGORY => [
+			self::MEDIA_GROUP => [
 				'title' => __( 'Media', 'elementor-pro' ),
+			],
+			self::ACTION_GROUP => [
+				'title' => __( 'Actions', 'elementor-pro' ),
 			],
 			self::AUTHOR_GROUP => [
 				'title' => __( 'Author', 'elementor-pro' ),

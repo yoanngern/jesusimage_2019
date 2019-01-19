@@ -104,6 +104,16 @@ class Upload extends Field_Base {
 			$form->add_render_attribute( 'input' . $item_index, 'name', $form->get_attribute_name( $item ) . '[]', true );
 		}
 
+		if ( ! empty( $item['file_sizes'] ) ) {
+			$form->add_render_attribute(
+				'input' . $item_index,
+				[
+					'data-maxsize' => $item['file_sizes'],  //MB
+					'data-maxsize-message' => __( 'This file exceeds the maximum allowed size.', 'elementor-pro' ),
+				]
+			);
+		}
+
 		echo '<input ' . $form->get_render_attribute_string( 'input' . $item_index ) . '>';
 	}
 

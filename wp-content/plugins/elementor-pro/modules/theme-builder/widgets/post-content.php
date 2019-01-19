@@ -176,6 +176,8 @@ class Post_Content extends Widget_Base {
 				Plugin::elementor()->frontend->add_content_filter();
 
 				return;
+			} else {
+				$content = apply_filters( 'the_content', $content );
 			}
 		} // End if().
 

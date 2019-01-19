@@ -946,7 +946,7 @@
 
 .elementor-ribbon {
   position: absolute;
-  z-index: 2;
+  z-index: 1;
   top: 0;
   left: 0;
   right: auto;
@@ -1505,7 +1505,8 @@ body.rtl.woocommerce-page div.product .elementor-widget-woocommerce-product-imag
 .woocommerce div.product.elementor form.cart:not(.grouped_form):not(.variations_form),
 .woocommerce div.product.elementor form.cart.variations_form .woocommerce-variation-add-to-cart {
   margin: 0;
-  display: flex; }
+  display: flex;
+  flex-wrap: wrap; }
 
 .woocommerce div.product.elementor form.cart table.variations tbody {
   display: block; }
@@ -1842,7 +1843,8 @@ body.rtl.woocommerce-page div.product .elementor-widget-woocommerce-product-imag
 .woocommerce .elementor-element.elementor-wc-products ul.products li.product {
   width: auto; }
 
-.woocommerce div.product .elementor-element .related.products ul.products li.product {
+.woocommerce div.product .elementor-element .related.products ul.products li.product,
+.woocommerce div.product .elementor-element .upsells.products ul.products li.product {
   width: auto; }
 
 .elementor.product .woocommerce-product-gallery__trigger + .woocommerce-product-gallery__wrapper {
@@ -1922,6 +1924,10 @@ body.rtl.woocommerce-page div.product .elementor-widget-woocommerce-product-imag
   content: attr(data-counter);
   display: inline-block;
   font-weight: normal; }
+
+.elementor-menu-cart--empty-indicator-hide .elementor-menu-cart__toggle .elementor-button .elementor-button-icon[data-counter]:before {
+  content: none;
+  display: none; }
 
 .elementor-menu-cart__container {
   transform: scale(1);
@@ -2082,6 +2088,10 @@ body.rtl.woocommerce-page div.product .elementor-widget-woocommerce-product-imag
 
 .elementor-widget-woocommerce-product-additional-information:not(.elementor-show-heading-yes) h2 {
   display: none; }
+
+.woocommerce div.product.elementor form.cart div.product-addon {
+  flex-basis: 100%;
+  flex-shrink: 0; }
 
 .elementor-skin-carousel .elementor-main-swiper, .elementor-skin-coverflow .elementor-main-swiper {
   height: 230px; }

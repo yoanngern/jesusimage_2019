@@ -1,4 +1,4 @@
-/*! elementor-pro - v2.2.0 - 19-11-2018 */
+/*! elementor-pro - v2.3.1 - 19-12-2018 */
 /******/ (function(modules) { // webpackBootstrap
 /******/ 	// The module cache
 /******/ 	var installedModules = {};
@@ -177,8 +177,15 @@ module.exports = elementor.modules.Module.extend({
 	},
 
 	addControlSpinner: function addControlSpinner(name) {
-		this.getView(name).$el.find(':input').attr('disabled', true);
-		this.getView(name).$el.find('.elementor-control-title').after('<span class="elementor-control-spinner"><i class="fa fa-spinner fa-spin"></i>&nbsp;</span>');
+		var $el = this.getView(name).$el,
+		    $input = $el.find(':input');
+
+		if ($el.find(':input').attr('disabled')) {
+			return;
+		}
+
+		$input.attr('disabled', true);
+		$el.find('.elementor-control-title').after('<span class="elementor-control-spinner"><i class="fa fa-spinner fa-spin"></i>&nbsp;</span>');
 	},
 
 	removeControlSpinner: function removeControlSpinner(name) {
@@ -1624,16 +1631,17 @@ module.exports = function () {
 	var self = this;
 
 	self.onPanelShow = function (panel) {
-		var templateIdControl = panel.content.currentView.collection.findWhere({ name: 'template_id' });
-		var templateIdInput = panel.content.currentView.children.findByModelCid(templateIdControl.cid);
+		var model = panel.content.currentView.collection.findWhere({ name: 'template_id' });
+		self.templateIdView = panel.content.currentView.children.findByModelCid(model.cid);
 
-		// Change Edit link on change template.
-		templateIdInput.on('input:change', self.onTemplateIdChange).trigger('input:change');
+		// Change Edit link on render & on change template.
+		self.templateIdView.elementSettingsModel.on('change', self.onTemplateIdChange);
+		self.templateIdView.on('render', self.onTemplateIdChange);
 	};
 
 	self.onTemplateIdChange = function () {
-		var templateID = this.options.elementSettingsModel.attributes.template_id,
-		    $editButton = this.$el.find('.elementor-edit-template');
+		var templateID = self.templateIdView.elementSettingsModel.get('template_id'),
+		    $editButton = self.templateIdView.$el.find('.elementor-edit-template');
 
 		if (!templateID) {
 			$editButton.remove();
@@ -1652,7 +1660,7 @@ module.exports = function () {
 				html: '<i class="fa fa-pencil" /> ' + ElementorProConfig.i18n.edit_template
 			});
 
-			this.$el.find('.elementor-control-input-wrapper').after($editButton);
+			self.templateIdView.$el.find('.elementor-control-input-wrapper').after($editButton);
 		}
 	};
 
@@ -1701,7 +1709,7 @@ module.exports = function () {
 		var customCSS = elementor.settings.page.model.get('custom_css');
 
 		if (customCSS) {
-			customCSS = customCSS.replace(/selector/g, '.elementor-page-' + elementor.config.document.id);
+			customCSS = customCSS.replace(/selector/g, elementor.config.settings.page.cssWrapperSelector);
 			elementor.settings.page.getControlsCSS().elements.$stylesheetElement.append(customCSS);
 		}
 	};

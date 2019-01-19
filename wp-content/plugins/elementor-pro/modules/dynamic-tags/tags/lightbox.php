@@ -22,7 +22,7 @@ class Lightbox extends Tag {
 	}
 
 	public function get_group() {
-		return Module::MEDIA_GROUP;
+		return Module::ACTION_GROUP;
 	}
 
 	public function get_categories() {

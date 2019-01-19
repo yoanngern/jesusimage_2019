@@ -62,12 +62,12 @@ class NF_FU_AJAX_Controllers_Uploads extends NF_Abstracts_Controller {
 	 */
 	protected function _prepare( $files ) {
 		$clean_files = array();
-		$file_count  = count( $files['name'] );
-		$file_keys   = array_keys( $files );
-
 		if ( ! is_array( $files['name'] ) ) {
 			return array( $files );
 		}
+
+		$file_keys   = array_keys( $files );
+		$file_count  = count( $files['name'] );
 
 		for ( $i = 0; $i < $file_count; $i++ ) {
 			foreach ( $file_keys as $key ) {

@@ -141,11 +141,11 @@ class Module extends Module_Base {
 				$query = new \WP_Query( $query_params );
 
 				foreach ( $query->posts as $post ) {
+					$post_type_obj = get_post_type_object( $post->post_type );
 					if ( ! empty( $data['include_type'] ) ) {
-						$post_type_obj = get_post_type_object( $post->post_type );
 						$text = $post_type_obj->labels->singular_name . ': ' . $post->post_title;
 					} else {
-						$text = $post->post_title;
+						$text = ( $post_type_obj->hierarchical ) ? $this->get_post_name_with_parents( $post ) : $post->post_title;
 					}
 
 					$results[] = [
@@ -180,7 +180,7 @@ class Module extends Module_Base {
 				}
 				break;
 			default:
-				$results = apply_filters( 'elementor_pro/query_control/get_autocomplete/' . $data['filter_type'], [] );
+				$results = apply_filters( 'elementor_pro/query_control/get_autocomplete/' . $data['filter_type'], [], $data );
 		} // End switch().
 
 		return [
@@ -193,47 +193,55 @@ class Module extends Module_Base {
 
 		$results = [];
 
-		if ( 'taxonomy' === $request['filter_type'] ) {
+		switch ( $request['filter_type'] ) {
+			case 'taxonomy':
+				$terms = get_terms(
+					[
+						'include' => $ids,
+						'hide_empty' => false,
+					]
+				);
 
-			$terms = get_terms(
-				[
+				foreach ( $terms as $term ) {
+					$results[ $term->term_id ] = $term->name;
+				}
+				break;
+
+			case 'by_id':
+			case 'post':
+				$query = new \WP_Query(
+					[
+						'post_type' => 'any',
+						'post__in' => $ids,
+						'posts_per_page' => -1,
+					]
+				);
+
+				foreach ( $query->posts as $post ) {
+					$results[ $post->ID ] = $post->post_title;
+				}
+				break;
+
+			case 'author':
+				$query_params = [
+					'who' => 'authors',
+					'has_published_posts' => true,
+					'fields' => [
+						'ID',
+						'display_name',
+					],
 					'include' => $ids,
-					'hide_empty' => false,
-				]
-			);
+				];
 
-			foreach ( $terms as $term ) {
-				$results[ $term->term_id ] = $term->name;
-			}
-		} elseif ( 'by_id' === $request['filter_type'] || 'post' === $request['filter_type'] ) {
-			$query = new \WP_Query(
-				[
-					'post_type' => 'any',
-					'post__in' => $ids,
-					'posts_per_page' => -1,
-				]
-			);
+				$user_query = new \WP_User_Query( $query_params );
 
-			foreach ( $query->posts as $post ) {
-				$results[ $post->ID ] = $post->post_title;
-			}
-		} elseif ( 'author' === $request['filter_type'] ) {
-			$query_params = [
-				'who' => 'authors',
-				'has_published_posts' => true,
-				'fields' => [
-					'ID',
-					'display_name',
-				],
-				'include' => $ids,
-			];
-
-			$user_query = new \WP_User_Query( $query_params );
-
-			foreach ( $user_query->get_results() as $author ) {
-				$results[ $author->ID ] = $author->display_name;
-			}
-		} // End if().
+				foreach ( $user_query->get_results() as $author ) {
+					$results[ $author->ID ] = $author->display_name;
+				}
+				break;
+			default:
+				$results = apply_filters( 'elementor_pro/query_control/get_value_titles/' . $request['filter_type'], [], $request );
+		}
 
 		return $results;
 	}
@@ -278,6 +286,40 @@ class Module extends Module_Base {
 			$name_string .= $names[ $i ] . $separator;
 		}
 		return $name_string . '...' . $separator . $term->name;
+	}
+
+	/**
+	 * get post name with parents
+	 * @param \WP_Post $post
+	 * @param int $max
+	 *
+	 * @return string
+	 */
+	private function get_post_name_with_parents( $post, $max = 3 ) {
+		if ( 0 === $post->post_parent ) {
+			return $post->post_title;
+		}
+		$separator = is_rtl() ? ' < ' : ' > ';
+		$test_post = $post;
+		$names = [];
+		while ( $test_post->post_parent > 0 ) {
+			$test_post = get_post( $test_post->post_parent );
+			if ( ! $test_post ) {
+				break;
+			}
+			$names[] = $test_post->post_title;
+		}
+
+		$names = array_reverse( $names );
+		if ( count( $names ) < ( $max ) ) {
+			return implode( $separator, $names ) . $separator . $post->post_title;
+		}
+
+		$name_string = '';
+		for ( $i = 0; $i < ( $max - 1 ); $i++ ) {
+			$name_string .= $names[ $i ] . $separator;
+		}
+		return $name_string . '...' . $separator . $post->post_title;
 	}
 
 	public static function get_query_args( $control_id, $settings ) {

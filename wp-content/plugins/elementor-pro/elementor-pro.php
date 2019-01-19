@@ -4,7 +4,7 @@
  * Description: Elementor Pro brings a whole new design experience to WordPress. Customize your entire theme: header, footer, single post, archive and 404 page, all with one page builder.
  * Plugin URI: https://elementor.com/
  * Author: Elementor.com
- * Version: 2.2.0
+ * Version: 2.3.1
  * Author URI: https://elementor.com/
  *
  * Text Domain: elementor-pro
@@ -14,8 +14,8 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit; // Exit if accessed directly.
 }
 
-define( 'ELEMENTOR_PRO_VERSION', '2.2.0' );
-define( 'ELEMENTOR_PRO_PREVIOUS_STABLE_VERSION', '2.1.13' );
+define( 'ELEMENTOR_PRO_VERSION', '2.3.1' );
+define( 'ELEMENTOR_PRO_PREVIOUS_STABLE_VERSION', '2.2.5' );
 
 define( 'ELEMENTOR_PRO__FILE__', __FILE__ );
 define( 'ELEMENTOR_PRO_PLUGIN_BASE', plugin_basename( ELEMENTOR_PRO__FILE__ ) );
@@ -54,7 +54,7 @@ function elementor_pro_load_plugin() {
 		add_action( 'admin_notices', 'elementor_pro_admin_notice_upgrade_recommendation' );
 	}
 
-	require( ELEMENTOR_PRO_PATH . 'plugin.php' );
+	require ELEMENTOR_PRO_PATH . 'plugin.php';
 }
 
 add_action( 'plugins_loaded', 'elementor_pro_load_plugin' );

@@ -84,6 +84,10 @@ class Module extends DynamicTags\Module {
 				continue;
 			}
 
+			if ( 1 === count( $options ) ) {
+				$options = [ -1 => ' -- ' ] + $options;
+			}
+
 			$groups[] = [
 				'label' => $acf_group['title'],
 				'options' => $options,
@@ -99,6 +103,7 @@ class Module extends DynamicTags\Module {
 			'ACF_Image',
 			'ACF_URL',
 			'ACF_Gallery',
+			'ACF_File',
 		];
 	}
 

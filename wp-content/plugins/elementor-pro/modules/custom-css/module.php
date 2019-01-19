@@ -34,60 +34,11 @@ class Module extends Module_Base {
 	 */
 	public function register_controls( Controls_Stack $element, $section_id ) {
 		// Remove Custom CSS Banner (From free version)
-		if ( 'section_custom_css_pro' === $section_id ) {
-			$this->remove_go_pro_custom_css( $element );
-		}
-
-		if ( $element instanceof Element_Section || $element instanceof Widget_Base ) {
-			$required_section_id = '_section_responsive';
-		} elseif ( $element instanceof Element_Column ) {
-			$required_section_id = 'section_advanced';
-		} else {
-			$required_section_id = 'section_page_style';
-		}
-
-		if ( $required_section_id !== $section_id ) {
+		if ( 'section_custom_css_pro' !== $section_id ) {
 			return;
 		}
 
-		$element->start_controls_section(
-			'section_custom_css',
-			[
-				'label' => __( 'Custom CSS', 'elementor-pro' ),
-				'tab' => 'section_page_style' === $section_id ? Controls_Manager::TAB_STYLE : Controls_Manager::TAB_ADVANCED,
-			]
-		);
-
-		$element->add_control(
-			'custom_css_title',
-			[
-				'raw' => __( 'Add your own custom CSS here', 'elementor-pro' ),
-				'type' => Controls_Manager::RAW_HTML,
-			]
-		);
-
-		$element->add_control(
-			'custom_css',
-			[
-				'type' => Controls_Manager::CODE,
-				'label' => __( 'Custom CSS', 'elementor-pro' ),
-				'language' => 'css',
-				'render_type' => 'ui',
-				'show_label' => false,
-				'separator' => 'none',
-			]
-		);
-
-		$element->add_control(
-			'custom_css_description',
-			[
-				'raw' => __( 'Use "selector" to target wrapper element. Examples:<br>selector {color: red;} // For main element<br>selector .child-element {margin: 10px;} // For child element<br>.my-class {text-align: center;} // Or use any custom selector', 'elementor-pro' ),
-				'type' => Controls_Manager::RAW_HTML,
-				'content_classes' => 'elementor-descriptor',
-			]
-		);
-
-		$element->end_controls_section();
+		$this->replace_go_pro_custom_css_controls( $element );
 	}
 
 	/**
@@ -131,7 +82,7 @@ class Module extends Module_Base {
 			return;
 		}
 
-		$custom_css = str_replace( 'selector', 'body.elementor-page-' . $post_css->get_post_id(), $custom_css );
+		$custom_css = str_replace( 'selector', $document->get_css_wrapper_selector(), $custom_css );
 
 		// Add a css comment
 		$custom_css = '/* Start custom CSS for page-settings */' . $custom_css . '/* End custom CSS */';
@@ -140,12 +91,51 @@ class Module extends Module_Base {
 	}
 
 	/**
-	 * @param $element Element_Base
+	 * @param Controls_Stack $controls_stack
 	 */
-	public function remove_go_pro_custom_css( $element ) {
-		$controls_to_remove = [ 'section_custom_css_pro', 'custom_css_pro' ];
+	public function replace_go_pro_custom_css_controls( $controls_stack ) {
+		$old_section = Plugin::elementor()->controls_manager->get_control_from_stack( $controls_stack->get_unique_name(), 'section_custom_css_pro' );
 
-		Plugin::elementor()->controls_manager->remove_control_from_stack( $element->get_unique_name(), $controls_to_remove );
+		Plugin::elementor()->controls_manager->remove_control_from_stack( $controls_stack->get_unique_name(), [ 'section_custom_css_pro', 'custom_css_pro' ] );
+
+		$controls_stack->start_controls_section(
+			'section_custom_css',
+			[
+				'label' => __( 'Custom CSS', 'elementor-pro' ),
+				'tab' => $old_section['tab'],
+			]
+		);
+
+		$controls_stack->add_control(
+			'custom_css_title',
+			[
+				'raw' => __( 'Add your own custom CSS here', 'elementor-pro' ),
+				'type' => Controls_Manager::RAW_HTML,
+			]
+		);
+
+		$controls_stack->add_control(
+			'custom_css',
+			[
+				'type' => Controls_Manager::CODE,
+				'label' => __( 'Custom CSS', 'elementor-pro' ),
+				'language' => 'css',
+				'render_type' => 'ui',
+				'show_label' => false,
+				'separator' => 'none',
+			]
+		);
+
+		$controls_stack->add_control(
+			'custom_css_description',
+			[
+				'raw' => __( 'Use "selector" to target wrapper element. Examples:<br>selector {color: red;} // For main element<br>selector .child-element {margin: 10px;} // For child element<br>.my-class {text-align: center;} // Or use any custom selector', 'elementor-pro' ),
+				'type' => Controls_Manager::RAW_HTML,
+				'content_classes' => 'elementor-descriptor',
+			]
+		);
+
+		$controls_stack->end_controls_section();
 	}
 
 	protected function add_actions() {

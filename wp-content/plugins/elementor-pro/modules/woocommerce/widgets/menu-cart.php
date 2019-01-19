@@ -78,6 +78,21 @@ class Menu_Cart extends Widget_Base {
 		);
 
 		$this->add_control(
+			'hide_empty_indicator',
+			[
+				'label' => _x( 'Hide Empty', 'Menu Cart Widget', 'elementor-pro' ),
+				'type' => Controls_Manager::SWITCHER,
+				'label_on' => __( 'Yes', 'elementor-pro' ),
+				'label_off' => __( 'No', 'elementor-pro' ),
+				'return_value' => 'hide',
+				'prefix_class' => 'elementor-menu-cart--empty-indicator-',
+				'condition' => [
+					'items_indicator!' => 'none',
+				],
+			]
+		);
+
+		$this->add_control(
 			'show_subtotal',
 			[
 				'label' => __( 'Subtotal', 'elementor-pro' ),

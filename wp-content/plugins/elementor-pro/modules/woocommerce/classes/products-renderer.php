@@ -22,11 +22,21 @@ class Products_Renderer extends \WC_Shortcode_Products {
 		$this->query_args = $this->parse_query_args();
 	}
 
+	/**
+	 * Override the original `get_query_results`
+	 * with modifications that:
+	 * 1. Remove `pre_get_posts` action if `is_added_product_filter`.
+	 *
+	 * @return bool|mixed|object
+	 */
+
 	protected function get_query_results() {
 		$results = parent::get_query_results();
+		// Start edit.
 		if ( $this->is_added_product_filter ) {
 			remove_action( 'pre_get_posts', [ wc()->query, 'product_query' ] );
 		}
+		// End edit.
 
 		return $results;
 	}

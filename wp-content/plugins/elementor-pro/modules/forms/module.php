@@ -137,16 +137,16 @@ class Module extends Module_Base {
 		// Actions Handlers
 		$this->add_form_action( 'email', new Actions\Email() );
 		$this->add_form_action( 'email2', new Actions\Email2() );
-		$this->add_form_action( 'mailchimp', new Actions\Mailchimp() );
 		$this->add_form_action( 'redirect', new Actions\Redirect() );
 		$this->add_form_action( 'webhook', new Actions\Webhook() );
+		$this->add_form_action( 'mailchimp', new Actions\Mailchimp() );
 		$this->add_form_action( 'drip', new Actions\Drip() );
 		$this->add_form_action( 'activecampaign', new Actions\Activecampaign() );
 		$this->add_form_action( 'getresponse', new Actions\Getresponse() );
 		$this->add_form_action( 'convertkit', new Actions\Convertkit() );
-		//$this->add_form_action( 'mailerlite', new Actions\Mailerlite() );
-		//$this->add_form_action( 'discord', new Actions\Discord() );
-		//$this->add_form_action( 'slack', new Actions\Slack() );
+		$this->add_form_action( 'mailerlite', new Actions\Mailerlite() );
+		$this->add_form_action( 'slack', new Actions\Slack() );
+		$this->add_form_action( 'discord', new Actions\Discord() );
 
 		// Plugins actions
 

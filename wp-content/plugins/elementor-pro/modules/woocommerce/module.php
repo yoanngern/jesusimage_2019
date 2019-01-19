@@ -21,7 +21,7 @@ class Module extends Module_Base {
 	protected $docs_types = [];
 
 	public static function is_active() {
-		return function_exists( 'wc' );
+		return class_exists( 'woocommerce' );
 	}
 
 	public static function is_product_search() {
@@ -195,7 +195,7 @@ class Module extends Module_Base {
 		$module = Plugin::elementor()->dynamic_tags;
 
 		$module->register_group( self::WOOCOMMERCE_GROUP, [
-			'title' => __( 'Woocommerce', 'elementor-pro' ),
+			'title' => __( 'WooCommerce', 'elementor-pro' ),
 		] );
 
 		foreach ( $tags as $tag ) {

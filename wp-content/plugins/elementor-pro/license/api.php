@@ -37,7 +37,6 @@ class API {
 		);
 
 		$response = wp_remote_post( self::STORE_URL, [
-			'sslverify' => false,
 			'timeout' => 40,
 			'body' => $body_args,
 		] );
@@ -156,7 +155,6 @@ class API {
 		];
 
 		$response = wp_remote_post( $url, [
-			'sslverify' => false,
 			'timeout' => 40,
 			'body' => $body_args,
 		] );
@@ -190,6 +188,7 @@ class API {
 			'expired' => sprintf( __( '<strong>Your License Has Expired.</strong> <a href="%s" target="_blank">Renew your license today</a> to keep getting feature updates, premium support and unlimited access to the template library.', 'elementor-pro' ), 'https://go.elementor.com/renew/' ),
 			'missing' => __( 'Your license is missing. Please check your key again.', 'elementor-pro' ),
 			'revoked' => __( '<strong>Your license key has been cancelled</strong> (most likely due to a refund request). Please consider acquiring a new license.', 'elementor-pro' ),
+			'key_mismatch' => __( 'Your license is invalid for this domain. Please check your key again.', 'elementor-pro' ),
 		];
 	}
 

@@ -54,12 +54,11 @@ class Module extends Module_Base {
 	 * @param $section_id string
 	 */
 	public function register_controls( Controls_Stack $element, $section_id ) {
+		$required_section_id = '';
 		if ( $element instanceof Element_Section || $element instanceof Widget_Base ) {
 			$required_section_id = '_section_responsive';
 		} elseif ( $element instanceof Element_Column ) {
 			$required_section_id = 'section_advanced';
-		} else {
-			$required_section_id = 'section_page_style';
 		}
 
 		if ( $required_section_id !== $section_id ) {
@@ -81,6 +80,7 @@ class Module extends Module_Base {
 				'type' => Controls_Manager::TEXTAREA,
 				'placeholder' => __( 'key|value', 'elementor-pro' ),
 				'description' => sprintf( __( 'Set custom attributes for the wrapper element. Each attribute in a separate line. Separate attribute key from the value using %s character.', 'elementor-pro' ), '<code>|</code>' ),
+				'classes' => 'elementor-control-direction-ltr',
 			]
 		);
 

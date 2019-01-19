@@ -4,11 +4,15 @@ var nfStripeController = Marionette.Object.extend({
      * @since  3.0.0
      * @return void
      */
+
+    isSaveProgressClick: false, // needed for Save Progress integration
+
     initialize: function() {
         this.listenTo( nfRadio.channel( 'form' ), 'render:view', this.initStripe );
         // this.listenTo( nfRadio.channel( 'app' ), 'after:loadControllers', this.initStripe );
         this.listenTo( nfRadio.channel( 'forms' ), 'submit:response', this.submitErrors );
         this.listenTo( nfRadio.channel( 'fields' ), 'change:modelValue', this.removeFieldError );
+        this.listenTo( nfRadio.channel( 'nf-save-progress'), 'save-click', this.setSaveProgressFlag );
     },
 
     /**
@@ -116,6 +120,7 @@ var nfStripeController = Marionette.Object.extend({
      */
     beforeSubmit: function( formModel ) {
         console.log(formModel.get('errors').length);
+
         var stripeData = _.findWhere( nfStripe.forms, { id: formModel.get( 'id' ) } );
 
         /*
@@ -123,17 +128,24 @@ var nfStripeController = Marionette.Object.extend({
          */
         var active = false;
         var activeAction = false;
+        var that = this;
         _.each( stripeData.actions, function( action ) {
             if ( ! active ) {
                 var request = Backbone.Radio.channel( 'actions' ).request( 'get:status', action.id );
 
-                    // Save Progress Integration. Check if the action is enabled for Saves.
-                    var actionSave = Backbone.Radio.channel( 'actions-' + action.id ).request( 'get:status', request );
-                    if( 'undefined' !== typeof actionSave ) request = actionSave;
+                // Save Progress Integration. Check if the action is enabled for Saves.
+                var actionSave = Backbone.Radio.channel( 'actions-' + action.id ).request( 'get:status', request );
+                if( 'undefined' !== typeof actionSave ) request = actionSave;
 
-                active = ( 'undefined' != typeof request ) ? request : true;
+                // updated to add isSaveProgress Click 
+                active = ( 'undefined' != typeof request &&  that.isSaveProgressClick ) ? request : true;
                 if ( active ) {
                     activeAction = action;
+                    // if actionSave is not undefined, need to add active_save setting
+                    if( 'undefined' !== typeof actionSave ) {
+                        // Stripe Action will not run on Save(Progress) without this
+                        activeAction.active_save = true;
+                    }
                 }
             }
         } );
@@ -328,7 +340,15 @@ var nfStripeController = Marionette.Object.extend({
         nfRadio.channel( 'form-' + formModel.get( 'id' ) ).request( 'submit', formModel );
 
         return true;
-    }
+    },
+
+    /**
+     * If the user has clicked the Save button from save progress rather than the form submit button, we need to keep track of that.
+     * @param boolean isSaveProgressClick 
+     */
+    setSaveProgressFlag: function ( isSaveProgressClick ) {
+        this.isSaveProgressClick = isSaveProgressClick;
+    },
 
 });
 

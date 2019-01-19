@@ -301,7 +301,7 @@ class Price_Table extends Base_Widget {
 		$this->add_control(
 			'ribbon_horizontal_position',
 			[
-				'label' => __( 'Horizontal Position', 'elementor-pro' ),
+				'label' => __( 'Position', 'elementor-pro' ),
 				'type' => Controls_Manager::CHOOSE,
 				'label_block' => false,
 				'options' => [

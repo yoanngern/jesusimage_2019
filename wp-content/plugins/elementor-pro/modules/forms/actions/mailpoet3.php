@@ -83,7 +83,8 @@ class Mailpoet3 extends Action_Base {
 			],
 		];
 		$fields = API::MP( 'v1' )->getSubscriberFields();
-		if ( is_array( $fields ) ) {
+
+		if ( ! empty( $fields ) && is_array( $fields ) ) {
 			foreach ( $fields as $index => $remote ) {
 				if ( in_array( $remote['id'], [ 'first_name', 'last_name', 'email' ] ) ) {
 					continue;
@@ -135,18 +136,27 @@ class Mailpoet3 extends Action_Base {
 			$subscriber['status'] = Subscriber::STATUS_SUBSCRIBED;
 		}
 
+		$existing_subscriber = false;
+
 		try {
 			API::MP( 'v1' )->addSubscriber( $subscriber, (array) $settings['mailpoet3_lists'] );
+			$existing_subscriber = false;
 		} catch ( \Exception $exception ) {
-			$error_id = Ajax_Handler::SERVER_ERROR;
-			// Used translated directly to avoid grunt failure on textdomain.
 			$error_string = translate( 'This subscriber already exists.', 'mailpoet' );
 
 			if ( $error_string === $exception->getMessage() ) {
-				$error_id = Ajax_Handler::SUBSCRIBER_ALREADY_EXISTS;
+				$existing_subscriber = true;
+			} else {
+				$ajax_handler->add_admin_error_message( 'MailPoet ' . $exception->getMessage() );
 			}
+		}
 
-			$ajax_handler->add_admin_error_message( Ajax_Handler::get_default_message( $error_id, $settings ) );
+		if ( $existing_subscriber ) {
+			try {
+				API::MP( 'v1' )->subscribeToLists( $subscriber['email'], (array) $settings['mailpoet3_lists'] );
+			} catch ( \Exception $exception ) {
+				$ajax_handler->add_admin_error_message( 'MailPoet ' . $exception->getMessage() );
+			}
 		}
 	}
 
