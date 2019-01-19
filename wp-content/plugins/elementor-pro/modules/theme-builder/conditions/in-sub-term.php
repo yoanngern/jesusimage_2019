@@ -34,6 +34,6 @@ class In_Sub_Term extends In_Taxonomy {
 		}
 		$child_terms = get_term_children( $id, $this->taxonomy->name );
 
-		return has_term( $child_terms, $this->taxonomy->name );
+		return ! empty( $child_terms ) && has_term( $child_terms, $this->taxonomy->name );
 	}
 }

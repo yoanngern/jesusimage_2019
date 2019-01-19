@@ -60,7 +60,7 @@ class Call_To_Action extends Base_Widget {
 		$this->add_responsive_control(
 			'layout',
 			[
-				'label' => __( 'Layout', 'elementor-pro' ),
+				'label' => __( 'Position', 'elementor-pro' ),
 				'type' => Controls_Manager::CHOOSE,
 				'label_block' => false,
 				'options' => [
@@ -95,7 +95,6 @@ class Call_To_Action extends Base_Widget {
 				'default' => [
 					'url' => Utils::get_placeholder_image_src(),
 				],
-				'show_label' => false,
 			]
 		);
 
@@ -338,7 +337,7 @@ class Call_To_Action extends Base_Widget {
 		$this->add_control(
 			'ribbon_horizontal_position',
 			[
-				'label' => __( 'Horizontal Position', 'elementor-pro' ),
+				'label' => __( 'Position', 'elementor-pro' ),
 				'type' => Controls_Manager::CHOOSE,
 				'label_block' => false,
 				'options' => [

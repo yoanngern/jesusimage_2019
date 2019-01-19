@@ -1,4 +1,4 @@
-/*! elementor-pro - v2.2.0 - 19-11-2018 */
+/*! elementor-pro - v2.3.1 - 19-12-2018 */
 #elementor-panel-get-pro-elements {
   display: none; }
 
@@ -259,7 +259,8 @@
     cursor: pointer;
     color: #a4afb7; }
   #elementor-theme-builder-conditions .elementor-button-wrapper {
-    margin-top: 50px; }
+    margin-top: 50px;
+    margin-bottom: 80px; }
   #elementor-theme-builder-conditions .elementor-repeater-add {
     font-size: 14px;
     padding: 12px 26px; }

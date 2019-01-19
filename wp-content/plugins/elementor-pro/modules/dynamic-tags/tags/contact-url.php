@@ -20,7 +20,7 @@ class Contact_URL extends Tag {
 	}
 
 	public function get_group() {
-		return Module::SITE_GROUP;
+		return Module::ACTION_GROUP;
 	}
 
 	public function get_categories() {
@@ -31,9 +31,10 @@ class Contact_URL extends Tag {
 		$this->add_control(
 			'link_type',
 			[
-				'label' => __( 'Contact Via', 'elementor-pro' ),
+				'label' => __( 'Type', 'elementor-pro' ),
 				'type' => Controls_Manager::SELECT,
 				'options' => [
+					'' => '— ' . __( 'Select', 'elementor-pro' ) . ' —',
 					'email' => __( 'Email', 'elementor-pro' ),
 					'tel' => __( 'Tel', 'elementor-pro' ),
 					'sms' => __( 'SMS', 'elementor-pro' ),
@@ -65,6 +66,7 @@ class Contact_URL extends Tag {
 			[
 				'label' => __( 'Subject', 'elementor-pro' ),
 				'type' => Controls_Manager::TEXT,
+				'label_block' => 'true',
 				'condition' => [
 					'link_type' => 'email',
 				],
@@ -74,8 +76,9 @@ class Contact_URL extends Tag {
 		$this->add_control(
 			'mail_body',
 			[
-				'label' => __( 'Body', 'elementor-pro' ),
+				'label' => __( 'Message', 'elementor-pro' ),
 				'type' => Controls_Manager::TEXTAREA,
+				'label_block' => 'true',
 				'condition' => [
 					'link_type' => 'email',
 				],
@@ -118,6 +121,7 @@ class Contact_URL extends Tag {
 					'contact' => __( 'Contact', 'elementor-pro' ),
 					'add' => __( 'Add', 'elementor-pro' ),
 				],
+				'default' => 'contact',
 				'condition' => [
 					'link_type' => 'viber',
 				],
@@ -133,9 +137,10 @@ class Contact_URL extends Tag {
 					'call' => __( 'Call', 'elementor-pro' ),
 					'chat' => __( 'Chat', 'elementor-pro' ),
 					'userinfo' => __( 'Show Profile', 'elementor-pro' ),
-					'add' => __( 'Add to contacts', 'elementor-pro' ),
-					'voicemail' => __( 'Send voice mail', 'elementor-pro' ),
+					'add' => __( 'Add to Contacts', 'elementor-pro' ),
+					'voicemail' => __( 'Send Voice Mail', 'elementor-pro' ),
 				],
+				'default' => 'call',
 				'condition' => [
 					'link_type' => 'skype',
 				],
@@ -145,9 +150,9 @@ class Contact_URL extends Tag {
 		$this->add_control(
 			'waze_address',
 			[
-				'label' => __( 'Address', 'elementor-pro' ),
+				'label' => __( 'Location', 'elementor-pro' ),
 				'type' => Controls_Manager::TEXT,
-				'placeholder' => __( 'Lambeth, London SE1 7PB, UK', 'elementor-pro' ),
+				'label_block' => 'true',
 				'condition' => [
 					'link_type' => 'waze',
 				],
@@ -159,6 +164,7 @@ class Contact_URL extends Tag {
 			[
 				'label' => __( 'Title', 'elementor-pro' ),
 				'type' => Controls_Manager::TEXT,
+				'label_block' => 'true',
 				'condition' => [
 					'link_type' => [
 						'google_calendar',
@@ -189,6 +195,7 @@ class Contact_URL extends Tag {
 			[
 				'label' => __( 'Location', 'elementor-pro' ),
 				'type' => Controls_Manager::TEXT,
+				'label_block' => 'true',
 				'condition' => [
 					'link_type' => [
 						'google_calendar',
@@ -299,7 +306,7 @@ class Contact_URL extends Tag {
 		if ( $all_day ) {
 			return date( 'Ymd\/Ymd', $time );
 		}
-		return date( 'Ymd\THis\Z', $time );
+		return date( 'Ymd\THis', $time );
 	}
 
 	private function date_to_ics( $date ) {
@@ -366,11 +373,11 @@ class Contact_URL extends Tag {
 		];
 
 		if ( ! empty( $settings['event_start_date'] ) ) {
-			$build_parts['st'] = urlencode( date( 'Y-m-d\This', strtotime( $settings['event_start_date'] ) ) );
+			$build_parts['st'] = urlencode( date( 'Ymd\This', strtotime( $settings['event_start_date'] ) ) );
 		}
 
 		if ( ! empty( $settings['event_end_date'] ) ) {
-			$build_parts['et'] = urlencode( date( 'Y-m-d\This', strtotime( $settings['event_end_date'] ) ) );
+			$build_parts['et'] = urlencode( date( 'Ymd\This', strtotime( $settings['event_end_date'] ) ) );
 		}
 
 		return add_query_arg( $build_parts, $link );
@@ -402,7 +409,7 @@ class Contact_URL extends Tag {
 				$value = $this->build_mail_to_link( $settings );
 				break;
 			case 'tel':
-				$value = 'tel:' . ( empty( $settings['tel_number'] ) ? '' : $settings['tel_number'] );
+				$value = ( empty( $settings['tel_number'] ) ? '' : 'tel:' . $settings['tel_number'] );
 				break;
 			case 'sms':
 				$value = $this->build_sms_link( $settings );

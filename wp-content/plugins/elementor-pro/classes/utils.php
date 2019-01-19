@@ -40,7 +40,16 @@ class Utils {
 			$post_types[ $post_type ] = $object->label;
 		}
 
-		return $post_types;
+		/**
+		 * Public Post types
+		 *
+		 * Allow 3rd party plugins to filters the public post types elementor should work on
+		 *
+		 * @since 2.3.0
+		 *
+		 * @param array $post_types Elementor supported public post types.
+		 */
+		return apply_filters( 'elementor_pro/utils/get_public_post_types', $post_types );
 	}
 
 	public static function get_client_ip() {

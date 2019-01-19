@@ -1,4 +1,4 @@
-/*! elementor-pro - v2.2.0 - 19-11-2018 */
+/*! elementor-pro - v2.3.1 - 19-12-2018 */
 @charset "UTF-8";
 .elementor-bg-transform .elementor-bg {
   will-change: transform; }
@@ -1375,7 +1375,7 @@
 
 .elementor-ribbon {
   position: absolute;
-  z-index: 2;
+  z-index: 1;
   top: 0;
   left: auto;
   right: 0;
@@ -2125,7 +2125,10 @@ body.rtl.woocommerce-page div.product .elementor-widget-woocommerce-product-imag
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
-  display: flex; }
+  display: flex;
+  -webkit-flex-wrap: wrap;
+      -ms-flex-wrap: wrap;
+          flex-wrap: wrap; }
 
 .woocommerce div.product.elementor form.cart table.variations tbody {
   display: block; }
@@ -2538,7 +2541,8 @@ body.rtl.woocommerce-page div.product .elementor-widget-woocommerce-product-imag
 .woocommerce .elementor-element.elementor-wc-products ul.products li.product {
   width: auto; }
 
-.woocommerce div.product .elementor-element .related.products ul.products li.product {
+.woocommerce div.product .elementor-element .related.products ul.products li.product,
+.woocommerce div.product .elementor-element .upsells.products ul.products li.product {
   width: auto; }
 
 .elementor.product .woocommerce-product-gallery__trigger + .woocommerce-product-gallery__wrapper {
@@ -2626,6 +2630,10 @@ body.rtl.woocommerce-page div.product .elementor-widget-woocommerce-product-imag
   content: attr(data-counter);
   display: inline-block;
   font-weight: normal; }
+
+.elementor-menu-cart--empty-indicator-hide .elementor-menu-cart__toggle .elementor-button .elementor-button-icon[data-counter]:before {
+  content: none;
+  display: none; }
 
 .elementor-menu-cart__container {
   -webkit-transform: scale(1);
@@ -2829,6 +2837,14 @@ body.rtl.woocommerce-page div.product .elementor-widget-woocommerce-product-imag
 
 .elementor-widget-woocommerce-product-additional-information:not(.elementor-show-heading-yes) h2 {
   display: none; }
+
+.woocommerce div.product.elementor form.cart div.product-addon {
+  -webkit-flex-basis: 100%;
+      -ms-flex-preferred-size: 100%;
+          flex-basis: 100%;
+  -webkit-flex-shrink: 0;
+      -ms-flex-negative: 0;
+          flex-shrink: 0; }
 
 .elementor-skin-carousel .elementor-main-swiper, .elementor-skin-coverflow .elementor-main-swiper {
   height: 230px; }

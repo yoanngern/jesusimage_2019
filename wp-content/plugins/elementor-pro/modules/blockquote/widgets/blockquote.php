@@ -181,7 +181,7 @@ class Blockquote extends Widget_Base {
 		$this->add_control(
 			'user_name',
 			[
-				'label' => __( 'Via', 'elementor-pro' ),
+				'label' => __( 'Username', 'elementor-pro' ),
 				'type' => Controls_Manager::TEXT,
 				'label_block' => false,
 				'placeholder' => '@username',
@@ -211,7 +211,7 @@ class Blockquote extends Widget_Base {
 		$this->add_control(
 			'url',
 			[
-				'label' => __( 'URL', 'elementor-pro' ),
+				'label' => __( 'Link', 'elementor-pro' ),
 				'type' => Controls_Manager::TEXT,
 				'input_type' => 'url',
 				'dynamic' => [
@@ -808,7 +808,7 @@ class Blockquote extends Widget_Base {
 	}
 
 	protected function render() {
-		$settings = $this->get_settings();
+		$settings = $this->get_settings_for_display();
 
 		$tweet_button_view = $settings['tweet_button_view'];
 		$share_link = 'https://twitter.com/intent/tweet';

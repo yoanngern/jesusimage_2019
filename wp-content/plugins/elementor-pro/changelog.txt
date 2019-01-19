@@ -1,12 +1,73 @@
 # Elementor Pro - by Elementor.com
 
-#### 2.2.0- 2018-11-19
+#### 2.3.1 - 2018-12-19
+* Fix: Template widget search functionality ([#6473](https://github.com/pojome/elementor/issues/6473))
+* Fix: Apply `the_content` filter to post content in theme builder
+
+#### 2.3.0 - 2018-12-17
+* New: Introducing Discord Integration for Forms ([#4218](https://github.com/pojome/elementor/issues/4218))
+* New: Introducing Slack Integration for Forms
+* New: Introducing MailerLite Integration for Forms ([#4462](https://github.com/pojome/elementor/issues/4462))
+* New: Activate Elementor Pro plugin by connecting to Elementor account
+* Tweak: Added `elementor_pro/utils/get_public_post_types` filter hook ([#5900](https://github.com/pojome/elementor/issues/5900))
+* Tweak: Added `loop_start` & `the_content` hooks for Post Content ([#6173](https://github.com/pojome/elementor/issues/6173))
+* Tweak: Removed Custom Attributes from Page Settings
+* Tweak: Always add the Custom CSS control to the Advanced tab
+* Fix: In sub Term condition false positive in edge cases
+* Fix: ToolSet Dynamic Image fallback
+* Fix: Style glitch with the dropdown color in Nav Menu widget
+* Fix: Style glitch in the Conditions screen in Safari browser
+* Fix: Ribbon in the CTA widget obscures drop down menu ([#6080](https://github.com/pojome/elementor/issues/6080))
+* Fix: The color of label won't change color in Widget login
+
+#### 2.2.5 - 2018-12-11
+* New: Add Style Tab & Custom CSS for Header & Footer Templates.
+* Tweak: Added a better identifier for subpages ([#6362](https://github.com/pojome/elementor/issues/6362))
+* Tweak: Removed Custom Attributes from page settings
+* Fix: Yahoo event URL date issue ([#6354](https://github.com/pojome/elementor/issues/6354))
+* Fix: Allow timezone settings in Google event URL ([#6354](https://github.com/pojome/elementor/issues/6354))
+* Fix: Avoid `z-index` changes by `nanocss` in build process
+* Fix: Added missing WC upsells products CSS
+* Fix: Nav Menu dropdown losing color on hover
+* Fix: WC Product Add-ons CSS compatibility
+
+#### 2.2.4 - 2018-12-04
+* Fix: Global widget not saving changes ([#6340](https://github.com/pojome/elementor/issues/6340))
+* Fix: Dynamic tags support in Blockquote widget ([#6334](https://github.com/pojome/elementor/issues/6334))
+* Fix: Forms Redirect URL action when using form field values with spaces
+
+#### 2.2.3 - 2018-11-29
+* Fix: Missing "Edit Template" in Template widget ([#6271](https://github.com/pojome/elementor/issues/6271))
+* Fix: Follow menu anchors with UTF8 characters in Nav Menu
+* Fix: Show only supported templates in Template widget
+* Fix: Revert conflicting fix for a default order for WC archive
+
+#### 2.2.2 - 2018-11-28
+* Fix: Lightbox dynamic tag crashes the editor
+
+#### 2.2.1 - 2018-11-28
+* New: Added `ACF File` Dynamic tag to support text controls.
+* Tweak: Added option to hide item count bubble when cart is empty in Menu Cart widget ([#6223](https://github.com/pojome/elementor/issues/6223))
+* Tweak: Added Actions group for Lightbox and Contact URL tags
+* Tweak: Added filter `elementor_pro/dynamic_tags/shortcode/should_escape` to avoid escaping in Shortcode dynamic tag
+* Tweak: MailPoet3 integration allow Subscriber to to subscribe to multiple lists
+* Tweak: Added front-end max file size validation for upload fields
+* Tweak: Added `by-author` per Post-Type condition for theme builder
+* Fix: Template widget panel not showing the selected template ([#6271](https://github.com/pojome/elementor/issues/6271))
+* Fix: Conflict between ACF with Safari browser on Select option in Dynamic tag
+* Fix: Add post classes only for the Single template
+* Fix: Set document type as not editable for unsupported document like Global widget
+* Fix: Avoid duplicate query for current WC product query
+* Fix: Product Archive showing oldest products instead of latest
+* Fix: CSS reset in Posts widget using cards skin
+
+#### 2.2.0 - 2018-11-19
 * New: Introducing Custom Attributes ([#290](https://github.com/pojome/elementor/issues/290), [#3990](https://github.com/pojome/elementor/issues/3990))
 * New: Added evergreen option for Countdown widget ([#4459](https://github.com/pojome/elementor/issues/4459))
-* New: Added expire actions option for Countdown widget (#5242)([#5242](https://github.com/pojome/elementor/issues/5242))
+* New: Added expire actions option for Countdown widget ([#5242](https://github.com/pojome/elementor/issues/5242))
 * New: Introducing Reviews widget ([#3854](https://github.com/pojome/elementor/issues/3854))
 * New: Introducing Sitemap widget ([#5594](https://github.com/pojome/elementor/issues/5594))
-* New: Added Request parameter dynamic tag ([#4934](https://github.com/pojome/elementor/issues/4934))
+* New: Added Request Parameter dynamic tag ([#4934](https://github.com/pojome/elementor/issues/4934))
 * New: Added Shortcode dynamic tag
 * New: Added Image and Video Lightbox dynamic tag
 * New: Added Contact URL dynamic tag
@@ -20,7 +81,7 @@
 * Tweak: Renamed "Child Of" templates condition to "Direct Child Of"
 * Tweak: Added `elementor/theme/get_location_templates/condition_sub_id` filter hook to allow template condition translations
 * Tweak: Load the Template Library widget via Ajax for better performance
-* Tweak: Added 404 page title to page title dynamic tag
+* Tweak: Added 404 page title for Page Title dynamic tag
 * Fix: Menu Cart Toggle has # URL link ([#6141](https://github.com/pojome/elementor/issues/6141))
 * Fix: Alignment issue in Nav Menu widget ([#5790](https://github.com/pojome/elementor/issues/5790))
 * Fix: Avoid potential security risk in forms
@@ -30,11 +91,11 @@
 * Fix: Highlight active menu anchor items only when scrolled into view
 * Fix: Carousel Pagination Progress style to support new Swiper version
 
-#### 2.1.13- 2018-11-12
+#### 2.1.13 - 2018-11-12
 * Tweak: Added compatibility for new brand Finder in v2.3.0
 * Fix: Settings conflict when there are multiple carousels in the page
 
-#### 2.1.12- 2018-11-05
+#### 2.1.12 - 2018-11-05
 * Tweak: Added compatibility for the upcoming release of Elementor v2.3
 * Tweak: Better performance for Template Library widget
 * Fix: Fatal error if a taxonomy used in a dynamic field is removed ([#6029](https://github.com/pojome/elementor/issues/6029))
@@ -42,7 +103,7 @@
 * Fix: Custom CSS printed twice in the front-end
 * Fix: ACF Image field PHP warning ([#6051](https://github.com/pojome/elementor/issues/6051))
 
-#### 2.1.11- 2018-10-22
+#### 2.1.11 - 2018-10-22
 * New: Added ACF local fields compatibility
 * Tweak: Re-brand TypeKit by Adobe Fonts integration
 * Fix: Exclude `is_embed` from Singular condition ([#5915](https://github.com/pojome/elementor/issues/5915))

@@ -37,7 +37,7 @@ class Discord extends Action_Base {
 				'placeholder' => 'https://discordapp.com/api/webhooks/',
 				'label_block' => true,
 				'separator' => 'before',
-				'description' => __( 'Enter the discord webhook URL that will receive the form\'s submitted data.', 'elementor-pro' ),
+				'description' => __( 'Enter the webhook URL that will receive the form\'s submitted data.', 'elementor-pro' ) . ' ' . sprintf( '<a href="%s" target="_blank">%s</a>.', 'https://support.discordapp.com/hc/en-us/articles/228383668-Intro-to-Webhooks', __( 'Click here for Instructions', 'elementor-pro' ) ),
 				'render_type' => 'none',
 			]
 		);
@@ -63,16 +63,32 @@ class Discord extends Action_Base {
 			[
 				'label' => __( 'Title', 'elementor-pro' ),
 				'type' => Controls_Manager::TEXT,
-				'placeholder' => __( 'A new Submission', 'elementor-pro' ),
 			]
 		);
 
 		$widget->add_control(
 			'discord_content',
 			[
-				'label' => __( 'Content', 'elementor-pro' ),
-				'type' => Controls_Manager::TEXTAREA,
-				'placeholder' => __( 'A new Elementor Pro Form Submission has been received', 'elementor-pro' ),
+				'label' => __( 'Description', 'elementor-pro' ),
+				'type' => Controls_Manager::TEXT,
+			]
+		);
+
+		$widget->add_control(
+			'discord_form_data',
+			[
+				'label' => __( 'Form Data', 'elementor-pro' ),
+				'type' => Controls_Manager::SWITCHER,
+				'default' => 'yes',
+			]
+		);
+
+		$widget->add_control(
+			'discord_ts',
+			[
+				'label' => __( 'Timestamp', 'elementor-pro' ),
+				'type' => Controls_Manager::SWITCHER,
+				'default' => 'yes',
 			]
 		);
 
@@ -81,23 +97,8 @@ class Discord extends Action_Base {
 			[
 				'label' => __( 'Color', 'elementor-pro' ),
 				'type' => Controls_Manager::COLOR,
-				'default' => '#9c0244',
-			]
-		);
-
-		$widget->add_control(
-			'discord_form_data',
-			[
-				'label' => __( 'Send Form Data', 'elementor-pro' ),
-				'type' => Controls_Manager::SWITCHER,
-			]
-		);
-
-		$widget->add_control(
-			'discord_ts',
-			[
-				'label' => __( 'Add Timestamp', 'elementor-pro' ),
-				'type' => Controls_Manager::SWITCHER,
+				'alpha' => false,
+				'default' => '#D30C5C',
 			]
 		);
 
@@ -158,7 +159,7 @@ class Discord extends Action_Base {
 		if ( ! empty( $settings['discord_ts'] ) && 'yes' === $settings['discord_ts'] ) {
 			$embeds['timestamp'] = date( \DateTime::ISO8601 );
 			$embeds['footer'] = [
-				'text' => __( 'Elementor Pro Forms', 'elementor-pro' ),
+				'text' => __( 'Powered by Elementor', 'elementor-pro' ),
 				'icon_url' => is_ssl() ? ELEMENTOR_ASSETS_URL . 'images/logo-icon.png' : null,
 			];
 		}
