@@ -1,4 +1,4 @@
-/*! elementor - v2.4.1 - 15-01-2019 */
+/*! elementor - v2.4.4 - 24-01-2019 */
 /******/ (function(modules) { // webpackBootstrap
 /******/ 	// The module cache
 /******/ 	var installedModules = {};
@@ -82,7 +82,7 @@
 /******/
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 179);
+/******/ 	return __webpack_require__(__webpack_require__.s = 180);
 /******/ })
 /************************************************************************/
 /******/ ({
@@ -407,7 +407,13 @@ var _class = function (_elementorModules$Mod) {
 		value: function get(key, options) {
 			options = options || {};
 
-			var storage = options.session ? sessionStorage : localStorage;
+			var storage = void 0;
+
+			try {
+				storage = options.session ? sessionStorage : localStorage;
+			} catch (e) {
+				return key ? undefined : {};
+			}
 
 			var elementorStorage = storage.getItem('elementor');
 
@@ -477,7 +483,13 @@ var _class = function (_elementorModules$Mod) {
 	}, {
 		key: 'save',
 		value: function save(object, session) {
-			var storage = session ? sessionStorage : localStorage;
+			var storage = void 0;
+
+			try {
+				storage = session ? sessionStorage : localStorage;
+			} catch (e) {
+				return;
+			}
 
 			storage.setItem('elementor', JSON.stringify(object));
 		}
@@ -569,7 +581,111 @@ exports.default = HotKeys;
 
 /***/ }),
 
-/***/ 179:
+/***/ 18:
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+	value: true
+});
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+var _get = function get(object, property, receiver) { if (object === null) object = Function.prototype; var desc = Object.getOwnPropertyDescriptor(object, property); if (desc === undefined) { var parent = Object.getPrototypeOf(object); if (parent === null) { return undefined; } else { return get(parent, property, receiver); } } else if ("value" in desc) { return desc.value; } else { var getter = desc.get; if (getter === undefined) { return undefined; } return getter.call(receiver); } };
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+var _class = function (_elementorModules$Vie) {
+	_inherits(_class, _elementorModules$Vie);
+
+	function _class() {
+		_classCallCheck(this, _class);
+
+		return _possibleConstructorReturn(this, (_class.__proto__ || Object.getPrototypeOf(_class)).apply(this, arguments));
+	}
+
+	_createClass(_class, [{
+		key: 'getDefaultSettings',
+		value: function getDefaultSettings() {
+			return {
+				selectors: {
+					elements: '.elementor-element',
+					nestedDocumentElements: '.elementor .elementor-element'
+				},
+				classes: {
+					editMode: 'elementor-edit-mode'
+				}
+			};
+		}
+	}, {
+		key: 'getDefaultElements',
+		value: function getDefaultElements() {
+			var selectors = this.getSettings('selectors');
+
+			return {
+				$elements: this.$element.find(selectors.elements).not(this.$element.find(selectors.nestedDocumentElements))
+			};
+		}
+	}, {
+		key: 'getDocumentSettings',
+		value: function getDocumentSettings(setting) {
+			var elementSettings = void 0;
+
+			if (this.isEdit) {
+				elementSettings = {};
+
+				var settings = elementor.settings.page.model;
+
+				jQuery.each(settings.getActiveControls(), function (controlKey) {
+					elementSettings[controlKey] = settings.attributes[controlKey];
+				});
+			} else {
+				elementSettings = this.$element.data('elementor-settings') || {};
+			}
+
+			return this.getItems(elementSettings, setting);
+		}
+	}, {
+		key: 'runElementsHandlers',
+		value: function runElementsHandlers() {
+			this.elements.$elements.each(function (index, element) {
+				return elementorFrontend.elementsHandler.runReadyTrigger(element);
+			});
+		}
+	}, {
+		key: 'onInit',
+		value: function onInit() {
+			this.$element = this.getSettings('$element');
+
+			_get(_class.prototype.__proto__ || Object.getPrototypeOf(_class.prototype), 'onInit', this).call(this);
+
+			this.isEdit = this.$element.hasClass(this.getSettings('classes.editMode'));
+
+			if (this.isEdit) {
+				elementor.settings.page.model.on('change', this.onSettingsChange.bind(this));
+			} else {
+				this.runElementsHandlers();
+			}
+		}
+	}, {
+		key: 'onSettingsChange',
+		value: function onSettingsChange() {}
+	}]);
+
+	return _class;
+}(elementorModules.ViewModule);
+
+exports.default = _class;
+
+/***/ }),
+
+/***/ 180:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -577,7 +693,7 @@ exports.default = HotKeys;
 
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
-var _documentsManager = __webpack_require__(180);
+var _documentsManager = __webpack_require__(181);
 
 var _documentsManager2 = _interopRequireDefault(_documentsManager);
 
@@ -603,10 +719,10 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
 
 
 var EventManager = __webpack_require__(14),
-    ElementsHandler = __webpack_require__(181),
-    YouTubeModule = __webpack_require__(193),
-    AnchorsModule = __webpack_require__(194),
-    LightboxModule = __webpack_require__(195);
+    ElementsHandler = __webpack_require__(182),
+    YouTubeModule = __webpack_require__(194),
+    AnchorsModule = __webpack_require__(195),
+    LightboxModule = __webpack_require__(196);
 
 var Frontend = function (_elementorModules$Vie) {
 	_inherits(Frontend, _elementorModules$Vie);
@@ -932,111 +1048,7 @@ if (!elementorFrontend.isEditMode()) {
 
 /***/ }),
 
-/***/ 18:
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-	value: true
-});
-
-var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
-
-var _get = function get(object, property, receiver) { if (object === null) object = Function.prototype; var desc = Object.getOwnPropertyDescriptor(object, property); if (desc === undefined) { var parent = Object.getPrototypeOf(object); if (parent === null) { return undefined; } else { return get(parent, property, receiver); } } else if ("value" in desc) { return desc.value; } else { var getter = desc.get; if (getter === undefined) { return undefined; } return getter.call(receiver); } };
-
-function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
-
-function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
-
-var _class = function (_elementorModules$Vie) {
-	_inherits(_class, _elementorModules$Vie);
-
-	function _class() {
-		_classCallCheck(this, _class);
-
-		return _possibleConstructorReturn(this, (_class.__proto__ || Object.getPrototypeOf(_class)).apply(this, arguments));
-	}
-
-	_createClass(_class, [{
-		key: 'getDefaultSettings',
-		value: function getDefaultSettings() {
-			return {
-				selectors: {
-					elements: '.elementor-element',
-					nestedDocumentElements: '.elementor .elementor-element'
-				},
-				classes: {
-					editMode: 'elementor-edit-mode'
-				}
-			};
-		}
-	}, {
-		key: 'getDefaultElements',
-		value: function getDefaultElements() {
-			var selectors = this.getSettings('selectors');
-
-			return {
-				$elements: this.$element.find(selectors.elements).not(this.$element.find(selectors.nestedDocumentElements))
-			};
-		}
-	}, {
-		key: 'getDocumentSettings',
-		value: function getDocumentSettings(setting) {
-			var elementSettings = void 0;
-
-			if (this.isEdit) {
-				elementSettings = {};
-
-				var settings = elementor.settings.page.model;
-
-				jQuery.each(settings.getActiveControls(), function (controlKey) {
-					elementSettings[controlKey] = settings.attributes[controlKey];
-				});
-			} else {
-				elementSettings = this.$element.data('elementor-settings') || {};
-			}
-
-			return this.getItems(elementSettings, setting);
-		}
-	}, {
-		key: 'runElementsHandlers',
-		value: function runElementsHandlers() {
-			this.elements.$elements.each(function (index, element) {
-				return elementorFrontend.elementsHandler.runReadyTrigger(jQuery(element));
-			});
-		}
-	}, {
-		key: 'onInit',
-		value: function onInit() {
-			this.$element = this.getSettings('$element');
-
-			_get(_class.prototype.__proto__ || Object.getPrototypeOf(_class.prototype), 'onInit', this).call(this);
-
-			this.isEdit = this.$element.hasClass(this.getSettings('classes.editMode'));
-
-			if (this.isEdit) {
-				elementor.settings.page.model.on('change', this.onSettingsChange.bind(this));
-			} else {
-				this.runElementsHandlers();
-			}
-		}
-	}, {
-		key: 'onSettingsChange',
-		value: function onSettingsChange() {}
-	}]);
-
-	return _class;
-}(elementorModules.ViewModule);
-
-exports.default = _class;
-
-/***/ }),
-
-/***/ 180:
+/***/ 181:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -1145,7 +1157,7 @@ exports.default = _class;
 
 /***/ }),
 
-/***/ 181:
+/***/ 182:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -1159,22 +1171,22 @@ ElementsHandler = function ElementsHandler($) {
 	// element-type.skin-type
 	var handlers = {
 		// Elements
-		section: __webpack_require__(182),
+		section: __webpack_require__(183),
 
 		// Widgets
-		'accordion.default': __webpack_require__(183),
-		'alert.default': __webpack_require__(184),
-		'counter.default': __webpack_require__(185),
-		'progress.default': __webpack_require__(186),
-		'tabs.default': __webpack_require__(187),
-		'toggle.default': __webpack_require__(188),
-		'video.default': __webpack_require__(189),
-		'image-carousel.default': __webpack_require__(190),
-		'text-editor.default': __webpack_require__(191)
+		'accordion.default': __webpack_require__(184),
+		'alert.default': __webpack_require__(185),
+		'counter.default': __webpack_require__(186),
+		'progress.default': __webpack_require__(187),
+		'tabs.default': __webpack_require__(188),
+		'toggle.default': __webpack_require__(189),
+		'video.default': __webpack_require__(190),
+		'image-carousel.default': __webpack_require__(191),
+		'text-editor.default': __webpack_require__(192)
 	};
 
 	var addGlobalHandlers = function addGlobalHandlers() {
-		elementorFrontend.hooks.addAction('frontend/element_ready/global', __webpack_require__(192));
+		elementorFrontend.hooks.addAction('frontend/element_ready/global', __webpack_require__(193));
 	};
 
 	var addElementsHandlers = function addElementsHandlers() {
@@ -1184,9 +1196,7 @@ ElementsHandler = function ElementsHandler($) {
 	};
 
 	var init = function init() {
-		if (!elementorFrontend.isEditMode()) {
-			self.initHandlers();
-		}
+		self.initHandlers();
 	};
 
 	this.initHandlers = function () {
@@ -1203,15 +1213,14 @@ ElementsHandler = function ElementsHandler($) {
 		return handlers;
 	};
 
-	this.runReadyTrigger = function ($scope) {
-		var elementType = $scope.attr('data-element_type');
+	this.runReadyTrigger = function (scope) {
+		// Initializing the `$scope` as frontend jQuery instance
+		var $scope = jQuery(scope),
+		    elementType = $scope.attr('data-element_type');
 
 		if (!elementType) {
 			return;
 		}
-
-		// Initializing the `$scope` as frontend jQuery instance
-		$scope = jQuery($scope);
 
 		elementorFrontend.hooks.doAction('frontend/element_ready/global', $scope, $);
 
@@ -1231,7 +1240,7 @@ module.exports = ElementsHandler;
 
 /***/ }),
 
-/***/ 182:
+/***/ 183:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -1618,7 +1627,7 @@ module.exports = function ($scope) {
 
 /***/ }),
 
-/***/ 183:
+/***/ 184:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -1636,7 +1645,7 @@ module.exports = function ($scope) {
 
 /***/ }),
 
-/***/ 184:
+/***/ 185:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -1650,7 +1659,7 @@ module.exports = function ($scope, $) {
 
 /***/ }),
 
-/***/ 185:
+/***/ 186:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -1673,7 +1682,7 @@ module.exports = function ($scope, $) {
 
 /***/ }),
 
-/***/ 186:
+/***/ 187:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -1684,23 +1693,6 @@ module.exports = function ($scope, $) {
 		var $progressbar = $(this);
 
 		$progressbar.css('width', $progressbar.data('max') + '%');
-	});
-};
-
-/***/ }),
-
-/***/ 187:
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-var TabsModule = __webpack_require__(19);
-
-module.exports = function ($scope) {
-	new TabsModule({
-		$element: $scope,
-		toggleSelf: false
 	});
 };
 
@@ -1717,10 +1709,7 @@ var TabsModule = __webpack_require__(19);
 module.exports = function ($scope) {
 	new TabsModule({
 		$element: $scope,
-		showTabFn: 'slideDown',
-		hideTabFn: 'slideUp',
-		hidePrevious: false,
-		autoExpand: 'editor'
+		toggleSelf: false
 	});
 };
 
@@ -1732,96 +1721,16 @@ module.exports = function ($scope) {
 "use strict";
 
 
-var HandlerModule = __webpack_require__(3),
-    VideoModule;
-
-VideoModule = HandlerModule.extend({
-	getDefaultSettings: function getDefaultSettings() {
-		return {
-			selectors: {
-				imageOverlay: '.elementor-custom-embed-image-overlay',
-				video: '.elementor-video',
-				videoIframe: '.elementor-video-iframe'
-			}
-		};
-	},
-
-	getDefaultElements: function getDefaultElements() {
-		var selectors = this.getSettings('selectors');
-
-		return {
-			$imageOverlay: this.$element.find(selectors.imageOverlay),
-			$video: this.$element.find(selectors.video),
-			$videoIframe: this.$element.find(selectors.videoIframe)
-		};
-	},
-
-	getLightBox: function getLightBox() {
-		return elementorFrontend.utils.lightbox;
-	},
-
-	handleVideo: function handleVideo() {
-		if (!this.getElementSettings('lightbox')) {
-			this.elements.$imageOverlay.remove();
-
-			this.playVideo();
-		}
-	},
-
-	playVideo: function playVideo() {
-		if (this.elements.$video.length) {
-			this.elements.$video[0].play();
-
-			return;
-		}
-
-		var $videoIframe = this.elements.$videoIframe,
-		    lazyLoad = $videoIframe.data('lazy-load');
-
-		if (lazyLoad) {
-			$videoIframe.attr('src', lazyLoad);
-		}
-
-		var newSourceUrl = $videoIframe[0].src.replace('&autoplay=0', '');
-
-		$videoIframe[0].src = newSourceUrl + '&autoplay=1';
-	},
-
-	animateVideo: function animateVideo() {
-		this.getLightBox().setEntranceAnimation(this.getElementSettings('lightbox_content_animation'));
-	},
-
-	handleAspectRatio: function handleAspectRatio() {
-		this.getLightBox().setVideoAspectRatio(this.getElementSettings('aspect_ratio'));
-	},
-
-	bindEvents: function bindEvents() {
-		this.elements.$imageOverlay.on('click', this.handleVideo);
-	},
-
-	onElementChange: function onElementChange(propertyName) {
-		if ('lightbox_content_animation' === propertyName) {
-			this.animateVideo();
-
-			return;
-		}
-
-		var isLightBoxEnabled = this.getElementSettings('lightbox');
-
-		if ('lightbox' === propertyName && !isLightBoxEnabled) {
-			this.getLightBox().getModal().hide();
-
-			return;
-		}
-
-		if ('aspect_ratio' === propertyName && isLightBoxEnabled) {
-			this.handleAspectRatio();
-		}
-	}
-});
+var TabsModule = __webpack_require__(19);
 
 module.exports = function ($scope) {
-	new VideoModule({ $element: $scope });
+	new TabsModule({
+		$element: $scope,
+		showTabFn: 'slideDown',
+		hideTabFn: 'slideUp',
+		hidePrevious: false,
+		autoExpand: 'editor'
+	});
 };
 
 /***/ }),
@@ -1973,6 +1882,106 @@ module.exports = HandlerModule.extend({
 
 
 var HandlerModule = __webpack_require__(3),
+    VideoModule;
+
+VideoModule = HandlerModule.extend({
+	getDefaultSettings: function getDefaultSettings() {
+		return {
+			selectors: {
+				imageOverlay: '.elementor-custom-embed-image-overlay',
+				video: '.elementor-video',
+				videoIframe: '.elementor-video-iframe'
+			}
+		};
+	},
+
+	getDefaultElements: function getDefaultElements() {
+		var selectors = this.getSettings('selectors');
+
+		return {
+			$imageOverlay: this.$element.find(selectors.imageOverlay),
+			$video: this.$element.find(selectors.video),
+			$videoIframe: this.$element.find(selectors.videoIframe)
+		};
+	},
+
+	getLightBox: function getLightBox() {
+		return elementorFrontend.utils.lightbox;
+	},
+
+	handleVideo: function handleVideo() {
+		if (!this.getElementSettings('lightbox')) {
+			this.elements.$imageOverlay.remove();
+
+			this.playVideo();
+		}
+	},
+
+	playVideo: function playVideo() {
+		if (this.elements.$video.length) {
+			this.elements.$video[0].play();
+
+			return;
+		}
+
+		var $videoIframe = this.elements.$videoIframe,
+		    lazyLoad = $videoIframe.data('lazy-load');
+
+		if (lazyLoad) {
+			$videoIframe.attr('src', lazyLoad);
+		}
+
+		var newSourceUrl = $videoIframe[0].src.replace('&autoplay=0', '');
+
+		$videoIframe[0].src = newSourceUrl + '&autoplay=1';
+	},
+
+	animateVideo: function animateVideo() {
+		this.getLightBox().setEntranceAnimation(this.getElementSettings('lightbox_content_animation'));
+	},
+
+	handleAspectRatio: function handleAspectRatio() {
+		this.getLightBox().setVideoAspectRatio(this.getElementSettings('aspect_ratio'));
+	},
+
+	bindEvents: function bindEvents() {
+		this.elements.$imageOverlay.on('click', this.handleVideo);
+	},
+
+	onElementChange: function onElementChange(propertyName) {
+		if ('lightbox_content_animation' === propertyName) {
+			this.animateVideo();
+
+			return;
+		}
+
+		var isLightBoxEnabled = this.getElementSettings('lightbox');
+
+		if ('lightbox' === propertyName && !isLightBoxEnabled) {
+			this.getLightBox().getModal().hide();
+
+			return;
+		}
+
+		if ('aspect_ratio' === propertyName && isLightBoxEnabled) {
+			this.handleAspectRatio();
+		}
+	}
+});
+
+module.exports = function ($scope) {
+	new VideoModule({ $element: $scope });
+};
+
+/***/ }),
+
+/***/ 191:
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+var HandlerModule = __webpack_require__(3),
     ImageCarouselHandler;
 
 ImageCarouselHandler = HandlerModule.extend({
@@ -2042,7 +2051,7 @@ module.exports = function ($scope) {
 
 /***/ }),
 
-/***/ 191:
+/***/ 192:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -2152,7 +2161,7 @@ module.exports = function ($scope) {
 
 /***/ }),
 
-/***/ 192:
+/***/ 193:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -2208,7 +2217,7 @@ module.exports = function ($scope) {
 
 /***/ }),
 
-/***/ 193:
+/***/ 194:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -2263,7 +2272,7 @@ module.exports = elementorModules.ViewModule.extend({
 
 /***/ }),
 
-/***/ 194:
+/***/ 195:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -2350,7 +2359,7 @@ module.exports = elementorModules.ViewModule.extend({
 
 /***/ }),
 
-/***/ 195:
+/***/ 196:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";

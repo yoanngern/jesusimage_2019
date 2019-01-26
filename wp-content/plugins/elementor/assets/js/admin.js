@@ -1,4 +1,4 @@
-/*! elementor - v2.4.1 - 15-01-2019 */
+/*! elementor - v2.4.4 - 24-01-2019 */
 /******/ (function(modules) { // webpackBootstrap
 /******/ 	// The module cache
 /******/ 	var installedModules = {};
@@ -82,12 +82,12 @@
 /******/
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 161);
+/******/ 	return __webpack_require__(__webpack_require__.s = 162);
 /******/ })
 /************************************************************************/
 /******/ ({
 
-/***/ 161:
+/***/ 162:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -327,7 +327,7 @@
 		},
 
 		initMaintenanceMode: function initMaintenanceMode() {
-			var MaintenanceMode = __webpack_require__(162);
+			var MaintenanceMode = __webpack_require__(163);
 
 			this.maintenanceMode = new MaintenanceMode();
 		},
@@ -453,7 +453,7 @@
 
 /***/ }),
 
-/***/ 162:
+/***/ 163:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";

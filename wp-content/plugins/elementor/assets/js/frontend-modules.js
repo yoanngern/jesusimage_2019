@@ -1,4 +1,4 @@
-/*! elementor - v2.4.1 - 15-01-2019 */
+/*! elementor - v2.4.4 - 24-01-2019 */
 /******/ (function(modules) { // webpackBootstrap
 /******/ 	// The module cache
 /******/ 	var installedModules = {};
@@ -82,7 +82,7 @@
 /******/
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 206);
+/******/ 	return __webpack_require__(__webpack_require__.s = 207);
 /******/ })
 /************************************************************************/
 /******/ ({
@@ -161,7 +161,7 @@ var _class = function (_elementorModules$Vie) {
 		key: 'runElementsHandlers',
 		value: function runElementsHandlers() {
 			this.elements.$elements.each(function (index, element) {
-				return elementorFrontend.elementsHandler.runReadyTrigger(jQuery(element));
+				return elementorFrontend.elementsHandler.runReadyTrigger(element);
 			});
 		}
 	}, {
@@ -225,7 +225,7 @@ exports.default = window.elementorModules = {
 
 /***/ }),
 
-/***/ 206:
+/***/ 207:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -244,13 +244,13 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 _modules2.default.frontend = {
 	Document: _document2.default,
 	tools: {
-		StretchElement: __webpack_require__(207)
+		StretchElement: __webpack_require__(208)
 	}
 };
 
 /***/ }),
 
-/***/ 207:
+/***/ 208:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";

@@ -1,4 +1,4 @@
-/*! elementor - v2.4.1 - 15-01-2019 */
+/*! elementor - v2.4.4 - 24-01-2019 */
 /******/ (function(modules) { // webpackBootstrap
 /******/ 	// The module cache
 /******/ 	var installedModules = {};
@@ -82,7 +82,7 @@
 /******/
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 201);
+/******/ 	return __webpack_require__(__webpack_require__.s = 202);
 /******/ })
 /************************************************************************/
 /******/ ({
@@ -168,25 +168,25 @@ module.exports = InnerTabsBehavior;
 
 /***/ }),
 
-/***/ 201:
+/***/ 202:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 
-var _module = __webpack_require__(202);
+var _module = __webpack_require__(203);
 
 var _module2 = _interopRequireDefault(_module);
 
-var _introduction = __webpack_require__(203);
+var _introduction = __webpack_require__(204);
 
 var _introduction2 = _interopRequireDefault(_introduction);
 
-var _controlsStack = __webpack_require__(204);
+var _controlsStack = __webpack_require__(205);
 
 var _controlsStack2 = _interopRequireDefault(_controlsStack);
 
-var _baseSettings = __webpack_require__(205);
+var _baseSettings = __webpack_require__(206);
 
 var _baseSettings2 = _interopRequireDefault(_baseSettings);
 
@@ -209,7 +209,7 @@ elementorModules.editor = {
 
 /***/ }),
 
-/***/ 202:
+/***/ 203:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -250,7 +250,7 @@ module.exports = EditorModule;
 
 /***/ }),
 
-/***/ 203:
+/***/ 204:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -352,7 +352,7 @@ exports.default = _class;
 
 /***/ }),
 
-/***/ 204:
+/***/ 205:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -611,7 +611,7 @@ module.exports = ControlsStack;
 
 /***/ }),
 
-/***/ 205:
+/***/ 206:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
