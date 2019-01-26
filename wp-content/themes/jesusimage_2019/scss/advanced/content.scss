@@ -311,19 +311,30 @@ section.content-default {
     .wp-block-columns {
         &.has-2-columns .wp-block-column {
             flex-basis: 47%;
+
+            &:not(:last-child),
+            &:nth-child(odd) {
+                margin-right: 3%;
+            }
+
+            &:not(:first-child),
+            &:nth-child(even) {
+                margin-left: 3%;
+            }
         }
-    }
 
-    .wp-block-column {
+        &.has-3-columns .wp-block-column {
+            flex-basis: 30%;
 
-        &:not(:last-child),
-        &:nth-child(odd) {
-            margin-right: 3%;
-        }
+            &:not(:last-child),
+            &:nth-child(odd) {
+                margin-right: 2%;
+            }
 
-        &:not(:first-child),
-        &:nth-child(even) {
-            margin-left: 3%;
+            &:not(:first-child),
+            &:nth-child(even) {
+                margin-left: 2%;
+            }
         }
 
 
