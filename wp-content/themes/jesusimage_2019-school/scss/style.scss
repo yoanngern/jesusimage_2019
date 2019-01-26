@@ -10,8 +10,8 @@ body > header {
     }
 
     nav {
-        ul {
-            li {
+        ul.menu {
+            & > li {
                 a {
 
                     &:hover {
@@ -20,9 +20,20 @@ body > header {
                     }
                 }
 
-                &.current-menu-item,
-                &.current_page_item {
+                &.action {
+
                     a {
+                        background: $brown;
+
+                        &:hover {
+                            background: darken($brown, 5);
+                        }
+                    }
+                }
+
+                //&.current-menu-item,
+                &.current_page_item {
+                    & > a {
                         color: $brown;
                     }
                 }
@@ -43,34 +54,32 @@ body > footer {
 
 }
 
-#content {
+article.content-page,
+article.home-default,
+section.content-default {
 
-    .platter {
+    a {
+        color: $brown;
 
-        article.content-page,
-        article.home-default,
-        section.content-default {
-
-            a {
-                color: $brown;
-
-                &.button,
-                &.wp-block-button__link {
-                    background-color: $brown;
-                }
-            }
-
-            ul, ol {
-
-                li {
-
-                    &::before {
-                        color: $brown;
-                    }
-                }
-            }
-
+        &.button,
+        &.wp-block-button__link {
+            background-color: $brown;
+            color: $white;
         }
+    }
+
+    ul, ol {
+
+        li {
+
+            &::before {
+                color: $brown;
+            }
+        }
+    }
+
+    h3 {
+        //color: $brown;
     }
 
 }

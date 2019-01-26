@@ -2,14 +2,38 @@
 
 <section id="content">
 
-    <div class="platter">
+	<?php if ( get_the_post_thumbnail( $post ) ): ?>
 
-		<?php
-		// TO SHOW THE PAGE CONTENTS
-		while ( have_posts() ) : the_post(); ?> <!--Because the_content() works only inside a WP Loop -->
-            <article class="content-page">
+        <article class="title">
+            <div class="image"
+                 style="background-image: url('<?php the_post_thumbnail_url( 'header' ); ?>')"></div>
+            <div class="title">
 
-	            <?php the_title( '<h1 class="entry-title">', '</h1>' ); ?>
+
+                <h1 class="page-title">
+                    <span class="txt"><?php echo get_the_title(); ?></span>
+                </h1>
+
+
+            </div>
+
+        </article>
+
+	<?php endif; ?>
+
+	<?php
+	// TO SHOW THE PAGE CONTENTS
+	while ( have_posts() ) : the_post(); ?> <!--Because the_content() works only inside a WP Loop -->
+        <article class="content-page">
+            <div class="platter">
+
+
+				<?php
+
+				if ( ! get_the_post_thumbnail( $post ) ):
+					the_title( '<h1 class="entry-title">', '</h1>' );
+				endif;
+				?>
 
 				<?php
 				echo '<div class="content">';
@@ -17,16 +41,13 @@
 				echo '</div>';
 				?> <!-- Page Content -->
 
-            </article><!-- .entry-content-page -->
+        </article><!-- .entry-content-page -->
 
-
-		<?php
-		endwhile; //resetting the page loop
-		wp_reset_query(); //resetting the page query
-		?>
-
-
-    </div>
+        </div>
+	<?php
+	endwhile; //resetting the page loop
+	wp_reset_query(); //resetting the page query
+	?>
 
 
 </section>

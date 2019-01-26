@@ -184,7 +184,7 @@ add_action( 'widgets_init', 'my_widgets_init' );
 add_theme_support( 'post-thumbnails' );
 
 
-add_image_size( 'header', 800, 360, true );
+add_image_size( 'header', 1200, 500, true );
 add_image_size( 'home', 800, 450, true );
 
 add_image_size( 'square', 450, 450, true );

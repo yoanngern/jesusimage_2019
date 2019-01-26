@@ -11,7 +11,6 @@ $(document).ready(function () {
     }
 
 
-
     $('a[href^="#"]').on('click', function (e) {
         e.preventDefault();
 
@@ -26,6 +25,21 @@ $(document).ready(function () {
     $('#burger').click(function () {
 
         $('body > header').toggleClass('open_nav');
+    });
+
+    $('body > header ul.menu li').mouseover(function () {
+
+        $('ul.sub-menu', this).toggleClass('active');
+    });
+
+    $('body > header ul.sub-menu').mouseenter(function () {
+
+        $(this).addClass('active');
+    });
+
+    $('body > header ul.sub-menu').mouseleave(function () {
+
+        $(this).removeClass('active');
     });
 
 
@@ -45,7 +59,7 @@ $(document).ready(function () {
         console.log("width: " + iframe_width);
         console.log("height: " + iframe_height);
 
-        var ratio = 100 * ( parseInt(iframe_height) / parseInt(iframe_width) );
+        var ratio = 100 * (parseInt(iframe_height) / parseInt(iframe_width));
 
 
         var container = ' <section class="player" style="max-width: ' + iframe_width + 'px" data-width="' + iframe_width + '"><div class="container" style="padding-bottom: ' + ratio + '%"></div></section> ';

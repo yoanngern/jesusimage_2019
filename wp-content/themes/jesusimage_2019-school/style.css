@@ -13,28 +13,34 @@ Text Domain:    jesusimage_2019-school
 This theme, like WordPress, is licensed under the GPL.
 Use it to make something cool, have fun, and share what you've learned with others.
 */
-body > header nav ul li a:hover {
+body > header nav ul.menu > li a:hover {
   color: #ad623a; }
 
-body > header nav ul li.current-menu-item a, body > header nav ul li.current_page_item a {
+body > header nav ul.menu > li.action a {
+  background: #ad623a; }
+  body > header nav ul.menu > li.action a:hover {
+    background: #9a5734; }
+
+body > header nav ul.menu > li.current_page_item > a {
   color: #ad623a; }
 
-#content .platter article.content-page a,
-#content .platter article.home-default a,
-#content .platter section.content-default a {
+article.content-page a,
+article.home-default a,
+section.content-default a {
   color: #ad623a; }
-  #content .platter article.content-page a.button, #content .platter article.content-page a.wp-block-button__link,
-  #content .platter article.home-default a.button,
-  #content .platter article.home-default a.wp-block-button__link,
-  #content .platter section.content-default a.button,
-  #content .platter section.content-default a.wp-block-button__link {
-    background-color: #ad623a; }
+  article.content-page a.button, article.content-page a.wp-block-button__link,
+  article.home-default a.button,
+  article.home-default a.wp-block-button__link,
+  section.content-default a.button,
+  section.content-default a.wp-block-button__link {
+    background-color: #ad623a;
+    color: #FFFFFF; }
 
-#content .platter article.content-page ul li::before, #content .platter article.content-page ol li::before,
-#content .platter article.home-default ul li::before,
-#content .platter article.home-default ol li::before,
-#content .platter section.content-default ul li::before,
-#content .platter section.content-default ol li::before {
+article.content-page ul li::before, article.content-page ol li::before,
+article.home-default ul li::before,
+article.home-default ol li::before,
+section.content-default ul li::before,
+section.content-default ol li::before {
   color: #ad623a; }
 
 .nf-form-cont .nf-mp-header .nf-progress-container {

@@ -38,16 +38,6 @@ if( function_exists('acf_add_local_field_group') ):
 					'operator' => '==',
 					'value' => 'page',
 				),
-				array(
-					'param' => 'post_template',
-					'operator' => '!=',
-					'value' => 'page-home.php',
-				),
-				array(
-					'param' => 'post_template',
-					'operator' => '!=',
-					'value' => 'page-tv.php',
-				),
 			),
 		),
 		'menu_order' => 1,

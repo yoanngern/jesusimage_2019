@@ -3923,6 +3923,13 @@
 		"oA": 0,
 		"oAP": "/template-parts/divers/header_nav.php",
 		"oF": 0
+		},
+	"/template-parts/single.php": {
+		"cB": 0,
+		"ft": 8192,
+		"oA": 0,
+		"oAP": "/template-parts/single.php",
+		"oF": 0
 		}
 	},
 "hooks": [
@@ -5339,7 +5346,7 @@
 			}
 		},
 	"esLintSourceType": 0,
-	"externalServerAddress": "http://apply.jesusschool.tv",
+	"externalServerAddress": "http://dev.jesusschool.tv",
 	"gitIgnoreBuildFolder": 1,
 	"hideConfigFile": 0,
 	"jsCheckerReservedNamesString": "",

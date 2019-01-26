@@ -4,3 +4,24 @@
         font-size: inherit;
     }
 }
+
+article.content-page,
+article.home-default,
+section.content-default {
+    ul.elementor-editor-element-settings {
+        margin: 0;
+
+        li {
+            list-style: none;
+            text-indent: initial;
+            line-height: initial;
+            letter-spacing: initial;
+
+            &::before {
+                content: none;
+                padding-right: 0;
+                display: none;
+            }
+        }
+    }
+}
