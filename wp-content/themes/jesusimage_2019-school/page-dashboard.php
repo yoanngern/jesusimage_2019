@@ -78,7 +78,7 @@
                     </tr>
                     <tr>
                         <td>Username</td>
-                        <td><?php echo get_current_user() ?></td>
+                        <td><?php echo $user->user_login ?></td>
                     </tr>
                     <tr>
                         <td>Student ID</td>
