@@ -49,6 +49,13 @@
 		"oT": 1,
 		"q": 100
 		},
+	"/page-dashboard.php": {
+		"cB": 0,
+		"ft": 8192,
+		"oA": 0,
+		"oAP": "/page-dashboard.php",
+		"oF": 0
+		},
 	"/scss/base/_color.scss": {
 		"aP": 0,
 		"bl": 0,
@@ -1539,7 +1546,7 @@
 			}
 		},
 	"esLintSourceType": 0,
-	"externalServerAddress": "http://apply.jesusschool.local",
+	"externalServerAddress": "https://apply.jesusschool.tv",
 	"gitIgnoreBuildFolder": 1,
 	"hideConfigFile": 0,
 	"jsCheckerReservedNamesString": "",

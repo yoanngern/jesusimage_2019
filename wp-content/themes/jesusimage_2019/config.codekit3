@@ -551,6 +551,13 @@
 		"oAP": "/includes/acf/buttons.php",
 		"oF": 0
 		},
+	"/includes/acf/dashboard.php": {
+		"cB": 0,
+		"ft": 8192,
+		"oA": 0,
+		"oAP": "/includes/acf/dashboard.php",
+		"oF": 0
+		},
 	"/includes/acf/date.php": {
 		"cB": 0,
 		"ft": 8192,
@@ -598,6 +605,13 @@
 		"ft": 8192,
 		"oA": 0,
 		"oAP": "/includes/acf/meta_facebook.php",
+		"oF": 0
+		},
+	"/includes/acf/profile.php": {
+		"cB": 0,
+		"ft": 8192,
+		"oA": 0,
+		"oAP": "/includes/acf/profile.php",
 		"oF": 0
 		},
 	"/includes/acf/talk.php": {
@@ -3922,6 +3936,20 @@
 		"ft": 8192,
 		"oA": 0,
 		"oAP": "/template-parts/divers/header_nav.php",
+		"oF": 0
+		},
+	"/template-parts/give/archive.php": {
+		"cB": 0,
+		"ft": 8192,
+		"oA": 0,
+		"oAP": "/template-parts/give/archive.php",
+		"oF": 0
+		},
+	"/template-parts/give/item.php": {
+		"cB": 0,
+		"ft": 8192,
+		"oA": 0,
+		"oAP": "/template-parts/give/item.php",
 		"oF": 0
 		},
 	"/template-parts/single.php": {

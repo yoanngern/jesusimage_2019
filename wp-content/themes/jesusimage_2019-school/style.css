@@ -43,6 +43,12 @@ section.content-default ul li::before,
 section.content-default ol li::before {
   color: #ad623a; }
 
+article.content-page table.dashboard,
+article.home-default table.dashboard,
+section.content-default table.dashboard {
+  max-width: 400px;
+  margin: 20px 0 30px; }
+
 .nf-form-cont .nf-mp-header .nf-progress-container {
   border-color: #ad623a; }
   .nf-form-cont .nf-mp-header .nf-progress-container .nf-progress {

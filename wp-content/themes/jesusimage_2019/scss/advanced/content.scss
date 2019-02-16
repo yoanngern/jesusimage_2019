@@ -247,6 +247,64 @@ section.content-default {
 
     }
 
+
+    table {
+        display: table;
+        width: 100%;
+        margin: 0 auto;
+        max-width: 960px;
+        vertical-align: top;
+
+
+        thead {
+            border-bottom: 1px solid $gray-light;
+
+            tr {
+
+
+                th {
+                    @include brandon-grotesque-bold();
+                    font-size: 1.2em;
+                    padding-bottom: 10px;
+                }
+            }
+
+        }
+
+        tbody {
+            tr {
+
+                border-bottom: 1px solid $gray-light;
+
+                td {
+                    line-height: 2em;
+
+
+                    &:first-of-type {
+                        @include brandon-grotesque-bold();
+                    }
+
+
+                }
+
+            }
+        }
+
+        &.give {
+            tbody tr {
+                td {
+                    &:first-of-type {
+                        width: 50%;
+                    }
+
+                    &:last-of-type {
+                        text-align: right;
+                    }
+                }
+            }
+        }
+    }
+
     section.player {
         width: 100%;
         background-color: #000;

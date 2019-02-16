@@ -529,6 +529,48 @@ section.content-default {
     font-family: adobe-garamond-pro, serif;
     font-weight: 400;
     font-style: italic; }
+  article.content-page table,
+  article.home-default table,
+  section.content-default table {
+    display: table;
+    width: 100%;
+    margin: 0 auto;
+    max-width: 960px;
+    vertical-align: top; }
+    article.content-page table thead,
+    article.home-default table thead,
+    section.content-default table thead {
+      border-bottom: 1px solid #F8F8F8; }
+      article.content-page table thead tr th,
+      article.home-default table thead tr th,
+      section.content-default table thead tr th {
+        font-family: brandon-grotesque, sans-serif;
+        font-weight: 700;
+        font-style: normal;
+        font-size: 1.2em;
+        padding-bottom: 10px; }
+    article.content-page table tbody tr,
+    article.home-default table tbody tr,
+    section.content-default table tbody tr {
+      border-bottom: 1px solid #F8F8F8; }
+      article.content-page table tbody tr td,
+      article.home-default table tbody tr td,
+      section.content-default table tbody tr td {
+        line-height: 2em; }
+        article.content-page table tbody tr td:first-of-type,
+        article.home-default table tbody tr td:first-of-type,
+        section.content-default table tbody tr td:first-of-type {
+          font-family: brandon-grotesque, sans-serif;
+          font-weight: 700;
+          font-style: normal; }
+    article.content-page table.give tbody tr td:first-of-type,
+    article.home-default table.give tbody tr td:first-of-type,
+    section.content-default table.give tbody tr td:first-of-type {
+      width: 50%; }
+    article.content-page table.give tbody tr td:last-of-type,
+    article.home-default table.give tbody tr td:last-of-type,
+    section.content-default table.give tbody tr td:last-of-type {
+      text-align: right; }
   article.content-page section.player,
   article.home-default section.player,
   section.content-default section.player {
