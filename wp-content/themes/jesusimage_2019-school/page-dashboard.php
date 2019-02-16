@@ -131,8 +131,8 @@
 
 					<?php if ( $app_form['value'] == 'received' && $app_fee['value'] == 'paid' && $year['value'] == '1' ): ?>
 
-                        <p>We received your application form and you paid the application fee.
-                            Our team will contact you in the next days.</p>
+                        <p>We have received your application form and fee.<br/>
+                            Please submit your pastoral references/Leader endorsements and resume to info@jesusschool.tv. Once these documents are received by our staff we will reach out to schedule your interview.</p>
 
 					<?php endif; ?>
 				<?php endif; ?>
