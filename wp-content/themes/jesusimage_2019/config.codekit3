@@ -3884,7 +3884,7 @@
 		"oS": 0,
 		"uL": 1
 		},
-	"/scss/style.scss": {
+	"/scss/style_0_1.scss": {
 		"aP": 0,
 		"bl": 0,
 		"dP": 10,
@@ -3892,7 +3892,7 @@
 		"ft": 4,
 		"ma": 0,
 		"oA": 0,
-		"oAP": "/style.css",
+		"oAP": "/style_0_1.css",
 		"oF": 2,
 		"oS": 0,
 		"uL": 1

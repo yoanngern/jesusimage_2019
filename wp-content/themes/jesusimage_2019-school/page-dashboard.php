@@ -116,7 +116,7 @@
 
                     <p style="text-align: center; margin-top: 50px">
 
-						<?php if ( $app_form['value'] != 'received' && $year['value'] == '1' ): ?>
+						<?php if ( $app_form['value'] != 'received' && $year['value'] != '2' ): ?>
 
                             <a href="<?php echo get_field( 'first_app_form' ); ?>" class="button">Application form</a>
 
