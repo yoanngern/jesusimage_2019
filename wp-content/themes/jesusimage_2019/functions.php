@@ -542,3 +542,9 @@ function user_firstname_func( $atts ) {
 	return $firstname;
 }
 add_shortcode( 'user_firstname', 'user_firstname_func' );
+
+
+add_action( 'ninja_forms_after_submission', 'my_ninja_forms_after_submission' );
+function my_ninja_forms_after_submission( $form_data ){
+	// update profile
+}
