@@ -114,31 +114,59 @@
 				<?php if ( $app_status['value'] != 'accepted' && $app_status['value'] != 'declined' ): ?>
                     <h2>Next step</h2>
 
-                    <p style="text-align: center; margin-top: 50px">
+					<?php if ( $year['value'] == '1' ): ?>
 
-						<?php if ( $app_form['value'] != 'received' && $year['value'] == '1' ): ?>
+                        <p style="text-align: center; margin-top: 50px">
 
-                            <a href="<?php echo get_field( 'first_app_form' ); ?>" class="button">Application form</a>
+							<?php if ( $app_form['value'] != 'received' && get_field( 'first_app_form' ) ): ?>
+
+                                <a href="<?php echo get_field( 'first_app_form' ); ?>" class="button">Application
+                                    form</a>
+
+							<?php endif; ?>
+
+							<?php if ( $app_fee['value'] != 'paid' && get_field( 'first_app_fee' ) ): ?>
+
+                                <a href="<?php echo get_field( 'first_app_fee' ); ?>" class="button">Application fee</a>
+
+							<?php endif; ?>
+                        </p>
+
+						<?php if ( $app_form['value'] == 'received' && $app_fee['value'] == 'paid' ): ?>
+
+                            <p>We have received your application form and fee.<br/>
+                                Please submit your pastoral references/Leader endorsements and resume to
+                                info@jesusschool.tv.
+                                Once these documents are received by our staff we will reach out to schedule your
+                                interview.</p>
 
 						<?php endif; ?>
 
-	                    <?php if ( $app_form['value'] != 'received' && $year['value'] == '2' ): ?>
+					<?php elseif ( $year['value'] == '2' ): ?>
 
-                            <a href="<?php echo get_field( 'second_app_form' ); ?>" class="button">Application form</a>
+                        <p style="text-align: center; margin-top: 50px">
 
-	                    <?php endif; ?>
+							<?php if ( $app_form['value'] != 'received' && get_field( 'second_app_form' ) ): ?>
 
-						<?php if ( $app_fee['value'] != 'paid' ): ?>
+                                <a href="<?php echo get_field( 'second_app_form' ); ?>" class="button">Application
+                                    form</a>
 
-                            <a href="<?php echo get_field( 'app_fee' ); ?>" class="button">Application fee</a>
+							<?php endif; ?>
+
+							<?php if ( $app_fee['value'] != 'paid' && get_field( 'second_app_fee' ) ): ?>
+
+                                <a href="<?php echo get_field( 'second_app_fee' ); ?>" class="button">Application
+                                    fee</a>
+
+							<?php endif; ?>
+                        </p>
+
+						<?php if ( $app_form['value'] == 'received' && $app_fee['value'] == 'paid' ): ?>
+
+                            <p>We have received your application form and fee.<br/>
+                                We will reach out to schedule your interview.</p>
 
 						<?php endif; ?>
-                    </p>
-
-					<?php if ( $app_form['value'] == 'received' && $app_fee['value'] == 'paid' && $year['value'] == '1' ): ?>
-
-                        <p>We have received your application form and fee.<br/>
-                            Please submit your pastoral references/Leader endorsements and resume to info@jesusschool.tv. Once these documents are received by our staff we will reach out to schedule your interview.</p>
 
 					<?php endif; ?>
 				<?php endif; ?>
