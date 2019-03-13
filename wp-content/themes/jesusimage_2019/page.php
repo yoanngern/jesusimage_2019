@@ -6,7 +6,7 @@
 
         <article class="title">
             <div class="image"
-                 style="background-image: url('<?php get_field('bg_image')['sizes']['header']; ?>')"></div>
+                 style="background-image: url('<?php echo get_field('bg_image')['sizes']['header']; ?>')"></div>
             <div class="title">
 
 
