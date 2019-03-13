@@ -10,7 +10,7 @@
 	$og_locale      = get_locale();
 	$og_name        = get_the_title();
 	$og_title       = get_the_title();
-	$og_image       = "";
+	$og_image       = get_the_post_thumbnail_url( $post, 'social' );
 	$og_description = get_bloginfo( 'description' );
 
 
