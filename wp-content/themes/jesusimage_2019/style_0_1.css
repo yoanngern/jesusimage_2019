@@ -389,34 +389,50 @@ section.content-default {
     article.home-default a:hover,
     section.content-default a:hover {
       text-decoration: underline; }
-    article.content-page a.wp-block-button__link, article.content-page a.button,
-    article.home-default a.wp-block-button__link,
-    article.home-default a.button,
-    section.content-default a.wp-block-button__link,
-    section.content-default a.button {
-      display: inline-block;
-      color: #FFFFFF;
-      background-color: #b7a68c;
-      padding: 8px 25px 9px;
-      font-size: 0.9em;
-      line-height: 2.0em;
-      font-family: brandon-grotesque, sans-serif;
-      font-weight: 700;
-      font-style: normal;
-      text-transform: uppercase;
-      text-align: center;
-      letter-spacing: 0.17em;
-      margin: 5px 0;
-      transition: color 200ms ease-in-out;
-      position: relative;
-      border-radius: 0; }
-      article.content-page a.wp-block-button__link:hover, article.content-page a.button:hover,
-      article.home-default a.wp-block-button__link:hover,
-      article.home-default a.button:hover,
-      section.content-default a.wp-block-button__link:hover,
-      section.content-default a.button:hover {
-        text-decoration: none;
-        color: #333333; }
+  article.content-page a.wp-block-button__link,
+  article.content-page a.button,
+  article.content-page button,
+  article.content-page input[type=submit],
+  article.home-default a.wp-block-button__link,
+  article.home-default a.button,
+  article.home-default button,
+  article.home-default input[type=submit],
+  section.content-default a.wp-block-button__link,
+  section.content-default a.button,
+  section.content-default button,
+  section.content-default input[type=submit] {
+    display: inline-block;
+    color: #FFFFFF;
+    background-color: #b7a68c;
+    padding: 8px 25px 9px;
+    font-size: 0.9em;
+    line-height: 2.0em;
+    font-family: brandon-grotesque, sans-serif;
+    font-weight: 700;
+    font-style: normal;
+    text-transform: uppercase;
+    text-align: center;
+    letter-spacing: 0.17em;
+    margin: 5px 0;
+    transition: color 200ms ease-in-out;
+    position: relative;
+    border-radius: 0;
+    border: none;
+    outline: none; }
+    article.content-page a.wp-block-button__link:hover,
+    article.content-page a.button:hover,
+    article.content-page button:hover,
+    article.content-page input[type=submit]:hover,
+    article.home-default a.wp-block-button__link:hover,
+    article.home-default a.button:hover,
+    article.home-default button:hover,
+    article.home-default input[type=submit]:hover,
+    section.content-default a.wp-block-button__link:hover,
+    section.content-default a.button:hover,
+    section.content-default button:hover,
+    section.content-default input[type=submit]:hover {
+      text-decoration: none;
+      color: #333333; }
   article.content-page div.buttons,
   article.home-default div.buttons,
   section.content-default div.buttons {
@@ -878,6 +894,24 @@ section.content-default ul.elementor-editor-element-settings {
   max-width: 400px; }
   .jBox-wrapper p {
     line-height: 1.3em; }
+
+body.give_forms-template-default div.give-form-wrap h2 {
+  font-family: brandon-grotesque, sans-serif;
+  font-weight: 700;
+  font-style: normal;
+  color: #333333;
+  font-size: 2em;
+  text-transform: uppercase;
+  line-height: 1.2em;
+  letter-spacing: 0.125em;
+  margin: 40px auto 50px; }
+
+body.give_forms-template-default div.give-form-wrap .give-donation-levels-wrap li:before,
+body.give_forms-template-default div.give-form-wrap #give-gateway-radio-list li:before {
+  display: none; }
+
+body.give_forms-template-default div.give-form-wrap .give-btn:hover {
+  background: #b7a68c; }
 
 body {
   font-family: brandon-grotesque, sans-serif;

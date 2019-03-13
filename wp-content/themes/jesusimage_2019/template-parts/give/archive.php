@@ -43,8 +43,13 @@
 						while ( have_posts() ) :
 							the_post();
 
+							$person_id = get_field( 'student' );
 
-							$title = get_field( 'give_first_name' ) . " " . get_field( 'give_last_name' );
+							$person = get_userdata( $person_id );
+
+							$title = $person->first_name . " " . $person->last_name;
+
+							$year = get_field( 'user_app_year', $person );
 
 							$url = get_the_permalink();
 
@@ -52,7 +57,7 @@
 
                             <tr>
                                 <td><?php echo $title; ?></td>
-                                <td>1st Year 2018 - 2019</td>
+                                <td><?php echo $year['label']; ?></td>
                                 <td><a class="button" href="<?php echo $url ?>">Donate</a></td>
                             </tr>
 

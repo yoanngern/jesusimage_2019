@@ -2,8 +2,8 @@
 Contributors: automattic, woothemes, akeda, dwainm, royho, allendav, slash1andy, woosteve, spraveenitpro, mikedmoore, fernashes, shellbeezy, danieldudzic, mikaey, fullysupportedphil, dsmithweb, corsonr, bor0, zandyring, pauldechov
 Tags: ecommerce, e-commerce, commerce, woothemes, wordpress ecommerce, store, sales, sell, shop, shopping, cart, checkout, configurable, paypal
 Requires at least: 4.4
-Tested up to: 5.0.2
-Stable tag: 1.6.6
+Tested up to: 5.0.3
+Stable tag: 1.6.10
 License: GPLv3
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
 
@@ -100,6 +100,20 @@ Please use this to inform us about bugs, or make contributions via PRs.
 9. Initiate checkout from mini-cart.
 
 == Changelog ==
+
+= 1.6.10 - 2019-03-05 =
+* Fix - Use only product attributes when adding to cart
+
+= 1.6.9 - 2019-02-03 =
+* Fix - Avoid SPB render error by tweaking 'allowed' funding methods' empty value
+
+= 1.6.8 - 2019-01-25 =
+* Fix - Guard against themes applying filter with too few params
+
+= 1.6.7 - 2019-01-25 =
+* Fix - Error 10413 when using coupons
+* Fix: All variation details when using buttons on product pages are kept
+* Fix: Always render the PayPal buttons in the mini cart
 
 = 1.6.6 - 2019-01-09 =
 * Fix - Discount items were not being included

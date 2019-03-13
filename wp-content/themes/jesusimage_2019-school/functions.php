@@ -3,7 +3,7 @@ function jesusimage_school_theme_enqueue_styles() {
 
 	$parent_style = 'jesusimage_2019-style';
 
-	wp_enqueue_style( $parent_style, get_template_directory_uri() . '/style.css', false, wp_get_theme()->get( 'Version' ) );
+	wp_enqueue_style( $parent_style, get_template_directory_uri() . '/style_0_1.css', false, wp_get_theme()->get( 'Version' ) );
 	wp_enqueue_style( 'jesusimage_2019-school-style',
 		get_stylesheet_directory_uri() . '/style.css',
 		array( $parent_style ),
@@ -29,3 +29,6 @@ add_action( 'init', 'do_output_buffer' );
 function do_output_buffer() {
 	ob_start();
 }
+
+
+require_once( __DIR__ . '/includes/acf_fields.php' );

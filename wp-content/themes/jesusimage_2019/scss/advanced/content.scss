@@ -112,28 +112,32 @@ section.content-default {
         &:hover {
             text-decoration: underline;
         }
+    }
 
-        &.wp-block-button__link,
-        &.button {
-            display: inline-block;
-            color: $white;
-            background-color: $gold;
-            padding: 8px 25px 9px;
-            font-size: 0.9em;
-            line-height: 2.0em;
-            @include brandon-grotesque-bold();
-            text-transform: uppercase;
-            text-align: center;
-            letter-spacing: 0.17em;
-            margin: 5px 0;
-            transition: color 200ms ease-in-out;
-            position: relative;
-            border-radius: 0;
+    a.wp-block-button__link,
+    a.button,
+    button,
+    input[type=submit] {
+        display: inline-block;
+        color: $white;
+        background-color: $gold;
+        padding: 8px 25px 9px;
+        font-size: 0.9em;
+        line-height: 2.0em;
+        @include brandon-grotesque-bold();
+        text-transform: uppercase;
+        text-align: center;
+        letter-spacing: 0.17em;
+        margin: 5px 0;
+        transition: color 200ms ease-in-out;
+        position: relative;
+        border-radius: 0;
+        border: none;
+        outline: none;
 
-            &:hover {
-                text-decoration: none;
-                color: $black;
-            }
+        &:hover {
+            text-decoration: none;
+            color: $black;
         }
     }
 

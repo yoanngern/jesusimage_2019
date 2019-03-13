@@ -548,3 +548,9 @@ add_action( 'ninja_forms_after_submission', 'my_ninja_forms_after_submission' );
 function my_ninja_forms_after_submission( $form_data ){
 	// update profile
 }
+
+
+function remove_give_pre_form_output() {
+	remove_action( 'wp_head', 'give_pre_form_output' );
+}
+add_action( 'wp_head', 'remove_give_pre_form_output', 1 );

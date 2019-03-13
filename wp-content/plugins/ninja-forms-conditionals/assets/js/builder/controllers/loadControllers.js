@@ -14,7 +14,7 @@ define( [
 	'controllers/updateSettings',
 	'controllers/clickControls',
 	'controllers/undo',
-	'controllers/maybeModifyElse',
+	// 'controllers/maybeModifyElse',
 	'controllers/coreValues',
 	'controllers/coreComparators',
 	'controllers/coreTriggers',
@@ -33,7 +33,7 @@ define( [
 	UpdateSettings,
 	ClickControls,
 	Undo,
-	MaybeModifyElse,
+	// MaybeModifyElse,
 	CoreValues,
 	CoreComparators,
 	CoreTriggers,
@@ -50,7 +50,7 @@ define( [
 			new UpdateSettings();
 			new ClickControls();
 			new Undo();
-			new MaybeModifyElse();
+			// new MaybeModifyElse();
 			new CoreValues();
 			new CoreComparators();
 			new CoreTriggers();

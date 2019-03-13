@@ -9,7 +9,6 @@
 	//require_once( __DIR__ . '/acf/meta_facebook.php' );
 	//require_once( __DIR__ . '/acf/talk.php' );
 require_once( __DIR__ . '/acf/ji_settings.php' );
-require_once( __DIR__ . '/acf/profile.php' );
-require_once( __DIR__ . '/acf/dashboard.php' );
+require_once( __DIR__ . '/acf/page_settings.php' );
 
 

@@ -1,0 +1,28 @@
+body.give_forms-template-default {
+
+    div.give-form-wrap {
+
+        h2 {
+            @include brandon-grotesque-bold();
+            color: $black;
+            font-size: 2em;
+            text-transform: uppercase;
+            line-height: 1.2em;
+            letter-spacing: 0.125em;
+            margin: 40px auto 50px;
+        }
+
+        .give-donation-levels-wrap,
+        #give-gateway-radio-list {
+            li {
+                &:before {
+                    display: none;
+                }
+            }
+        }
+
+        .give-btn:hover {
+            background: $gold;
+        }
+    }
+}

@@ -29,10 +29,16 @@ article.home-default a,
 section.content-default a {
   color: #ad623a; }
   article.content-page a.button, article.content-page a.wp-block-button__link,
+  article.content-page a button,
+  article.content-page a input[type=submit],
   article.home-default a.button,
   article.home-default a.wp-block-button__link,
+  article.home-default a button,
+  article.home-default a input[type=submit],
   section.content-default a.button,
-  section.content-default a.wp-block-button__link {
+  section.content-default a.wp-block-button__link,
+  section.content-default a button,
+  section.content-default a input[type=submit] {
     background-color: #ad623a;
     color: #FFFFFF; }
 

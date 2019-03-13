@@ -19,6 +19,10 @@ define( [], function() {
 				 * When we update our calculation, update our compare
 				 */
 				this.listenTo( calcModel, 'change:value', this.updateCalcCompare );
+				/*
+				 * Update our compare status.
+				 */
+				this.updateCalcCompare( calcModel );
 			} else { // We have a field key
 				// Get our field model
 				var fieldModel = nfRadio.channel( 'form-' + options.condition.collection.formModel.get( 'id' ) ).request( 'get:fieldByKey', this.get( 'key' ) );

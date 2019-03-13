@@ -4,7 +4,7 @@ Tags: credit card, stripe, apple pay, payment request, google pay, sepa, sofort,
 Requires at least: 4.4
 Tested up to: 5.0
 Requires PHP: 5.6
-Stable tag: 4.1.14
+Stable tag: 4.1.15
 License: GPLv3
 License URI: https://www.gnu.org/licenses/gpl-3.0.html
 Attributions: thorsten-stripe
@@ -101,9 +101,10 @@ If you get stuck, you can ask for help in the Plugin Forum.
 
 == Changelog ==
 
-= 4.1.14 - 2019-01-10 =
-* Remove - Stripe specific styling to allow themes to style accordingly.
-* Tweak  - Handle error if product is not found in payment request.
+= 4.1.15 - 2019-03-12 =
+* Fix - Prevent canceled webhook from processing non Stripe payments.
+* Fix - "Retain Stripe Data" setting placement on WooCommerce settings page.
+* Tweak - Stripe API version updated to support 2019-02-19.
 
 [See changelog for all versions](https://raw.githubusercontent.com/woothemes/woocommerce-gateway-stripe/master/changelog.txt).
 

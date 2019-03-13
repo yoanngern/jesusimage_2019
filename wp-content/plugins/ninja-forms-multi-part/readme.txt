@@ -4,7 +4,7 @@ Donate link: http://wpninjas.com
 Tags: form, forms
 Requires at least: 4.7
 Tested up to: 4.9
-Stable tag: 3.0.24
+Stable tag: 3.0.25
 
 License: GPLv2 or later
 
@@ -25,6 +25,12 @@ This section describes how to install the plugin and get it working.
 For help and video tutorials, please visit our website: [Ninja Forms Documentation](http://wpninjas.com/ninja-forms/docs/)
 
 == Changelog ==
+
+= 3.0.25 (23 January 2019) =
+
+*Changes:*
+
+* Showing or hiding a part with conditional logic will no longer automatically add a reverse statement.
 
 = 3.0.24 (24 August 2018) =
 

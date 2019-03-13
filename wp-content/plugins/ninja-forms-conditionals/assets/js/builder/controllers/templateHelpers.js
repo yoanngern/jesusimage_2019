@@ -30,6 +30,21 @@ define( [], function() {
 			var fieldCollection = nfRadio.channel( 'fields' ).request( 'get:collection' );
 			var fieldOptions = _.chain( fieldCollection.models )
 				.filter( function( field ) { return ! nfRadio.channel( 'conditions-key-select-field-' + field.get( 'type' ) ).request( 'hide', modelType ) || false; })
+				.filter( function( field )  {
+
+					// filter out these fields for the when condition
+					var notForWhen = [ 'submit', 'hr', 'html', 'save', 'file-upload', 'password', 'passwordconfirm', 'product' ];
+					
+					if( field.get( 'key' ) === currentValue ) {
+						notForWhen = notForWhen.splice( notForWhen.indexOf( field.get( 'type' ), 1) );
+					}
+
+					if( notForWhen.includes( field.get( 'type' ) ) && 'when' === modelType ) {
+						return false;
+					}
+
+					return true;
+				})
 				.map( function( field ) {
                     var label = field.get( 'label' )
 					if( 'undefined' !== typeof field.get( 'admin_label' ) && 0 < field.get( 'admin_label' ).length ){
@@ -41,7 +56,7 @@ define( [], function() {
 					return field.label.toLowerCase();
 				} )
 				.value();
-
+				
 			groups.push( { label: 'Fields', type: 'field', options: fieldOptions } );
 			
 			var calcCollection = nfRadio.channel( 'settings' ).request( 'get:setting', 'calculations' );

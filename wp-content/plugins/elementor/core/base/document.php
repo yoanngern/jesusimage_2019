@@ -31,6 +31,7 @@ abstract class Document extends Controls_Stack {
 	 * Document type meta key.
 	 */
 	const TYPE_META_KEY = '_elementor_template_type';
+	const PAGE_META_KEY = '_elementor_page_settings';
 
 	private $main_id;
 
@@ -85,7 +86,7 @@ abstract class Document extends Controls_Stack {
 			'elements_categories' => static::get_editor_panel_categories(),
 			'messages' => [
 				/* translators: %s: the document title. */
-				'publish_notification' => sprintf( __( 'Hurray! Your %s is live.', 'elementor' ), self::get_title() ),
+				'publish_notification' => sprintf( __( 'Hurray! Your %s is live.', 'elementor' ), static::get_title() ),
 			],
 		];
 	}
@@ -235,6 +236,12 @@ abstract class Document extends Controls_Stack {
 			'data-elementor-id' => $id,
 			'class' => 'elementor elementor-' . $id,
 		];
+
+		$version_meta = $this->get_main_meta( '_elementor_version' );
+
+		if ( version_compare( $version_meta, '2.5.0', '<' ) ) {
+			$attributes['class'] .= ' elementor-bc-flex-widget';
+		}
 
 		if ( ! Plugin::$instance->preview->is_preview_mode( $id ) ) {
 			$attributes['data-elementor-settings'] = wp_json_encode( $this->get_frontend_settings() );
@@ -413,6 +420,7 @@ abstract class Document extends Controls_Stack {
 		return [
 			'id' => $this->get_main_id(),
 			'type' => $this->get_name(),
+			'version' => $this->get_main_meta( '_elementor_version' ),
 			'remoteLibrary' => $this->get_remote_library_config(),
 			'last_edited' => $this->get_last_edited(),
 			'panel' => static::get_editor_panel_config(),
@@ -789,7 +797,7 @@ abstract class Document extends Controls_Stack {
 	public function get_panel_page_settings() {
 		return [
 			/* translators: %s: Document title */
-			'title' => sprintf( __( '%s Settings', 'elementor' ), self::get_title() ),
+			'title' => sprintf( __( '%s Settings', 'elementor' ), static::get_title() ),
 		];
 	}
 
@@ -864,7 +872,9 @@ abstract class Document extends Controls_Stack {
 
 		Plugin::$instance->db->save_plain_text( $this->post->ID );
 
-		update_metadata( 'post', $this->post->ID, '_elementor_version', DB::DB_VERSION );
+		if ( ! defined( 'IS_ELEMENTOR_UPGRADE' ) ) {
+			update_metadata( 'post', $this->post->ID, '_elementor_version', ELEMENTOR_VERSION );
+		}
 
 		/**
 		 * After saving data.

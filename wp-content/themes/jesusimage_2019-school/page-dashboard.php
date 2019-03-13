@@ -8,7 +8,7 @@
 
         <article class="title">
             <div class="image"
-                 style="background-image: url('<?php the_post_thumbnail_url( 'header' ); ?>')"></div>
+                 style="background-image: url('<?php get_field('bg_image')['sizes']['header']; ?>')"></div>
             <div class="title">
 
 
@@ -88,30 +88,33 @@
                 </table>
 
 
-                <table class="dashboard">
-                    <thead>
-                    <tr>
-                        <th colspan="2">My application</th>
-                    </tr>
-                    </thead>
-                    <tbody>
-                    <tr>
-                        <td>Application Form</td>
-                        <td><?php echo $app_form['label'] ?></td>
-                    </tr>
-                    <tr>
-                        <td>Application Fee</td>
-                        <td><?php echo $app_fee['label'] ?></td>
-                    </tr>
-                    <tr>
-                        <td>Year</td>
-                        <td><?php echo $year['label'] ?></td>
-                    </tr>
-                    </tbody>
-                </table>
+
 
 
 				<?php if ( $app_status['value'] != 'accepted' && $app_status['value'] != 'declined' ): ?>
+
+                    <table class="dashboard">
+                        <thead>
+                        <tr>
+                            <th colspan="2">My application</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr>
+                            <td>Application Form</td>
+                            <td><?php echo $app_form['label'] ?></td>
+                        </tr>
+                        <tr>
+                            <td>Application Fee</td>
+                            <td><?php echo $app_fee['label'] ?></td>
+                        </tr>
+                        <tr>
+                            <td>Year</td>
+                            <td><?php echo $year['label'] ?></td>
+                        </tr>
+                        </tbody>
+                    </table>
+
                     <h2>Next step</h2>
 
 					<?php if ( $year['value'] == '1' ): ?>
@@ -169,6 +172,41 @@
 						<?php endif; ?>
 
 					<?php endif; ?>
+				<?php endif; ?>
+
+				<?php
+
+				$donations = get_posts( array(
+					'post_type'  => 'give_forms',
+					'meta_query' => array(
+						'key'     => 'student', // name of custom field
+						'value'   => '"' . get_current_user_id() . '"', // matches exaclty "123",
+						'compare' => 'LIKE'
+					)
+				) );
+
+
+				?>
+
+                <?php if ( $app_status['value'] == 'accepted' && $donations): ?>
+
+					<?php
+					$donation = $donations[0];
+
+					$donation_id = $donation->ID;
+
+					$amount = give_donation_amount( $donation_id );
+					$goal   = give_get_form_goal( $donation_id );
+
+					$url = $donation->guid;
+
+					?>
+
+                    <h2>My Tuition</h2>
+
+					<?php give_show_goal_progress( $donation_id ); ?>
+
+                    <p style="text-align: center"><a href="<?php echo $url; ?>" class="button">Pay my tuition</a></p>
 				<?php endif; ?>
 
         </article><!-- .entry-content-page -->

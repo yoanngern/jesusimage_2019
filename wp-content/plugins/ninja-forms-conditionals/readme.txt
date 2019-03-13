@@ -2,9 +2,9 @@
 Contributors: kstover, jameslaws, kbjohnson, klhall1987, Much2tall, deckerweb
 Donate link: http://ninjaforms.com
 Tags: form, forms
-Requires at least: 4.7
-Tested up to: 4.9
-Stable tag: 3.0.22
+Requires at least: 4.8
+Tested up to: 5.0
+Stable tag: 3.0.24
 
 License: GPLv2 or later
 
@@ -29,6 +29,24 @@ This section describes how to install the plugin and get it working.
 For help and video tutorials, please visit our website: [Ninja Forms Documentation](http://ninjaforms.com/documentation/intro/)
 
 == Changelog ==
+
+= 3.0.24 (23 January 2019) =
+
+*Bugs:*
+
+* Conditions based on calculations should now be properly triggered on form load.
+* Resolved an issue that was sometimes causing actions to always fire, regardless of conditions.
+
+*Changes:*
+
+* Several incompatible field types have been removed from the list of fields that conditions can be based on.
+* Inverse statements will no longer be created by default on new do statements.
+
+= 3.0.23 (11 January 2019) =
+
+*Bugs:*
+
+* Action processing will now ignore incomplete conditional statements, which previously prevented the action from firing.
 
 = 3.0.22 (14 June 2018) =
 

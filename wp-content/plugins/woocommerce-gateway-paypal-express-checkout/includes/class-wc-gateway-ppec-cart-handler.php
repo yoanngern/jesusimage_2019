@@ -28,6 +28,7 @@ class WC_Gateway_PPEC_Cart_Handler {
 		} else {
 			add_action( 'woocommerce_widget_shopping_cart_buttons', array( $this, 'display_mini_paypal_button' ), 20 );
 		}
+		add_action( 'widget_title', array( $this, 'maybe_enqueue_checkout_js' ), 10, 3 );
 
 		if ( 'yes' === wc_gateway_ppec()->settings->checkout_on_single_product_enabled ) {
 			add_action( 'woocommerce_after_add_to_cart_form', array( $this, 'display_paypal_button_product' ), 1 );
@@ -85,7 +86,8 @@ class WC_Gateway_PPEC_Cart_Handler {
 			wc_empty_cart();
 
 			if ( $product->is_type( 'variable' ) ) {
-				$attributes = array_map( 'wc_clean', $_POST );
+				$attributes = array_map( 'wc_clean', $_POST['attributes'] );
+
 
 				if ( version_compare( WC_VERSION, '3.0', '<' ) ) {
 					$variation_id = $product->get_matching_variation( $attributes );
@@ -94,7 +96,7 @@ class WC_Gateway_PPEC_Cart_Handler {
 					$variation_id = $data_store->find_matching_product_variation( $product, $attributes );
 				}
 
-				WC()->cart->add_to_cart( $product->get_id(), $qty, $variation_id );
+				WC()->cart->add_to_cart( $product->get_id(), $qty, $variation_id, $attributes );
 			} else {
 				WC()->cart->add_to_cart( $product->get_id(), $qty );
 			}
@@ -350,8 +352,7 @@ class WC_Gateway_PPEC_Cart_Handler {
 		}
 		?>
 
-		<?php if ( 'yes' === $settings->use_spb ) :
-			wp_enqueue_script( 'wc-gateway-ppec-smart-payment-buttons' ); ?>
+		<?php if ( 'yes' === $settings->use_spb ) : ?>
 		<p class="woocommerce-mini-cart__buttons buttons wcppec-cart-widget-spb">
 			<span id="woo_pp_ec_button_mini_cart"></span>
 		</p>
@@ -363,6 +364,17 @@ class WC_Gateway_PPEC_Cart_Handler {
 		<?php endif; ?>
 		<?php
 	}
+
+	public function maybe_enqueue_checkout_js( $widget_title, $widget_instance = array(), $widget_id = null ) {
+		if ( 'woocommerce_widget_cart' === $widget_id ) {
+			$gateways = WC()->payment_gateways->get_available_payment_gateways();
+			$settings = wc_gateway_ppec()->settings;
+			if ( isset( $gateways['ppec_paypal'] ) && 'yes' === $settings->cart_checkout_enabled && 'yes' === $settings->use_spb ) {
+				wp_enqueue_script( 'wc-gateway-ppec-smart-payment-buttons' );
+			}
+        }
+		return $widget_title;
+    }
 
 	/**
 	 * Convert from settings to values expected by PayPal Button API:

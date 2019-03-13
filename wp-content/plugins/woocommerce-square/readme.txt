@@ -4,7 +4,7 @@ Tags: credit card, square, woocommerce, inventory sync
 Requires at least: 4.4
 Tested up to: 5.0
 Requires PHP: 5.6
-Stable tag: 1.0.34
+Stable tag: 1.0.35
 License: GPLv3
 License URI: https://www.gnu.org/licenses/gpl-3.0.html
 
@@ -56,6 +56,9 @@ If you get stuck, you can ask for help in the Plugin Forum.
 1. The settings panel.
 
 == Changelog ==
+
+= 1.0.35 - 2019-02-01 =
+* Fix - Idempotency key reuse issue when checking out.
 
 = 1.0.34 - 2018-11-07 =
 * Update - Fieldset tag to div tag in payment box to prevent unwanted styling.

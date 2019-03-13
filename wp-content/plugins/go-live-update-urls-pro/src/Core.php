@@ -5,7 +5,6 @@
  *
  * @author mat
  * @since  2.2.0
- *
  */
 class Go_Live_Update_URLS_Pro_Core {
 
@@ -38,8 +37,6 @@ class Go_Live_Update_URLS_Pro_Core {
 
 
 	private function hook() {
-		add_filter( 'gluu-uncheck-message', array( $this, 'check_message' ) );
-
 		add_filter( 'go-live-update-urls-serialized-tables', array( $this, 'add_serialized_tables' ) );
 		add_filter( 'go-live-update-urls-success-message', array( $this, 'success_message' ) );
 
@@ -73,7 +70,18 @@ class Go_Live_Update_URLS_Pro_Core {
 	}
 
 
-	public function success_message() {
+	/**
+	 * Possibly change the success message to mention sections instead of tables.
+	 *
+	 * @param string $original - Untouched message from basic version.
+	 *
+	 * @return string
+	 */
+	public function success_message( $original ) {
+		if ( Go_Live_Update_URLS_Pro_Checkboxes::instance()->is_full_tables() ) {
+			return $original;
+		}
+
 		return __( 'The URLS in the checked sections have been updated.', 'go-live-update-urls' );
 	}
 
@@ -130,7 +138,13 @@ class Go_Live_Update_URLS_Pro_Core {
 	}
 
 
+	/**
+	 * Not needed after Basic version 5.2.5.
+	 *
+	 * @deprecated
+	 */
 	public function check_message() {
+		_deprecated_function( 'check_message', '2.4.0' );
 		return __( 'Only the checked sections will be updated.', 'go-live-update-urls' );
 	}
 
@@ -143,7 +157,7 @@ class Go_Live_Update_URLS_Pro_Core {
 	/**
 	 * Retrieve the path this plugins dir
 	 *
-	 * @param string [$append] - optional path file or name to add
+	 * @param string [ $append] - optional path file or name to add
 	 *
 	 * @return string
 	 */
@@ -159,7 +173,7 @@ class Go_Live_Update_URLS_Pro_Core {
 	/**
 	 * Retrieve the url this plugins dir
 	 *
-	 * @param string [$append] - optional path file or name to add
+	 * @param string [ $append] - optional path file or name to add
 	 *
 	 * @return string
 	 */
@@ -171,7 +185,7 @@ class Go_Live_Update_URLS_Pro_Core {
 		return trailingslashit( self::$plugin_url . $append );
 	}
 
-	//********** SINGLETON FUNCTIONS **********/
+	// ********** SINGLETON FUNCTIONS **********/
 
 
 	/**

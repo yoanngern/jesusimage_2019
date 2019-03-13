@@ -289,7 +289,7 @@ class WC_Square_Gateway extends WC_Payment_Gateway {
 
 		try {
 			$data = array(
-				'idempotency_key'     => apply_filters( 'woocommerce_square_idempotency_key', $order_id . '-' . $order->get_order_number(), $order ),
+				'idempotency_key'     => apply_filters( 'woocommerce_square_idempotency_key', uniqid(), $order ),
 				'amount_money'        => array(
 					'amount'   => (int) WC_Square_Utils::format_amount_to_square( $order->get_total(), $currency ),
 					'currency' => $currency,
