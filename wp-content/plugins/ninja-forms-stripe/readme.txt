@@ -2,9 +2,9 @@
 Contributors: kstover, jameslaws, kbjohnson, klhall1987, Much2tall, ericwindham, wpnzach
 Donate link: http://ninjaforms.com
 Tags: form, forms
-Requires at least: 4.7
-Tested up to: 4.9
-Stable tag: 3.0.20
+Requires at least: 4.8
+Tested up to: 5.0
+Stable tag: 3.0.21
 
 License: GPLv2 or later
 
@@ -25,6 +25,12 @@ This section describes how to install the plugin and get it working.
 For help and video tutorials, please visit our website: [NinjaForms.com](http://ninjaforms.com)
 
 == Changelog ==
+
+= 3.0.21 (4 February 2019) =
+
+*Bugs:*
+
+Resolved an issue that sometimes caused Stripe to fire when it should have been conditionally disabled.
 
 = 3.0.20 (11 January 2019) =
 

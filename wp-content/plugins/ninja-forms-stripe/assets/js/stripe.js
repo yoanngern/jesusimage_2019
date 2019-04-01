@@ -135,10 +135,9 @@ var nfStripeController = Marionette.Object.extend({
 
                 // Save Progress Integration. Check if the action is enabled for Saves.
                 var actionSave = Backbone.Radio.channel( 'actions-' + action.id ).request( 'get:status', request );
-                if( 'undefined' !== typeof actionSave ) request = actionSave;
-
-                // updated to add isSaveProgress Click 
-                active = ( 'undefined' != typeof request &&  that.isSaveProgressClick ) ? request : true;
+                if( 'undefined' !== typeof actionSave && that.isSaveProgressClick ) request = actionSave;
+                 
+                active = ( 'undefined' != typeof request ) ? request : true;
                 if ( active ) {
                     activeAction = action;
                     // if actionSave is not undefined, need to add active_save setting
