@@ -3,7 +3,7 @@ Contributors: wpninjasllc, kstover, jameslaws, kbjohnson90, klhall1987, krmoorho
 Tags: form, forms, contact form, custom form, form builder, form creator, form manager, form creation, contact forms, custom forms, forms builder, forms creator, forms manager, forms creation, form administration,
 Requires at least: 4.8
 Tested up to: 5.0
-Stable tag: 3.4.4
+Stable tag: 3.4.5
 License: GPLv2 or later
 
 Drag and drop fields in an intuitive UI to create contact forms, email subscription forms, order forms, payment forms, send emails and more!
@@ -111,13 +111,21 @@ For help and video tutorials, please visit our website: [Ninja Forms Documentati
 
 == Upgrade Notice ==
 
-= 3.4.4 (13 February 2019) =
+= 3.4.5 (19 March 2019) =
 
-*Bugs:*
+*Changes:*
 
-* Resolved an issue that was sometimes causing the submission sequence to reset.
+* Upgrade to THREE for legacy users will no longer immediately trigger additional required updates.
+* Introducing SendWP - A dedicated WordPress email solution!
 
 == Changelog ==
+
+= 3.4.5 (19 March 2019) =
+
+*Changes:*
+
+* Upgrade to THREE for legacy users will no longer immediately trigger additional required updates.
+* Introducing SendWP - A dedicated WordPress email solution!
 
 = 3.4.4 (13 February 2019) =
 
