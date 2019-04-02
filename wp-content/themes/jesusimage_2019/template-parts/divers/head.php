@@ -118,9 +118,6 @@
 
 	<?php echo get_field( 'script', 'option' ) ?>
 
-
-	<?php get_template_part( 'template-parts/divers/facebook_pixel' ); ?>
-
 </head>
 
 
