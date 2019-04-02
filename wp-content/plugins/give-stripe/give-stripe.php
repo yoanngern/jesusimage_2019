@@ -3,7 +3,7 @@
  * Plugin Name: Give - Stripe Gateway
  * Plugin URI:  https://givewp.com/addons/stripe-gateway/
  * Description: Adds the Stripe.com payment gateway to the available Give payment methods.
- * Version:     2.1.5
+ * Version:     2.1.6
  * Author:      GiveWP
  * Author URI:  https://givewp.com/
  * Text Domain: give-stripe
@@ -21,7 +21,7 @@ if ( ! defined( 'ABSPATH' ) ) {
  * Required minimum versions, paths, urls, etc.
  */
 if ( ! defined( 'GIVE_STRIPE_VERSION' ) ) {
-	define( 'GIVE_STRIPE_VERSION', '2.1.5' );
+	define( 'GIVE_STRIPE_VERSION', '2.1.6' );
 }
 if ( ! defined( 'GIVE_STRIPE_MIN_GIVE_VER' ) ) {
 	define( 'GIVE_STRIPE_MIN_GIVE_VER', '2.3.0' );

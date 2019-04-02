@@ -3,7 +3,7 @@ Contributors: givewp
 Tags: donations, donation, ecommerce, e-commerce, fundraising, fundraiser, stripe, gateway
 Requires at least: 4.8
 Tested up to: 5.1
-Stable tag: 2.1.5
+Stable tag: 2.1.6
 Requires Give: 2.3.0
 License: GPLv3
 License URI: https://opensource.org/licenses/GPL-3.0
@@ -38,6 +38,9 @@ The manual installation method involves downloading our donation plugin and uplo
 Automatic updates should work like a charm; as always though, ensure you backup your site just in case.
 
 == Changelog ==
+
+= 2.1.6: March 13th, 2019 =
+* Fix: When the Stripe add-on is activated the requirements for the billing details were removed from donation forms. This allowed donors to process donations without inputing their address. Many organizations require the address as required to donate and this resolves the issue with the fields being non-required.
 
 = 2.1.5: March 6th, 2019 =
 * Fix: Added additional checks for repeat donors with single and recurring donations to prevent "No Such Source" errors from displaying and preventing donations from that repeat donor.

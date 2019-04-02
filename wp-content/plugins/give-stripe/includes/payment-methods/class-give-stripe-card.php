@@ -42,86 +42,46 @@ class Give_Stripe_Card extends Give_Stripe_Gateway {
 
 		add_action( 'init', array( $this, 'stripe_event_listener' ) );
 		add_action( 'init', array( $this, 'listen_stripe_3dsecure_payment' ) );
-		
-		add_filter( 'give_require_billing_address', array( $this, 'disable_address_validation_for_payment_request' ) );
-		add_filter( 'give_donation_form_required_fields', array( $this, 'remove_default_required_fields' ), 10, 1 );
+
+		add_filter( 'give_donation_form_required_fields', array( $this, 'remove_default_required_fields' ), 10, 2 );
 
 	}
-	
+
 	/**
 	 * This function will be used to remove default credit card fields validation.
 	 *
 	 * @param array $required_fields List of required fields for validation.
+	 * @param int   $form_id         Donation Form ID.
 	 *
 	 * @since  2.2.0
 	 * @access public
 	 *
 	 * @return array
 	 */
-	public function remove_default_required_fields( $required_fields ) {
-		
-		// Unset card name when stripe is the selected gateway.
-		if ( give_is_gateway_active( 'stripe' ) ) {
-			
-			// Unset the card name field
-			unset( $required_fields['card_name'] );
-		}
-		
-		return $required_fields;
-	}
-	
-	/**
-	 * This function will be used to disable the address fields validation for payment request (like Apple and Google Pay)
-	 *
-	 * @param bool $status True or False.
-	 *
-	 * @since 1.0.0
-	 *
-	 * @return bool
-	 */
-	function disable_address_validation_for_payment_request( $status ) {
-		
+	public function remove_default_required_fields( $required_fields, $form_id ) {
+
 		$posted_data                = filter_input_array( INPUT_POST );
 		$is_billing_enabled         = give_is_setting_enabled( give_get_option( 'stripe_collect_billing' ) );
 		$is_stripe_checkout_enabled = give_is_setting_enabled( give_get_option( 'stripe_checkout_enabled' ) );
 
 		// Bailout, if payment request tab data is not submitted.
 		if (
-			! empty( $posted_data['give-form-id'] ) &&
 			give_is_gateway_active( 'stripe' ) &&
 			'stripe' === give_get_chosen_gateway( $posted_data['give-form-id'] ) &&
-			! empty( $posted_data['is_payment_request'] ) &&
 			$is_billing_enabled &&
-			! $is_stripe_checkout_enabled
-		) {
-			return true;
-		}
-		
-		return false;
-	}
+			! $is_stripe_checkout_enabled &&
+			give_stripe_is_apple_google_pay_enabled() &&
+			! empty( $posted_data['is_payment_request'] )
 
-	/**
-	 * This function will be used to validate CC fields.
-	 *
-	 * @param array $post_data List of posted variables.
-	 *
-	 * @since  2.0.6
-	 * @access public
-	 *
-	 * @return void
-	 */
-	public function validate_fields( $post_data ) {
-
-		if (
-			! give_is_stripe_checkout_enabled() &&
-			'single' !== give_get_option( 'stripe_cc_fields_format', 'multi' ) &&
-			! isset( $post_data['post_data']['is_payment_request'] ) &&
-			isset( $post_data['card_info']['card_name'] ) &&
-			empty( $post_data['card_info']['card_name'] )
 		) {
-			give_set_error( 'no_card_name', __( 'Please enter a name for the credit card.', 'give-stripe' ) );
+			unset( $required_fields['card_address'] );
+			unset( $required_fields['card_zip'] );
+			unset( $required_fields['card_city'] );
+			unset( $required_fields['billing_country'] );
+			unset( $required_fields['card_state'] );
 		}
 
+		return $required_fields;
 	}
 
 	/**
@@ -227,9 +187,6 @@ class Give_Stripe_Card extends Give_Stripe_Gateway {
 
 		// Make sure we don't have any left over errors present.
 		give_clear_errors();
-
-		// Validate CC Fields.
-		$this->validate_fields( $donation_data );
 
 		$source_id = ! empty( $donation_data['post_data']['give_stripe_source'] )
 			? $donation_data['post_data']['give_stripe_source']
