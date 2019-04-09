@@ -18,7 +18,9 @@
                 <span></span>
             </div>
             <div class="logo">
-                <a href="<?php echo home_url(); ?>" class="logo"></a>
+                <a href="<?php echo home_url(); ?>">
+                    <?php get_template_part('template-parts/divers/jesusimage_logo'); ?>
+                </a>
             </div>
 
             <nav>

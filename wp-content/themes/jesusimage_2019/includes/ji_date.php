@@ -269,13 +269,13 @@ function complex_month($start, $end)
 
             else:
 
-                $date = date_i18n('M', $start_t) . ' - ' . date_i18n('M', $end_t);
+                $date = date_i18n('M', $start_t) . '-' . date_i18n('M', $end_t);
 
             endif;
 
         else:
 
-            $date = date_i18n('M', $start_t) . ' - ' . date_i18n('M', $end_t);
+            $date = date_i18n('M', $start_t) . '-' . date_i18n('M', $end_t);
 
         endif;
 
