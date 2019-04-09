@@ -43,7 +43,6 @@ article, aside, footer, header, hgroup, nav, section, figure, figcaption {
 
 body > footer {
   background-color: #EFEFEF;
-  width: 100%;
   padding: 20px 0 0;
   color: #FFFFFF; }
   body > footer .content {
@@ -51,11 +50,13 @@ body > footer {
     width: 100%;
     margin: 0 auto; }
     body > footer .content nav.footer-menu {
-      display: flex;
-      padding: 40px 0; }
+      display: table;
+      padding: 40px 0;
+      width: 100%; }
       body > footer .content nav.footer-menu div {
         display: inline-block;
-        width: 25%; }
+        width: 25%;
+        vertical-align: top; }
         body > footer .content nav.footer-menu div > ul li {
           list-style: none; }
           body > footer .content nav.footer-menu div > ul li a {
@@ -76,12 +77,13 @@ body > footer {
     body > footer .content .info {
       width: 100%;
       border-top: 1px solid #d7d7d7;
-      display: flex;
+      display: table;
       padding: 3px 0; }
       body > footer .content .info .logo,
       body > footer .content .info .text {
         width: 25%;
-        display: inline-block; }
+        display: inline-block;
+        vertical-align: top; }
       body > footer .content .info .logo a {
         background-color: transparent;
         background-image: url("images/web_logo_ji.png");
@@ -96,11 +98,21 @@ body > footer {
           line-height: 1.2em;
           font-size: 0.88em;
           text-transform: uppercase; }
+        body > footer .content .info .text a {
+          display: block; }
       body > footer .content .info .text,
       body > footer .content .info .text a {
         color: #545454;
-        text-decoration: none;
-        display: block; }
+        text-decoration: none; }
+
+@media only screen and (max-width: 767px) {
+  body > footer {
+    padding: 0 20px; }
+    body > footer .content nav.footer-menu div {
+      width: 100%; }
+    body > footer .content .info .logo,
+    body > footer .content .info .text {
+      width: 50%; } }
 
 #content {
   margin: 40px auto 0; }

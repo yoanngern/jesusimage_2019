@@ -1,6 +1,5 @@
 body > footer {
     background-color: $gray7;
-    width: 100%;
     padding: 20px 0 0;
     color: $white;
 
@@ -10,12 +9,14 @@ body > footer {
         margin: 0 auto;
 
         nav.footer-menu {
-            display: flex;
+            display: table;
             padding: 40px 0;
+            width: 100%;
 
             div {
                 display: inline-block;
                 width: 25%;
+                vertical-align: top;
 
                 & > ul {
 
@@ -60,13 +61,14 @@ body > footer {
         .info {
             width: 100%;
             border-top: 1px solid $gray5;
-            display: flex;
+            display: table;
             padding: 3px 0;
 
             .logo,
             .text {
                 width: 25%;
                 display: inline-block;
+                vertical-align: top;
             }
 
             .logo {
@@ -90,13 +92,41 @@ body > footer {
                     font-size: 0.88em;
                     text-transform: uppercase;
                 }
+
+                a {
+                    display: block;
+                }
             }
 
             .text,
             .text a {
                 color: $gray-dark;
                 text-decoration: none;
-                display: block;
+            }
+        }
+    }
+}
+
+
+@media only screen and (max-width: 767px) {
+    body > footer {
+        padding: 0 20px;
+
+        .content {
+
+
+            nav.footer-menu {
+
+                div {
+                    width: 100%;
+                }
+            }
+
+            .info {
+                .logo,
+                .text {
+                    width: 50%;
+                }
             }
         }
     }
