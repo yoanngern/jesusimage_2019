@@ -105,12 +105,12 @@ section.content-default {
 
     a {
         color: $gold;
-        text-decoration: none;
-        transition: all 130ms ease;
+        transition: color 130ms ease;
         font-size: 1em;
+        text-decoration: underline;
 
         &:hover {
-            text-decoration: underline;
+            color: darken($gold, 15);
         }
     }
 
@@ -134,6 +134,7 @@ section.content-default {
         border-radius: 0;
         border: none;
         outline: none;
+        text-decoration: none;
 
         &:hover {
             text-decoration: none;

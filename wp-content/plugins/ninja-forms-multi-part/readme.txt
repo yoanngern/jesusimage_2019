@@ -4,7 +4,7 @@ Donate link: http://wpninjas.com
 Tags: form, forms
 Requires at least: 4.7
 Tested up to: 4.9
-Stable tag: 3.0.25
+Stable tag: 3.0.26
 
 License: GPLv2 or later
 
@@ -25,6 +25,12 @@ This section describes how to install the plugin and get it working.
 For help and video tutorials, please visit our website: [Ninja Forms Documentation](http://wpninjas.com/ninja-forms/docs/)
 
 == Changelog ==
+
+= 3.0.26 (2 April 2019) =
+
+*Bugs:*
+
+* Resolved an issue that was sometimes causing an undefined index notice on activation.
 
 = 3.0.25 (23 January 2019) =
 

@@ -2,7 +2,7 @@
 
 <section id="content">
 
-	<?php if ( get_the_post_thumbnail( $post ) ): ?>
+	<?php if ( get_field('bg_image') ): ?>
 
         <article class="title">
             <div class="image"
@@ -30,7 +30,7 @@
 
 				<?php
 
-				if ( ! get_the_post_thumbnail( $post ) ):
+				if ( ! get_field('bg_image') ):
 					the_title( '<h1 class="entry-title">', '</h1>' );
 				endif;
 				?>

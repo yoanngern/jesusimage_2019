@@ -1,29 +1,105 @@
-body.landing {
-    & > header {
-        background: transparent;
+body > header {
+    & > .global {
+        background-color: rgba($black, 0.95);
         position: absolute;
         top: 0;
         left: 0;
         right: 0;
-        z-index: 1000;
 
-        .content {
-            max-width: inherit;
-            padding: 0 2%;
-            display: block;
-            width: auto;
-
-            .logo {
-                display: inline-block;
+        #burger {
+            span {
+                background-color: $white;
             }
         }
+
+        nav ul > li {
+
+            &:hover {
+                background-color: $gray2;
+            }
+
+            a {
+                color: $white;
+            }
+
+            ul li {
+                &:hover {
+                    background-color: $white;
+                }
+            }
+
+            ul.sub-menu {
+                background-color: $gray3;
+
+                &::before {
+                    @include triangle(20px, 10px, $gray3);
+                }
+
+                li {
+                    a {
+                        color: $white;
+                    }
+
+                    &:hover {
+                        background-color: $gray2;
+                    }
+                }
+            }
+        }
+
+
+    }
+
+    & > .local {
+        display: none;
     }
 }
 
 @media only screen and (max-width: 767px) {
-
-
-    body.landing > main {
+    body > header {
         margin-top: 0;
+        background-color: rgba($black, 0.98);
+
+        & > .global {
+            position: fixed;
+
+            &.open_nav {
+                background-color: $black;
+            }
+
+            nav {
+                border-top-color: $gray2;
+
+                ul.menu {
+                    li {
+                        border-top-color: $gray2;
+                    }
+
+                    & > li {
+                        &:hover {
+                            background-color: $gray3;
+                        }
+
+                        ul.sub-menu {
+                            li {
+                                background-color: $gray3;
+                                border-top-color: $gray2;
+
+                                a {
+                                    color: $white;
+                                }
+
+                                &:hover {
+                                    background-color: $gray2;
+                                }
+                            }
+                        }
+
+                    }
+                }
+
+            }
+        }
     }
+
 }

@@ -701,7 +701,7 @@ final class NF_Admin_Menus_Forms extends NF_Abstracts_Menu
 
         foreach( $settings as $setting ){
 
-            if( 'fieldset' == $setting[ 'type' ] ){
+            if( isset( $setting[ 'type' ] ) && 'fieldset' == $setting[ 'type' ] ){
 
                 $unique_settings = array_merge( $unique_settings, $this->_unique_settings( $setting[ 'settings' ] ) );
             } else {

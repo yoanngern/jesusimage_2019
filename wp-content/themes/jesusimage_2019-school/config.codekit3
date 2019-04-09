@@ -90,6 +90,19 @@
 		"oAP": "/page-dashboard.php",
 		"oF": 0
 		},
+	"/scss/advanced/header.scss": {
+		"aP": 0,
+		"bl": 0,
+		"dP": 10,
+		"dS": 0,
+		"ft": 4,
+		"ma": 0,
+		"oA": 1,
+		"oAP": "/scss/css/header.css",
+		"oF": 0,
+		"oS": 0,
+		"uL": 1
+		},
 	"/scss/base/_color.scss": {
 		"aP": 0,
 		"bl": 0,
@@ -164,6 +177,14 @@
 		"oAP": "/style-min.css",
 		"oF": 0,
 		"oS": 3
+		},
+	"/template-parts/divers/header_nav.php": {
+		"cB": 0,
+		"ft": 8192,
+		"hM": 0,
+		"oA": 0,
+		"oAP": "/template-parts/divers/header_nav.php",
+		"oF": 0
 		}
 	},
 "hooks": [
@@ -1629,7 +1650,7 @@
 			}
 		},
 	"esLintSourceType": 0,
-	"externalServerAddress": "https://apply.jesusschool.tv",
+	"externalServerAddress": "https://jesusschool.tv",
 	"gitIgnoreBuildFolder": 1,
 	"hideConfigFile": 0,
 	"jsCheckerReservedNamesString": "",

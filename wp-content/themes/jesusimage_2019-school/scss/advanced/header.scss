@@ -1,0 +1,166 @@
+body > header {
+
+    & > .school {
+        //background-color: $black;
+        width: 100%;
+        top: 0;
+        text-align: center;
+        z-index: 1000;
+
+
+        .content {
+            max-width: 1280px;
+            width: 90%;
+            margin: 0 auto;
+
+
+        }
+
+
+        nav {
+            display: block;
+            margin: 70px auto 50px;
+
+            ul.menu {
+                display: table;
+                margin: 0 auto;
+
+                & > li {
+                    display: table-cell;
+                    padding: 0 10px;
+                    border-bottom: 2px solid $gray5;
+
+                    &:first-of-type {
+                        padding-left: 0;
+                    }
+
+                    &:last-of-type {
+                        padding-right: 0;
+                    }
+
+                    a {
+                        color: $black;
+                        text-decoration: none;
+                        padding: 8px 5px;
+                        display: block;
+                        text-transform: uppercase;
+                        transition: color 200ms ease-in-out;
+                        margin-bottom: -2px;
+                        font-size: 1.15em;
+
+                        &:hover {
+                            color: $brown;
+                        }
+                    }
+
+                    &.current-menu-item,
+                    &.current_page_item {
+
+
+                        & > a {
+                            @include brandon-grotesque-bold();
+                            color: $brown;
+                            border-bottom: 2px solid $brown;
+                        }
+                    }
+                }
+
+
+            }
+        }
+    }
+}
+
+
+body.elementor-template-full-width {
+    & > header > .school {
+        display: none;
+    }
+}
+
+
+@media only screen and (max-width: 960px) {
+    body > header {
+        & > .local {
+            .content {
+                width: 100%;
+            }
+
+            nav {
+                ul.menu {
+                    & > li {
+                        a {
+                            padding: 8px 10px;
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
+
+@media only screen and (max-width: 767px) {
+
+    body > header {
+        margin-top: 48px;
+
+        & > .school {
+
+            .content {
+                width: 100%;
+            }
+
+            nav {
+                height: 54px;
+                position: relative;
+                margin: 0;
+                background-color: $gray6;
+                overflow: scroll;
+                z-index: 990;
+                width: 100%;
+
+                div {
+                    border-bottom: 3px solid darken($gray6,3);
+
+                }
+
+
+                ul.menu {
+                    text-align: left;
+                    margin: 0;
+                    display: block;
+                    width: 100%;
+                    margin-bottom: -3px;
+
+                    li {
+                        border-bottom: none;
+                        margin-bottom: -3px;
+                        white-space: nowrap;
+
+
+                        &:first-of-type {
+                            padding-left: 10px;
+                        }
+
+                        &.current-menu-item,
+                        &.current_page_item {
+                            a {
+                                border-bottom-width: 3px;
+                                margin-bottom: 0;
+                            }
+                        }
+
+                        a {
+                            line-height: 36px;
+                            padding: 12px 5px 3px;
+                            white-space: nowrap;
+
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+

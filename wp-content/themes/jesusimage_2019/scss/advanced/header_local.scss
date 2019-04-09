@@ -1,0 +1,175 @@
+body > header {
+
+    & > .local {
+        width: 100%;
+        top: 0;
+        text-align: center;
+        z-index: 1000;
+
+        .content {
+            max-width: 1280px;
+            width: 90%;
+            margin: 0 auto;
+        }
+
+        nav {
+            display: block;
+
+            ul.menu {
+
+
+                & > li {
+
+                    display: none;
+
+                    &.current-menu-ancestor {
+                        display: block;
+                        margin: 70px auto 50px;
+
+                        &.hide-sub {
+                            display: none;
+                        }
+
+                        & > a {
+                            display: none;
+                        }
+
+
+                        ul {
+                            display: table;
+                            margin: 0 auto;
+
+                            li {
+
+
+                                display: table-cell;
+                                padding: 0 10px;
+                                border-bottom: 2px solid $gray5;
+
+                                &:first-of-type {
+                                    padding-left: 0;
+                                }
+
+                                &:last-of-type {
+                                    padding-right: 0;
+                                }
+
+                                a {
+                                    color: $black;
+                                    text-decoration: none;
+                                    padding: 8px 5px;
+                                    display: block;
+                                    text-transform: uppercase;
+                                    transition: color 200ms ease-in-out;
+                                    margin-bottom: -2px;
+                                    font-size: 1.15em;
+
+                                    &:hover {
+                                        color: $gold;
+                                    }
+                                }
+
+                                &.current-menu-item,
+                                &.current_page_item {
+
+
+                                    & > a {
+                                        @include brandon-grotesque-bold();
+                                        color: $gold;
+                                        border-bottom: 2px solid $gold;
+                                    }
+                                }
+                            }
+                        }
+
+                    }
+                }
+            }
+        }
+
+
+    }
+}
+
+@media only screen and (max-width: 767px) {
+
+    body > header {
+        margin-top: 48px;
+
+        & > .local {
+
+            .content {
+                width: 100%;
+            }
+
+            nav ul.menu {
+
+            }
+
+            nav ul.menu > li.current-menu-ancestor {
+                height: 54px;
+                position: relative;
+                margin: 0;
+                overflow: scroll;
+                z-index: 990;
+                width: 100%;
+                background-color: $gray6;
+
+
+
+                ul {
+                    text-align: left;
+                    display: table;
+                    width: 100%;
+                    position: relative;
+
+                    &::after {
+                        position: absolute;
+                        height: 3px;
+                        background-color: darken($gray6, 3);
+                        width: 100%;
+                        display: block;
+                        content: '';
+                        bottom: 0;
+                        left: 0;
+                        z-index: -1;
+                    }
+
+                    li {
+                        white-space: nowrap;
+                        //margin-bottom: -3px;
+                        height: 54px;
+                        z-index: 100;
+                        //border-bottom: 3px solid darken($gray6, 3);
+                        border-bottom: none;
+
+
+                        &:first-of-type {
+                            padding-left: 10px;
+                        }
+
+                        &:last-of-type {
+                            padding-right: 20px;
+                        }
+
+                        &.current-menu-item,
+                        &.current_page_item {
+                            a {
+                                border-bottom-width: 3px;
+                                margin-bottom: 0;
+                            }
+                        }
+
+                        a {
+                            line-height: 36px;
+                            padding: 12px 5px 3px;
+                            white-space: nowrap;
+
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+

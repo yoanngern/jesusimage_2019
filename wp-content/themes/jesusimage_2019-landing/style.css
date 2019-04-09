@@ -13,21 +13,54 @@ Text Domain:    jesusimage_2019-landing
 This theme, like WordPress, is licensed under the GPL.
 Use it to make something cool, have fun, and share what you've learned with others.
 */
-body.landing > header {
-  background: transparent;
+body > header > .global {
+  background-color: rgba(51, 51, 51, 0.95);
   position: absolute;
   top: 0;
   left: 0;
-  right: 0;
-  z-index: 1000; }
-  body.landing > header .content {
-    max-width: inherit;
-    padding: 0 2%;
-    display: block;
-    width: auto; }
-    body.landing > header .content .logo {
-      display: inline-block; }
+  right: 0; }
+  body > header > .global #burger span {
+    background-color: #FFFFFF; }
+  body > header > .global nav ul > li:hover {
+    background-color: #6E6E6E; }
+  body > header > .global nav ul > li a {
+    color: #FFFFFF; }
+  body > header > .global nav ul > li ul li:hover {
+    background-color: #FFFFFF; }
+  body > header > .global nav ul > li ul.sub-menu {
+    background-color: #3E3E3E; }
+    body > header > .global nav ul > li ul.sub-menu::before {
+      width: 0;
+      height: 0;
+      border-style: solid;
+      border-width: 0 10px 10px 10px;
+      border-color: transparent transparent #3E3E3E transparent; }
+    body > header > .global nav ul > li ul.sub-menu li a {
+      color: #FFFFFF; }
+    body > header > .global nav ul > li ul.sub-menu li:hover {
+      background-color: #6E6E6E; }
+
+body > header > .local {
+  display: none; }
 
 @media only screen and (max-width: 767px) {
-  body.landing > main {
-    margin-top: 0; } }
+  body > header {
+    margin-top: 0;
+    background-color: rgba(51, 51, 51, 0.98); }
+    body > header > .global {
+      position: fixed; }
+      body > header > .global.open_nav {
+        background-color: #333333; }
+      body > header > .global nav {
+        border-top-color: #6E6E6E; }
+        body > header > .global nav ul.menu li {
+          border-top-color: #6E6E6E; }
+        body > header > .global nav ul.menu > li:hover {
+          background-color: #3E3E3E; }
+        body > header > .global nav ul.menu > li ul.sub-menu li {
+          background-color: #3E3E3E;
+          border-top-color: #6E6E6E; }
+          body > header > .global nav ul.menu > li ul.sub-menu li a {
+            color: #FFFFFF; }
+          body > header > .global nav ul.menu > li ul.sub-menu li:hover {
+            background-color: #6E6E6E; } }

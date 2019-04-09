@@ -4,12 +4,14 @@
 @import "base/color";
 @import "base/functions";
 @import "base/tools";
-@import "advanced/header";
 @import "advanced/footer";
 @import "advanced/content";
 @import "advanced/elementor";
 @import "advanced/ninja_form";
 @import "advanced/give";
+@import "advanced/header_local";
+@import "advanced/header_global";
+@import "advanced/events";
 
 body {
     @include brandon-grotesque();

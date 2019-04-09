@@ -127,6 +127,10 @@ function register_my_menu() {
 	//register_nav_menu( 'main', __( 'Main menu', 'jesusimage_2019' ) );
 	register_nav_menu( 'private', __( 'Private menu', 'jesusimage_2019' ) );
 	register_nav_menu( 'public', __( 'Public menu', 'jesusimage_2019' ) );
+    register_nav_menu( 'footer1', __( 'Footer menu 1', 'jesusimage_2019' ) );
+    register_nav_menu( 'footer2', __( 'Footer menu 2', 'jesusimage_2019' ) );
+    register_nav_menu( 'footer3', __( 'Footer menu 3', 'jesusimage_2019' ) );
+    register_nav_menu( 'footer4', __( 'Footer menu 4', 'jesusimage_2019' ) );
 }
 
 add_action( 'init', 'register_my_menu' );
@@ -178,8 +182,6 @@ function my_widgets_init() {
 
 add_action( 'widgets_init', 'my_widgets_init' );
 
-
-//add_action( 'acf/init', 'my_acf_init' );
 
 add_theme_support( 'post-thumbnails' );
 
@@ -477,6 +479,9 @@ function get_related_posts( $post, $nb = 3 ) {
 
 
 require_once( __DIR__ . '/includes/acf_fields.php' );
+
+require_once( __DIR__ . '/includes/ji_date.php' );
+require_once( __DIR__ . '/includes/ji_event.php' );
 
 
 function my_login_logo() {

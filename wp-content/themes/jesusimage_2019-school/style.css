@@ -13,15 +13,100 @@ Text Domain:    jesusimage_2019-school
 This theme, like WordPress, is licensed under the GPL.
 Use it to make something cool, have fun, and share what you've learned with others.
 */
-body > header nav ul.menu > li a:hover {
+body > header > .school {
+  width: 100%;
+  top: 0;
+  text-align: center;
+  z-index: 1000; }
+  body > header > .school .content {
+    max-width: 1280px;
+    width: 90%;
+    margin: 0 auto; }
+  body > header > .school nav {
+    display: block;
+    margin: 70px auto 50px; }
+    body > header > .school nav ul.menu {
+      display: table;
+      margin: 0 auto; }
+      body > header > .school nav ul.menu > li {
+        display: table-cell;
+        padding: 0 10px;
+        border-bottom: 2px solid #d7d7d7; }
+        body > header > .school nav ul.menu > li:first-of-type {
+          padding-left: 0; }
+        body > header > .school nav ul.menu > li:last-of-type {
+          padding-right: 0; }
+        body > header > .school nav ul.menu > li a {
+          color: #333333;
+          text-decoration: none;
+          padding: 8px 5px;
+          display: block;
+          text-transform: uppercase;
+          transition: color 200ms ease-in-out;
+          margin-bottom: -2px;
+          font-size: 1.15em; }
+          body > header > .school nav ul.menu > li a:hover {
+            color: #ad623a; }
+        body > header > .school nav ul.menu > li.current-menu-item > a, body > header > .school nav ul.menu > li.current_page_item > a {
+          font-family: brandon-grotesque, sans-serif;
+          font-weight: 700;
+          font-style: normal;
+          color: #ad623a;
+          border-bottom: 2px solid #ad623a; }
+
+body.elementor-template-full-width > header > .school {
+  display: none; }
+
+@media only screen and (max-width: 960px) {
+  body > header > .local .content {
+    width: 100%; }
+  body > header > .local nav ul.menu > li a {
+    padding: 8px 10px; } }
+
+@media only screen and (max-width: 767px) {
+  body > header {
+    margin-top: 48px; }
+    body > header > .school .content {
+      width: 100%; }
+    body > header > .school nav {
+      height: 54px;
+      position: relative;
+      margin: 0;
+      background-color: #EEEEEE;
+      overflow: scroll;
+      z-index: 990;
+      width: 100%; }
+      body > header > .school nav div {
+        border-bottom: 3px solid #e6e6e6; }
+      body > header > .school nav ul.menu {
+        text-align: left;
+        margin: 0;
+        display: block;
+        width: 100%;
+        margin-bottom: -3px; }
+        body > header > .school nav ul.menu li {
+          border-bottom: none;
+          margin-bottom: -3px;
+          white-space: nowrap; }
+          body > header > .school nav ul.menu li:first-of-type {
+            padding-left: 10px; }
+          body > header > .school nav ul.menu li.current-menu-item a, body > header > .school nav ul.menu li.current_page_item a {
+            border-bottom-width: 3px;
+            margin-bottom: 0; }
+          body > header > .school nav ul.menu li a {
+            line-height: 36px;
+            padding: 12px 5px 3px;
+            white-space: nowrap; } }
+
+body > header > .local nav ul.menu > li a:hover {
   color: #ad623a; }
 
-body > header nav ul.menu > li.action a {
+body > header > .local nav ul.menu > li.action a {
   background: #ad623a; }
-  body > header nav ul.menu > li.action a:hover {
+  body > header > .local nav ul.menu > li.action a:hover {
     background: #9a5734; }
 
-body > header nav ul.menu > li.current_page_item > a {
+body > header > .local nav ul.menu > li.current_page_item > a {
   color: #ad623a; }
 
 article.content-page a,

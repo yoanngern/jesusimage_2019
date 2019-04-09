@@ -1,7 +1,7 @@
 body > footer {
-    background-color: $black;
+    background-color: $gray7;
     width: 100%;
-    padding: 50px 0;
+    padding: 20px 0 0;
     color: $white;
 
     .content {
@@ -9,41 +9,94 @@ body > footer {
         width: 100%;
         margin: 0 auto;
 
-        .logo {
-            text-align: center;
+        nav.footer-menu {
+            display: flex;
+            padding: 40px 0;
 
-            #logo {
-                background-position: center;
-                background-repeat: no-repeat;
-                background-size: contain;
-                width: 80px;
-                height: 80px;
-                display: block;
-                margin: 15px auto;
-                opacity: 1;
-                transition: opacity 100ms ease-in-out;
+            div {
+                display: inline-block;
+                width: 25%;
 
-                &:hover {
-                    opacity: 0.9;
+                & > ul {
+
+                    li {
+                        list-style: none;
+
+                        a {
+                            color: $gray-dark;
+                            text-decoration: none;
+
+                            &:hover {
+                                text-decoration: underline;
+                            }
+
+
+                        }
+
+                        ul {
+                            padding: 5px 0 15px;
+
+                            li {
+                                padding: 3px 0;
+
+                                a {
+                                    font-size: 0.88em;
+                                }
+                            }
+                        }
+                    }
+
+                    & > li {
+
+
+                        & > a {
+                            @include brandon-grotesque-med();
+                        }
+                    }
+                }
+            }
+        }
+
+        .info {
+            width: 100%;
+            border-top: 1px solid $gray5;
+            display: flex;
+            padding: 3px 0;
+
+            .logo,
+            .text {
+                width: 25%;
+                display: inline-block;
+            }
+
+            .logo {
+
+                a {
+                    background-color: transparent;
+                    background-image: url("images/web_logo_ji.png");
+                    background-repeat: no-repeat;
+                    background-size: contain;
+                    width: 200px;
+                    height: 54px;
+                    display: block;
                 }
             }
 
-            #tagline {
-                /*
-                background-position: center;
-                background-repeat: no-repeat;
-                background-size: contain;
-                width: 294px;
-                height: 40px;
+            .text {
+                padding: 12px 0;
+
+                p {
+                    line-height: 1.2em;
+                    font-size: 0.88em;
+                    text-transform: uppercase;
+                }
+            }
+
+            .text,
+            .text a {
+                color: $gray-dark;
+                text-decoration: none;
                 display: block;
-                */
-
-                @include brandon-grotesque-bold();
-                font-size: 1.4em;
-                letter-spacing: 0.08em;
-                margin: 20px auto;
-                text-transform: uppercase;
-
             }
         }
     }

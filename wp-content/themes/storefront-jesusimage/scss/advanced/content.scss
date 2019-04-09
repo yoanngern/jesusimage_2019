@@ -1,0 +1,47 @@
+/*
+a {
+    color: $gold;
+    text-decoration: underline;
+
+    &:hover {
+        color: darken($gold, 15);
+    }
+}
+*
+ */
+
+
+h1 {
+    @include brandon-grotesque-bold();
+    color: $black;
+    font-size: 2em;
+    text-transform: uppercase;
+    line-height: 1.2em;
+    letter-spacing: 0.125em;
+}
+
+.widget {
+    .widget-title,
+    .widgettitle {
+        @include brandon-grotesque-med();
+        font-size: 1.3em;
+        color: $gray-dark;
+        letter-spacing: 0.03em;
+    }
+}
+
+a:focus,
+button:focus,
+input:focus,
+textarea:focus {
+    outline: 2px solid $gold;
+}
+
+.woocommerce-error,
+.woocommerce-info,
+.woocommerce-message,
+.woocommerce-noreviews,
+p.no-comments {
+    background-color: $gold;
+
+}

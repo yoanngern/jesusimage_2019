@@ -577,6 +577,17 @@
 		"oT": 1,
 		"q": 100
 		},
+	"/images/web_logo_ji.png": {
+		"ft": 32768,
+		"iS": 11849,
+		"oA": 0,
+		"oAP": "/images/web_logo_ji.png",
+		"oF": 0,
+		"oIPL": 1,
+		"opt": 1,
+		"oT": 1,
+		"q": 100
+		},
 	"/images/wp-login.png": {
 		"ft": 32768,
 		"iS": 9176,
@@ -660,14 +671,6 @@
 		"oAP": "/includes/acf/page_settings.php",
 		"oF": 0
 		},
-	"/includes/acf/talk.php": {
-		"cB": 0,
-		"ft": 8192,
-		"hM": 0,
-		"oA": 0,
-		"oAP": "/includes/acf/talk.php",
-		"oF": 0
-		},
 	"/includes/acf_fields.php": {
 		"cB": 0,
 		"ft": 8192,
@@ -676,12 +679,20 @@
 		"oAP": "/includes/acf_fields.php",
 		"oF": 0
 		},
-	"/includes/gc_date.php": {
+	"/includes/ji_date.php": {
 		"cB": 0,
 		"ft": 8192,
 		"hM": 0,
 		"oA": 0,
-		"oAP": "/includes/gc_date.php",
+		"oAP": "/includes/ji_date.php",
+		"oF": 0
+		},
+	"/includes/ji_event.php": {
+		"cB": 0,
+		"ft": 8192,
+		"hM": 0,
+		"oA": 0,
+		"oAP": "/includes/ji_event.php",
 		"oF": 0
 		},
 	"/index.php": {
@@ -3419,6 +3430,14 @@
 		"sC": 1,
 		"tS": 0
 		},
+	"/page-events.php": {
+		"cB": 0,
+		"ft": 8192,
+		"hM": 0,
+		"oA": 0,
+		"oAP": "/page-events.php",
+		"oF": 0
+		},
 	"/page.php": {
 		"cB": 0,
 		"ft": 8192,
@@ -4125,6 +4144,19 @@
 		"oS": 0,
 		"uL": 1
 		},
+	"/scss/advanced/events.scss": {
+		"aP": 0,
+		"bl": 0,
+		"dP": 10,
+		"dS": 0,
+		"ft": 4,
+		"ma": 0,
+		"oA": 1,
+		"oAP": "/scss/css/events.css",
+		"oF": 0,
+		"oS": 0,
+		"uL": 1
+		},
 	"/scss/advanced/footer.scss": {
 		"aP": 0,
 		"bl": 0,
@@ -4151,7 +4183,7 @@
 		"oS": 0,
 		"uL": 1
 		},
-	"/scss/advanced/header.scss": {
+	"/scss/advanced/header_global.scss": {
 		"aP": 0,
 		"bl": 0,
 		"dP": 10,
@@ -4159,7 +4191,20 @@
 		"ft": 4,
 		"ma": 0,
 		"oA": 1,
-		"oAP": "/scss/css/header.css",
+		"oAP": "/scss/css/header_global.css",
+		"oF": 0,
+		"oS": 0,
+		"uL": 1
+		},
+	"/scss/advanced/header_local.scss": {
+		"aP": 0,
+		"bl": 0,
+		"dP": 10,
+		"dS": 0,
+		"ft": 4,
+		"ma": 0,
+		"oA": 1,
+		"oAP": "/scss/css/header_local.css",
 		"oF": 0,
 		"oS": 0,
 		"uL": 1
@@ -4334,14 +4379,6 @@
 		"oF": 0,
 		"oS": 3
 		},
-	"/template-parts/divers/facebook_pixel.php": {
-		"cB": 0,
-		"ft": 8192,
-		"hM": 0,
-		"oA": 0,
-		"oAP": "/template-parts/divers/facebook_pixel.php",
-		"oF": 0
-		},
 	"/template-parts/divers/head.php": {
 		"cB": 0,
 		"ft": 8192,
@@ -4356,6 +4393,14 @@
 		"hM": 0,
 		"oA": 0,
 		"oAP": "/template-parts/divers/header_nav.php",
+		"oF": 0
+		},
+	"/template-parts/event/item.php": {
+		"cB": 0,
+		"ft": 8192,
+		"hM": 0,
+		"oA": 0,
+		"oAP": "/template-parts/event/item.php",
 		"oF": 0
 		},
 	"/template-parts/give/archive.php": {
@@ -5854,7 +5899,7 @@
 			}
 		},
 	"esLintSourceType": 0,
-	"externalServerAddress": "https://my.jesusschool.tv",
+	"externalServerAddress": "https://dev.jesusimage.tv",
 	"gitIgnoreBuildFolder": 1,
 	"hideConfigFile": 0,
 	"jsCheckerReservedNamesString": "",

@@ -2,39 +2,43 @@
 @import 'base/functions';
 @import 'base/font';
 @import 'base/color';
+@import 'advanced/header';
 
 body > header {
 
-    .logo a {
-        //background-image: url("images/top_logo-school.png");
-    }
+    & > .local {
 
-    nav {
-        ul.menu {
-            & > li {
-                a {
+        .logo a {
+            //background-image: url("images/top_logo-school.png");
+        }
 
-                    &:hover {
-                        color: $brown;
-
-                    }
-                }
-
-                &.action {
-
+        nav {
+            ul.menu {
+                & > li {
                     a {
-                        background: $brown;
 
                         &:hover {
-                            background: darken($brown, 5);
+                            color: $brown;
+
                         }
                     }
-                }
 
-                //&.current-menu-item,
-                &.current_page_item {
-                    & > a {
-                        color: $brown;
+                    &.action {
+
+                        a {
+                            background: $brown;
+
+                            &:hover {
+                                background: darken($brown, 5);
+                            }
+                        }
+                    }
+
+                    //&.current-menu-item,
+                    &.current_page_item {
+                        & > a {
+                            color: $brown;
+                        }
                     }
                 }
             }
@@ -42,17 +46,6 @@ body > header {
     }
 }
 
-body > footer {
-
-    #logo {
-        //background-image: url('images/footer_logo-school.png');
-    }
-
-    #tagline {
-        //background-image: url('images/footer_tagline-school.png');
-    }
-
-}
 
 article.content-page,
 article.home-default,

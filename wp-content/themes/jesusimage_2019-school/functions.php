@@ -30,5 +30,4 @@ function do_output_buffer() {
 	ob_start();
 }
 
-
 require_once( __DIR__ . '/includes/acf_fields.php' );

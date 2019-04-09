@@ -24,22 +24,34 @@ $(document).ready(function () {
 
     $('#burger').click(function () {
 
-        $('body > header').toggleClass('open_nav');
+        $('body > header > .global').toggleClass('open_nav');
     });
 
-    $('body > header ul.menu li').mouseover(function () {
 
-        $('ul.sub-menu', this).toggleClass('active');
+    $('body > header > .global ul.menu li').each(function () {
+
+        $('ul.sub-menu', this).addClass('hidden');
+
+    }).mouseenter(function () {
+
+        $('ul.sub-menu', this).addClass('active');
+
+        $('ul.sub-menu', this).removeClass('hidden');
+
+    }).mouseleave(function () {
+
+        $('ul.sub-menu', this).removeClass('active').addClass('hidden');
+
     });
 
     $('body > header ul.sub-menu').mouseenter(function () {
 
-        $(this).addClass('active');
+        //$(this).addClass('active');
     });
 
     $('body > header ul.sub-menu').mouseleave(function () {
 
-        $(this).removeClass('active');
+        //$(this).removeClass('active');
     });
 
 
@@ -74,7 +86,9 @@ $(document).ready(function () {
         scrollEvent();
     });
 
+
 });
+
 
 function moveToAnchor(aid) {
 

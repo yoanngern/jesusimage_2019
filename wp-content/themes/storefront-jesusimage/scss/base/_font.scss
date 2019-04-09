@@ -1,0 +1,173 @@
+@mixin garamond() {
+  font-family: adobe-garamond-pro, serif;
+  font-weight: 400;
+  font-style: normal;
+}
+
+@mixin garamond-i() {
+  font-family: adobe-garamond-pro, serif;
+  font-weight: 400;
+  font-style: italic;
+}
+
+@mixin garamond-semibold() {
+  font-family: adobe-garamond-pro, serif;
+  font-weight: 600;
+  font-style: normal;
+}
+
+@mixin garamond-semibold-i() {
+  font-family: adobe-garamond-pro, serif;
+  font-weight: 600;
+  font-style: italic;
+}
+
+@mixin garamond-bold() {
+  font-family: adobe-garamond-pro, serif;
+  font-weight: 700;
+  font-style: normal;
+}
+
+@mixin garamond-bold-i() {
+  font-family: adobe-garamond-pro, serif;
+  font-weight: 700;
+  font-style: italic;
+}
+
+@mixin brandon-grotesque() {
+  font-family: brandon-grotesque, sans-serif;
+  font-weight: 400;
+  font-style: normal;
+}
+
+@mixin brandon-grotesque-thin() {
+  font-family: brandon-grotesque, sans-serif;
+  font-weight: 100;
+  font-style: normal;
+}
+
+@mixin brandon-grotesque-thin-i() {
+  font-family: brandon-grotesque, sans-serif;
+  font-weight: 100;
+  font-style: italic;
+}
+
+@mixin brandon-grotesque-light() {
+  font-family: brandon-grotesque, sans-serif;
+  font-weight: 300;
+  font-style: normal;
+}
+
+@mixin brandon-grotesque-light-i() {
+  font-family: brandon-grotesque, sans-serif;
+  font-weight: 300;
+  font-style: italic;
+}
+
+@mixin brandon-grotesque-i() {
+  font-family: brandon-grotesque, sans-serif;
+  font-weight: 400;
+  font-style: italic;
+}
+
+@mixin brandon-grotesque-med() {
+  font-family: brandon-grotesque, sans-serif;
+  font-weight: 500;
+  font-style: normal;
+}
+
+@mixin brandon-grotesque-med-i() {
+  font-family: brandon-grotesque, sans-serif;
+  font-weight: 500;
+  font-style: italic;
+}
+
+@mixin brandon-grotesque-bold() {
+  font-family: brandon-grotesque, sans-serif;
+  font-weight: 700;
+  font-style: normal;
+}
+
+@mixin brandon-grotesque-bold-i() {
+  font-family: brandon-grotesque, sans-serif;
+  font-weight: 700;
+  font-style: italic;
+}
+
+@mixin brandon-grotesque-black() {
+  font-family: brandon-grotesque, sans-serif;
+  font-weight: 900;
+  font-style: normal;
+}
+
+@mixin brandon-grotesque-black-i() {
+  font-family: brandon-grotesque, sans-serif;
+  font-weight: 900;
+  font-style: italic;
+}
+
+@mixin oswald() {
+  font-family: oswald, sans-serif;
+  font-weight: 400;
+  font-style: normal;
+}
+
+@mixin oswald-extralight() {
+  font-family: oswald, sans-serif;
+  font-weight: 200;
+  font-style: normal;
+}
+
+@mixin oswald-light() {
+  font-family: oswald, sans-serif;
+  font-weight: 300;
+  font-style: normal;
+}
+
+@mixin oswald-med() {
+  font-family: oswald, sans-serif;
+  font-weight: 500;
+  font-style: normal;
+}
+
+@mixin oswald-semibold() {
+  font-family: oswald, sans-serif;
+  font-weight: 600;
+  font-style: normal;
+}
+
+@mixin oswald-bold() {
+  font-family: oswald, sans-serif;
+  font-weight: 700;
+  font-style: normal;
+}
+
+@mixin oswald-black() {
+  font-family: oswald, sans-serif;
+  font-weight: 900;
+  font-style: normal;
+}
+
+@mixin didot() {
+  font-family: linotype-didot, serif;
+  font-weight: 400;
+  font-style: normal;
+}
+
+@mixin didot-i() {
+  font-family: linotype-didot, serif;
+  font-weight: 400;
+  font-style: italic;
+}
+
+@mixin didot-bold() {
+  font-family: linotype-didot, serif;
+  font-weight: 700;
+  font-style: normal;
+}
+
+@mixin didot-bold-i() {
+  font-family: linotype-didot, serif;
+  font-weight: 700;
+  font-style: italic;
+}

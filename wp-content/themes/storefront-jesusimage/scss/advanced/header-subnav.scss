@@ -1,0 +1,310 @@
+body header#masthead {
+
+    & > .storefront-primary-navigation {
+        width: 100%;
+        top: 0;
+        z-index: 1000;
+        margin: 20px 0 40px;
+
+
+        nav {
+            display: block;
+            width: 100%;
+            text-align: center;
+            margin: 0 auto;
+
+
+            & > div {
+                display: block;
+                text-align: center;
+
+            }
+
+            ul.nav-menu {
+                display: table;
+                width: 100%;
+                margin-left: 0;
+
+                & > li {
+                    padding: 15px 10px 2px;
+                    border-bottom: 2px solid $gray5;
+                    display: inline-block;
+                    float: inherit;
+
+                    &:first-of-type {
+                        padding-left: 0;
+                        display: inline-block;
+                    }
+
+                    &:last-of-type {
+                        padding-right: 0;
+                        display: inline-block;
+                    }
+
+                    a {
+                        color: $black;
+                        text-decoration: none;
+                        padding: 8px 5px;
+                        display: block;
+                        text-transform: uppercase;
+                        transition: color 200ms ease-in-out;
+                        margin-bottom: -2px;
+
+                        &:hover {
+                            color: $gold;
+                        }
+                    }
+
+                    &.current-product-ancestor,
+                    &.current-menu-parent,
+                    &.current-product-parent,
+                    &.current-menu-item,
+                    &.current_page_item {
+                        padding-bottom: 0;
+
+                        & > a {
+                            @include brandon-grotesque-bold();
+                            color: $gold;
+                            border-bottom: 2px solid $gold;
+
+                        }
+                    }
+                }
+
+
+            }
+        }
+    }
+}
+
+@media only screen and (max-width: 767px) {
+    body header#masthead {
+        margin-top: 48px;
+
+        button.menu-toggle {
+            display: none;
+        }
+
+        & > .global {
+            height: 48px;
+            position: fixed;
+            display: block;
+            top: 0;
+            z-index: 1000;
+            overflow: hidden;
+            transition: height 400ms ease-in-out;
+
+            #burger {
+                display: block;
+            }
+
+            section.content {
+                text-align: center;
+                display: block;
+                padding: 0;
+
+                .logo {
+                    display: block;
+
+
+                }
+
+                nav {
+                    display: block;
+                }
+            }
+
+            .logo {
+                margin: 0 auto;
+
+                a {
+                    height: 36px;
+                    background-position: center;
+                    display: block;
+                    padding: 6px 0;
+                    box-sizing: content-box;
+                }
+            }
+
+            nav {
+                display: block;
+                width: 100%;
+                text-align: center;
+                height: 0;
+                overflow: hidden;
+                border-top: 1px solid $gray-light;
+
+
+                ul.menu {
+                    padding: 0;
+                    width: 86%;
+                    margin: 0 7%;
+                    text-align: center;
+
+                    & > li {
+                        opacity: 0;
+                        display: block;
+                        line-height: 36px;
+                        padding: 0;
+                        border-top: 1px solid $gray-light;
+                        transition: background-color 200ms ease-in-out 300ms;
+
+                        &:hover {
+                            padding-bottom: 0;
+                            background-color: darken($gray-light, 2);
+                            transition: background-color 200ms ease-in-out 50ms;
+
+                            a {
+                                //padding: 6px 0;
+                            }
+                        }
+
+                        a {
+                            font-size: 1.1em;
+                            padding: 6px 0;
+                        }
+
+                        &.important {
+                            margin: 0;
+                            height: inherit;
+                        }
+
+                        &:first-of-type {
+                            border-top: none;
+                        }
+
+                        ul.sub-menu {
+                            position: relative;
+                            top: inherit;
+                            left: inherit;
+                            width: inherit;
+                            margin: 0;
+                            box-shadow: none;
+                            text-align: center;
+                            padding: 0;
+                            background-color: $gray-light;
+                            max-height: 0;
+                            overflow: hidden;
+                            transition: max-height 400ms ease-in-out;
+
+                            li {
+                                border-top: 1px solid darken($gray-light, 2);
+
+                                &:hover {
+                                    background-color: $gray-light;
+                                }
+
+                                a {
+                                    padding: 6px 0;
+                                    font-size: 0.9em;
+                                }
+                            }
+
+                            &::before {
+                                content: none;
+                                display: none;
+
+                            }
+
+                            &.active {
+                                display: block;
+                                max-height: 500px;
+                            }
+
+                            &.hidden {
+                                display: block;
+                                max-height: 0;
+                                opacity: 1;
+                            }
+
+                        }
+                    }
+                }
+            }
+
+            &.open_nav {
+                .content nav {
+                    height: 100%;
+                }
+            }
+        }
+
+    }
+}
+
+
+@media only screen and (max-width: 767px) {
+
+    body header#masthead {
+        margin-top: 48px;
+
+        & > .storefront-primary-navigation {
+            margin: 0;
+
+            .col-full {
+                margin: 0;
+            }
+
+            nav {
+                height: 54px;
+                position: relative;
+                margin: 0;
+                background-color: $gray6;
+                overflow: scroll;
+                z-index: 990;
+                width: 100%;
+
+                div {
+                    border-bottom: 3px solid darken($gray6, 3);
+                }
+
+                ul.nav-menu {
+                    text-align: left;
+                    margin: 0;
+                    display: table;
+                    overflow: inherit;
+                    width: auto;
+                    height: 100%;
+                    margin-bottom: -3px;
+
+
+                    li {
+                        border-bottom: none;
+                        white-space: nowrap;
+                        word-break: keep-all;
+                        display: table-cell;
+                        padding: 0 0 0 10px;
+
+
+
+                        &:first-of-type {
+                            padding-left: 10px;
+                            display: table-cell;
+                        }
+
+                        &:last-of-type {
+                            display: table-cell;
+                        }
+
+                        &.current-menu-item,
+                        &.current_page_item {
+                            a {
+                                border-bottom-width: 3px;
+                                margin-bottom: 0;
+                            }
+                        }
+
+                        a {
+                            line-height: 36px;
+                            padding: 11px 5px 3px;
+                            white-space: nowrap;
+                            font-size: 1.15em;
+
+                        }
+                    }
+                }
+            }
+        }
+
+    }
+}
