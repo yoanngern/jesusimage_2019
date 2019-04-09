@@ -10,9 +10,10 @@ $(document).ready(function () {
         $('body').addClass("mobile");
 
         isMobile = true;
+
     }
 
-    $('body > header > .global li.menu-item-has-children > a').on('click', function (e) {
+    $('body header#masthead > .global li.menu-item-has-children > a').on('click', function (e) {
 
 
         if (!$(this).hasClass('click-on') && isMobile) {
@@ -21,14 +22,13 @@ $(document).ready(function () {
 
     });
 
-
     $('#burger').click(function () {
 
-        $('body > header > .global').toggleClass('open_nav');
+        $('body header#masthead > .global').toggleClass('open_nav');
     });
 
 
-    $('body > header > .global ul.menu > li').each(function () {
+    $('body header#masthead > .global ul.menu > li').each(function () {
 
         $('ul.sub-menu', this).addClass('hidden');
 
@@ -52,7 +52,7 @@ $(document).ready(function () {
 
             $('ul.sub-menu', this).addClass('active');
 
-            $('body > header > .global ul.menu > li').each(function () {
+            $('body header#masthead > .global ul.menu > li').each(function () {
                 $('ul.sub-menu', this).addClass('hidden');
                 $('> a', this).removeClass('click-on');
             });
@@ -63,4 +63,5 @@ $(document).ready(function () {
     });
 
 });
+
 

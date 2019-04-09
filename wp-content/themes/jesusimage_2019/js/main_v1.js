@@ -11,7 +11,6 @@ $(document).ready(function () {
 
         isMobile = true;
 
-
     }
 
     $('a[href^="#"]').on('click', function (e) {
