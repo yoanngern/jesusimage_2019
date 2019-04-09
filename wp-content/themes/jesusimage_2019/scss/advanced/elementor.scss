@@ -106,14 +106,11 @@ section.elementor-element {
             &.bottom-fixed {
 
                 .elementor-column-wrap div.elementor-widget-wrap {
-                    display: block;
-                    width: 100%;
-                    position: absolute;
                     bottom: 0;
                     -webkit-transform: none;
                     -ms-transform: none;
                     transform: none;
-                    left: 0;
+                    top: inherit;
                 }
 
             }

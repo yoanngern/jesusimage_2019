@@ -561,14 +561,11 @@ section.elementor-element.module-triple .elementor-top-column {
   section.elementor-element.module-triple .elementor-top-column > div {
     padding-bottom: 47% !important; }
   section.elementor-element.module-triple .elementor-top-column.bottom-fixed .elementor-column-wrap div.elementor-widget-wrap {
-    display: block;
-    width: 100%;
-    position: absolute;
     bottom: 0;
     -webkit-transform: none;
     -ms-transform: none;
     transform: none;
-    left: 0; }
+    top: inherit; }
 
 @media only screen and (max-width: 767px) {
   section.elementor-element.module-large, section.elementor-element.module-square, section.elementor-element.module-triple {
