@@ -116,16 +116,32 @@ body > footer {
 
 
             nav.footer-menu {
+                display: block;
 
                 div {
                     width: 100%;
+
+                    & > ul li {
+                        text-align: center;
+                    }
                 }
             }
 
             .info {
+                display: block;
+                text-align: center;
+
                 .logo,
                 .text {
-                    width: 50%;
+                    width: 100%;
+                }
+
+                .logo {
+                    margin: 0 auto;
+
+                    a {
+                        margin: 0 auto;
+                    }
                 }
             }
         }

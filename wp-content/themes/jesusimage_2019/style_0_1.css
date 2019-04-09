@@ -108,11 +108,22 @@ body > footer {
 @media only screen and (max-width: 767px) {
   body > footer {
     padding: 0 20px; }
-    body > footer .content nav.footer-menu div {
-      width: 100%; }
-    body > footer .content .info .logo,
-    body > footer .content .info .text {
-      width: 50%; } }
+    body > footer .content nav.footer-menu {
+      display: block; }
+      body > footer .content nav.footer-menu div {
+        width: 100%; }
+        body > footer .content nav.footer-menu div > ul li {
+          text-align: center; }
+    body > footer .content .info {
+      display: block;
+      text-align: center; }
+      body > footer .content .info .logo,
+      body > footer .content .info .text {
+        width: 100%; }
+      body > footer .content .info .logo {
+        margin: 0 auto; }
+        body > footer .content .info .logo a {
+          margin: 0 auto; } }
 
 #content {
   margin: 40px auto 0; }
