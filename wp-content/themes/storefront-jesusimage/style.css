@@ -559,7 +559,8 @@ footer.site-footer {
               footer.site-footer .content nav.footer-menu div > ul li a:hover {
                 text-decoration: underline; }
             footer.site-footer .content nav.footer-menu div > ul li ul {
-              padding: 5px 0 15px; }
+              padding: 5px 0 15px;
+              margin: 0; }
               footer.site-footer .content nav.footer-menu div > ul li ul li {
                 padding: 3px 0; }
                 footer.site-footer .content nav.footer-menu div > ul li ul li a {
