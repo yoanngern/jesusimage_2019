@@ -495,8 +495,10 @@ section.content-default {
       margin: 0; } }
 
 @media only screen and (max-width: 767px) {
-  #content article.title div.title h1 {
-    font-size: 2em; }
+  #content article.title {
+    padding-bottom: 40%; }
+    #content article.title div.title h1 {
+      font-size: 2em; }
   article.content-page,
   article.home-default,
   section.content-default {
