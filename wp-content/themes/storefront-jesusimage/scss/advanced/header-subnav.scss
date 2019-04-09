@@ -251,8 +251,10 @@ body header#masthead {
                 margin: 0;
                 background-color: $gray6;
                 overflow: scroll;
+                -webkit-overflow-scrolling: touch;
                 z-index: 990;
                 width: 100%;
+
 
                 div {
                     border-bottom: 3px solid darken($gray6, 3);

@@ -111,6 +111,7 @@ body > header {
                 position: relative;
                 margin: 0;
                 overflow: scroll;
+                -webkit-overflow-scrolling: touch;
                 z-index: 990;
                 width: 100%;
                 background-color: $gray6;

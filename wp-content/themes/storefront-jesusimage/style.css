@@ -497,6 +497,7 @@ body header#masthead > .storefront-primary-navigation {
         margin: 0;
         background-color: #EEEEEE;
         overflow: scroll;
+        -webkit-overflow-scrolling: touch;
         z-index: 990;
         width: 100%; }
         body header#masthead > .storefront-primary-navigation nav div {
