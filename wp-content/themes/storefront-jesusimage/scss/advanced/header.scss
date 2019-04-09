@@ -80,16 +80,18 @@ body header#masthead {
 
         .logo {
             width: 200px;
+            padding: 0 12px;
+            display: block;
 
             a {
-                background-color: transparent;
-                background-image: url("images/web_logo_ji.png");
-                background-repeat: no-repeat;
-                background-size: contain;
-                width: 200px;
-                height: 54px;
                 display: block;
-                padding: 0 12px;
+
+                div.svg-box {
+                    width: 165px;
+                    height: 34px;
+                    padding-top: 10px;
+                    display: block;
+                }
             }
         }
 

@@ -112,16 +112,16 @@ body header#masthead {
         body header#masthead > .global #burger span:nth-child(4) {
           top: 16px; }
     body header#masthead > .global .logo {
-      width: 200px; }
+      width: 200px;
+      padding: 0 12px;
+      display: block; }
       body header#masthead > .global .logo a {
-        background-color: transparent;
-        background-image: url("images/web_logo_ji.png");
-        background-repeat: no-repeat;
-        background-size: contain;
-        width: 200px;
-        height: 54px;
-        display: block;
-        padding: 0 12px; }
+        display: block; }
+        body header#masthead > .global .logo a div.svg-box {
+          width: 165px;
+          height: 34px;
+          padding-top: 10px;
+          display: block; }
     body header#masthead > .global nav {
       text-align: right;
       width: 100%; }
@@ -532,7 +532,6 @@ body header#masthead > .storefront-primary-navigation {
 
 footer.site-footer {
   background-color: #EFEFEF;
-  width: 100%;
   padding: 20px 0 0;
   color: #FFFFFF; }
   footer.site-footer .content {
@@ -540,40 +539,40 @@ footer.site-footer {
     width: 100%;
     margin: 0 auto; }
     footer.site-footer .content nav.footer-menu {
-      display: flex;
-      padding: 40px 0; }
+      display: table;
+      padding: 40px 0;
+      width: 100%; }
       footer.site-footer .content nav.footer-menu div {
         display: inline-block;
-        width: 25%; }
-        footer.site-footer .content nav.footer-menu div > ul {
-          margin: 0; }
-          footer.site-footer .content nav.footer-menu div > ul li {
-            list-style: none; }
-            footer.site-footer .content nav.footer-menu div > ul li a {
-              color: #545454;
-              text-decoration: none; }
-              footer.site-footer .content nav.footer-menu div > ul li a:hover {
-                text-decoration: underline; }
-            footer.site-footer .content nav.footer-menu div > ul li ul {
-              padding: 5px 0 15px;
-              margin: 0; }
-              footer.site-footer .content nav.footer-menu div > ul li ul li {
-                padding: 3px 0; }
-                footer.site-footer .content nav.footer-menu div > ul li ul li a {
-                  font-size: 0.88em; }
-          footer.site-footer .content nav.footer-menu div > ul > li > a {
-            font-family: brandon-grotesque, sans-serif;
-            font-weight: 500;
-            font-style: normal; }
+        width: 25%;
+        vertical-align: top; }
+        footer.site-footer .content nav.footer-menu div > ul li {
+          list-style: none; }
+          footer.site-footer .content nav.footer-menu div > ul li a {
+            color: #545454;
+            text-decoration: none; }
+            footer.site-footer .content nav.footer-menu div > ul li a:hover {
+              text-decoration: underline; }
+          footer.site-footer .content nav.footer-menu div > ul li ul {
+            padding: 5px 0 15px; }
+            footer.site-footer .content nav.footer-menu div > ul li ul li {
+              padding: 3px 0; }
+              footer.site-footer .content nav.footer-menu div > ul li ul li a {
+                font-size: 0.88em; }
+        footer.site-footer .content nav.footer-menu div > ul > li > a {
+          font-family: brandon-grotesque, sans-serif;
+          font-weight: 500;
+          font-style: normal; }
     footer.site-footer .content .info {
       width: 100%;
       border-top: 1px solid #d7d7d7;
-      display: flex;
+      display: table;
       padding: 3px 0; }
       footer.site-footer .content .info .logo,
       footer.site-footer .content .info .text {
         width: 25%;
-        display: inline-block; }
+        display: inline-block;
+        vertical-align: top; }
       footer.site-footer .content .info .logo a {
         background-color: transparent;
         background-image: url("images/web_logo_ji.png");
@@ -587,13 +586,33 @@ footer.site-footer {
         footer.site-footer .content .info .text p {
           line-height: 1.2em;
           font-size: 0.88em;
-          margin: 0;
           text-transform: uppercase; }
+        footer.site-footer .content .info .text a {
+          display: block; }
       footer.site-footer .content .info .text,
       footer.site-footer .content .info .text a {
         color: #545454;
-        text-decoration: none;
-        display: block; }
+        text-decoration: none; }
+
+@media only screen and (max-width: 767px) {
+  footer.site-footer {
+    padding: 0 20px; }
+    footer.site-footer .content nav.footer-menu {
+      display: block; }
+      footer.site-footer .content nav.footer-menu div {
+        width: 100%; }
+        footer.site-footer .content nav.footer-menu div > ul li {
+          text-align: center; }
+    footer.site-footer .content .info {
+      display: block;
+      text-align: center; }
+      footer.site-footer .content .info .logo,
+      footer.site-footer .content .info .text {
+        width: 100%; }
+      footer.site-footer .content .info .logo {
+        margin: 0 auto; }
+        footer.site-footer .content .info .logo a {
+          margin: 0 auto; } }
 
 body {
   font-family: brandon-grotesque, sans-serif;

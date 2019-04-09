@@ -4395,6 +4395,14 @@
 		"oAP": "/template-parts/divers/header_nav.php",
 		"oF": 0
 		},
+	"/template-parts/divers/jesusimage_logo.php": {
+		"cB": 0,
+		"ft": 8192,
+		"hM": 0,
+		"oA": 0,
+		"oAP": "/template-parts/divers/jesusimage_logo.php",
+		"oF": 0
+		},
 	"/template-parts/event/item.php": {
 		"cB": 0,
 		"ft": 8192,

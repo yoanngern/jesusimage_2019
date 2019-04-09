@@ -1,6 +1,5 @@
 footer.site-footer {
     background-color: $gray7;
-    width: 100%;
     padding: 20px 0 0;
     color: $white;
 
@@ -10,15 +9,16 @@ footer.site-footer {
         margin: 0 auto;
 
         nav.footer-menu {
-            display: flex;
+            display: table;
             padding: 40px 0;
+            width: 100%;
 
             div {
                 display: inline-block;
                 width: 25%;
+                vertical-align: top;
 
                 & > ul {
-                    margin: 0;
 
                     li {
                         list-style: none;
@@ -36,7 +36,6 @@ footer.site-footer {
 
                         ul {
                             padding: 5px 0 15px;
-                            margin: 0;
 
                             li {
                                 padding: 3px 0;
@@ -62,13 +61,14 @@ footer.site-footer {
         .info {
             width: 100%;
             border-top: 1px solid $gray5;
-            display: flex;
+            display: table;
             padding: 3px 0;
 
             .logo,
             .text {
                 width: 25%;
                 display: inline-block;
+                vertical-align: top;
             }
 
             .logo {
@@ -90,8 +90,11 @@ footer.site-footer {
                 p {
                     line-height: 1.2em;
                     font-size: 0.88em;
-                    margin: 0;
                     text-transform: uppercase;
+                }
+
+                a {
+                    display: block;
                 }
             }
 
@@ -99,7 +102,47 @@ footer.site-footer {
             .text a {
                 color: $gray-dark;
                 text-decoration: none;
+            }
+        }
+    }
+}
+
+
+@media only screen and (max-width: 767px) {
+    footer.site-footer {
+        padding: 0 20px;
+
+        .content {
+
+
+            nav.footer-menu {
                 display: block;
+
+                div {
+                    width: 100%;
+
+                    & > ul li {
+                        text-align: center;
+                    }
+                }
+            }
+
+            .info {
+                display: block;
+                text-align: center;
+
+                .logo,
+                .text {
+                    width: 100%;
+                }
+
+                .logo {
+                    margin: 0 auto;
+
+                    a {
+                        margin: 0 auto;
+                    }
+                }
             }
         }
     }
