@@ -549,23 +549,25 @@ footer.site-footer {
         display: inline-block;
         width: 25%;
         vertical-align: top; }
-        footer.site-footer .content nav.footer-menu div > ul li {
-          list-style: none; }
-          footer.site-footer .content nav.footer-menu div > ul li a {
-            color: #545454;
-            text-decoration: none; }
-            footer.site-footer .content nav.footer-menu div > ul li a:hover {
-              text-decoration: underline; }
-          footer.site-footer .content nav.footer-menu div > ul li ul {
-            padding: 5px 0 15px; }
-            footer.site-footer .content nav.footer-menu div > ul li ul li {
-              padding: 3px 0; }
-              footer.site-footer .content nav.footer-menu div > ul li ul li a {
-                font-size: 0.88em; }
-        footer.site-footer .content nav.footer-menu div > ul > li > a {
-          font-family: brandon-grotesque, sans-serif;
-          font-weight: 500;
-          font-style: normal; }
+        footer.site-footer .content nav.footer-menu div > ul {
+          margin: 0; }
+          footer.site-footer .content nav.footer-menu div > ul li {
+            list-style: none; }
+            footer.site-footer .content nav.footer-menu div > ul li a {
+              color: #545454;
+              text-decoration: none; }
+              footer.site-footer .content nav.footer-menu div > ul li a:hover {
+                text-decoration: underline; }
+            footer.site-footer .content nav.footer-menu div > ul li ul {
+              padding: 5px 0 15px; }
+              footer.site-footer .content nav.footer-menu div > ul li ul li {
+                padding: 3px 0; }
+                footer.site-footer .content nav.footer-menu div > ul li ul li a {
+                  font-size: 0.88em; }
+          footer.site-footer .content nav.footer-menu div > ul > li > a {
+            font-family: brandon-grotesque, sans-serif;
+            font-weight: 500;
+            font-style: normal; }
     footer.site-footer .content .info {
       width: 100%;
       border-top: 1px solid #d7d7d7;

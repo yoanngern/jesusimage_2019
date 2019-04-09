@@ -117,6 +117,7 @@ body.elementor-template-full-width {
                 margin: 0;
                 background-color: $gray6;
                 overflow: scroll;
+                -webkit-overflow-scrolling: touch;
                 z-index: 990;
                 width: 100%;
 

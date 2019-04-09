@@ -74,6 +74,7 @@ body.elementor-template-full-width > header > .school {
       margin: 0;
       background-color: #EEEEEE;
       overflow: scroll;
+      -webkit-overflow-scrolling: touch;
       z-index: 990;
       width: 100%; }
       body > header > .school nav div {

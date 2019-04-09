@@ -57,7 +57,7 @@
                             Lake Mary, FL 32795</p>
                     </div>
                     <div class="text">
-                        <p><a href="tel:+1 407-878-7421">407-878-7421</a>
+                        <p><a href="tel:+1 (407) 878-7421">(407) 878-7421</a>
                             <a href="mailto:info@jesusimage.tv">info@jesusimage.tv</a></p>
                     </div>
                     <div class="text">
