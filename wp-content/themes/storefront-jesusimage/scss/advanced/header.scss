@@ -355,6 +355,10 @@ body header#masthead {
                     display: block;
                     padding: 6px 0;
                     box-sizing: content-box;
+
+                    div.svg-box {
+                        padding-top: 0;
+                    }
                 }
             }
 

@@ -341,6 +341,10 @@ body > header {
                     background-position: center;
                     display: block;
                     padding: 6px 0;
+
+                    div.svg-box {
+                        padding-top: 0;
+                    }
                 }
             }
 

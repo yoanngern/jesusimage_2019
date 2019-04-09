@@ -1133,6 +1133,8 @@ body > header > .global {
         background-position: center;
         display: block;
         padding: 6px 0; }
+        body > header > .global .logo a div.svg-box {
+          padding-top: 0; }
     body > header > .global nav {
       display: block;
       width: 100%;
