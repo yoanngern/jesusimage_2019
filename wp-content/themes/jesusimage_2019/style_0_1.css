@@ -469,8 +469,8 @@ section.content-default {
       #content article.title div.title h1 {
         font-size: 2.5em; }
     #content .platter {
-      width: 94%;
-      margin: 0 3%; } }
+      width: 93%;
+      margin: 0 3.5%; } }
 
 @media only screen and (min-width: 600px) {
   .wp-block-columns.has-2-columns .wp-block-column {
@@ -1136,7 +1136,8 @@ body > header > .global {
         display: block;
         padding: 6px 0; }
         body > header > .global .logo a div.svg-box {
-          padding-top: 0; }
+          padding-top: 0;
+          margin: 0 auto; }
     body > header > .global nav {
       display: block;
       width: 100%;
@@ -1254,6 +1255,14 @@ article.content-page section.event_list ul.events {
           letter-spacing: 0.1em; }
         article.content-page section.event_list ul.events li.event a .content .button {
           display: none; }
+
+@media only screen and (max-width: 767px) {
+  article.content-page section.event_list ul.events li.event a .date {
+    width: 18%; }
+    article.content-page section.event_list ul.events li.event a .date .month {
+      font-size: 0.75em; }
+    article.content-page section.event_list ul.events li.event a .date .day {
+      font-size: 1.4em; } }
 
 body {
   font-family: brandon-grotesque, sans-serif;

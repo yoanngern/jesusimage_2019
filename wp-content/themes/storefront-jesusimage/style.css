@@ -279,7 +279,8 @@ body header#masthead {
           padding: 6px 0;
           box-sizing: content-box; }
           body header#masthead > .global .logo a div.svg-box {
-            padding-top: 0; }
+            padding-top: 0;
+            margin: 0 auto; }
       body header#masthead > .global nav {
         display: block;
         width: 100%;

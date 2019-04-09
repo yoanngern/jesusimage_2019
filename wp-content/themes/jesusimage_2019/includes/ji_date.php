@@ -261,48 +261,21 @@ function complex_month($start, $end)
 
     if (date_format($start, 'Y-m-d') != date_format($end, 'Y-m-d')):
 
-        // French
-        if (get_locale() == "fr_FR") :
+        if (date('Y', $start_t) == date('Y', $end_t)):
 
-            if (date('Y', $start_t) == date('Y', $end_t)):
+            if (date('m', $start_t) == date('m', $end_t)):
 
-                if (date('m', $start_t) == date('m', $end_t)):
-
-                    $date = date_i18n('j', $start_t) . ' - ' . date_i18n('j F Y', $end_t);
-
-                else:
-
-                    $date = date_i18n('j M', $start_t) . ' - ' . date_i18n('j M Y', $end_t);
-
-                endif;
+                $date = date_i18n('M', $start_t);
 
             else:
 
-                $date = date_i18n('j M Y', $start_t) . ' - ' . date_i18n('j M Y', $end_t);
+                $date = date_i18n('M', $start_t) . ' - ' . date_i18n('M', $end_t);
 
             endif;
 
-
-        // English
         else:
 
-            if (date('Y', $start_t) == date('Y', $end_t)):
-
-                if (date('m', $start_t) == date('m', $end_t)):
-
-                    $date = date_i18n('M', $start_t);
-
-                else:
-
-                    $date = date_i18n('M', $start_t) . ' - ' . date_i18n('M', $end_t);
-
-                endif;
-
-            else:
-
-                $date = date_i18n('M', $start_t) . ' - ' . date_i18n('M Y', $end_t);
-
-            endif;
+            $date = date_i18n('M', $start_t) . ' - ' . date_i18n('M', $end_t);
 
         endif;
 

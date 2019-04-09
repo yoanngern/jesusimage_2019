@@ -76,3 +76,25 @@ article.content-page section.event_list {
     }
 
 }
+
+@media only screen and (max-width: 767px) {
+    article.content-page section.event_list {
+        ul.events {
+            li.event {
+                a {
+                    .date {
+                        width: 18%;
+
+                        .month {
+                            font-size: 0.75em;
+                        }
+
+                        .day{
+                            font-size: 1.4em;
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
