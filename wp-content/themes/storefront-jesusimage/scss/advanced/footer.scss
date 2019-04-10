@@ -110,12 +110,29 @@ footer.site-footer {
 }
 
 
+@media only screen and (max-width: 980px) {
+    footer.site-footer {
+        .content {
+            width: 94%;
+            margin: 0 3%;
+
+            .info .logo,
+            .info .text {
+                width: 50%;
+            }
+        }
+    }
+}
+
+
+
 @media only screen and (max-width: 767px) {
     footer.site-footer {
         padding: 0 20px;
 
         .content {
-
+            width: 93%;
+            margin: 0 3.5%;
 
             nav.footer-menu {
                 display: block;

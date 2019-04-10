@@ -105,25 +105,36 @@ body > footer {
         color: #545454;
         text-decoration: none; }
 
+@media only screen and (max-width: 980px) {
+  body > footer .content {
+    width: 94%;
+    margin: 0 3%; }
+    body > footer .content .info .logo,
+    body > footer .content .info .text {
+      width: 50%; } }
+
 @media only screen and (max-width: 767px) {
   body > footer {
     padding: 0 20px; }
-    body > footer .content nav.footer-menu {
-      display: block; }
-      body > footer .content nav.footer-menu div {
-        width: 100%; }
-        body > footer .content nav.footer-menu div > ul li {
-          text-align: center; }
-    body > footer .content .info {
-      display: block;
-      text-align: center; }
-      body > footer .content .info .logo,
-      body > footer .content .info .text {
-        width: 100%; }
-      body > footer .content .info .logo {
-        margin: 0 auto; }
-        body > footer .content .info .logo a {
-          margin: 0 auto; } }
+    body > footer .content {
+      width: 93%;
+      margin: 0 3.5%; }
+      body > footer .content nav.footer-menu {
+        display: block; }
+        body > footer .content nav.footer-menu div {
+          width: 100%; }
+          body > footer .content nav.footer-menu div > ul li {
+            text-align: center; }
+      body > footer .content .info {
+        display: block;
+        text-align: center; }
+        body > footer .content .info .logo,
+        body > footer .content .info .text {
+          width: 100%; }
+        body > footer .content .info .logo {
+          margin: 0 auto; }
+          body > footer .content .info .logo a {
+            margin: 0 auto; } }
 
 #content {
   margin: 40px auto 0; }
@@ -469,8 +480,8 @@ section.content-default {
       #content article.title div.title h1 {
         font-size: 2.5em; }
     #content .platter {
-      width: 93%;
-      margin: 0 3.5%; } }
+      width: 94%;
+      margin: 0 3%; } }
 
 @media only screen and (min-width: 600px) {
   .wp-block-columns.has-2-columns .wp-block-column {
@@ -499,6 +510,9 @@ section.content-default {
     padding-bottom: 40%; }
     #content article.title div.title h1 {
       font-size: 2em; }
+  #content .platter {
+    width: 93%;
+    margin: 0 3.5%; }
   article.content-page,
   article.home-default,
   section.content-default {
@@ -976,7 +990,6 @@ body > header > .global {
         top: 16px; }
   body > header > .global .logo {
     width: 200px;
-    padding: 0 12px;
     display: block; }
     body > header > .global .logo a {
       display: block; }
