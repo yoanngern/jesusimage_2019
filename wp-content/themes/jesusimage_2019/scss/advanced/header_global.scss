@@ -85,6 +85,7 @@ body > header {
                 display: block;
 
                 div.svg-box {
+                    max-width: 224px;
                     width: 224px;
                     height: 34px;
                     padding-top: 10px;
@@ -356,11 +357,12 @@ body > header {
                     height: 36px;
                     background-position: center;
                     display: block;
-                    padding: 6px 0;
+                    padding: 10px 0 0;
 
                     div.svg-box {
                         padding-top: 0;
                         margin: 0 auto;
+                        width: 100%;
                     }
                 }
             }
