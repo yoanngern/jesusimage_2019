@@ -1,3 +1,4 @@
+footer#shop_footer,
 body > footer {
     background-color: $gray7;
     padding: 20px 0 0;
@@ -19,6 +20,7 @@ body > footer {
                 vertical-align: top;
 
                 & > ul {
+                    margin: 0;
 
                     li {
                         list-style: none;
@@ -36,6 +38,7 @@ body > footer {
 
                         ul {
                             padding: 5px 0 15px;
+                            margin: 0;
 
                             li {
                                 padding: 3px 0;
@@ -74,13 +77,27 @@ body > footer {
             .logo {
 
                 a {
-                    background-color: transparent;
-                    background-image: url("images/web_logo_ji.png");
-                    background-repeat: no-repeat;
-                    background-size: contain;
-                    width: 200px;
-                    height: 54px;
                     display: block;
+
+                    div.svg-box {
+                        max-width: 224px;
+                        width: 100%;
+                        height: 34px;
+                        padding-top: 10px;
+                        display: block;
+
+                        .text {
+                            fill: $black;
+                        }
+
+                        .round {
+                            fill: $black;
+                        }
+
+                        .face {
+                            fill: $gold;
+                        }
+                    }
                 }
             }
 
@@ -108,6 +125,7 @@ body > footer {
 }
 
 @media only screen and (max-width: 980px) {
+    footer#shop_footer,
     body > footer {
         .content {
             width: 94%;
@@ -123,6 +141,7 @@ body > footer {
 
 
 @media only screen and (max-width: 767px) {
+    footer#shop_footer,
     body > footer {
         padding: 0 20px;
 
@@ -157,6 +176,10 @@ body > footer {
 
                     a {
                         margin: 0 auto;
+
+                        div.svg-box {
+                            margin: 10px auto 20px;
+                        }
                     }
                 }
             }

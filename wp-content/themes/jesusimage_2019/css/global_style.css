@@ -1,0 +1,550 @@
+/*
+Theme Name: Jesus Image 2019
+Theme URI: http://jesusimage.tv
+Author: Yoann Gern
+Author URI: http://gerny-media.ch
+Description: Template for Jesus Image 2019
+Version: 0.1
+License: GNU General Public License v2 or later
+License URI: http://www.gnu.org/licenses/gpl-2.0.html
+Tags:
+Text Domain: jesusimage_2019
+
+This theme, like WordPress, is licensed under the GPL.
+Use it to make something cool, have fun, and share what you've learned with others.
+*/
+/* RESET */
+html, body, div, ul, ol, li, dl, dt, dd, h1, h2, h3, h4, h5, h6, pre, form, p, blockquote, fieldset, input, abbr, article, aside, command, details, figcaption, figure, footer, header, hgroup, mark, meter, nav, output, progress, section, summary, time {
+  margin: 0;
+  padding: 0;
+  letter-spacing: 0; }
+
+html, body {
+  font-size: 14px;
+  line-height: 14px; }
+
+h1, h2, h3, h4, h5, h6, pre, code, address, caption, cite, code, em, strong, th, figcaption {
+  font-weight: normal;
+  font-style: normal; }
+
+fieldset, iframe {
+  border: none; }
+
+caption, th {
+  text-align: left; }
+
+table {
+  border-collapse: collapse;
+  border-spacing: 0; }
+
+article, aside, footer, header, hgroup, nav, section, figure, figcaption {
+  display: block; }
+
+body header#masthead,
+body > header {
+  margin: 0;
+  border: none;
+  padding: 0; }
+  body header#masthead > .global,
+  body > header > .global {
+    background-color: #FFFFFF;
+    width: 100%;
+    margin: 0 auto;
+    text-align: left;
+    display: table;
+    z-index: 1000;
+    box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.26); }
+    body header#masthead > .global section.content,
+    body > header > .global section.content {
+      padding: 0 15px; }
+    body header#masthead > .global div.logo, body header#masthead > .global nav,
+    body > header > .global div.logo,
+    body > header > .global nav {
+      vertical-align: top;
+      display: table-cell; }
+    body header#masthead > .global #burger,
+    body > header > .global #burger {
+      margin: 15px 0 0 15px;
+      width: 26px;
+      height: 18px;
+      display: none;
+      -webkit-transform: rotate(0deg);
+      -moz-transform: rotate(0deg);
+      -o-transform: rotate(0deg);
+      transform: rotate(0deg);
+      -webkit-transition: .5s ease-in-out;
+      -moz-transition: .5s ease-in-out;
+      -o-transition: .5s ease-in-out;
+      transition: .5s ease-in-out;
+      cursor: pointer;
+      z-index: 1100;
+      position: absolute;
+      left: 0;
+      top: 0; }
+      body header#masthead > .global #burger span,
+      body > header > .global #burger span {
+        display: block;
+        position: absolute;
+        height: 1px;
+        width: 100%;
+        background: #333333;
+        opacity: 1;
+        left: 0;
+        z-index: 200;
+        -webkit-transform: rotate(0deg);
+        -moz-transform: rotate(0deg);
+        -o-transform: rotate(0deg);
+        transform: rotate(0deg);
+        -webkit-transition: .25s ease-in-out;
+        -moz-transition: .25s ease-in-out;
+        -o-transition: .25s ease-in-out;
+        transition: .25s ease-in-out; }
+        body header#masthead > .global #burger span:nth-child(1),
+        body > header > .global #burger span:nth-child(1) {
+          top: 0px; }
+        body header#masthead > .global #burger span:nth-child(2), body header#masthead > .global #burger span:nth-child(3),
+        body > header > .global #burger span:nth-child(2),
+        body > header > .global #burger span:nth-child(3) {
+          top: 8px; }
+        body header#masthead > .global #burger span:nth-child(4),
+        body > header > .global #burger span:nth-child(4) {
+          top: 16px; }
+    body header#masthead > .global .logo,
+    body > header > .global .logo {
+      width: 200px;
+      display: block; }
+      body header#masthead > .global .logo a,
+      body > header > .global .logo a {
+        display: block; }
+        body header#masthead > .global .logo a div.svg-box,
+        body > header > .global .logo a div.svg-box {
+          width: 224px;
+          height: 34px;
+          padding-top: 10px;
+          display: block; }
+          body header#masthead > .global .logo a div.svg-box .text,
+          body > header > .global .logo a div.svg-box .text {
+            fill: #333333; }
+          body header#masthead > .global .logo a div.svg-box .round,
+          body > header > .global .logo a div.svg-box .round {
+            fill: #333333; }
+          body header#masthead > .global .logo a div.svg-box .face,
+          body > header > .global .logo a div.svg-box .face {
+            fill: #b7a68c; }
+    body header#masthead > .global nav,
+    body > header > .global nav {
+      text-align: right;
+      width: 100%; }
+      body header#masthead > .global nav ul,
+      body > header > .global nav ul {
+        text-align: right; }
+        body header#masthead > .global nav ul > li,
+        body > header > .global nav ul > li {
+          padding: 12px 0;
+          display: inline-block;
+          transition: background-color 200ms ease-in-out;
+          position: relative;
+          overflow: visible; }
+          body header#masthead > .global nav ul > li a,
+          body > header > .global nav ul > li a {
+            color: #333333;
+            text-decoration: none;
+            padding: 8px 15px;
+            display: block;
+            text-transform: uppercase;
+            transition: color 200ms ease-in-out;
+            font-family: brandon-grotesque, sans-serif;
+            font-weight: 500;
+            font-style: normal;
+            font-size: 14px; }
+            body header#masthead > .global nav ul > li a:hover,
+            body > header > .global nav ul > li a:hover {
+              color: #b7a68c; }
+          body header#masthead > .global nav ul > li:hover,
+          body > header > .global nav ul > li:hover {
+            background-color: #F8F8F8; }
+          body header#masthead > .global nav ul > li.action,
+          body > header > .global nav ul > li.action {
+            margin: 0 10px; }
+            body header#masthead > .global nav ul > li.action a,
+            body > header > .global nav ul > li.action a {
+              background: #b7a68c; }
+              body header#masthead > .global nav ul > li.action a:hover,
+              body > header > .global nav ul > li.action a:hover {
+                background: #ad9a7c;
+                color: #FFFFFF; }
+          body header#masthead > .global nav ul > li.current-menu-item > a, body header#masthead > .global nav ul > li.current_page_item > a, body header#masthead > .global nav ul > li.current-menu-parent > a,
+          body > header > .global nav ul > li.current-menu-item > a,
+          body > header > .global nav ul > li.current_page_item > a,
+          body > header > .global nav ul > li.current-menu-parent > a {
+            font-family: brandon-grotesque, sans-serif;
+            font-weight: 700;
+            font-style: normal;
+            color: #b7a68c; }
+          body header#masthead > .global nav ul > li ul.sub-menu,
+          body > header > .global nav ul > li ul.sub-menu {
+            display: block;
+            position: absolute;
+            background: #FFFFFF;
+            top: 54px;
+            background: #FFFFFF;
+            box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.26);
+            text-align: left;
+            padding: 15px 0;
+            left: 50%;
+            width: 240px;
+            margin-left: -120px;
+            opacity: 0;
+            transition: opacity 200ms ease-in-out;
+            z-index: 1000; }
+            body header#masthead > .global nav ul > li ul.sub-menu::before,
+            body > header > .global nav ul > li ul.sub-menu::before {
+              display: block;
+              content: '';
+              position: absolute;
+              top: -10px;
+              margin-left: -10px;
+              left: 50%;
+              width: 0;
+              height: 0;
+              border-style: solid;
+              border-width: 0 10px 10px 10px;
+              border-color: transparent transparent #FFFFFF transparent; }
+            body header#masthead > .global nav ul > li ul.sub-menu.active,
+            body > header > .global nav ul > li ul.sub-menu.active {
+              display: block;
+              opacity: 1; }
+            body header#masthead > .global nav ul > li ul.sub-menu.hidden,
+            body > header > .global nav ul > li ul.sub-menu.hidden {
+              display: none;
+              opacity: 0; }
+            body header#masthead > .global nav ul > li ul.sub-menu li,
+            body > header > .global nav ul > li ul.sub-menu li {
+              display: block;
+              list-style: none;
+              padding: 0;
+              margin: 0 auto; }
+              body header#masthead > .global nav ul > li ul.sub-menu li.current-menu-item a, body header#masthead > .global nav ul > li ul.sub-menu li.current_page_item a,
+              body > header > .global nav ul > li ul.sub-menu li.current-menu-item a,
+              body > header > .global nav ul > li ul.sub-menu li.current_page_item a {
+                color: #b7a68c;
+                font-family: brandon-grotesque, sans-serif;
+                font-weight: 500;
+                font-style: normal; }
+              body header#masthead > .global nav ul > li ul.sub-menu li a,
+              body > header > .global nav ul > li ul.sub-menu li a {
+                color: #333333;
+                font-family: brandon-grotesque, sans-serif;
+                font-weight: 400;
+                font-style: normal;
+                padding: 12px 25px; }
+                body header#masthead > .global nav ul > li ul.sub-menu li a:hover,
+                body > header > .global nav ul > li ul.sub-menu li a:hover {
+                  color: #b7a68c; }
+          body header#masthead > .global nav ul > li.important:hover,
+          body > header > .global nav ul > li.important:hover {
+            background-color: transparent; }
+            body header#masthead > .global nav ul > li.important:hover a,
+            body > header > .global nav ul > li.important:hover a {
+              background-color: #a38e6d; }
+          body header#masthead > .global nav ul > li.important a,
+          body > header > .global nav ul > li.important a {
+            color: #FFFFFF;
+            background-color: #b7a68c;
+            transition: background-color 200ms ease-in-out; }
+    body header#masthead > .global.open_nav,
+    body > header > .global.open_nav {
+      height: 100%; }
+      body header#masthead > .global.open_nav #burger span:nth-child(1),
+      body > header > .global.open_nav #burger span:nth-child(1) {
+        top: 8px;
+        width: 0%;
+        left: 50%; }
+      body header#masthead > .global.open_nav #burger span:nth-child(2),
+      body > header > .global.open_nav #burger span:nth-child(2) {
+        -webkit-transform: rotate(45deg);
+        -moz-transform: rotate(45deg);
+        -o-transform: rotate(45deg);
+        transform: rotate(45deg); }
+      body header#masthead > .global.open_nav #burger span:nth-child(3),
+      body > header > .global.open_nav #burger span:nth-child(3) {
+        -webkit-transform: rotate(-45deg);
+        -moz-transform: rotate(-45deg);
+        -o-transform: rotate(-45deg);
+        transform: rotate(-45deg); }
+      body header#masthead > .global.open_nav #burger span:nth-child(4),
+      body > header > .global.open_nav #burger span:nth-child(4) {
+        top: 8px;
+        width: 0%;
+        left: 50%; }
+      body header#masthead > .global.open_nav nav ul.menu > li,
+      body > header > .global.open_nav nav ul.menu > li {
+        opacity: 1; }
+
+@media only screen and (max-width: 960px) {
+  body header#masthead > .global nav ul.menu > li a,
+  body > header > .global nav ul.menu > li a {
+    padding: 8px 10px; } }
+
+@media only screen and (max-width: 767px) {
+  body header#masthead > .global,
+  body > header > .global {
+    height: 48px;
+    position: fixed;
+    display: block;
+    top: 0;
+    z-index: 1000;
+    overflow: hidden;
+    transition: height 400ms ease-in-out; }
+    body header#masthead > .global #burger,
+    body > header > .global #burger {
+      display: block; }
+    body header#masthead > .global section.content,
+    body > header > .global section.content {
+      text-align: center;
+      display: block;
+      padding: 0; }
+      body header#masthead > .global section.content .logo,
+      body > header > .global section.content .logo {
+        display: block; }
+      body header#masthead > .global section.content nav,
+      body > header > .global section.content nav {
+        display: block; }
+    body header#masthead > .global .logo,
+    body > header > .global .logo {
+      margin: 0 auto; }
+      body header#masthead > .global .logo a,
+      body > header > .global .logo a {
+        height: 36px;
+        background-position: center;
+        display: block;
+        padding: 6px 0; }
+        body header#masthead > .global .logo a div.svg-box,
+        body > header > .global .logo a div.svg-box {
+          padding-top: 0;
+          margin: 0 auto; }
+    body header#masthead > .global nav,
+    body > header > .global nav {
+      display: block;
+      width: 100%;
+      text-align: center;
+      height: 0;
+      overflow: hidden;
+      border-top: 1px solid #F8F8F8; }
+      body header#masthead > .global nav ul.menu,
+      body > header > .global nav ul.menu {
+        padding: 0;
+        width: 86%;
+        margin: 0 7%;
+        text-align: center; }
+        body header#masthead > .global nav ul.menu > li,
+        body > header > .global nav ul.menu > li {
+          opacity: 0;
+          display: block;
+          line-height: 36px;
+          padding: 0;
+          border-top: 1px solid #F8F8F8;
+          transition: background-color 200ms ease-in-out 300ms; }
+          body header#masthead > .global nav ul.menu > li:hover,
+          body > header > .global nav ul.menu > li:hover {
+            padding-bottom: 0;
+            background-color: #f3f3f3;
+            transition: background-color 200ms ease-in-out 50ms; }
+          body header#masthead > .global nav ul.menu > li a,
+          body > header > .global nav ul.menu > li a {
+            font-size: 1.1em;
+            padding: 6px 0; }
+          body header#masthead > .global nav ul.menu > li.important,
+          body > header > .global nav ul.menu > li.important {
+            margin: 0;
+            height: inherit; }
+          body header#masthead > .global nav ul.menu > li:first-of-type,
+          body > header > .global nav ul.menu > li:first-of-type {
+            border-top: none; }
+          body header#masthead > .global nav ul.menu > li ul.sub-menu,
+          body > header > .global nav ul.menu > li ul.sub-menu {
+            position: relative;
+            top: inherit;
+            left: inherit;
+            width: inherit;
+            margin: 0;
+            box-shadow: none;
+            text-align: center;
+            padding: 0;
+            background-color: #F8F8F8;
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 400ms ease-in-out; }
+            body header#masthead > .global nav ul.menu > li ul.sub-menu li,
+            body > header > .global nav ul.menu > li ul.sub-menu li {
+              border-top: 1px solid #f3f3f3; }
+              body header#masthead > .global nav ul.menu > li ul.sub-menu li:hover,
+              body > header > .global nav ul.menu > li ul.sub-menu li:hover {
+                background-color: #F8F8F8; }
+              body header#masthead > .global nav ul.menu > li ul.sub-menu li a,
+              body > header > .global nav ul.menu > li ul.sub-menu li a {
+                padding: 6px 0;
+                font-size: 0.9em; }
+            body header#masthead > .global nav ul.menu > li ul.sub-menu::before,
+            body > header > .global nav ul.menu > li ul.sub-menu::before {
+              content: none;
+              display: none; }
+            body header#masthead > .global nav ul.menu > li ul.sub-menu.active,
+            body > header > .global nav ul.menu > li ul.sub-menu.active {
+              display: block;
+              max-height: 500px; }
+            body header#masthead > .global nav ul.menu > li ul.sub-menu.hidden,
+            body > header > .global nav ul.menu > li ul.sub-menu.hidden {
+              display: block;
+              max-height: 0;
+              opacity: 1; }
+    body header#masthead > .global.open_nav .content nav,
+    body > header > .global.open_nav .content nav {
+      height: 100%; }
+  body header#masthead {
+    margin-top: 48px; } }
+
+footer#shop_footer,
+body > footer {
+  background-color: #EFEFEF;
+  padding: 20px 0 0;
+  color: #FFFFFF; }
+  footer#shop_footer .content,
+  body > footer .content {
+    max-width: 960px;
+    width: 100%;
+    margin: 0 auto; }
+    footer#shop_footer .content nav.footer-menu,
+    body > footer .content nav.footer-menu {
+      display: table;
+      padding: 40px 0;
+      width: 100%; }
+      footer#shop_footer .content nav.footer-menu div,
+      body > footer .content nav.footer-menu div {
+        display: inline-block;
+        width: 25%;
+        vertical-align: top; }
+        footer#shop_footer .content nav.footer-menu div > ul,
+        body > footer .content nav.footer-menu div > ul {
+          margin: 0; }
+          footer#shop_footer .content nav.footer-menu div > ul li,
+          body > footer .content nav.footer-menu div > ul li {
+            list-style: none; }
+            footer#shop_footer .content nav.footer-menu div > ul li a,
+            body > footer .content nav.footer-menu div > ul li a {
+              color: #545454;
+              text-decoration: none; }
+              footer#shop_footer .content nav.footer-menu div > ul li a:hover,
+              body > footer .content nav.footer-menu div > ul li a:hover {
+                text-decoration: underline; }
+            footer#shop_footer .content nav.footer-menu div > ul li ul,
+            body > footer .content nav.footer-menu div > ul li ul {
+              padding: 5px 0 15px;
+              margin: 0; }
+              footer#shop_footer .content nav.footer-menu div > ul li ul li,
+              body > footer .content nav.footer-menu div > ul li ul li {
+                padding: 3px 0; }
+                footer#shop_footer .content nav.footer-menu div > ul li ul li a,
+                body > footer .content nav.footer-menu div > ul li ul li a {
+                  font-size: 0.88em; }
+          footer#shop_footer .content nav.footer-menu div > ul > li > a,
+          body > footer .content nav.footer-menu div > ul > li > a {
+            font-family: brandon-grotesque, sans-serif;
+            font-weight: 500;
+            font-style: normal; }
+    footer#shop_footer .content .info,
+    body > footer .content .info {
+      width: 100%;
+      border-top: 1px solid #d7d7d7;
+      display: table;
+      padding: 3px 0; }
+      footer#shop_footer .content .info .logo,
+      footer#shop_footer .content .info .text,
+      body > footer .content .info .logo,
+      body > footer .content .info .text {
+        width: 25%;
+        display: inline-block;
+        vertical-align: top; }
+      footer#shop_footer .content .info .logo a,
+      body > footer .content .info .logo a {
+        display: block; }
+        footer#shop_footer .content .info .logo a div.svg-box,
+        body > footer .content .info .logo a div.svg-box {
+          max-width: 224px;
+          width: 100%;
+          height: 34px;
+          padding-top: 10px;
+          display: block; }
+          footer#shop_footer .content .info .logo a div.svg-box .text,
+          body > footer .content .info .logo a div.svg-box .text {
+            fill: #333333; }
+          footer#shop_footer .content .info .logo a div.svg-box .round,
+          body > footer .content .info .logo a div.svg-box .round {
+            fill: #333333; }
+          footer#shop_footer .content .info .logo a div.svg-box .face,
+          body > footer .content .info .logo a div.svg-box .face {
+            fill: #b7a68c; }
+      footer#shop_footer .content .info .text,
+      body > footer .content .info .text {
+        padding: 12px 0; }
+        footer#shop_footer .content .info .text p,
+        body > footer .content .info .text p {
+          line-height: 1.2em;
+          font-size: 0.88em;
+          text-transform: uppercase; }
+        footer#shop_footer .content .info .text a,
+        body > footer .content .info .text a {
+          display: block; }
+      footer#shop_footer .content .info .text,
+      footer#shop_footer .content .info .text a,
+      body > footer .content .info .text,
+      body > footer .content .info .text a {
+        color: #545454;
+        text-decoration: none; }
+
+@media only screen and (max-width: 980px) {
+  footer#shop_footer .content,
+  body > footer .content {
+    width: 94%;
+    margin: 0 3%; }
+    footer#shop_footer .content .info .logo,
+    footer#shop_footer .content .info .text,
+    body > footer .content .info .logo,
+    body > footer .content .info .text {
+      width: 50%; } }
+
+@media only screen and (max-width: 767px) {
+  footer#shop_footer,
+  body > footer {
+    padding: 0 20px; }
+    footer#shop_footer .content,
+    body > footer .content {
+      width: 93%;
+      margin: 0 3.5%; }
+      footer#shop_footer .content nav.footer-menu,
+      body > footer .content nav.footer-menu {
+        display: block; }
+        footer#shop_footer .content nav.footer-menu div,
+        body > footer .content nav.footer-menu div {
+          width: 100%; }
+          footer#shop_footer .content nav.footer-menu div > ul li,
+          body > footer .content nav.footer-menu div > ul li {
+            text-align: center; }
+      footer#shop_footer .content .info,
+      body > footer .content .info {
+        display: block;
+        text-align: center; }
+        footer#shop_footer .content .info .logo,
+        footer#shop_footer .content .info .text,
+        body > footer .content .info .logo,
+        body > footer .content .info .text {
+          width: 100%; }
+        footer#shop_footer .content .info .logo,
+        body > footer .content .info .logo {
+          margin: 0 auto; }
+          footer#shop_footer .content .info .logo a,
+          body > footer .content .info .logo a {
+            margin: 0 auto; }
+            footer#shop_footer .content .info .logo a div.svg-box,
+            body > footer .content .info .logo a div.svg-box {
+              margin: 10px auto 20px; } }

@@ -12,6 +12,23 @@ body > header {
             }
         }
 
+        .logo a {
+            div.svg-box {
+
+                .text {
+                    fill: $white;
+                }
+
+                .round {
+                    fill: $black;
+                }
+
+                .face {
+                    fill: $gold;
+                }
+            }
+        }
+
         nav ul > li {
 
             &:hover {

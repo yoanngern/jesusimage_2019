@@ -116,6 +116,21 @@
 
     <?php wp_head(); ?>
 
+
+    <?php
+
+    $original_blog_id = get_current_blog_id();
+
+    switch_to_blog(1);
+
+    $main_tmp = get_template_directory_uri();
+
+    echo '<link rel="stylesheet" href="'.$main_tmp.'/css/global_style.css">';
+
+    // Switch back to the current blog
+    switch_to_blog($original_blog_id);
+    ?>
+
     <?php echo get_field( 'script', 'option' ) ?>
 
 </head>

@@ -17,6 +17,16 @@
 		"oAP": "/404.php",
 		"oF": 0
 		},
+	"/css/global_style.css": {
+		"aP": 1,
+		"bl": 0,
+		"ft": 16,
+		"ma": 0,
+		"oA": 0,
+		"oAP": "/css/global_style-min.css",
+		"oF": 0,
+		"oS": 3
+		},
 	"/fonts/2B5662_0_0.eot": {
 		"cB": 0,
 		"ft": 8192,
@@ -4323,6 +4333,19 @@
 		"oF": 0,
 		"oS": 3
 		},
+	"/scss/global_style.scss": {
+		"aP": 0,
+		"bl": 0,
+		"dP": 10,
+		"dS": 0,
+		"ft": 4,
+		"ma": 0,
+		"oA": 0,
+		"oAP": "/css/global_style.css",
+		"oF": 0,
+		"oS": 0,
+		"uL": 1
+		},
 	"/scss/style-login.scss": {
 		"aP": 0,
 		"bl": 0,
@@ -4379,12 +4402,28 @@
 		"oF": 0,
 		"oS": 3
 		},
+	"/template-parts/divers/footer_global.php": {
+		"cB": 0,
+		"ft": 8192,
+		"hM": 0,
+		"oA": 0,
+		"oAP": "/template-parts/divers/footer_global.php",
+		"oF": 0
+		},
 	"/template-parts/divers/head.php": {
 		"cB": 0,
 		"ft": 8192,
 		"hM": 0,
 		"oA": 0,
 		"oAP": "/template-parts/divers/head.php",
+		"oF": 0
+		},
+	"/template-parts/divers/header_global.php": {
+		"cB": 0,
+		"ft": 8192,
+		"hM": 0,
+		"oA": 0,
+		"oAP": "/template-parts/divers/header_global.php",
 		"oF": 0
 		},
 	"/template-parts/divers/header_nav.php": {

@@ -1,5 +1,8 @@
+body header#masthead,
 body > header {
-
+    margin: 0;
+    border: none;
+    padding: 0;
 
     & > .global {
         background-color: $white;
@@ -82,10 +85,22 @@ body > header {
                 display: block;
 
                 div.svg-box {
-                    width: 165px;
+                    width: 224px;
                     height: 34px;
                     padding-top: 10px;
                     display: block;
+
+                    .text {
+                        fill: $black;
+                    }
+
+                    .round {
+                        fill: $black;
+                    }
+
+                    .face {
+                        fill: $gold;
+                    }
                 }
             }
         }
@@ -286,6 +301,7 @@ body > header {
 }
 
 @media only screen and (max-width: 960px) {
+    body header#masthead,
     body > header {
         & > .global {
 
@@ -304,6 +320,7 @@ body > header {
 
 
 @media only screen and (max-width: 767px) {
+    body header#masthead,
     body > header {
         & > .global {
             height: 48px;
@@ -452,4 +469,9 @@ body > header {
         }
 
     }
+
+    body header#masthead {
+        margin-top: 48px;
+    }
 }
+

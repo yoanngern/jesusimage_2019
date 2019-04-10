@@ -21,6 +21,12 @@ body > header > .global {
   right: 0; }
   body > header > .global #burger span {
     background-color: #FFFFFF; }
+  body > header > .global .logo a div.svg-box .text {
+    fill: #FFFFFF; }
+  body > header > .global .logo a div.svg-box .round {
+    fill: #333333; }
+  body > header > .global .logo a div.svg-box .face {
+    fill: #b7a68c; }
   body > header > .global nav ul > li:hover {
     background-color: #6E6E6E; }
   body > header > .global nav ul > li a {
