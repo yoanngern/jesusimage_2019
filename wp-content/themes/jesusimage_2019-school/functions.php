@@ -3,9 +3,9 @@ function jesusimage_school_theme_enqueue_styles() {
 
 	$parent_style = 'jesusimage_2019-style';
 
-	wp_enqueue_style( $parent_style, get_template_directory_uri() . '/style_0_1.css', false, wp_get_theme()->get( 'Version' ) );
+	wp_enqueue_style( $parent_style, get_template_directory_uri() . '/style_0_2.css', false, wp_get_theme()->get( 'Version' ) );
 	wp_enqueue_style( 'jesusimage_2019-school-style',
-		get_stylesheet_directory_uri() . '/style.css',
+		get_stylesheet_directory_uri() . '/style_0_1.css',
 		array( $parent_style ),
 		wp_get_theme()->get( 'Version' )
 	);
