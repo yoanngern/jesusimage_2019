@@ -75,17 +75,22 @@ body > header {
 @media only screen and (max-width: 767px) {
     body > header {
         margin-top: 0;
-        background-color: rgba($black, 0.98);
+
 
         & > .global {
             position: fixed;
+            background-color: $black;
 
             &.open_nav {
                 background-color: $black;
+
+                nav{
+                    border-top-color: darken($black, 1);
+                }
             }
 
             nav {
-                border-top-color: $gray2;
+                border-top-color: $black;
 
                 ul.menu {
                     li {

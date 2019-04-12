@@ -1275,8 +1275,7 @@ body > header {
       width: 100%;
       text-align: center;
       height: 0;
-      overflow: hidden;
-      border-top: 1px solid #F8F8F8; }
+      overflow: hidden; }
       body header#masthead > .global nav ul.menu,
       body > header > .global nav ul.menu {
         padding: 0;
@@ -1346,7 +1345,8 @@ body > header {
               opacity: 1; }
     body header#masthead > .global.open_nav .content nav,
     body > header > .global.open_nav .content nav {
-      height: 100%; }
+      height: 100%;
+      border-top: 1px solid #F8F8F8; }
   body header#masthead {
     margin-top: 48px; } }
 
@@ -1425,6 +1425,10 @@ body {
     background-color: #333333; }
   body > main {
     min-height: 500px; }
+
+@media only screen and (max-width: 767px) {
+  body {
+    margin-top: 48px; } }
 
 @keyframes fadein {
   from {

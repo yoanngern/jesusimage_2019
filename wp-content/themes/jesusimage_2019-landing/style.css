@@ -51,14 +51,16 @@ body > header > .local {
 
 @media only screen and (max-width: 767px) {
   body > header {
-    margin-top: 0;
-    background-color: rgba(51, 51, 51, 0.98); }
+    margin-top: 0; }
     body > header > .global {
-      position: fixed; }
+      position: fixed;
+      background-color: #333333; }
       body > header > .global.open_nav {
         background-color: #333333; }
+        body > header > .global.open_nav nav {
+          border-top-color: #303030; }
       body > header > .global nav {
-        border-top-color: #6E6E6E; }
+        border-top-color: #333333; }
         body > header > .global nav ul.menu li {
           border-top-color: #6E6E6E; }
         body > header > .global nav ul.menu > li:hover {

@@ -132,7 +132,6 @@ body header#masthead {
                 text-align: center;
                 height: 0;
                 overflow: hidden;
-                border-top: 1px solid $gray-light;
 
 
                 ul.menu {
@@ -225,6 +224,7 @@ body header#masthead {
             &.open_nav {
                 .content nav {
                     height: 100%;
+                    border-top: 1px solid $gray-light;
                 }
             }
         }

@@ -136,8 +136,7 @@ body header#masthead > .storefront-primary-navigation {
         width: 100%;
         text-align: center;
         height: 0;
-        overflow: hidden;
-        border-top: 1px solid #F8F8F8; }
+        overflow: hidden; }
         body header#masthead > .global nav ul.menu {
           padding: 0;
           width: 86%;
@@ -193,7 +192,8 @@ body header#masthead > .storefront-primary-navigation {
                 max-height: 0;
                 opacity: 1; }
       body header#masthead > .global.open_nav .content nav {
-        height: 100%; } }
+        height: 100%;
+        border-top: 1px solid #F8F8F8; } }
 
 @media only screen and (max-width: 767px) {
   body header#masthead {
