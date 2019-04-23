@@ -721,6 +721,14 @@
 		"oAP": "/includes/ji_event.php",
 		"oF": 0
 		},
+	"/includes/ji_event_ical.php": {
+		"cB": 0,
+		"ft": 8192,
+		"hM": 0,
+		"oA": 0,
+		"oAP": "/includes/ji_event_ical.php",
+		"oF": 0
+		},
 	"/index.php": {
 		"cB": 0,
 		"ft": 8192,

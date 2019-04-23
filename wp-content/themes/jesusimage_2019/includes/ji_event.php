@@ -545,6 +545,25 @@ function export_ics()
             }
         }
 
+        ob_start();
+
+
+        // Set the correct headers for this file
+        header("Content-Description: File Transfer");
+        //header("Content-Disposition: attachment; filename=" . $filename);
+        header('Content-type: text/calendar; charset=utf-8');
+        header('Content-Disposition: inline; filename="events.ics"');
+        header("Pragma: 0");
+        header("Expires: 0");
+
+        $eol = "\r\n";
+
+?>BEGIN:VCALENDAR
+VERSION:2.0
+PRODID:-//<?php echo get_bloginfo('name') . $eol; ?> //NONSGML Events //EN
+CALSCALE:GREGORIAN
+X-WR-CALNAME:<?php echo get_bloginfo('name') . $eol;
+
         foreach ($events as $event) :
 
             /*  The correct date format, for ALL dates is date_i18n('Ymd\THis\Z',time(), true)
@@ -577,52 +596,25 @@ function export_ics()
             $title = get_the_title($event);
 
             //Give the iCal export a filename
-            $filename = urlencode('jesusimage-ical-' . date('Y-m-d') . '.ics');
-            $eol = "\r\n";
+            //$filename = urlencode('jesusimage-ical-' . date('Y-m-d') . '.ics');
+
 
             //Collect output
-            ob_start();
 
-
-            // Set the correct headers for this file
-            header("Content-Description: File Transfer");
-            header("Content-Disposition: attachment; filename=" . $filename);
-            header('Content-type: text/calendar; charset=utf-8');
-            header("Pragma: 0");
-            header("Expires: 0");
 
             // The below ics structure MUST NOT have spaces before each line
             // Credit for the .ics structure goes to https://gist.github.com/jakebellacera/635416
-            ?>
-            BEGIN:VCALENDAR
-            VERSION:2.0
-            PRODID:-//<?php echo get_bloginfo('name') . $eol; ?> //NONSGML Events //EN
-            CALSCALE:GREGORIAN
-            X-WR-CALNAME:<?php echo get_bloginfo('name') . $eol; ?>
-            BEGIN:VEVENT
-            CREATED:<?php echo $created_date . $eol; ?>
-            UID:<?php echo $uid . $eol; ?>
-            DTEND;VALUE=DATE:<?php echo $end_date . $eol; ?>
-            DTSTART;VALUE=DATE:<?php echo $start_date . $eol; ?>
-            DTSTAMP:<?php echo $timestamp . $eol; ?>
-            LOCATION:<?php echo escapeString($address) . $eol; ?>
-            DESCRIPTION:<?php echo shorter_version($content, 70) . $eol; ?>
-            SUMMARY:<?php echo escapeString($title) . $eol; ?>
-            ORGANIZER:<?php echo escapeString($organiser) . $eol; ?>
-            URL;VALUE=URI:<?php echo escapeString($url) . $eol; ?>
-            TRANSP:OPAQUE
-            BEGIN:VALARM
-            ACTION:DISPLAY
-            TRIGGER;VALUE=DATE-TIME:<?php echo $deadline . $eol; ?>
-            DESCRIPTION:Reminder for <?php echo escapeString($title);
-            echo $eol; ?>
-            END:VALARM
-            END:VEVENT
-        <?php
+            ?>BEGIN:VEVENT
+DTSTART;VALUE=DATE:<?php echo $start_date . $eol; ?>
+DTEND;VALUE=DATE:<?php echo $end_date . $eol; ?>
+SUMMARY:<?php echo escapeString($title) . $eol; ?>
+DESCRIPTION:<?php echo shorter_version($content, 70) . $eol; ?>
+LOCATION:<?php echo escapeString($address) . $eol; ?>
+URL;VALUE=URI:<?php echo shorter_version($url, 70) . $eol; ?>
+END:VEVENT
+<?php
         endforeach;
-        ?>
-        END:VCALENDAR
-        <?php
+        ?>END:VCALENDAR<?php
         //Collect output and echo
         $eventsical = ob_get_contents();
         ob_end_clean();

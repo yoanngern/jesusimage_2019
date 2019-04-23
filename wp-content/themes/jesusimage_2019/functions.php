@@ -482,6 +482,7 @@ require_once( __DIR__ . '/includes/acf_fields.php' );
 
 require_once( __DIR__ . '/includes/ji_date.php' );
 require_once( __DIR__ . '/includes/ji_event.php' );
+require_once( __DIR__ . '/includes/ji_event_ical.php' );
 
 
 function my_login_logo() {
