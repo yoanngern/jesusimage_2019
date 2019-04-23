@@ -14,7 +14,7 @@ if ($event != null) :
     $color = get_field_or_parent('color', $event, 'ji_eventcategory');
 
     if ($time == '') {
-        $time = get_field_or_parent('event_time', $event, 'ji_eventcategory');
+        $time = complex_time(get_field_or_parent('event_start_time', $event, 'ji_eventcategory'), get_field_or_parent('event_end_time', $event, 'ji_eventcategory'));
     }
 
     $month = complex_month(get_field('start', $event), get_field('end', $event));

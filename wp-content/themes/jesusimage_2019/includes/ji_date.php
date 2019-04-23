@@ -125,8 +125,8 @@ function update_dates($post_id)
         $end_time = $start_time;
     }
 
-    $start = new DateTime($start_date . " " . $start_time);
-    $end = new DateTime($end_date . " " . $end_time);
+    $start = new DateTime($start_date . " " . $start_time, new DateTimeZone('America/New_York'));
+    $end = new DateTime($end_date . " " . $end_time, new DateTimeZone('America/New_York'));
 
     update_field('start', date_format($start, 'Y-m-d H:i:s'), $post_id);
     update_field('end', date_format($end, 'Y-m-d H:i:s'), $post_id);
@@ -225,6 +225,13 @@ function complex_date($start, $end)
 function complex_time($start, $end)
 {
 
+    if ($start == '') {
+        return '';
+    }
+
+    if ($end == '') {
+        $end = $start;
+    }
 
     $time = "";
 

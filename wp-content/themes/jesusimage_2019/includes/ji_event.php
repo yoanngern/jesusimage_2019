@@ -549,20 +549,27 @@ function export_ics()
 
 
         // Set the correct headers for this file
-        header("Content-Description: File Transfer");
+        //header("Content-Description: File Transfer");
         //header("Content-Disposition: attachment; filename=" . $filename);
         header('Content-type: text/calendar; charset=utf-8');
-        header('Content-Disposition: inline; filename="events.ics"');
+        //header('Content-Disposition: inline; filename="events.ics"');
         header("Pragma: 0");
         header("Expires: 0");
 
         $eol = "\r\n";
 
-?>BEGIN:VCALENDAR
+        $website_title = get_bloginfo('name');
+
+        echo "BEGIN:VCALENDAR
 VERSION:2.0
-PRODID:-//<?php echo get_bloginfo('name') . $eol; ?> //NONSGML Events //EN
+PRODID:-//$website_title //NONSGML Events //EN
 CALSCALE:GREGORIAN
-X-WR-CALNAME:<?php echo get_bloginfo('name') . $eol;
+X-WR-CALNAME: $website_title";
+
+        ?>
+
+
+        <?php
 
         foreach ($events as $event) :
 
@@ -575,25 +582,60 @@ X-WR-CALNAME:<?php echo get_bloginfo('name') . $eol;
             $start = get_field('start', $event);
             $end = get_field('end', $event);
 
+
             $start = new DateTime($start);
             $end = new DateTime($end);
+
+            if ((date_format($start, 'Gi') == '000') && (date_format($end, 'Gi') == '000')) {
+                $start_time = get_field_or_parent('event_start_time', $event, 'ji_eventcategory');
+                $end_time = get_field_or_parent('event_end_time', $event, 'ji_eventcategory');
+
+                if ($start_time != '') {
+                    $start_time = new DateTime($start_time);
+
+                    if (date_format($start_time, 'Gi') != '000') {
+                        $start = new DateTime(date_format($start, 'Y-m-d') . date_format($start_time, 'H:i:s'), new DateTimeZone('America/New_York'));
+
+                        if ($end_time == '') {
+                            $end = new DateTime(date_format($end, 'Y-m-d') . date_format($start_time, 'H:i:s'), new DateTimeZone('America/New_York'));
+                        }
+                    }
+                }
+
+                if ($end_time != '') {
+                    $end_time = new DateTime($end_time);
+
+                    if (date_format($end_time, 'Gi') != '000') {
+                        $end = new DateTime(date_format($end, 'Y-m-d') . date_format($end_time, 'H:i:s'), new DateTimeZone('America/New_York'));
+                    }
+                }
+
+            }
 
             $start_t = $start->getTimestamp();
             $end_t = $end->getTimestamp();
 
+            if ((date('Gi', $start_t) == '000') && (date('Gi', $end_t) == '000')) {
+                $start_date = date_i18n("Ymd", $start_t);
+                $end_date = date_i18n("Ymd", $end_t);
+            } else {
+                $start_date = date_i18n("Ymd\THis\Z", $start_t);
+                $end_date = date_i18n("Ymd\THis\Z", $end_t);
+            }
+
             $created_date = date_i18n("Ymd\THis\Z", $start_t);
-            $start_date = date_i18n("Ymd\THis\Z", $start_t);
-            $end_date = date_i18n("Ymd\THis\Z", $end_t);
+
             $deadline = date_i18n("Ymd\THis\Z", $start_t);
             $organiser = 'Jesus Image';
 
-            $address = get_field_or_parent('location', $event, 'ji_eventcategory');;
-            $url = get_field_or_parent('event_link', $event, 'ji_eventcategory');
+
+            $address = escapeString(get_field_or_parent('location', $event, 'ji_eventcategory'));
+            $url = shorter_version(get_field_or_parent('event_link', $event, 'ji_eventcategory'), 70);
             $summary = get_field_or_parent('description', $event, 'ji_eventcategory');
-            $content = trim(preg_replace('/\s\s+/', ' ', get_field_or_parent('description', $event, 'ji_eventcategory'))); // removes newlines and double spaces
+            $content = shorter_version(trim(preg_replace('/\s\s+/', ' ', get_field_or_parent('description', $event, 'ji_eventcategory'))), 70); // removes newlines and double spaces
 
 
-            $title = get_the_title($event);
+            $title = escapeString(get_the_title($event));
 
             //Give the iCal export a filename
             //$filename = urlencode('jesusimage-ical-' . date('Y-m-d') . '.ics');
@@ -604,17 +646,21 @@ X-WR-CALNAME:<?php echo get_bloginfo('name') . $eol;
 
             // The below ics structure MUST NOT have spaces before each line
             // Credit for the .ics structure goes to https://gist.github.com/jakebellacera/635416
-            ?>BEGIN:VEVENT
-DTSTART;VALUE=DATE:<?php echo $start_date . $eol; ?>
-DTEND;VALUE=DATE:<?php echo $end_date . $eol; ?>
-SUMMARY:<?php echo escapeString($title) . $eol; ?>
-DESCRIPTION:<?php echo shorter_version($content, 70) . $eol; ?>
-LOCATION:<?php echo escapeString($address) . $eol; ?>
-URL;VALUE=URI:<?php echo shorter_version($url, 70) . $eol; ?>
+
+
+            echo "
+BEGIN:VEVENT
+DTSTART;VALUE=DATE:$start_date
+DTEND;VALUE=DATE:$end_date
+SUMMARY:$title
+DESCRIPTION:$content
+LOCATION:$address
+URL;VALUE=URI:$url
 END:VEVENT
-<?php
+";
+
         endforeach;
-        ?>END:VCALENDAR<?php
+        echo "END:VCALENDAR";
         //Collect output and echo
         $eventsical = ob_get_contents();
         ob_end_clean();
