@@ -489,8 +489,8 @@ function add_calendar_feed()
 {
     add_feed('calendar-feed', 'export_ics');
     // Only uncomment these 2 lines the first time you load this script, to update WP rewrite rules
-    global $wp_rewrite;
-    $wp_rewrite->flush_rules( true );
+    //global $wp_rewrite;
+    //$wp_rewrite->flush_rules( true );
 }
 
 add_action('init', 'add_calendar_feed');
