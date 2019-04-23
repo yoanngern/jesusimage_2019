@@ -91,7 +91,7 @@ function update_event($post_id)
         return $post_id;
     }
 
-    $cat = get_the_terms($post_id, array('taxonomy' => 'ji_eventcategory'))[0];
+    $cat = get_the_terms($post_id, 'ji_eventcategory')[0];
 
     $event_title = get_field('event_title', $post_id);
 
@@ -216,19 +216,23 @@ function ji_event_custom_column($column)
 
     } elseif ($column == 'category') {
 
-        foreach (get_the_terms($post, array('taxonomy' => 'ji_eventcategory')) as $cat) {
 
-            $name = $cat->name;
-            $slug = $cat->slug;
-            $class = "";
+        if (has_term('', 'ji_eventcategory', $post)) {
 
-            if ($curr_cat == $slug) {
-                $class = 'current';
+            foreach (get_the_terms($post, 'ji_eventcategory') as $cat) {
+
+                $name = $cat->name;
+                $slug = $cat->slug;
+                $class = "";
+
+                if ($curr_cat == $slug) {
+                    $class = 'current';
+                }
+
+                echo "<a class='$class' href='edit.php?post_type=ji_event&ji_eventcategory=$slug'>$name</a>";
+
+
             }
-
-            echo "<a class='$class' href='edit.php?post_type=ji_event&ji_eventcategory=$slug'>$name</a>";
-
-
         }
 
     }
@@ -253,9 +257,24 @@ function ji_event_views($views)
     unset($views['all']);
 
 
-    $post_timing = $_GET['post_timing'];
-    $post_status = $_GET['post_status'];
-    $category = $_GET['ji_eventcategory'];
+    $post_status = 'all';
+
+    $category = '';
+
+    if (isset($_GET['post_status'])) {
+        $post_status = $_GET['post_status'];
+        $post_timing = 'all';
+    } else {
+        $post_timing = 'future';
+    }
+
+    if (isset($_GET['post_timing'])) {
+        $post_timing = $_GET['post_timing'];
+    }
+
+    if (isset($_GET['ji_eventcategory'])) {
+        $category = $_GET['ji_eventcategory'];
+    }
 
 
     $tabs = array(
@@ -357,9 +376,11 @@ function perform_filtering($query)
 {
     $qv = &$query->query_vars;
 
-    if (($qv['ji_eventcategory']) && is_numeric($qv['ji_eventcategory'])) {
-        $term = get_term_by('id', $qv['ji_eventcategory'], 'ji_eventcategory');
-        $qv['ji_eventcategory'] = $term->slug;
+    if (isset($qv['ji_eventcategory'])) {
+        if (($qv['ji_eventcategory']) && is_numeric($qv['ji_eventcategory'])) {
+            $term = get_term_by('id', $qv['ji_eventcategory'], 'ji_eventcategory');
+            $qv['ji_eventcategory'] = $term->slug;
+        }
     }
 }
 
@@ -376,22 +397,35 @@ add_filter('parse_query', 'perform_filtering');
 function ji_order_events($query)
 {
 
-    $post_status = $_GET['post_status'];
-    $post_timing = $_GET['post_timing'];
-    $category = $_GET['ji_eventcategory'];
+
+    if (!isset($query->query_vars['post_type'])) {
+        return;
+    }
+
 
     if ($query->query_vars['post_type'] != 'ji_event') {
         return;
     }
 
+    $post_status = 'all';
 
-    if ($post_status == '') {
-        $post_status = 'all';
-    }
+    $category = '';
 
-    if ($post_timing == '') {
+    if (isset($_GET['post_status'])) {
+        $post_status = $_GET['post_status'];
         $post_timing = 'all';
+    } else {
+        $post_timing = 'future';
     }
+
+    if (isset($_GET['post_timing'])) {
+        $post_timing = $_GET['post_timing'];
+    }
+
+    if (isset($_GET['ji_eventcategory'])) {
+        $category = $_GET['ji_eventcategory'];
+    }
+
 
     if (is_admin()
         && $query->is_main_query()
@@ -432,3 +466,16 @@ function default_content_event($content, $post)
 }
 
 add_filter('default_content', 'default_content_event', 10, 2);
+
+
+/**
+ *
+ */
+function ji_event_remove_custom_taxonomy() {
+    remove_meta_box( 'ji_eventcategorydiv', 'ji_event', 'side' );
+
+    // $custom_taxonomy_slug is the slug of your taxonomy, e.g. 'genre' )
+    // $custom_post_type is the "slug" of your post type, e.g. 'movies' )
+}
+
+add_action( 'admin_menu', 'ji_event_remove_custom_taxonomy' );

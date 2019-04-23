@@ -5,7 +5,7 @@
  *
  */
 function jesusimage_theme_enqueue_style() {
-	wp_enqueue_style( 'jesusimage_2019-style', get_template_directory_uri() . '/style_0_2.css', false, wp_get_theme()->get( 'Version' ) );
+	wp_enqueue_style( 'jesusimage_2019-style', get_template_directory_uri() . '/style.css', false, wp_get_theme()->get( 'Version' ) );
 }
 
 function jesusimage_theme_enqueue_script() {

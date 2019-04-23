@@ -8,7 +8,7 @@
  *
  * @return mixed
  */
-function order_dates($query, $post_type = 'ji_event', $post_cat = 'ji_eventcategory', $post_status = 'publish')
+function order_dates($query, $post_type = 'ji_event', $post_cat = 'ji_eventcategory', $post_status = 'publish', $post_timing = 'all')
 {
 
     if ($post_status == 'all') {
@@ -19,8 +19,30 @@ function order_dates($query, $post_type = 'ji_event', $post_cat = 'ji_eventcateg
         $query->set('orderby', 'meta_value');
         $query->set('meta_key', 'start');
         $query->set('meta_key', 'end');
-        $query->set('order', 'desc');
+        $query->set('order', 'asc');
         $query->set('post_status', $post_status);
+
+        $today = date('Y-m-d H:i:s');
+
+        if ($post_timing == 'future') {
+            $query->set('meta_query', array(
+                array(
+                    'key' => 'end',
+                    'compare' => '>=',
+                    'value' => $today,
+                )
+            ));
+        } elseif ($post_timing == 'past') {
+            $query->set('order', 'desc');
+
+            $query->set('meta_query', array(
+                array(
+                    'key' => 'end',
+                    'compare' => '<',
+                    'value' => $today,
+                )
+            ));
+        }
 
         return $query;
     }
@@ -238,6 +260,22 @@ function complex_time($start, $end)
 
     return $time;
 
+}
+
+
+/**
+ * @param $date
+ * @return false|string
+ * @throws Exception
+ */
+function get_month_year($date)
+{
+
+    $date = new DateTime($date);
+
+    $month = date_format($date, 'F Y');
+
+    return $month;
 }
 
 
