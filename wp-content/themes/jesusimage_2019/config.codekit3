@@ -625,6 +625,22 @@
 		"oAP": "/includes/acf/date.php",
 		"oF": 0
 		},
+	"/includes/acf/event.php": {
+		"cB": 0,
+		"ft": 8192,
+		"hM": 0,
+		"oA": 0,
+		"oAP": "/includes/acf/event.php",
+		"oF": 0
+		},
+	"/includes/acf/event_categories.php": {
+		"cB": 0,
+		"ft": 8192,
+		"hM": 0,
+		"oA": 0,
+		"oAP": "/includes/acf/event_categories.php",
+		"oF": 0
+		},
 	"/includes/acf/gc_nav.php": {
 		"cB": 0,
 		"ft": 8192,
