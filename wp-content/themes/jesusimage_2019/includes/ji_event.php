@@ -471,11 +471,167 @@ add_filter('default_content', 'default_content_event', 10, 2);
 /**
  *
  */
-function ji_event_remove_custom_taxonomy() {
-    remove_meta_box( 'ji_eventcategorydiv', 'ji_event', 'side' );
+function ji_event_remove_custom_taxonomy()
+{
+    remove_meta_box('ji_eventcategorydiv', 'ji_event', 'side');
 
     // $custom_taxonomy_slug is the slug of your taxonomy, e.g. 'genre' )
     // $custom_post_type is the "slug" of your post type, e.g. 'movies' )
 }
 
-add_action( 'admin_menu', 'ji_event_remove_custom_taxonomy' );
+add_action('admin_menu', 'ji_event_remove_custom_taxonomy');
+
+
+/**
+ * Add Calendar Feed
+ */
+function add_calendar_feed()
+{
+    add_feed('calendar-feed', 'export_ics');
+    // Only uncomment these 2 lines the first time you load this script, to update WP rewrite rules
+    global $wp_rewrite;
+    $wp_rewrite->flush_rules( false );
+}
+
+add_action('init', 'add_calendar_feed');
+
+
+/**
+ * export ICS
+ * @throws Exception
+ */
+function export_ics()
+{
+
+    /*  For a better understanding of ics requirements and time formats
+        please check https://gist.github.com/jakebellacera/635416   */
+
+    $today = date('Y-m-d H:i:s');
+
+    $events = wp_get_recent_posts(array(
+        'numberposts' => 999,
+        'offset' => 0,
+        'orderby' => 'meta_value',
+        'meta_key' => 'start',
+        'order' => 'asc',
+        'meta_query' => array(
+            'relation' => 'AND',
+            array(
+                'key' => 'end',
+                'compare' => '>=',
+                'value' => $today,
+            )
+        ),
+        'post_type' => 'ji_event',
+        'suppress_filters' => true
+
+    ), OBJECT);
+
+    if ($events != null) :
+
+        // Escapes a string of characters
+        function escapeString($string)
+        {
+            return preg_replace('/([\,;])/', '\\\$1', $string);
+        }
+
+        // Cut it
+        function shorter_version($string, $lenght)
+        {
+            if (strlen($string) >= $lenght) {
+                return substr($string, 0, $lenght);
+            } else {
+                return $string;
+            }
+        }
+
+        foreach ($events as $event) :
+
+            /*  The correct date format, for ALL dates is date_i18n('Ymd\THis\Z',time(), true)
+                So if your date is not in this format, use that function    */
+
+            $timestamp = date_i18n('Ymd\THis\Z', time(), true);
+            $uid = $event->ID;
+
+            $start = get_field('start', $event);
+            $end = get_field('end', $event);
+
+            $start = new DateTime($start);
+            $end = new DateTime($end);
+
+            $start_t = $start->getTimestamp();
+            $end_t = $end->getTimestamp();
+
+            $created_date = date_i18n("Ymd\THis\Z", $start_t);
+            $start_date = date_i18n("Ymd\THis\Z", $start_t);
+            $end_date = date_i18n("Ymd\THis\Z", $end_t);
+            $deadline = date_i18n("Ymd\THis\Z", $start_t);
+            $organiser = 'Jesus Image';
+
+            $address = get_field_or_parent('location', $event, 'ji_eventcategory');;
+            $url = get_field_or_parent('event_link', $event, 'ji_eventcategory');
+            $summary = get_field_or_parent('description', $event, 'ji_eventcategory');
+            $content = trim(preg_replace('/\s\s+/', ' ', get_field_or_parent('description', $event, 'ji_eventcategory'))); // removes newlines and double spaces
+
+
+            $title = get_the_title($event);
+
+            //Give the iCal export a filename
+            $filename = urlencode('jesusimage-ical-' . date('Y-m-d') . '.ics');
+            $eol = "\r\n";
+
+            //Collect output
+            ob_start();
+
+
+            // Set the correct headers for this file
+            header("Content-Description: File Transfer");
+            header("Content-Disposition: attachment; filename=" . $filename);
+            header('Content-type: text/calendar; charset=utf-8');
+            header("Pragma: 0");
+            header("Expires: 0");
+
+            // The below ics structure MUST NOT have spaces before each line
+            // Credit for the .ics structure goes to https://gist.github.com/jakebellacera/635416
+            ?>
+            BEGIN:VCALENDAR
+            VERSION:2.0
+            PRODID:-//<?php echo get_bloginfo('name') . $eol; ?> //NONSGML Events //EN
+            CALSCALE:GREGORIAN
+            X-WR-CALNAME:<?php echo get_bloginfo('name') . $eol; ?>
+            BEGIN:VEVENT
+            CREATED:<?php echo $created_date . $eol; ?>
+            UID:<?php echo $uid . $eol; ?>
+            DTEND;VALUE=DATE:<?php echo $end_date . $eol; ?>
+            DTSTART;VALUE=DATE:<?php echo $start_date . $eol; ?>
+            DTSTAMP:<?php echo $timestamp . $eol; ?>
+            LOCATION:<?php echo escapeString($address) . $eol; ?>
+            DESCRIPTION:<?php echo shorter_version($content, 70) . $eol; ?>
+            SUMMARY:<?php echo escapeString($title) . $eol; ?>
+            ORGANIZER:<?php echo escapeString($organiser) . $eol; ?>
+            URL;VALUE=URI:<?php echo escapeString($url) . $eol; ?>
+            TRANSP:OPAQUE
+            BEGIN:VALARM
+            ACTION:DISPLAY
+            TRIGGER;VALUE=DATE-TIME:<?php echo $deadline . $eol; ?>
+            DESCRIPTION:Reminder for <?php echo escapeString($title);
+            echo $eol; ?>
+            END:VALARM
+            END:VEVENT
+        <?php
+        endforeach;
+        ?>
+        END:VCALENDAR
+        <?php
+        //Collect output and echo
+        $eventsical = ob_get_contents();
+        ob_end_clean();
+        echo $eventsical;
+        exit();
+
+    endif;
+
+}
+
+?>
+
