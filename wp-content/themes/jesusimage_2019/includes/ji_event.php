@@ -601,9 +601,10 @@ X-WR-CALNAME: $website_title";
             $start_t = $start->getTimestamp();
             $end_t = $end->getTimestamp();
 
+            // If Full day
             if ((date('Gi', $start_t) == '000') && (date('Gi', $end_t) == '000')) {
                 $start_date = date_i18n("Ymd", $start_t);
-                $end_date = date_i18n("Ymd", $end_t);
+                $end_date = date_i18n("Ymd", strtotime('+1 day', $end_t));
             } else {
                 $start_date = date_i18n("Ymd\THis\Z", $start_t);
                 $end_date = date_i18n("Ymd\THis\Z", $end_t);
