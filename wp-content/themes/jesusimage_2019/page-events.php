@@ -71,7 +71,6 @@
                 if ($events != null) : ?>
 
                     <section class="event_list">
-                        <h1><?php _e('Itinerary', 'jesusimage_2019') ?></h1>
 
 
                         <?php

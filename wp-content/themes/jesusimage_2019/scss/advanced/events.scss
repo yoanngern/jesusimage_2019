@@ -5,6 +5,10 @@ article.content-page section.event_list {
         display: table;
         width: 100%;
 
+        h2 {
+            margin-top: 20px;
+        }
+
         li.event {
             display: table-row;
             list-style: none;
@@ -83,7 +87,7 @@ article.content-page section.event_list {
             li.event {
                 a {
                     .date {
-                        width: 18%;
+                        width: 75px;
 
                         .month {
                             font-size: 0.75em;
@@ -92,6 +96,10 @@ article.content-page section.event_list {
                         .day{
                             font-size: 1.4em;
                         }
+                    }
+
+                    .content {
+                        margin-left: 12px;
                     }
                 }
             }
