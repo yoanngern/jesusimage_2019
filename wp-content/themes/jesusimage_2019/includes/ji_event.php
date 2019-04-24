@@ -562,9 +562,6 @@ X-WR-CALNAME: $website_title";
 
         foreach ($events as $event) :
 
-            $timestamp = date_i18n('Ymd\THis\Z', time(), true);
-            $uid = $event->ID;
-
             $start = get_field('start', $event);
             $end = get_field('end', $event);
 
@@ -610,7 +607,16 @@ X-WR-CALNAME: $website_title";
                 $end_date = date_i18n("Ymd\THis\Z", $end_t);
             }
 
-            $created_date = date_i18n("Ymd\THis\Z", $start_t);
+            $now = date_i18n('Ymd\THis\Z', time(), true);
+            $id = $event->ID;
+
+            $created_date = new DateTime($event->post_date_gmt);
+            $created_date_t = $created_date->getTimestamp();
+            $created = date_i18n("Ymd\THis\Z", $created_date_t);
+
+            $modified_date = new DateTime($event->post_modified_gmt);
+            $modified_date_t = $modified_date->getTimestamp();
+            $modified = date_i18n("Ymd\THis\Z", $modified_date_t);
 
             $deadline = date_i18n("Ymd\THis\Z", $start_t);
             $organiser = 'Jesus Image';
@@ -626,12 +632,18 @@ X-WR-CALNAME: $website_title";
 
             echo "
 BEGIN:VEVENT
-DTSTART;VALUE=DATE:$start_date
+CREATED:$created
+UID:JI_EVENT_$id
 DTEND;VALUE=DATE:$end_date
+TRANSP:TRANSPARENT
 SUMMARY:$title
+LAST-MODIFIED:$modified
+DTSTAMP:$now
+DTSTART;VALUE=DATE:$start_date
 DESCRIPTION:$content
 LOCATION:$address
 URL;VALUE=URI:$url
+SEQUENCE:0
 END:VEVENT
 ";
 
