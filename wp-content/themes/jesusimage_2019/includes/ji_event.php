@@ -557,7 +557,10 @@ function export_ics()
         echo "BEGIN:VCALENDAR
 VERSION:2.0
 PRODID:-//$website_title //NONSGML Events //EN
+X-WR-CALNAME:$website_title
+X-APPLE-CALENDAR-COLOR:#b7a68c
 CALSCALE:GREGORIAN
+X-WR-TIMEZONE:America/New_York
 X-WR-CALNAME: $website_title";
 
         foreach ($events as $event) :
