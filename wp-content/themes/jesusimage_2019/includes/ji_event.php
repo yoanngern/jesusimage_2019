@@ -503,9 +503,6 @@ add_action('init', 'add_calendar_feed');
 function export_ics()
 {
 
-    /*  For a better understanding of ics requirements and time formats
-        please check https://gist.github.com/jakebellacera/635416   */
-
     $today = date('Y-m-d H:i:s');
 
     $events = wp_get_recent_posts(array(
@@ -529,13 +526,12 @@ function export_ics()
 
     if ($events != null) :
 
-        // Escapes a string of characters
         function escapeString($string)
         {
             return preg_replace('/([\,;])/', '\\\$1', $string);
         }
 
-        // Cut it
+
         function shorter_version($string, $lenght)
         {
             if (strlen($string) >= $lenght) {
@@ -548,17 +544,15 @@ function export_ics()
         ob_start();
 
 
-        // Set the correct headers for this file
-        //header("Content-Description: File Transfer");
-        //header("Content-Disposition: attachment; filename=" . $filename);
+        $filename = urlencode('jesusimage-ical-' . date('Y-m-d') . '.ics');
+        $website_title = get_bloginfo('name');
+
+
+        header("Content-Description: File Transfer");
+        header("Content-Disposition: attachment; filename=" . $filename);
         header('Content-type: text/calendar; charset=utf-8');
-        //header('Content-Disposition: inline; filename="events.ics"');
         header("Pragma: 0");
         header("Expires: 0");
-
-        $eol = "\r\n";
-
-        $website_title = get_bloginfo('name');
 
         echo "BEGIN:VCALENDAR
 VERSION:2.0
@@ -566,15 +560,7 @@ PRODID:-//$website_title //NONSGML Events //EN
 CALSCALE:GREGORIAN
 X-WR-CALNAME: $website_title";
 
-        ?>
-
-
-        <?php
-
         foreach ($events as $event) :
-
-            /*  The correct date format, for ALL dates is date_i18n('Ymd\THis\Z',time(), true)
-                So if your date is not in this format, use that function    */
 
             $timestamp = date_i18n('Ymd\THis\Z', time(), true);
             $uid = $event->ID;
@@ -637,17 +623,6 @@ X-WR-CALNAME: $website_title";
 
             $title = escapeString(get_the_title($event));
 
-            //Give the iCal export a filename
-            //$filename = urlencode('jesusimage-ical-' . date('Y-m-d') . '.ics');
-
-
-            //Collect output
-
-
-            // The below ics structure MUST NOT have spaces before each line
-            // Credit for the .ics structure goes to https://gist.github.com/jakebellacera/635416
-
-
             echo "
 BEGIN:VEVENT
 DTSTART;VALUE=DATE:$start_date
@@ -670,6 +645,3 @@ END:VEVENT
     endif;
 
 }
-
-?>
-
