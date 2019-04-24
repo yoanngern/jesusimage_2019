@@ -568,7 +568,6 @@ X-WR-CALNAME: $website_title";
             $start = get_field('start', $event);
             $end = get_field('end', $event);
 
-
             $start = new DateTime($start);
             $end = new DateTime($end);
 
@@ -595,7 +594,9 @@ X-WR-CALNAME: $website_title";
                         $end = new DateTime(date_format($end, 'Y-m-d') . date_format($end_time, 'H:i:s'), new DateTimeZone('America/New_York'));
                     }
                 }
-
+            } else {
+                $start = new DateTime(date_format($start, 'Y-m-d H:i:s'), new DateTimeZone('America/New_York'));
+                $end = new DateTime(date_format($end, 'Y-m-d H:i:s'), new DateTimeZone('America/New_York'));
             }
 
             $start_t = $start->getTimestamp();
