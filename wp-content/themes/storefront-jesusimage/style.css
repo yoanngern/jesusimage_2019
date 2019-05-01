@@ -5,7 +5,7 @@ Author:         Yoann Gern
 Author URI:     http://gerny-media.ch
 Template:     	storefront
 Description:  	Template for Jesus Image Shop
-Version:      	1.0.1
+Version:      	1.0.2
 License:      	GNU General Public License v2 or later
 License URI:  	http://www.gnu.org/licenses/gpl-2.0.html
 Text Domain:  	storefront-jesusimage
@@ -24,6 +24,12 @@ a {
 #main header {
   margin-bottom: 20px; }
 
+#main p {
+  padding-bottom: 5px; }
+
+#main ul.products li a {
+  text-decoration: none; }
+
 h1 {
   font-family: brandon-grotesque, sans-serif;
   font-weight: 700;
@@ -36,9 +42,6 @@ h1 {
 
 h3 {
   line-height: 1.2em; }
-
-p {
-  padding-bottom: 5px; }
 
 .widget .widget-title,
 .widget .widgettitle {
@@ -61,6 +64,9 @@ textarea:focus {
 .woocommerce-noreviews,
 p.no-comments {
   background-color: #b7a68c; }
+
+.form-row label {
+  line-height: 1.4em; }
 
 body header#masthead > .storefront-primary-navigation {
   width: 100%;

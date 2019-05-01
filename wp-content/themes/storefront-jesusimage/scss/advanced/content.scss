@@ -14,6 +14,18 @@ a {
     header {
         margin-bottom: 20px;
     }
+
+    p {
+        padding-bottom: 5px;
+    }
+
+    ul.products {
+        li {
+            a {
+                text-decoration: none;
+            }
+        }
+    }
 }
 
 
@@ -30,9 +42,7 @@ h3 {
     line-height: 1.2em;
 }
 
-p {
-    padding-bottom: 5px;
-}
+
 
 .widget {
     .widget-title,
@@ -58,4 +68,8 @@ textarea:focus {
 p.no-comments {
     background-color: $gold;
 
+}
+
+.form-row label {
+    line-height: 1.4em;
 }
