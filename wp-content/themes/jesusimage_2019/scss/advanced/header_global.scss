@@ -306,11 +306,18 @@ body > header {
     body > header {
         & > .global {
 
+            .logo a div.svg-box {
+                width: 180px;
+                height: 26px;
+                padding-top: 13px;
+            }
+
             nav {
                 ul.menu {
                     & > li {
                         a {
-                            padding: 8px 10px;
+                            padding: 8px;
+                            font-size: 0.9em;
                         }
                     }
                 }
