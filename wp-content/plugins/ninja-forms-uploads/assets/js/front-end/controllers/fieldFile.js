@@ -272,6 +272,7 @@
 		validateRequired: function( el, model ) {
 			var files = model.get( 'files' );
 			if ( typeof files === 'undefined' || !files.length ) {
+				model.set( 'value', '' );
 				return false;
 			}
 

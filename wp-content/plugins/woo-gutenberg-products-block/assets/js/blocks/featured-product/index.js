@@ -9,6 +9,7 @@ import { registerBlockType } from '@wordpress/blocks';
  * Internal dependencies
  */
 import './style.scss';
+import './editor.scss';
 import Block from './block';
 
 /**
@@ -49,6 +50,13 @@ registerBlockType( 'woocommerce/featured-product', {
 		editMode: {
 			type: 'boolean',
 			default: true,
+		},
+
+		/**
+		 * Focus point for the background image
+		 */
+		focalPoint: {
+			type: 'object',
 		},
 
 		/**

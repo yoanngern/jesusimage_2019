@@ -4,7 +4,7 @@
  * Plugin Name: Ninja Forms - Mail Chimp
  * Plugin URI: https://ninjaforms.com/extensions/mail-chimp/
  * Description: Sign up users for your Mail Chimp newsletter when submitting Ninja Forms
- * Version: 3.1.9
+ * Version: 3.1.10
  * Author: The WP Ninjas
  * Author URI: http://wpninjas.com/
  * Text Domain: ninja-forms-mail-chimp
@@ -27,7 +27,7 @@ if( version_compare( get_option( 'ninja_forms_version', '0.0.0' ), '3', '<' ) ||
      */
     final class NF_MailChimp
     {
-        const VERSION = '3.1.9';
+        const VERSION = '3.1.10';
         const SLUG = 'mail-chimp';
         const NAME = 'MailChimp';
         const AUTHOR = 'The WP Ninjas';
@@ -109,6 +109,19 @@ if( version_compare( get_option( 'ninja_forms_version', '0.0.0' ), '3', '<' ) ||
             add_filter( 'ninja_forms_register_actions', array( $this, 'register_actions' ) );
             add_action( 'ninja_forms_loaded', array( $this, 'ninja_forms_loaded' ) );
             add_filter( 'ninja_forms_new_form_templates', array( $this, 'register_templates' ) );
+        }
+
+        /**
+         * cUrl Notice.
+         */
+        public function curl_error()
+        {
+            ?>
+            <div class="notice notice-error">
+                <p><strong><?php _e( 'Please contact your host:', 'ninja-forms-mail-chimp' ); ?></strong>&nbsp;
+                <?php _e( 'PHP cUrl is not installed. Mailchimp for Ninja Forms requires cUrl and will not function properly.', 'ninja-forms-mail-chimp' ); ?></p>
+            </div>
+            <?php
         }
 
         public function ninja_forms_loaded()

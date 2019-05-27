@@ -2,9 +2,9 @@
 Contributors: kstover, jameslaws, kbjohnson90
 Donate link: http://ninjaforms.com
 Tags: form, forms, CSS
-Requires at least: 4.6
-Tested up to: 4.8
-Stable tag: 3.0.25
+Requires at least: 4.9
+Tested up to: 5.1
+Stable tag: 3.0.26
 
 License: GPLv2 or later
 
@@ -23,6 +23,12 @@ This section describes how to install the plugin and get it working.
 For help and video tutorials, please visit our website: [NinjaForms.com](http://ninjaforms.com)
 
 == Changelog ==
+
+= 3.0.26 (4 April 2019) =
+
+*Bugs:*
+
+* Resolved an issue that was flooding error logs with warnings in php 7.3.
 
 = 3.0.25 (19 September 2017) =
 

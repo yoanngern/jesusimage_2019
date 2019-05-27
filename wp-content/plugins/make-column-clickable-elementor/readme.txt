@@ -3,7 +3,7 @@ Contributors: Amgnando
 Donate link: https://fernandoacosta.net/donate/
 Tags: elementor, column, page builder
 Requires at least: 4.5
-Tested up to: 5.1
+Tested up to: 5.2.0
 Stable tag: trunk
 Requires PHP: 5.4
 License: GPLv2 or later
@@ -46,6 +46,10 @@ If you have any issue, please use the support here.
 1. Settings
 
 == Changelog ==
+
+= 1.2.1 - 2019-04-16 =
+* New: Support to smooth scroll
+* Fix: Link now works with dynamic content.
 
 = 1.2.0 - 2019-03-14 =
 * NEW: prevent column redirect when click on custom links or buttons

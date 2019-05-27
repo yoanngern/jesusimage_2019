@@ -2,7 +2,7 @@
 	exit;
 }
 
-$max_mb_int = NF_FU_Helper::format_mb( ini_get( 'upload_max_filesize' ), true );
+$max_mb_int = NF_FU_Helper::max_upload_mb_int();
 
 return apply_filters( 'ninja_forms_uploads_field_settings', array(
 	'save_to_server' => array(

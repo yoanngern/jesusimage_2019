@@ -1,9 +1,9 @@
 === WooCommerce PayPal Checkout Payment Gateway ===
-Contributors: automattic, woothemes, akeda, dwainm, royho, allendav, slash1andy, woosteve, spraveenitpro, mikedmoore, fernashes, shellbeezy, danieldudzic, mikaey, fullysupportedphil, dsmithweb, corsonr, bor0, zandyring, pauldechov
+Contributors: automattic, woothemes, akeda, dwainm, royho, allendav, slash1andy, woosteve, spraveenitpro, mikedmoore, fernashes, shellbeezy, danieldudzic, mikaey, fullysupportedphil, dsmithweb, corsonr, bor0, zandyring, pauldechov, robobot3000
 Tags: ecommerce, e-commerce, commerce, woothemes, wordpress ecommerce, store, sales, sell, shop, shopping, cart, checkout, configurable, paypal
 Requires at least: 4.4
-Tested up to: 5.0.3
-Stable tag: 1.6.10
+Tested up to: 5.2.0
+Stable tag: 1.6.14
 License: GPLv3
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
 
@@ -100,6 +100,17 @@ Please use this to inform us about bugs, or make contributions via PRs.
 9. Initiate checkout from mini-cart.
 
 == Changelog ==
+
+= 1.6.14 - 2019-05-08 =
+* Fix - Failing checkout when no addons are used
+
+= 1.6.12 - 2019-05-08 =
+* Fix - Better handling of virtual subscriptions when billing address is not required
+* Fix - Prevent errors showing when purchasing a virtual product with WP_DEBUG enabled
+
+= 1.6.11 - 2019-04-17 =
+* Fix/Performance - Prevent db option updates during bootstrap on each page load
+* Tweak = WC 3.6 compatibiliy.
 
 = 1.6.10 - 2019-03-05 =
 * Fix - Use only product attributes when adding to cart

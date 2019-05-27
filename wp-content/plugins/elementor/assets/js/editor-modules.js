@@ -1,4 +1,4 @@
-/*! elementor - v2.5.12 - 08-04-2019 */
+/*! elementor - v2.5.15 - 07-05-2019 */
 /******/ (function(modules) { // webpackBootstrap
 /******/ 	// The module cache
 /******/ 	var installedModules = {};
@@ -82,7 +82,7 @@
 /******/
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 203);
+/******/ 	return __webpack_require__(__webpack_require__.s = 204);
 /******/ })
 /************************************************************************/
 /******/ ({
@@ -168,25 +168,25 @@ module.exports = InnerTabsBehavior;
 
 /***/ }),
 
-/***/ 203:
+/***/ 204:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 
-var _module = __webpack_require__(204);
+var _module = __webpack_require__(205);
 
 var _module2 = _interopRequireDefault(_module);
 
-var _introduction = __webpack_require__(205);
+var _introduction = __webpack_require__(206);
 
 var _introduction2 = _interopRequireDefault(_introduction);
 
-var _controlsStack = __webpack_require__(206);
+var _controlsStack = __webpack_require__(207);
 
 var _controlsStack2 = _interopRequireDefault(_controlsStack);
 
-var _baseSettings = __webpack_require__(207);
+var _baseSettings = __webpack_require__(208);
 
 var _baseSettings2 = _interopRequireDefault(_baseSettings);
 
@@ -209,7 +209,7 @@ elementorModules.editor = {
 
 /***/ }),
 
-/***/ 204:
+/***/ 205:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -250,7 +250,7 @@ module.exports = EditorModule;
 
 /***/ }),
 
-/***/ 205:
+/***/ 206:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -360,7 +360,7 @@ exports.default = _class;
 
 /***/ }),
 
-/***/ 206:
+/***/ 207:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -614,7 +614,7 @@ module.exports = ControlsStack;
 
 /***/ }),
 
-/***/ 207:
+/***/ 208:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -652,7 +652,11 @@ BaseSettingsModel = Backbone.Model.extend({
 			}
 			var controlName = control.name;
 
-			defaults[controlName] = control.default;
+			if ('object' === _typeof(control.default)) {
+				defaults[controlName] = elementorCommon.helpers.cloneObject(control.default);
+			} else {
+				defaults[controlName] = control.default;
+			}
 
 			var isDynamicControl = control.dynamic && control.dynamic.active,
 			    hasDynamicSettings = isDynamicControl && attrs.__dynamic__ && attrs.__dynamic__[controlName];
@@ -908,40 +912,24 @@ BaseSettingsModel = Backbone.Model.extend({
 			}
 		});
 
-		if (options.removeDefault) {
+		// TODO: `options.removeDefault` is a bc since 2.5.14
+		if (options.remove && -1 !== options.remove.indexOf('default') || options.removeDefault) {
 			var controls = this.controls;
 
 			_.each(data, function (value, key) {
 				var control = controls[key];
 
-				if (control) {
-					// TODO: use `save_default` in text|textarea controls.
-					if (control.save_default || ('text' === control.type || 'textarea' === control.type) && data[key]) {
-						return;
-					}
+				if (!control) {
+					return;
+				}
 
-					if (data[key] && 'object' === _typeof(data[key])) {
-						// First check length difference
-						if (Object.keys(data[key]).length !== Object.keys(control.default).length) {
-							return;
-						}
+				// TODO: use `save_default` in text|textarea controls.
+				if (control.save_default || ('text' === control.type || 'textarea' === control.type) && data[key]) {
+					return;
+				}
 
-						// If it's equal length, loop over value
-						var isEqual = true;
-
-						_.each(data[key], function (propertyValue, propertyKey) {
-							if (data[key][propertyKey] !== control.default[propertyKey]) {
-								return isEqual = false;
-							}
-						});
-
-						if (isEqual) {
-							delete data[key];
-						}
-					}
-					if (data[key] === control.default) {
-						delete data[key];
-					}
+				if (_.isEqual(data[key], control.default)) {
+					delete data[key];
 				}
 			});
 		}

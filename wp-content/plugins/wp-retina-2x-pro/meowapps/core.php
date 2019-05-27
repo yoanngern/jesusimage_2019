@@ -18,7 +18,7 @@ class MeowAppsPro_WR2X_Core {
 
 		// Overrides for the Pro
 		add_filter( 'wr2x_plugin_title', array( $this, 'plugin_title' ), 10, 1 );
-		if ( is_admin() ) {
+		if ( is_admin() && get_option( "wr2x_full_size" ) ) {
 			include __DIR__ . '/uploader.php';
 			new Meow_WR2X_Uploader( $this );
 		}

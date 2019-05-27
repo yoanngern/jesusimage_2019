@@ -699,17 +699,20 @@ class NF_Stripe_PaymentGateway extends NF_Abstracts_PaymentGateway
 
     public function enqueue_scripts( $data )
     {
-        $stripe_actions = $this->get_active_stripe_actions( $data[ 'form_id'
-        ] );
+        // Account for a form instance ID;
+        $form_instance_id = $data['form_id'];
+        list($form_id) = explode('_', $form_instance_id);
+
+        $stripe_actions = $this->get_active_stripe_actions($form_id);
         if( empty( $stripe_actions ) ) return;
 
         wp_enqueue_script( 'stripe', 'https://js.stripe.com/v1/', array( 'jquery' ) );
         wp_enqueue_script( 'nf-stripe', NF_Stripe::$url . 'assets/js/stripe.js', array( 'nf-front-end' ) );
 
-        array_push( $this->forms, array( 'id' => $data[ 'form_id' ], 'actions' => $stripe_actions ) );
+        array_push( $this->forms, array( 'id' => $form_instance_id, 'actions' => $stripe_actions ) );
         $publishable_key = '';
 
-        $preview_settings = get_user_option( 'nf_form_preview_' . $data[ 'form_id' ] );
+        $preview_settings = get_user_option( 'nf_form_preview_' . $form_id );
 
         if( $preview_settings ){
             foreach( $preview_settings[ 'actions' ] as $action ){
@@ -723,7 +726,7 @@ class NF_Stripe_PaymentGateway extends NF_Abstracts_PaymentGateway
                 $publishable_key = $this->get_publishable_key( $action[ 'settings' ][ 'stripe_test_mode' ] );
             }
         } else {
-            foreach( Ninja_Forms()->form( $data[ 'form_id' ] )->get_actions() as $action ) {
+            foreach( Ninja_Forms()->form( $form_id )->get_actions() as $action ) {
 	            // check for collectpayment and stripe
 	            if( ! in_array( $action->get_setting( 'type' ), array( 'stripe', 'collectpayment' ) ) ) {
 		            continue;

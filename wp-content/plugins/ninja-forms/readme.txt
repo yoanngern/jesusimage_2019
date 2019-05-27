@@ -1,9 +1,9 @@
 === Ninja Forms - The Easy and Powerful Forms Builder ===
 Contributors: wpninjasllc, kstover, jameslaws, kbjohnson90, klhall1987, krmoorhouse, jmcelhaney, wpnzach
 Tags: form, forms, contact form, custom form, form builder, form creator, form manager, form creation, contact forms, custom forms, forms builder, forms creator, forms manager, forms creation, form administration,
-Requires at least: 4.9
-Tested up to: 5.1
-Stable tag: 3.4.8
+Requires at least: 5.0
+Tested up to: 5.2
+Stable tag: 3.4.13
 License: GPLv2 or later
 
 Drag and drop fields in an intuitive UI to create contact forms, email subscription forms, order forms, payment forms, send emails and more!
@@ -111,21 +111,75 @@ For help and video tutorials, please visit our website: [Ninja Forms Documentati
 
 == Upgrade Notice ==
 
-= 3.4.8 (4 April 2019) =
+= 3.4.13 (17 May 2019) =
 
 *Bugs:*
 
-* Resolved several issues that sometimes caused notices to be logged on newer versions of php.
-* Changed the priority of the redirect action so that it should always fire last.
-* Calculations should now have more consistent results when numbers are input in international formats.
-* Resolved an error that was causing form submission to fail on some php versions.
-* Corrected an issue that sometimes caused forms with large calculations to not display properly.
+* Updated our form load process to better account for reported excessive page load times.
+* Resolved an issue that was causing various add-ons to behave strangely when there were multiple forms on a single page.
+* Restored the display of some action settings that were being improperly hidden in the form builder. (e.g. Stripe metadata and Update Profile custom meta.)
+* Resolved an issue that sometimes caused submission to freeze when a required field was left empty.
+* Forms should no longer fail to display when a total field is referenced in a calculation.
 
 *Changes:*
 
-* The following field types have been deprecated: Product, Quantity, Shipping, Total.
+* "Light" opinionated styles are now enabled by default on new Ninja Forms installations.
 
 == Changelog ==
+
+= 3.4.13 (17 May 2019) =
+
+*Bugs:*
+
+* Restored the display of some action settings that were being improperly hidden in the form builder. (e.g. Stripe metadata and Update Profile custom meta.)
+* Resolved an issue that sometimes caused submission to freeze when a required field was left empty.
+* Forms should no longer fail to display when a total field is referenced in a calculation.
+
+= 3.4.12 (13 May 2019) =
+
+*Bugs:*
+
+* Updated our form load process to better account for reported excessive page load times.
+* Resolved an issue that was causing various add-ons to behave strangely when there were multiple forms on a single page.
+
+*Changes:*
+
+* "Light" opinionated styles are now enabled by default on new Ninja Forms installations.
+
+= 3.4.11 (7 May 2019) =
+
+*Bugs:*
+
+* Multiple instances of the same form can now be loaded on a page.
+* Resolved an issue that sometimes prevented favorite fields from being added to a form.
+* Realistic preview of multiselect fields will now render more accurately in the builder.
+* Resolved an issue that sometimes caused required updates to miscommunicate completion progress.
+* Field keys should once more be accessible in submission filters.
+* Querystring merge tags should no longer display their tags when the querystring is not present.
+* Builder help texts should no longer contain unrendered HTML elements.
+
+*Changes:*
+
+* Added currency support for the Malaysian Ringgit.
+* Added realistic field support for the save button and password field in the form builder.
+* Some settings have been registered as developer options, which will be disabled by default to avoid settings clutter.
+* Public links are now available for Ninja Forms! Found next to the publish button, public links provide form access to anyone with the link. Just copy and paste the unique URL and anyone can see and use your form.
+
+= 3.4.10 (15 April 2019) =
+
+*Bugs:*
+
+* Resolved an issue that caused the form builder to crash when editing forms that had a select list with no options.
+
+= 3.4.9 (10 April 2019) =
+
+*Bugs:*
+
+* Resolved an issue that sometimes caused submission dates to show inaccurately in the submissions table.
+
+*Changes:*
+
+* We've upgraded our form building experience with realistic field representations!
 
 = 3.4.8 (4 April 2019) =
 

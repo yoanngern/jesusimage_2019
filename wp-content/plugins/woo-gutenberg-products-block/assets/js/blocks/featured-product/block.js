@@ -15,6 +15,7 @@ import {
 } from '@wordpress/editor';
 import {
 	Button,
+	FocalPointPicker,
 	IconButton,
 	PanelBody,
 	Placeholder,
@@ -106,7 +107,7 @@ class FeaturedProduct extends Component {
 			return;
 		}
 		apiFetch( {
-			path: `/wc-pb/v3/products/${ productId }`,
+			path: `/wc-blocks/v1/products/${ productId }`,
 		} )
 			.then( ( product ) => {
 				this.setState( { product, loaded: true } );
@@ -123,6 +124,10 @@ class FeaturedProduct extends Component {
 			overlayColor,
 			setOverlayColor,
 		} = this.props;
+
+		const url =
+			attributes.mediaSrc || getImageSrcFromProduct( this.state.product );
+		const { focalPoint = { x: 0.5, y: 0.5 } } = attributes;
 
 		return (
 			<InspectorControls key="inspector">
@@ -156,6 +161,14 @@ class FeaturedProduct extends Component {
 						max={ 100 }
 						step={ 10 }
 					/>
+					{ !! FocalPointPicker && !! url &&
+						<FocalPointPicker
+							label={ __( 'Focal Point Picker' ) }
+							url={ url }
+							value={ focalPoint }
+							onChange={ ( value ) => setAttributes( { focalPoint: value } ) }
+						/>
+					}
 				</PanelColorSettings>
 			</InspectorControls>
 		);
@@ -205,6 +218,7 @@ class FeaturedProduct extends Component {
 			contentAlign,
 			dimRatio,
 			editMode,
+			focalPoint,
 			height,
 			showDesc,
 			showPrice,
@@ -228,6 +242,10 @@ class FeaturedProduct extends Component {
 			{};
 		if ( overlayColor.color ) {
 			style.backgroundColor = overlayColor.color;
+		}
+		if ( focalPoint ) {
+			style.backgroundPosition = `${ focalPoint.x * 100 }% ${ focalPoint.y *
+				100 }%`;
 		}
 
 		const onResizeStop = ( event, direction, elt ) => {
@@ -257,6 +275,7 @@ class FeaturedProduct extends Component {
 										label={ __( 'Edit media' ) }
 										icon="format-image"
 										onClick={ open }
+										disabled={ ! this.state.product }
 									/>
 								) }
 							/>
@@ -278,9 +297,12 @@ class FeaturedProduct extends Component {
 								style={ style }
 							>
 								<div className="wc-block-featured-product__wrapper">
-									<h2 className="wc-block-featured-product__title">
-										{ product.name }
-									</h2>
+									<h2
+										className="wc-block-featured-product__title"
+										dangerouslySetInnerHTML={ {
+											__html: product.name,
+										} }
+									/>
 									{ showDesc && (
 										<div
 											className="wc-block-featured-product__description"
@@ -301,7 +323,10 @@ class FeaturedProduct extends Component {
 												[
 													'core/button',
 													{
-														text: __( 'Shop now', 'woo-gutenberg-products-block' ),
+														text: __(
+															'Shop now',
+															'woo-gutenberg-products-block'
+														),
 														url: product.permalink,
 														align: 'center',
 													},

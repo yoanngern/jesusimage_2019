@@ -41,6 +41,8 @@ class Group_Control_Query extends Group_Control_Base {
 	protected function init_fields_by_name( $name ) {
 		$fields = [];
 
+		$name .= '_';
+
 		$fields['post_type'] = [
 			'label' => __( 'Source', 'elementor-pro' ),
 			'type' => Controls_Manager::SELECT,
@@ -54,9 +56,9 @@ class Group_Control_Query extends Group_Control_Base {
 			'type' => Controls_Manager::TABS,
 		];
 
-		$tabs_wrapper = $name . '_query_args';
-		$include_wrapper = $name . '_query_include';
-		$exclude_wrapper = $name . '_query_exclude';
+		$tabs_wrapper = $name . 'query_args';
+		$include_wrapper = $name . 'query_include';
+		$exclude_wrapper = $name . 'query_exclude';
 
 		$fields['query_include'] = [
 			'type' => Controls_Manager::TAB,
@@ -112,7 +114,8 @@ class Group_Control_Query extends Group_Control_Base {
 			'options' => [],
 			'label_block' => true,
 			'multiple' => true,
-			'filter_type' => 'taxonomy',
+			'filter_type' => 'cpt_taxonomies',
+			'group_prefix' => $name,
 			'include_type' => true,
 			'condition' => [
 				'include' => 'terms',
@@ -205,7 +208,8 @@ class Group_Control_Query extends Group_Control_Base {
 			'options' => [],
 			'label_block' => true,
 			'multiple' => true,
-			'filter_type' => 'taxonomy',
+			'filter_type' => 'cpt_taxonomies',
+			'group_prefix' => $name,
 			'include_type' => true,
 			'condition' => [
 				'exclude' => 'terms',
@@ -313,6 +317,7 @@ class Group_Control_Query extends Group_Control_Base {
 					'current_query',
 				],
 			],
+			'description' => __( 'Setting a ‘Before’ date will show all the posts published until the chosen date (inclusive).', 'elementor-pro' ),
 		];
 
 		$fields['date_after'] = [
@@ -331,7 +336,7 @@ class Group_Control_Query extends Group_Control_Base {
 					'current_query',
 				],
 			],
-			'description' => __( 'Before & After dates are inclusive', 'elementor-pro' ),
+			'description' => __( 'Setting an ‘After’ date will show all the posts published since the chosen date (inclusive).', 'elementor-pro' ),
 		];
 
 		$fields['orderby'] = [

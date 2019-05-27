@@ -2,16 +2,15 @@
  * External dependencies
  */
 import { __, _n, sprintf } from '@wordpress/i18n';
-import { addQueryArgs } from '@wordpress/url';
-import apiFetch from '@wordpress/api-fetch';
 import { Component, Fragment } from '@wordpress/element';
-import { find } from 'lodash';
+import { debounce, find } from 'lodash';
 import PropTypes from 'prop-types';
+import { SearchListControl } from '@woocommerce/components';
 
 /**
  * Internal dependencies
  */
-import SearchListControl from '../search-list-control';
+import { isLargeCatalog, getProducts } from '../utils';
 
 class ProductsControl extends Component {
 	constructor() {
@@ -20,12 +19,25 @@ class ProductsControl extends Component {
 			list: [],
 			loading: true,
 		};
+
+		this.debouncedOnSearch = debounce( this.onSearch.bind( this ), 400 );
 	}
 
 	componentDidMount() {
-		apiFetch( {
-			path: addQueryArgs( '/wc-pb/v3/products', { per_page: -1, status: 'publish' } ),
-		} )
+		const { selected } = this.props;
+
+		getProducts( { selected } )
+			.then( ( list ) => {
+				this.setState( { list, loading: false } );
+			} )
+			.catch( () => {
+				this.setState( { list: [], loading: false } );
+			} );
+	}
+
+	onSearch( search ) {
+		const { selected } = this.props;
+		getProducts( { selected, search } )
 			.then( ( list ) => {
 				this.setState( { list, loading: false } );
 			} )
@@ -72,6 +84,7 @@ class ProductsControl extends Component {
 					list={ list }
 					isLoading={ loading }
 					selected={ selected.map( ( id ) => find( list, { id } ) ).filter( Boolean ) }
+					onSearch={ isLargeCatalog ? this.debouncedOnSearch : null }
 					onChange={ onChange }
 					messages={ messages }
 				/>

@@ -2,16 +2,15 @@
  * External dependencies
  */
 import { __ } from '@wordpress/i18n';
-import { addQueryArgs } from '@wordpress/url';
-import apiFetch from '@wordpress/api-fetch';
 import { Component, Fragment } from '@wordpress/element';
-import { find } from 'lodash';
+import { debounce, find } from 'lodash';
 import PropTypes from 'prop-types';
+import { SearchListControl } from '@woocommerce/components';
 
 /**
  * Internal dependencies
  */
-import SearchListControl from '../search-list-control';
+import { isLargeCatalog, getProducts } from '../utils';
 
 class ProductControl extends Component {
 	constructor() {
@@ -20,15 +19,25 @@ class ProductControl extends Component {
 			list: [],
 			loading: true,
 		};
+
+		this.debouncedOnSearch = debounce( this.onSearch.bind( this ), 400 );
 	}
 
 	componentDidMount() {
-		apiFetch( {
-			path: addQueryArgs( '/wc-pb/v3/products', {
-				per_page: -1,
-				status: 'publish',
-			} ),
-		} )
+		const { selected } = this.props;
+
+		getProducts( { selected } )
+			.then( ( list ) => {
+				this.setState( { list, loading: false } );
+			} )
+			.catch( () => {
+				this.setState( { list: [], loading: false } );
+			} );
+	}
+
+	onSearch( search ) {
+		const { selected } = this.props;
+		getProducts( { selected, search } )
 			.then( ( list ) => {
 				this.setState( { list, loading: false } );
 			} )
@@ -66,6 +75,7 @@ class ProductControl extends Component {
 					isSingle
 					selected={ [ find( list, { id: selected } ) ] }
 					onChange={ onChange }
+					onSearch={ isLargeCatalog ? this.debouncedOnSearch : null }
 					messages={ messages }
 				/>
 			</Fragment>

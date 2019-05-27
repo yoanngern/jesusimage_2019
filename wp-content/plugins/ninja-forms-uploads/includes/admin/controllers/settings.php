@@ -116,7 +116,7 @@ class NF_FU_Admin_Controllers_Settings {
 		$max_file_size_mb = $this->get_setting( 'max_filesize' );
 		if ( empty( $max_file_size_mb ) ) {
 			// If setting not saved use the server max
-			$max_file_size_mb = NF_FU_Helper::format_mb( ini_get( 'upload_max_filesize' ), true );
+			$max_file_size_mb = NF_FU_Helper::max_upload_mb_int();
 		}
 
 		return $max_file_size_mb;
