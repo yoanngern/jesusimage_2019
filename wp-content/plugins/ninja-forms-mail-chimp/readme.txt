@@ -1,9 +1,9 @@
 === Ninja Forms - MailChimp ===
 Contributors: wpninjasllc, kbjohnson90, pippinsplugins, klhall1987
 Tags: form, forms, ninja forms, mailpoet, wysija, newsletters, email
-Requires at least: 4.7
-Tested up to: 4.9
-Stable tag: 3.1.9
+Requires at least: 5.0
+Tested up to: 5.2
+Stable tag: 3.1.10
 License: GPLv2 or later
 
 == Description ==
@@ -22,6 +22,10 @@ This section describes how to install the plugin.
 2. Activate the plugin through the 'Plugins' menu in WordPress
 
 == Changelog ==
+
+= 3.1.10 (15 May 2019) =
+
+* An error should now be thrown if cUrl is not installed on the site.
 
 = 3.1.9 (27 November 2018) =
 

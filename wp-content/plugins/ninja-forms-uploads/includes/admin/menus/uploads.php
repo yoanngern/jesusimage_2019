@@ -136,11 +136,12 @@ final class NF_FU_Admin_Menus_Uploads extends NF_Abstracts_Submenu {
 				continue;
 			}
 
-			if ( 'max_filesize' === $key ) {
-				if ( $value > preg_replace( "/[^0-9]/", "", NF_FU_Helper::format_mb( ini_get( 'upload_max_filesize' ) ) ) ) {
-					$value = preg_replace( "/[^0-9]/", "", NF_FU_Helper::format_mb( ini_get( 'upload_max_filesize' ) ) );
-				}
+			if ( 'max_filesize' === $key && $value ) {
 				$value = preg_replace( "/[^0-9]/", "", $value );
+				$max   = NF_FU_Helper::max_upload_mb_int();
+				if ( $value > $max ) {
+					$value = $max;
+				}
 			}
 
 			if ( 'custom_upload_dir' !== $key ) {

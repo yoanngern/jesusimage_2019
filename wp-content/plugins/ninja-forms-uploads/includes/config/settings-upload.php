@@ -18,8 +18,8 @@ if ( ! isset( $raw ) ) {
 	$full_dir .= NF_File_Uploads()->controllers->settings->custom_upload_dir();
 }
 
-$max_filesize = NF_FU_Helper::format_mb( ini_get( 'upload_max_filesize' ) );
-$max_mb_int = substr( $max_filesize, 0, -1 );
+$max_mb_int = NF_FU_Helper::max_upload_mb_int();
+$max_filesize = $max_mb_int . 'M';
 
 if ( isset( $default ) ) {
 	$default = ( $default < $max_mb_int ) ? $default : $max_mb_int;

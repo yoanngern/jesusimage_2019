@@ -240,7 +240,7 @@ class Give_Stripe_Settings {
 						'desc'          => __( 'This text appears briefly after the donor has made a successful donation while Give is confirming the payment with the Stripe API.', 'give-stripe' ),
 						'id'            => 'stripe_checkout_processing_text',
 						'wrapper_class' => 'stripe-checkout-field ' . $this->stripe_modal_checkout_status(),
-						'default'       => __( 'Donation Processing...', 'give-stripe' ),
+						'default'       => __( 'Processing Donation...', 'give-stripe' ),
 						'type'          => 'text',
 					),
 					array(

@@ -7,7 +7,7 @@ if( class_exists( 'NF_Styles', false ) ) return;
  */
 final class NF_Styles
 {
-    const VERSION = '3.0.25';
+    const VERSION = '3.0.26';
     const SLUG    = 'styles';
     const NAME    = 'Styles';
     const AUTHOR  = 'WP Ninjas';
@@ -281,7 +281,7 @@ final class NF_Styles
                                     break;
                                 case 'display':
                                 case 'float':
-                                    continue;
+                                    continue 2;
                                 default:
                                     $selector = '.ninja-forms-field';
                                     $styles[ '.nf-field-element > div' ][ $element ] = $style;
@@ -344,7 +344,7 @@ final class NF_Styles
                                         case 'float':
                                         case 'height':
                                         case 'width':
-                                            continue;
+                                            continue 2;
                                     }
                                 }
                             }
@@ -365,7 +365,7 @@ final class NF_Styles
                                         case 'float':
                                         case 'height':
                                         case 'width':
-                                            continue;
+                                            continue 2;
                                     }
                                 }
                             }
@@ -386,7 +386,7 @@ final class NF_Styles
                                         case 'float':
                                         case 'height':
                                         case 'width':
-                                            continue;
+                                            continue 2;
                                     }
 
                                     if( 'color' == $rule ){
@@ -414,7 +414,7 @@ final class NF_Styles
                                             break;
                                         case 'display':
                                         case 'float':
-                                            continue;
+                                            continue 2;
                                         default:
                                             $selector = '.ninja-forms-field';
                                             $styles[ str_replace( '{field-type}' , $field_type, $base_selector ) . ' .nf-field-element > div' ][ $rule ] = $value;
@@ -585,7 +585,7 @@ final class NF_Styles
                                     case 'float':
                                     case 'height':
                                     case 'width':
-                                        continue;
+                                        continue 2;
                                 }
 
                                 if( 'color' == $rule ){
@@ -611,7 +611,7 @@ final class NF_Styles
                                     break;
                                 case 'display':
                                 case 'float':
-                                    continue;
+                                    continue 2;
                                 default:
                                     $selector = '.ninja-forms-field';
                                     $styles[ ' .nf-field-element > div' ][ $rule ] = $field_setting;
@@ -636,7 +636,7 @@ final class NF_Styles
                                     break;
                                 case 'display':
                                 case 'float':
-                                    continue;
+                                    continue 2;
                             }
                         }
 
@@ -655,7 +655,7 @@ final class NF_Styles
                                 case 'float':
                                 case 'height':
                                 case 'width':
-                                    continue;
+                                    continue 2;
                             }
                         }
                     }

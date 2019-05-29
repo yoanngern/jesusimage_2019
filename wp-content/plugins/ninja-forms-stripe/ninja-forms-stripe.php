@@ -4,7 +4,7 @@
  * Plugin Name: Ninja Forms - Stripe
  * Plugin URI: http://ninjaforms.com/downloads/stripe
  * Description: Allows for integration with the Stripe payment gateway.
- * Version: 3.0.21
+ * Version: 3.0.22
  * Author: The WP Ninjas
  * Author URI: http://ninjaforms.com
  * Text Domain: ninja-forms-stripe
@@ -17,7 +17,7 @@ if( version_compare( get_option( 'ninja_forms_version', '0.0.0' ), '3', '<' ) ||
 
     define( 'NF_STRIPE_DIR', plugin_dir_path( __FILE__ ) . 'deprecated/' );
     define( 'NF_STRIPE_URL', plugins_url().'/'.basename( dirname( __FILE__ ) ) . '/deprecated' );
-    define( 'NF_STRIPE_VERSION', '3.0.21' );
+    define( 'NF_STRIPE_VERSION', '3.0.22' );
     define( 'NF_STRIPE_DEBUG', false );
 
     /**
@@ -35,7 +35,7 @@ if( version_compare( get_option( 'ninja_forms_version', '0.0.0' ), '3', '<' ) ||
      */
     final class NF_Stripe
     {
-        const VERSION = '3.0.21';
+        const VERSION = '3.0.22';
         const SLUG    = 'stripe';
         const NAME    = 'Stripe';
         const AUTHOR  = 'The WP Ninjas';

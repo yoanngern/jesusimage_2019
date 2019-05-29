@@ -82,9 +82,15 @@ class NF_FU_Fields_Upload extends NF_Abstracts_Field {
 
 		// Loop through all files
 		foreach ( $field['files'] as $file_key => $file ) {
-			$tmp_file = NF_File_Uploads()->controllers->uploads->get_path( $file['tmp_name'], true );
+			$tmp_file = basename( $file['tmp_name'] ); // Stop traversal exploits
+			$tmp_file = NF_File_Uploads()->controllers->uploads->get_path( $tmp_file, true );
+			if ( ! file_exists( $tmp_file ) ) {
+				$data['errors']['fields'][ $field['id'] ] = __( 'Temp file does not exist', 'ninja-forms-uploads' );
 
-			// Remove any path from the filename as a security message
+				return $data;
+			}
+
+			// Remove any path from the filename as a security measure
 			$original_filename = basename( $file['name'] );
 
 			// Remove the extension from the file name
@@ -93,6 +99,13 @@ class NF_FU_Fields_Upload extends NF_Abstracts_Field {
 
 			// Check for blacklisted file types
 			if ( NF_FU_AJAX_Controllers_Uploads::blacklisted( NF_FU_AJAX_Controllers_Uploads::get_extension_blacklist(), str_replace( '_', '', trim( $ext ) ) ) ) {
+				$data['errors']['fields'][ $field['id'] ] = __( 'File extension not allowed', 'ninja-forms-uploads' );
+
+				return $data;
+			}
+
+			$file_info = wp_check_filetype( $original_filename );
+			if ( empty( $file_info['ext'] ) ) {
 				$data['errors']['fields'][ $field['id'] ] = __( 'File extension not allowed', 'ninja-forms-uploads' );
 
 				return $data;
@@ -137,6 +150,25 @@ class NF_FU_Fields_Upload extends NF_Abstracts_Field {
 
 			// Get final filename
 			$file_name   = basename( $target_file );
+
+			// Check file extension isn't blacklisted for final file
+			$final_file_parts = explode( '.', $file_name );
+			$final_ext        = array_pop( $final_file_parts );
+
+			// Check for blacklisted file types
+			if ( NF_FU_AJAX_Controllers_Uploads::blacklisted( NF_FU_AJAX_Controllers_Uploads::get_extension_blacklist(), str_replace( '_', '', trim( $final_ext ) ) ) ) {
+				$data['errors']['fields'][ $field['id'] ] = __( 'File extension not allowed', 'ninja-forms-uploads' );
+
+				return $data;
+			}
+
+			$file_info = wp_check_filetype( $file_name );
+			if ( empty( $file_info['ext'] ) ) {
+				$data['errors']['fields'][ $field['id'] ] = __( 'File extension not allowed', 'ninja-forms-uploads' );
+
+				return $data;
+			}
+
 			$custom_path = str_replace( trailingslashit( $base_dir ), '', trailingslashit( $target_path ) );
 			$file_url    = trailingslashit( $base_url . ltrim( $custom_path, '/' ) ) . $file_name;
 

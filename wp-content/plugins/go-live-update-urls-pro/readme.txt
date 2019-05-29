@@ -2,10 +2,10 @@
 Contributors: Mat Lipe
 Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=paypal%40lipeimagination%2einfo&lc=US&item_name=Go%20Live%20Update%20Urls&no_note=0&currency_code=USD&bn=PP%2dDonationsBF%3abtn_donateCC_LG%2egif%3aNonHostedGuest
 Tags: Go Live, Urls, Domain Changes 
-Requires at least: 4.6.0
-Tested up to: 5.0.3
+Requires at least: 4.8.0
+Tested up to: 5.2.0
 Requires PHP: 5.4.4
-Stable tag: 2.4.0
+Stable tag: 2.5.1
 License: Copyright Mat Lipe Dot Com
 
 == Description ==
@@ -19,6 +19,9 @@ Install and activate the Go Live Update Urls Plugin
 Install and activate this plugin.
 
 == Changelog ==
+= 2.5.0 =
+* All new v2 plugin update and license system.
+
 = 2.4.0 =
 * Ability to choose between a full table list and sections.
 

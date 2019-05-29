@@ -22,33 +22,19 @@ final class NF_FU_Helper {
 	}
 
 	/**
-	 * Format a number to MBs
+	 * Get the lowest integer in MB for upload max size.
 	 *
-	 * @param int  $val
-	 * @param bool $return_int
-	 *
-	 * @return int|string
+	 * @return float|int|mixed
 	 */
-	public static function format_mb( $val, $return_int = false ) {
-		$val  = trim( $val );
-		$last = strtolower( $val[ strlen( $val ) - 1 ] );
-		switch ( $last ) {
-			// The 'G' modifier is available since PHP 5.1.0
-			case 'g':
-				$val *= 1024;
-				break;
-			case 'k':
-				$val /= 1024;
-				break;
-		}
+	public static function max_upload_mb_int() {
+		$u_bytes = wp_convert_hr_to_bytes( ini_get( 'upload_max_filesize' ) );
+		$p_bytes = wp_convert_hr_to_bytes( ini_get( 'post_max_size' ) );
 
-		$val = rtrim( strtoupper( $val ), 'M' ) . 'M';
+		$max = min( $u_bytes, $p_bytes );
 
-		if ( $return_int ) {
-			$val = substr( $val, 0, -1 );
-		}
+		$max = $max / MB_IN_BYTES;
 
-		return $val;
+		return $max;
 	}
 
 	/**

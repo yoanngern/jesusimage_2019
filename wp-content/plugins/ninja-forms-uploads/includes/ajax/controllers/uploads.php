@@ -20,6 +20,13 @@ class NF_FU_AJAX_Controllers_Uploads extends NF_Abstracts_Controller {
 	 */
 	public function handle_upload() {
 		$field_id = filter_input( INPUT_POST, 'field_id' );
+
+        /* Render Instance Fix */
+        if(strpos($field_id, '_')){
+            list($field_id) = explode('_', $field_id);
+		}
+        /* END Render Instance Fix */
+
 		if ( empty( $field_id ) ) {
 			$this->_errors[] = __( 'No field ID supplied', 'ninja-forms-uploads' );
 			$this->_respond();
@@ -127,6 +134,15 @@ class NF_FU_AJAX_Controllers_Uploads extends NF_Abstracts_Controller {
 
 		$form_id = filter_input( INPUT_POST, 'form_id', FILTER_VALIDATE_INT );
 		$field_id = filter_input( INPUT_POST, 'field_id', FILTER_VALIDATE_INT );
+
+        /* Render Instance Fix */
+        if(strpos($form_id, '_')){
+            list($form_id) = explode('_', $form_id);
+		}
+        if(strpos($field_id, '_')){
+            list($field_id) = explode('_', $field_id);
+		}
+        /* END Render Instance Fix */
 
 		if ( ! isset( $form_id ) || ! isset( $field_id ) ) {
 			// Haven't got the data to grab field settings, bail

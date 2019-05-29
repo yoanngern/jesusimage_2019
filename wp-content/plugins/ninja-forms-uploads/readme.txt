@@ -2,9 +2,9 @@
 Contributors: kstover, jameslaws
 Donate link: http://ninjaforms.com
 Tags: form, forms
-Requires at least: 4.6
-Tested up to: 4.9.8
-Stable tag: 3.0.22
+Requires at least: 5.0
+Tested up to: 5.2
+Stable tag: 3.0.25
 
 License: GPLv2 or later
 
@@ -26,6 +26,34 @@ This section describes how to install the plugin and get it working.
 For help and video tutorials, please visit our website: [NinjaForms.com](http://ninjaforms.com)
 
 == Changelog ==
+
+= 3.0.26 (15 May 2019) =
+
+*Bugs:*
+
+* Fixes 'No field ID supplied' error message when post_max_size PHP config value is lower than upload_max_filesize.
+
+= 3.0.25 (8 May 2019) =
+
+*Bugs:*
+
+* Nonce errors should no longer occur when multiple instances of the same form exist on a page.
+
+= 3.0.24 (22 April 2019) =
+
+*Bugs:*
+
+* Fixes the bypassing of a required file upload field if a previously uploaded file is deleted.
+
+*Changes:*
+
+* Updated jQuery File Upload library to v9.30.0.
+
+= 3.0.23 (11 April 2019) =
+
+*Bugs:*
+
+* Critical security flaws which could allow file extensions to be changed and files to be traversed (Props [Jasper Weijts, Onvio](https://www.onvio.nl))
 
 = 3.0.22 (30 November 2018) =
 

@@ -62,23 +62,33 @@ class Give_Stripe_Card extends Give_Stripe_Gateway {
 
 		$posted_data                = filter_input_array( INPUT_POST );
 		$is_billing_enabled         = give_is_setting_enabled( give_get_option( 'stripe_collect_billing' ) );
-		$is_stripe_checkout_enabled = give_is_setting_enabled( give_get_option( 'stripe_checkout_enabled' ) );
 
 		// Bailout, if payment request tab data is not submitted.
 		if (
 			give_is_gateway_active( 'stripe' ) &&
-			'stripe' === give_get_chosen_gateway( $posted_data['give-form-id'] ) &&
-			$is_billing_enabled &&
-			! $is_stripe_checkout_enabled &&
-			give_stripe_is_apple_google_pay_enabled() &&
-			! empty( $posted_data['is_payment_request'] )
-
+			'stripe' === give_get_chosen_gateway( $posted_data['give-form-id'] )
 		) {
-			unset( $required_fields['card_address'] );
-			unset( $required_fields['card_zip'] );
-			unset( $required_fields['card_city'] );
-			unset( $required_fields['billing_country'] );
-			unset( $required_fields['card_state'] );
+
+			if (
+				! $is_billing_enabled ||
+				(
+					give_stripe_is_apple_google_pay_enabled() &&
+					! empty( $posted_data['is_payment_request'] )
+				)
+			) {
+				unset( $required_fields['card_address'] );
+				unset( $required_fields['card_zip'] );
+				unset( $required_fields['card_city'] );
+				unset( $required_fields['billing_country'] );
+				unset( $required_fields['card_state'] );
+			}
+
+			if (
+				! empty( $posted_data['is_payment_request'] ) &&
+				'multi' === give_get_option( 'stripe_cc_fields_format', 'multi' )
+			) {
+				unset( $required_fields['card_name'] );
+			}
 		}
 
 		return $required_fields;

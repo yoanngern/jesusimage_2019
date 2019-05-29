@@ -2,9 +2,9 @@
 Contributors: kstover, jameslaws, kbjohnson, klhall1987, Much2tall, ericwindham, wpnzach
 Donate link: http://ninjaforms.com
 Tags: form, forms
-Requires at least: 4.8
-Tested up to: 5.0
-Stable tag: 3.0.21
+Requires at least: 5.0
+Tested up to: 5.2
+Stable tag: 3.0.22
 
 License: GPLv2 or later
 
@@ -25,6 +25,12 @@ This section describes how to install the plugin and get it working.
 For help and video tutorials, please visit our website: [NinjaForms.com](http://ninjaforms.com)
 
 == Changelog ==
+
+= 3.0.22 (8 May 2019) =
+
+*Bugs:*
+
+* The checkout modal should now work when multiple instances of the same form exist on a page.
 
 = 3.0.21 (4 February 2019) =
 

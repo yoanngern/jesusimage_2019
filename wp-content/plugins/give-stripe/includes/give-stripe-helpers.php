@@ -110,10 +110,10 @@ function give_stripe_credit_card_form( $form_id, $args, $echo = true ) {
 				<?php endif; ?>
 				<?php
 				if ( 'single' === $stripe_cc_field_format ) {
-					
+
 					// Display the stripe container which can be occupied by Stripe for CC fields.
 					echo '<div id="give-stripe-single-cc-fields-' . esc_html( $id_prefix ) . '" class="give-stripe-single-cc-field-wrap"></div>';
-					
+
 				} elseif ( 'multi' === $stripe_cc_field_format ) {
 					?>
                     <div id="give-card-number-wrap" class="form-row form-row-two-thirds form-row-responsive give-stripe-cc-field-wrap">
@@ -158,7 +158,7 @@ function give_stripe_credit_card_form( $form_id, $args, $echo = true ) {
                                 placeholder="<?php esc_attr_e( 'Cardholder Name', 'give-stripe' ); ?>"
                         />
                     </div>
-					
+
 					<?php do_action( 'give_before_cc_expiration' ); ?>
 
                     <div id="give-card-expiration-wrap" class="card-expiration form-row form-row-one-third form-row-responsive give-stripe-cc-field-wrap">
@@ -187,7 +187,7 @@ function give_stripe_credit_card_form( $form_id, $args, $echo = true ) {
 			 * @param array $args    List of additional arguments.
 			 */
 			do_action( 'give_after_cc_expiration', $form_id, $args );
-			
+
 			/**
 			 * This action hook is used to display content after the Credit Card expiration field.
 			 *
@@ -225,7 +225,7 @@ function give_stripe_add_billing_address_to_cc_fields( $form_id, $args ) {
 	if ( ! $billing_fields_enabled ) {
 		remove_action( 'give_after_cc_fields', 'give_default_cc_address_fields' );
 	}
-	
+
 	do_action( 'give_after_cc_fields', $form_id, $args );
 }
 
@@ -243,7 +243,12 @@ function give_stripe_display_payment_request_button( $form_id, $args ) {
 
 	$user_agent         = give_get_user_agent();
 	$id_prefix          = ! empty( $args['id_prefix'] ) ? $args['id_prefix'] : '';
-    $is_billing_enabled = give_get_option( 'stripe_collect_billing' );
+	$is_billing_enabled = give_get_option( 'stripe_collect_billing' );
+
+	// Don't display payment request HTML markup when other gateways are selected.
+	if ( 'stripe' !== give_get_chosen_gateway( $form_id ) ) {
+		return;
+	}
 
 	// Display Payment Request Button only of Apple/Google Pay is enabled.
 	if ( ! give_is_stripe_checkout_enabled() && give_stripe_is_apple_google_pay_enabled() ) {
