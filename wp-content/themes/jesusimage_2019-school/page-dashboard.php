@@ -50,6 +50,8 @@
 
                 $app_form = get_field('user_app_form', wp_get_current_user());
                 $app_fee = get_field('user_app_fee', wp_get_current_user());
+                $app_resume = get_field('user_resume', wp_get_current_user());
+
                 $year = get_field('user_app_year', wp_get_current_user());
                 $app_status = get_field('user_app_status', wp_get_current_user());
                 $student_id = get_field('user_student_id', wp_get_current_user());
@@ -98,6 +100,10 @@
                         </thead>
                         <tbody>
                         <tr>
+                            <td>School Year</td>
+                            <td><?php echo $year['label'] ?></td>
+                        </tr>
+                        <tr>
                             <td>Application Form</td>
                             <td><?php echo $app_form['label'] ?></td>
                         </tr>
@@ -106,13 +112,13 @@
                             <td><?php echo $app_fee['label'] ?></td>
                         </tr>
                         <tr>
-                            <td>Year</td>
-                            <td><?php echo $year['label'] ?></td>
+                            <td>My Resume</td>
+                            <td><?php echo $app_resume['label'] ?></td>
                         </tr>
                         </tbody>
                     </table>
 
-                    <h2>Next step</h2>
+                    <h2>Next steps</h2>
 
                     <?php if ($year['value'] == '1'): ?>
 
@@ -128,6 +134,12 @@
                             <?php if ($app_fee['value'] != 'paid' && get_field('first_app_fee')): ?>
 
                                 <a href="<?php echo get_field('first_app_fee'); ?>" class="button">Application fee</a>
+
+                            <?php endif; ?>
+
+                            <?php if ($app_resume['value'] != 'received' && get_field('first_app_resume')): ?>
+
+                                <a href="<?php echo get_field('first_app_resume'); ?>" class="button">Upload my resume</a>
 
                             <?php endif; ?>
                         </p>
