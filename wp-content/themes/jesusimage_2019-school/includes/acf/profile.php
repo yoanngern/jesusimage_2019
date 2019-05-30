@@ -116,9 +116,9 @@ if( function_exists('acf_add_local_field_group') ):
                     1 => 'editor',
                 ),
                 'choices' => array(
-                    1 => '&#x2460; First year',
-                    2 => '&#x2461; Second year',
-                    3 => '&#x2462; Third year',
+                    1 => 'First year',
+                    2 => 'Second year',
+                    3 => 'Third year',
                 ),
                 'default_value' => array(
                     0 => 1,
