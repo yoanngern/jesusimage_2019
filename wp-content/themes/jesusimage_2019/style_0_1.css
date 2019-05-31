@@ -664,7 +664,12 @@ section.content-default {
     article.home-default .wp-block-image .alignleft,
     section.content-default .wp-block-image .alignleft {
       width: 100%;
-      float: none; } }
+      float: none; }
+    article.content-page table a.button,
+    article.home-default table a.button,
+    section.content-default table a.button {
+      font-size: 0.8em;
+      padding: 3px 15px; } }
 
 .elementor-text-editor p {
   padding: 5px 0 15px;
