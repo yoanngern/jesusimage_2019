@@ -121,7 +121,7 @@
                                     <td><?php echo $app_fee['label'] ?></td>
                                 </tr>
 
-                                <?php if ($app_form['value'] == 'received' && $app_fee['value'] == 'paid'): ?>
+                                <?php if ($app_form['value'] == 'received' && $app_fee['value'] == 'paid' && $year['value'] == '1'): ?>
                                     <tr>
                                         <td>My Resume</td>
                                         <td><?php echo $app_resume['label'] ?></td>
