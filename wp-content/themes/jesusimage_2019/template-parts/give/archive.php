@@ -16,10 +16,10 @@
     <div class="platter">
 
 
-		<?php
+        <?php
 
 
-		if ( have_posts() ) : ?>
+        if (have_posts()) : ?>
 
 
             <section id="listOfGive">
@@ -37,23 +37,23 @@
                         </thead>
                         <tbody>
 
-						<?php
+                        <?php
 
-						/* Start the Loop */
-						while ( have_posts() ) :
-							the_post();
+                        /* Start the Loop */
+                        while (have_posts()) :
+                            the_post();
 
-							$person_id = get_field( 'student' );
+                            $person_id = get_field('student');
 
-							$person = get_userdata( $person_id );
+                            $person = get_userdata($person_id);
 
-							$title = $person->first_name . " " . $person->last_name;
+                            $title = $person->first_name . " " . $person->last_name;
 
-							$year = get_field( 'user_app_year', $person );
+                            $year = get_field('user_app_year', $person);
 
-							$url = get_the_permalink();
+                            $url = get_the_permalink();
 
-							?>
+                            ?>
 
                             <tr>
                                 <td><?php echo $title; ?></td>
@@ -62,7 +62,7 @@
                             </tr>
 
 
-						<?php endwhile; ?>
+                        <?php endwhile; ?>
 
                         </tbody>
 
@@ -73,18 +73,18 @@
 
 
             <nav class="nav">
-                <div class="previous"><?php previous_posts_link( __( 'Previous', 'ji_2019' ) ); ?></div>
-                <div class="next"><?php next_posts_link( __( 'Next', 'ji_2019' ) ); ?></div>
+                <div class="previous"><?php previous_posts_link(__('Previous', 'ji_2019')); ?></div>
+                <div class="next"><?php next_posts_link(__('Next', 'ji_2019')); ?></div>
             </nav>
 
-		<?php
+        <?php
 
-		else :
+        else :
 
-			get_template_part( 'template-parts/give/none' );
+            get_template_part('template-parts/give/none');
 
-		endif;
-		?>
+        endif;
+        ?>
 
     </div>
 
