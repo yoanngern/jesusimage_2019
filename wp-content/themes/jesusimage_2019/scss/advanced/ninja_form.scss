@@ -62,11 +62,11 @@
     .ninja-forms-req-symbol,
     .nf-error-msg {
         color: $gold;
-        @include brandon-grotesque();
+        @include brandon-grotesque-med();
     }
 
     .nf-error-msg {
-        font-size: 0.8em;
+        font-size: 0.9em;
     }
 
     .nf-help {
