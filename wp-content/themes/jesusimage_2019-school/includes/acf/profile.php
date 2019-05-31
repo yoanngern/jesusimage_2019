@@ -99,6 +99,37 @@ if( function_exists('acf_add_local_field_group') ):
                 'placeholder' => '',
             ),
             array(
+                'key' => 'field_5cf0014d7229b',
+                'label' => 'Pastoral references',
+                'name' => 'user_pastoral_references',
+                'type' => 'select',
+                'instructions' => '',
+                'required' => 0,
+                'conditional_logic' => 0,
+                'wrapper' => array(
+                    'width' => '',
+                    'class' => '',
+                    'id' => '',
+                ),
+                'user_roles' => array(
+                    0 => 'administrator',
+                    1 => 'editor',
+                ),
+                'choices' => array(
+                    'not_received' => '&#x2639; Not received',
+                    'received' => '&#x1F642; Received',
+                ),
+                'default_value' => array(
+                    0 => 'not_received',
+                ),
+                'allow_null' => 0,
+                'multiple' => 0,
+                'ui' => 0,
+                'return_format' => 'array',
+                'ajax' => 0,
+                'placeholder' => '',
+            ),
+            array(
                 'key' => 'field_5c6832c1fb914',
                 'label' => 'Year',
                 'name' => 'user_app_year',
@@ -150,9 +181,6 @@ if( function_exists('acf_add_local_field_group') ):
                 'choices' => array(
                     'not_apply' => '...',
                     'applying' => '&#x270D; Applying',
-                    'ready_for_interview' => 'Ready for interview',
-                    'interview_scheduled' => 'Interview scheduled',
-                    'second_interview' => 'Second interview',
                     'accepted' => '&#x2705; Accepted',
                     'declined' => '&#x274E; Declined',
                 ),

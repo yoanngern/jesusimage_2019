@@ -31,7 +31,7 @@ body > header {
                     }
                 }
 
-                //&.current-menu-item,
+                &.current-menu-item,
                 &.current_page_item {
                     & > a {
                         color: $brown;
@@ -84,6 +84,12 @@ section.content-default {
         //color: $brown;
     }
 
+    div.floatblock {
+        display: inline-block;
+        width: 40%;
+        margin: 0 8% 0 0;
+    }
+
     table.dashboard {
         max-width: 400px;
         margin: 20px 0 30px;
@@ -118,6 +124,10 @@ section.content-default {
     .nf-cell {
 
         .nf-field-container {
+
+            button {
+                background-color: $brown;
+            }
 
             input,
             textarea {
@@ -174,4 +184,16 @@ section.content-default {
     }
 }
 
+
+@media only screen and (max-width: 767px) {
+    article.content-page,
+    article.home-default,
+    section.content-default {
+        div.floatblock {
+            display: block;
+            width: 100%;
+            margin: 0;
+        }
+    }
+}
 

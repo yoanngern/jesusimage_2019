@@ -21,7 +21,7 @@ body > header nav ul.menu > li.action a {
   body > header nav ul.menu > li.action a:hover {
     background: #9a5734; }
 
-body > header nav ul.menu > li.current_page_item > a {
+body > header nav ul.menu > li.current-menu-item > a, body > header nav ul.menu > li.current_page_item > a {
   color: #ad623a; }
 
 article.content-page a,
@@ -49,6 +49,13 @@ section.content-default ul li::before,
 section.content-default ol li::before {
   color: #ad623a; }
 
+article.content-page div.floatblock,
+article.home-default div.floatblock,
+section.content-default div.floatblock {
+  display: inline-block;
+  width: 40%;
+  margin: 0 8% 0 0; }
+
 article.content-page table.dashboard,
 article.home-default table.dashboard,
 section.content-default table.dashboard {
@@ -63,6 +70,9 @@ section.content-default table.dashboard {
 .nf-form-cont .ninja-forms-req-symbol,
 .nf-form-cont .nf-error-msg {
   color: #ad623a; }
+
+.nf-row .nf-cell .nf-field-container button {
+  background-color: #ad623a; }
 
 .nf-row .nf-cell .nf-field-container input[type="button"],
 .nf-row .nf-cell .nf-field-container textarea[type="button"] {
@@ -79,3 +89,11 @@ section.content-default table.dashboard {
 
 #content .nf-form-cont .nf-mp-footer ul.nf-next-previous li.nf-next-item::after, #content .nf-form-cont .nf-mp-footer ul.nf-next-previous li.nf-next-item::before, #content .nf-form-cont .nf-mp-footer ul.nf-next-previous li.nf-previous-item::after, #content .nf-form-cont .nf-mp-footer ul.nf-next-previous li.nf-previous-item::before {
   color: #ad623a; }
+
+@media only screen and (max-width: 767px) {
+  article.content-page div.floatblock,
+  article.home-default div.floatblock,
+  section.content-default div.floatblock {
+    display: block;
+    width: 100%;
+    margin: 0; } }

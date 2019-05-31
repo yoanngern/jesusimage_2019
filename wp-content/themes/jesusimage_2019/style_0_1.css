@@ -134,7 +134,7 @@ body > header {
           body > header nav ul.menu > li.action a:hover {
             background: #ad9a7c;
             color: #FFFFFF; }
-      body > header nav ul.menu > li.current_page_item > a {
+      body > header nav ul.menu > li.current-menu-item > a, body > header nav ul.menu > li.current_page_item > a {
         font-family: brandon-grotesque, sans-serif;
         font-weight: 700;
         font-style: normal;
@@ -763,6 +763,9 @@ section.content-default ul.elementor-editor-element-settings {
 
 .nf-row .nf-cell .nf-field-container .nf-field-label {
   padding-left: 0; }
+
+.nf-row .nf-cell .nf-field-container button {
+  cursor: pointer; }
 
 .nf-row .nf-cell .nf-field-container input,
 .nf-row .nf-cell .nf-field-container textarea {

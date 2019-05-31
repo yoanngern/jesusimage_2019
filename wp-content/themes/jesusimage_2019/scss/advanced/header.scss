@@ -130,7 +130,7 @@ body > header {
                     }
                 }
 
-                //&.current-menu-item,
+                &.current-menu-item,
                 &.current_page_item {
                     & > a {
                         @include brandon-grotesque-bold();

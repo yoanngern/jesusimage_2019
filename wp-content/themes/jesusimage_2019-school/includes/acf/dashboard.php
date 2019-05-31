@@ -78,6 +78,30 @@ if( function_exists('acf_add_local_field_group') ):
                 'multiple' => 0,
             ),
             array(
+                'key' => 'field_5cf0021131abd',
+                'label' => 'First year Pastoral references',
+                'name' => 'first_app_pastoral_references',
+                'type' => 'page_link',
+                'instructions' => '',
+                'required' => 0,
+                'conditional_logic' => 0,
+                'wrapper' => array(
+                    'width' => '49',
+                    'class' => '',
+                    'id' => '',
+                ),
+                'user_roles' => array(
+                    0 => 'all',
+                ),
+                'post_type' => array(
+                    0 => 'page',
+                ),
+                'taxonomy' => '',
+                'allow_null' => 0,
+                'allow_archives' => 1,
+                'multiple' => 0,
+            ),
+            array(
                 'key' => 'field_5c682b79f0012',
                 'label' => 'Second year application form',
                 'name' => 'second_app_form',
