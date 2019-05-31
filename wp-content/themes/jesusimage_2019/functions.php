@@ -496,6 +496,9 @@ function get_related_posts($post, $nb = 3)
 require_once(__DIR__ . '/includes/acf_fields.php');
 
 
+require_once( __DIR__ . '/includes/ji_give.php' );
+
+
 function my_login_logo()
 {
 

@@ -148,9 +148,7 @@
 
                             <?php if ($app_resume['value'] != 'received' || $app_references['value'] != 'received'): ?>
 
-                                <p>Please submit your pastoral references/Leader endorsements and resume.
-                                    Once these documents are received by our staff we will reach out to schedule your
-                                    interview.</p>
+                                <p>Please submit your Pastoral/Leader references and resume.</p>
 
                             <?php else: ?>
                                 <p>We will reach out to schedule your interview.</p>
