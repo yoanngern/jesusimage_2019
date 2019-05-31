@@ -17,12 +17,17 @@
 	if ( is_single() ) {
 		$og_title = get_the_title() . " - " . get_bloginfo( 'title' );
 
+
 		if ( get_the_excerpt() ) {
 
 			$og_description = strip_tags( get_the_excerpt() );
 		}
 
-	} else {
+	} elseif (is_archive()) {
+
+        $og_title = get_the_archive_title() . " - " . get_bloginfo( 'title' );
+
+    } else {
 
 		$og_title = get_the_title() . " - " . get_bloginfo( 'title' );
 	}
