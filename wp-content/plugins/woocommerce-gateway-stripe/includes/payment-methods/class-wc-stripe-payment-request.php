@@ -22,13 +22,6 @@ class WC_Stripe_Payment_Request {
 	public $stripe_settings;
 
 	/**
-	 * Stripe Checkout enabled.
-	 *
-	 * @var
-	 */
-	public $stripe_checkout_enabled;
-
-	/**
 	 * Total label
 	 *
 	 * @var
@@ -70,13 +63,12 @@ class WC_Stripe_Payment_Request {
 	 * @version 4.0.0
 	 */
 	public function __construct() {
-		self::$_this                   = $this;
-		$this->stripe_settings         = get_option( 'woocommerce_stripe_settings', array() );
-		$this->testmode                = ( ! empty( $this->stripe_settings['testmode'] ) && 'yes' === $this->stripe_settings['testmode'] ) ? true : false;
-		$this->publishable_key         = ! empty( $this->stripe_settings['publishable_key'] ) ? $this->stripe_settings['publishable_key'] : '';
-		$this->secret_key              = ! empty( $this->stripe_settings['secret_key'] ) ? $this->stripe_settings['secret_key'] : '';
-		$this->stripe_checkout_enabled = isset( $this->stripe_settings['stripe_checkout'] ) && 'yes' === $this->stripe_settings['stripe_checkout'];
-		$this->total_label             = ! empty( $this->stripe_settings['statement_descriptor'] ) ? WC_Stripe_Helper::clean_statement_descriptor( $this->stripe_settings['statement_descriptor'] ) : '';
+		self::$_this            = $this;
+		$this->stripe_settings  = get_option( 'woocommerce_stripe_settings', array() );
+		$this->testmode         = ( ! empty( $this->stripe_settings['testmode'] ) && 'yes' === $this->stripe_settings['testmode'] ) ? true : false;
+		$this->publishable_key  = ! empty( $this->stripe_settings['publishable_key'] ) ? $this->stripe_settings['publishable_key'] : '';
+		$this->secret_key       = ! empty( $this->stripe_settings['secret_key'] ) ? $this->stripe_settings['secret_key'] : '';
+		$this->total_label      = ! empty( $this->stripe_settings['statement_descriptor'] ) ? WC_Stripe_Helper::clean_statement_descriptor( $this->stripe_settings['statement_descriptor'] ) : '';
 
 		if ( $this->testmode ) {
 			$this->publishable_key = ! empty( $this->stripe_settings['test_publishable_key'] ) ? $this->stripe_settings['test_publishable_key'] : '';
@@ -117,7 +109,7 @@ class WC_Stripe_Payment_Request {
 	 * @return array The list of countries.
 	 */
 	public function get_stripe_supported_countries() {
-		return apply_filters( 'wc_stripe_supported_countries', array( 'AT', 'AU', 'BE', 'BR', 'CA', 'CH', 'DE', 'DK', 'EE', 'ES', 'FI', 'FR', 'GB', 'HK', 'IE', 'IN', 'IT', 'JP', 'LT', 'LU', 'LV', 'MX', 'NL', 'NZ', 'NO', 'PH', 'PL', 'PT', 'RO', 'SE', 'SG', 'SK', 'US' ) );
+		return apply_filters( 'wc_stripe_supported_countries', array( 'AT', 'AU', 'BE', 'BR', 'CA', 'CH', 'DE', 'DK', 'EE', 'ES', 'FI', 'FR', 'GB', 'HK', 'IE', 'IN', 'IT', 'JP', 'LT', 'LU', 'LV', 'MX', 'NL', 'NZ', 'NO', 'PH', 'PL', 'PR', 'PT', 'RO', 'SE', 'SG', 'SK', 'US' ) );
 	}
 
 	/**
@@ -527,6 +519,11 @@ class WC_Stripe_Payment_Request {
 		wp_localize_script( 'wc_stripe_payment_request', 'wc_stripe_payment_request_params', apply_filters( 'wc_stripe_payment_request_params', $stripe_params ) );
 
 		wp_enqueue_script( 'wc_stripe_payment_request' );
+
+		$gateways = WC()->payment_gateways->get_available_payment_gateways();
+		if ( isset( $gateways['stripe'] ) ) {
+			$gateways['stripe']->payment_scripts();
+		}
 	}
 
 	/**
