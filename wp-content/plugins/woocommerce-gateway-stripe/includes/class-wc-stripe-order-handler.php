@@ -24,10 +24,10 @@ class WC_Stripe_Order_Handler extends WC_Stripe_Payment_Gateway {
 		$this->retry_interval = 1;
 
 		add_action( 'wp', array( $this, 'maybe_process_redirect_order' ) );
-		add_action( 'woocommerce_order_status_on-hold_to_processing', array( $this, 'capture_payment' ) );
-		add_action( 'woocommerce_order_status_on-hold_to_completed', array( $this, 'capture_payment' ) );
-		add_action( 'woocommerce_order_status_on-hold_to_cancelled', array( $this, 'cancel_payment' ) );
-		add_action( 'woocommerce_order_status_on-hold_to_refunded', array( $this, 'cancel_payment' ) );
+		add_action( 'woocommerce_order_status_processing', array( $this, 'capture_payment' ) );
+		add_action( 'woocommerce_order_status_completed', array( $this, 'capture_payment' ) );
+		add_action( 'woocommerce_order_status_cancelled', array( $this, 'cancel_payment' ) );
+		add_action( 'woocommerce_order_status_refunded', array( $this, 'cancel_payment' ) );
 	}
 
 	/**
@@ -298,6 +298,10 @@ class WC_Stripe_Order_Handler extends WC_Stripe_Payment_Gateway {
 
 					// Store other data such as fees
 					WC_Stripe_Helper::is_wc_lt( '3.0' ) ? update_post_meta( $order_id, '_transaction_id', $result->id ) : $order->set_transaction_id( $result->id );
+
+					if ( is_callable( array( $order, 'save' ) ) ) {
+						$order->save();
+					}
 
 					$this->update_fees( $order, $result->balance_transaction->id );
 				}

@@ -4,7 +4,7 @@ Tags: credit card, stripe, apple pay, payment request, google pay, sepa, sofort,
 Requires at least: 4.4
 Tested up to: 5.2.1
 Requires PHP: 5.6
-Stable tag: 4.2.0
+Stable tag: 4.2.1
 License: GPLv3
 License URI: https://www.gnu.org/licenses/gpl-3.0.html
 Attributions: thorsten-stripe
@@ -113,12 +113,10 @@ If you get stuck, you can ask for help in the Plugin Forum.
 
 == Changelog ==
 
-= 4.2.0 - 2019-05-29 =
-* Update - Enable Payment Request buttons for Puerto Rico based stores.
-* Update - Add support for Strong Customer Authentication (SCA) for user-initiated payments.
-* Remove - Stripe Modal Checkout.
-* Remove - 3D Secure settings are no longer available in the gateway settings. Use Stripe Radar instead.
-* Fix - Display error messages only next to the chosen saved card.
+= 4.2.1 - 2019-06-17 =
+* Update - Add UGX (Ugandan Shilling) to zero decimal currency list.
+* Fix - CSRF verification error upon creating account on checkout.
+* Fix - Duplicate emails and order notes after successful transactions.
 
 [See changelog for all versions](https://raw.githubusercontent.com/woocommerce/woocommerce-gateway-stripe/master/changelog.txt).
 
