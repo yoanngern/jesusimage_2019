@@ -5,14 +5,14 @@
  * Description: Make Go Live Update URLS smarter and easier to use.
  * Author: Mat Lipe
  * Author URI: https://matlipe.com/
- * Version: 2.5.1
+ * Version: 2.5.2
  * Text Domain: go-live-update-urls
  *
  * @package go-live-update-urls-pro
  */
 
-define( 'GO_LIVE_UPDATE_URLS_PRO_VERSION', '2.5.1' );
-define( 'GO_LIVE_UPDATE_URLS_LAST_VERSION', '2.5.0' );
+define( 'GO_LIVE_UPDATE_URLS_PRO_VERSION', '2.5.2' );
+define( 'GO_LIVE_UPDATE_URLS_LAST_VERSION', '2.5.1' );
 define( 'GO_LIVE_UPDATE_URLS_REQUIRED_BASIC_VERSION', '5.2.5' );
 
 define( 'GO_LIVE_UPDATE_URLS_PRO_DIR', plugin_dir_path( __FILE__ ) );
@@ -41,7 +41,8 @@ function go_live_update_urls_pro_load() {
 	Go_Live_Update_URLS_Pro__History__Tracking::init();
 	Go_Live_Update_URLS_Pro_Tests_Ajax::init();
 	Go_Live_Update_URLS_Pro_Core::init();
-	Go_Live_Update_URLS_Pro_Update::init();
+	$update = new Go_Live_Update_URLS_Pro_Update( 'go-live-update-urls-pro', GO_LIVE_UPDATE_URLS_PRO_DIR );
+	$update->init();
 }
 
 add_action( 'plugins_loaded', 'go_live_update_urls_pro_load', 9 );

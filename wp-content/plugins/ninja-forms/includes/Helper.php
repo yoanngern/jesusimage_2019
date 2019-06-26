@@ -498,6 +498,7 @@ final class WPN_Helper
      * @return boolean
      */
     public static function use_cache() {
+        return true;
 
         $cache_mode = intval( get_option('ninja_forms_cache_mode') );
         // if we've already decided to use the cache return true and exit.
