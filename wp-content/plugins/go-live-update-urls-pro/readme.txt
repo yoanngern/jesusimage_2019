@@ -1,11 +1,11 @@
-=== Plugin Name ===
+=== Go Live Update Urls PRO ===
 Contributors: Mat Lipe
 Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=paypal%40lipeimagination%2einfo&lc=US&item_name=Go%20Live%20Update%20Urls&no_note=0&currency_code=USD&bn=PP%2dDonationsBF%3abtn_donateCC_LG%2egif%3aNonHostedGuest
 Tags: Go Live, Urls, Domain Changes 
 Requires at least: 4.8.0
-Tested up to: 5.2.0
+Tested up to: 5.2.1
 Requires PHP: 5.4.4
-Stable tag: 2.5.1
+Stable tag: 2.5.2
 License: Copyright Mat Lipe Dot Com
 
 == Description ==

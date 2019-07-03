@@ -4,7 +4,7 @@
  * Plugin Name: Ninja Forms - Mail Chimp
  * Plugin URI: https://ninjaforms.com/extensions/mail-chimp/
  * Description: Sign up users for your Mail Chimp newsletter when submitting Ninja Forms
- * Version: 3.1.10
+ * Version: 3.1.11
  * Author: The WP Ninjas
  * Author URI: http://wpninjas.com/
  * Text Domain: ninja-forms-mail-chimp
@@ -27,7 +27,7 @@ if( version_compare( get_option( 'ninja_forms_version', '0.0.0' ), '3', '<' ) ||
      */
     final class NF_MailChimp
     {
-        const VERSION = '3.1.10';
+        const VERSION = '3.1.11';
         const SLUG = 'mail-chimp';
         const NAME = 'MailChimp';
         const AUTHOR = 'The WP Ninjas';
@@ -447,6 +447,7 @@ if( version_compare( get_option( 'ninja_forms_version', '0.0.0' ), '3', '<' ) ||
                 'https://' . $api_key[ 1 ] . '.api.mailchimp.com/3.0' . $endpoint,
                 array(
                         'method' => $method,
+                        'timeout'     => 20,
                         'headers' => array(
                             'authorization' => 'apikey ' . $api_key[ 0 ],
                     ),

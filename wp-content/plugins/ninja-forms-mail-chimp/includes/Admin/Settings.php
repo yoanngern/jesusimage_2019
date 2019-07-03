@@ -35,7 +35,7 @@ final class NF_MailChimp_Admin_Settings
     {
         // Make a call to the Mailchimp API
         $mailchimp = new NF_MailChimp();
-        $response = $mailchimp->api_request( 'GET', '/lists' );
+        $response = $mailchimp->api_request( 'GET', '/' );
 
         /*
          * Check to make sure we don't have any errors and return our settings if we do.

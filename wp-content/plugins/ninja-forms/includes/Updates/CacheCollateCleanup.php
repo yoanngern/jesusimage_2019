@@ -420,7 +420,7 @@ class NF_Updates_CacheCollateCleanup extends NF_Abstracts_RequiredUpdate
                  LIMIT {$this->divisor};";
         $results = $this->db->get_results( $sql, 'ARRAY_A' );
         // Count them.
-        $count = count( $result );
+        $count = count( $results );
         // Get all fields associated with this form.
         $sql = "SELECT id FROM `{$this->db->prefix}nf3_fields` WHERE parent_id = " . intval( $form[ 'id' ] ) . ";";
         $fields = $this->db->get_results( $sql, 'ARRAY_A' );

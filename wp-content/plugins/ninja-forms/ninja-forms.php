@@ -3,7 +3,7 @@
 Plugin Name: Ninja Forms
 Plugin URI: http://ninjaforms.com/
 Description: Ninja Forms is a webform builder with unparalleled ease of use and features.
-Version: 3.4.13
+Version: 3.4.16
 Author: The WP Ninjas
 Author URI: http://ninjaforms.com
 Text Domain: ninja-forms
@@ -59,7 +59,7 @@ if( get_option( 'ninja_forms_load_deprecated', FALSE ) && ! ( isset( $_POST[ 'nf
          * @since 3.0
          */
 
-        const VERSION = '3.4.13';
+        const VERSION = '3.4.16';
         
         /**
          * @since 3.4.0
@@ -486,6 +486,7 @@ if( get_option( 'ninja_forms_load_deprecated', FALSE ) && ! ( isset( $_POST[ 'nf
         public function init()
         {
             do_action( 'nf_init', self::$instance );
+            $this->register_rewrite_rules();
         }
 
         public function flush_rewrite_rules()
@@ -524,7 +525,7 @@ if( get_option( 'ninja_forms_load_deprecated', FALSE ) && ! ( isset( $_POST[ 'nf
             global $wpdb;
             $sql = "SELECT COUNT( `id` ) AS total FROM `{$wpdb->prefix}nf3_forms`;";
             $result = $wpdb->get_results( $sql, 'ARRAY_A' );
-            $threshold = 30; // Threshold percentage for our required updates.
+            $threshold = 0; // Threshold percentage for our required updates.
             if ( get_transient( 'ninja_forms_prevent_updates' ) ) {
                 update_option( 'ninja_forms_needs_updates', 0 );
             }
@@ -1078,7 +1079,22 @@ if( get_option( 'ninja_forms_load_deprecated', FALSE ) && ! ( isset( $_POST[ 'nf
 					// Remove it from the list.
 					unset( $updates[ $slug ] );
 				}
-			}			
+            }
+            
+            if( isset( $updates[ 'CacheCollateFields' ] ) 
+                && isset( $updates[ 'CacheFieldReconcilliation' ] ) 
+                && !isset( $processed[ 'CacheFieldReconcilliation' ] ) ) {
+
+                unset( $updates[ 'CacheFieldReconcilliation' ] );
+
+                date_default_timezone_set( 'UTC' );
+                $now = date( "Y-m-d H:i:s" );
+                // Append the current update to the array.
+                $processed[ 'CacheFieldReconcilliation' ] = $now;
+                // Save it.
+                update_option( 'ninja_forms_required_updates', $processed );
+            }
+
 			return $updates;
         }
         

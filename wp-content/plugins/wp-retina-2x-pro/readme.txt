@@ -2,17 +2,20 @@
 Contributors: TigrouMeow
 Tags: retina, images, image, responsive, gutenberg, lazysizes, lazy, attachment, media, high-dpi
 Requires at least: 4.2
-Tested up to: 5.1
+Tested up to: 5.2
 Requires PHP: 7.0
-Stable tag: 5.5.5
+Stable tag: 5.5.6
 
 Make your website look beautiful and crisp on modern displays by creating and displaying retina images.
 
 == Description ==
 
-Make your website look beautiful and crisp on modern displays by creating and displaying retina images. More information and tutorial available one https://meowapps.com/plugin/wp-retina-2x/.
+Make your website look beautiful and crisp on modern displays by creating and displaying retina images. More information and tutorial available on the [official website](https://meowapps.com/plugin/wp-retina-2x/).
 
 == Changelog ==
+
+= 5.5.6 =
+* Update: Lazysizes updated to 5.1.0 (from 4.0.4).
 
 = 5.5.5 =
 * Fix: Display Full-Size Retina uploader only if the option is active.

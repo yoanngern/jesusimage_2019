@@ -3,26 +3,52 @@
 /**
  * Update the plugin from the api.
  *
- * @todo Convert this class to universal use by allowing passing of slug and root.
- *       Will have to rename it to something universal.
- *
  * @author Mat Lipe
  * @since  2.5.0
+ *
+ * @notice Special `init()` pattern to prevent extending or removing actions.
  */
 final class Go_Live_Update_URLS_Pro_Update {
-	const PLUGIN_SLUG = 'go-live-update-urls-pro';
-	const ROOT        = GO_LIVE_UPDATE_URLS_PRO_DIR;
+	const VERSION = '2.2.0';
 
-	const VERSION = '2.1.0';
-	const API_URL = 'http://matlipe.com/plugins/v2'; // Must use http: because PHP 5.2 does not support tlsv1.2 which is the only thing the server supports.
+	/**
+	 * Root directory of this plugin.
+	 *
+	 * @var string;
+	 */
+	private $root;
+
+	/**
+	 * Slug of this plugin.
+	 *
+	 * @var string
+	 */
+	private $slug;
+
+
+	/**
+	 * Create the instance of the class.
+	 *
+	 * @param string $slug - Plugin slug.
+	 * @param string $root - Plugin root directory.
+	 */
+	public function __construct( $slug, $root ) {
+		$this->slug = $slug;
+		$this->root = $root;
+	}
 
 
 	/**
 	 * Add actions and filters.
 	 */
 	private function hook() {
-		add_filter( 'pre_set_site_transient_update_plugins', [ $this, 'check_for_update' ] );
-		add_filter( 'plugins_api', [ $this, 'get_plugin_info' ], 10, 3 );
+		add_filter( 'pre_set_site_transient_update_plugins', array( $this, 'check_for_update' ) );
+		add_filter( 'plugins_api', array( $this, 'get_plugin_info' ), 10, 3 );
+		add_action( "after_plugin_row_{$this->slug}/{$this->slug}.php", array(
+			$this,
+			'invalid_license_row',
+		), 9, 2 );
+		add_action( 'all_admin_notices', array( $this, 'invalid_license_notice' ) );
 
 		if ( defined( 'LIPE_PLUGIN_API_CHECK_VERSION' ) ) {
 			set_site_transient( 'update_plugins', null );
@@ -40,14 +66,72 @@ final class Go_Live_Update_URLS_Pro_Update {
 	 * @return mixed|null
 	 */
 	private function get_current_version( $plugins ) {
-		if ( ! empty( $plugins->checked[ self::PLUGIN_SLUG . '/' . self::PLUGIN_SLUG . '.php' ] ) ) {
-			return $plugins->checked[ self::PLUGIN_SLUG . '/' . self::PLUGIN_SLUG . '.php' ];
-		}
 		if ( defined( 'LIPE_PLUGIN_API_CHECK_VERSION' ) ) {
 			return LIPE_PLUGIN_API_CHECK_VERSION;
 		}
 
+		if ( ! empty( $plugins->checked[ $this->slug . '/' . $this->slug . '.php' ] ) ) {
+			return $plugins->checked[ $this->slug . '/' . $this->slug . '.php' ];
+		}
+
 		return null;
+	}
+
+
+	/**
+	 * Display an admin notice if the current license is invalid.
+	 *
+	 * @since 2.2.0
+	 *
+	 * @return void
+	 */
+	public function invalid_license_notice() {
+		$plugins = get_site_transient( 'update_plugins' );
+		if ( isset( $plugins->response[ $this->slug . '/' . $this->slug . '.php' ]->invalid_license ) ) {
+			?>
+			<div class="error">
+				<p>
+					<?php echo $plugins->response[ $this->slug . '/' . $this->slug . '.php' ]->invalid_license; //phpcs:disable WordPress.Security.EscapeOutput.OutputNotEscaped ?>
+				</p>
+			</div>
+			<?php
+		}
+	}
+
+
+	/**
+	 * If the license is invalid this displays a notice in the plugins list.
+	 *
+	 * @param string $plugin_file - Slug and main plugin file.
+	 * @param array  $plugin_data - Accumulated data from plugin file and endpoint.
+	 *
+	 * @since 2.2.0
+	 *
+	 * @return void
+	 */
+	public function invalid_license_row( $plugin_file, $plugin_data ) {
+		if ( isset( $plugin_data['invalid_license'] ) ) {
+			// Remove default update message.
+			remove_action( "after_plugin_row_{$plugin_file}", 'wp_plugin_update_row' );
+
+			if ( is_network_admin() ) {
+				$active_class = is_plugin_active_for_network( $plugin_file ) ? ' active' : '';
+			} else {
+				$active_class = is_plugin_active( $plugin_file ) ? ' active' : '';
+			}
+			?>
+			<tr class="plugin-update-tr<?php echo esc_attr( $active_class ); ?>">
+				<td colspan="3" class="plugin-update">
+					<div class="update-message notice inline notice-error">
+						<p>
+							<?php echo $plugin_data['invalid_license']; //phpcs:disable WordPress.Security.EscapeOutput.OutputNotEscaped ?>
+						</p>
+					</div>
+				</td>
+			</tr>
+			<?php
+
+		}
 	}
 
 
@@ -61,20 +145,21 @@ final class Go_Live_Update_URLS_Pro_Update {
 	public function check_for_update( $plugins ) {
 		$version = $this->get_current_version( $plugins );
 		if ( null !== $version ) {
-			$plugins->checked[ self::PLUGIN_SLUG . '/' . self::PLUGIN_SLUG . '.php' ] = $version;
-			$args                                                                     = array(
-				'slug'    => self::PLUGIN_SLUG,
+			$plugins->checked[ $this->slug . '/' . $this->slug . '.php' ] = $version;
+			$args                                                         = array(
+				'slug'    => $this->slug,
 				'version' => $version,
 			);
-			$response                                                                 = $this->do_request( $args, 'basic_check' );
+			$response                                                     = $this->do_request( $args, 'basic_check' );
 
 			if ( ! empty( $response ) && is_object( $response ) ) {
-				$plugins->response[ self::PLUGIN_SLUG . '/' . self::PLUGIN_SLUG . '.php' ] = $response;
+				$plugins->response[ $this->slug . '/' . $this->slug . '.php' ] = $response;
 			}
 		}
 
 		return $plugins;
 	}
+
 
 	/**
 	 * Point any plugin api calls which match this plugin's slug to our custom endpoint.
@@ -88,12 +173,12 @@ final class Go_Live_Update_URLS_Pro_Update {
 	 * @return mixed
 	 */
 	public function get_plugin_info( $info, $action, $args ) {
-		if ( empty( $args->slug ) || self::PLUGIN_SLUG !== $args->slug ) {
+		if ( empty( $args->slug ) || $this->slug !== $args->slug ) {
 			return $info;
 		}
 
 		$plugin_info   = get_site_transient( 'update_plugins' );
-		$args->version = $plugin_info->checked[ self::PLUGIN_SLUG . '/' . self::PLUGIN_SLUG . '.php' ];
+		$args->version = $plugin_info->checked[ $this->slug . '/' . $this->slug . '.php' ];
 
 		return $this->do_request( (array) $args, $action );
 	}
@@ -107,7 +192,29 @@ final class Go_Live_Update_URLS_Pro_Update {
 	 * @return array
 	 */
 	private function get_license() {
-		return include self::ROOT . '/LICENSE.php';
+		$license = include $this->root . '/LICENSE.php';
+		if ( defined( 'LIPE_PLUGIN_API_LICENSE' ) ) {
+			$license['hash'] = LIPE_PLUGIN_API_LICENSE;
+		}
+
+		return $license;
+	}
+
+
+	/**
+	 * Retrieve the url of the update api.
+	 *
+	 * @since 2.2.0
+	 *
+	 * @return string
+	 */
+	private function get_api_url() {
+		if ( defined( 'LIPE_PLUGIN_API_URL' ) ) {
+			return LIPE_PLUGIN_API_URL;
+		}
+
+		// Must use http until forced PHP version 5.5+ or curl will have tls error.
+		return 'http://matlipe.com/plugins/v2';
 	}
 
 
@@ -132,8 +239,9 @@ final class Go_Live_Update_URLS_Pro_Update {
 			),
 			'user-agent' => 'WordPress/' . $GLOBALS['wp_version'] . '; ' . get_bloginfo( 'url' ),
 		);
-		$raw_response = wp_remote_post( self::API_URL, $request );
+		$raw_response = wp_remote_post( $this->get_api_url(), $request );
 		if ( is_wp_error( $raw_response ) || ( 200 !== (int) $raw_response['response']['code'] ) ) {
+			//phpcs:ignore WordPress.WP.I18n.MissingArgDomain
 			return new WP_Error( 'plugins_api_failed', '<p>' . __( 'An Unexpected HTTP Error occurred during the API request.' ) . '</p> <p><a href="?" onclick="document.location.reload(); return false;">' . __( 'Try again' ) . '</a>', $raw_response->get_error_message() );
 		}
 
@@ -149,37 +257,12 @@ final class Go_Live_Update_URLS_Pro_Update {
 
 
 	/**
-	 * Instance of this class for use as singleton
+	 * Create the instance of the class.
 	 *
-	 * @var Advanced_Sidebar_Menu_Pro_Update
-	 */
-	private static $instance;
-
-
-	/**
-	 * Create the instance of the class
-	 *
-	 * @static
 	 * @return void
 	 */
-	public static function init() {
-		self::instance()->hook();
-	}
-
-
-	/**
-	 * Get (and instantiate, if necessary) the instance of the
-	 * class
-	 *
-	 * @static
-	 * @return self
-	 */
-	public static function instance() {
-		if ( ! is_a( self::$instance, __CLASS__ ) ) {
-			self::$instance = new self();
-		}
-
-		return self::$instance;
+	public function init() {
+		$this->hook();
 	}
 
 }

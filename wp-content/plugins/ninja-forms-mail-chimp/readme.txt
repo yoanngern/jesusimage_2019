@@ -3,7 +3,7 @@ Contributors: wpninjasllc, kbjohnson90, pippinsplugins, klhall1987
 Tags: form, forms, ninja forms, mailpoet, wysija, newsletters, email
 Requires at least: 5.0
 Tested up to: 5.2
-Stable tag: 3.1.10
+Stable tag: 3.1.11
 License: GPLv2 or later
 
 == Description ==
@@ -22,6 +22,10 @@ This section describes how to install the plugin.
 2. Activate the plugin through the 'Plugins' menu in WordPress
 
 == Changelog ==
+
+= 3.1.11 (12 June 2019) =
+
+* Timeout errors should no longer occur as frequently when validating API keys.
 
 = 3.1.10 (15 May 2019) =
 
