@@ -123,7 +123,7 @@
 
                                 <?php if ($app_form['value'] == 'received' && $app_fee['value'] == 'paid' && $year['value'] == '1'): ?>
                                     <tr>
-                                        <td>My Resume</td>
+                                        <td>My work history</td>
                                         <td><?php echo $app_resume['label'] ?></td>
                                     </tr>
                                     <tr>
@@ -148,7 +148,7 @@
 
                             <?php if ($app_resume['value'] != 'received' || $app_references['value'] != 'received'): ?>
 
-                                <p>Please submit your Pastoral/Leader references and resume.</p>
+                                <p>Please submit your Pastoral/Leader references and work history.</p>
 
                             <?php else: ?>
                                 <p>We will reach out to schedule your interview.</p>
@@ -176,7 +176,7 @@
                                     <?php if ($app_resume['value'] != 'received' && get_field('first_app_resume')): ?>
 
                                         <a href="<?php echo get_field('first_app_resume'); ?>" class="button">Upload my
-                                            resume</a>
+                                            work history</a>
 
                                     <?php endif; ?>
 
