@@ -9,6 +9,16 @@
 	],
 "creatorBuild": "29156",
 "files": {
+	"/css/hurricane.css": {
+		"aP": 1,
+		"bl": 0,
+		"ft": 16,
+		"ma": 0,
+		"oA": 0,
+		"oAP": "/css/hurricane-min.css",
+		"oF": 0,
+		"oS": 3
+		},
 	"/footer.php": {
 		"cB": 0,
 		"ft": 8192,
@@ -31,6 +41,14 @@
 		"hM": 0,
 		"oA": 0,
 		"oAP": "/header.php",
+		"oF": 0
+		},
+	"/hurricane.php": {
+		"cB": 0,
+		"ft": 8192,
+		"hM": 0,
+		"oA": 0,
+		"oAP": "/hurricane.php",
 		"oF": 0
 		},
 	"/images/android-icon-144x144.png": {
@@ -3126,6 +3144,19 @@
 		"oS": 0,
 		"uL": 1
 		},
+	"/scss/hurricane.scss": {
+		"aP": 0,
+		"bl": 0,
+		"dP": 10,
+		"dS": 0,
+		"ft": 4,
+		"ma": 0,
+		"oA": 0,
+		"oAP": "/css/hurricane.css",
+		"oF": 0,
+		"oS": 0,
+		"uL": 1
+		},
 	"/scss/style.scss": {
 		"aP": 0,
 		"bl": 0,
@@ -4629,7 +4660,7 @@
 			}
 		},
 	"esLintSourceType": 0,
-	"externalServerAddress": "http://shop.jesusimage.tv",
+	"externalServerAddress": "https://shop.jesusimage.tv",
 	"gitIgnoreBuildFolder": 1,
 	"hideConfigFile": 0,
 	"jsCheckerReservedNamesString": "",
