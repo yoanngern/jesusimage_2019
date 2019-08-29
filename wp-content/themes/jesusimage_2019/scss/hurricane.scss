@@ -1,0 +1,28 @@
+@import "base/font";
+@import "base/color";
+@import "base/functions";
+@import "base/tools";
+
+body > #hurricane {
+
+    display: block;
+    width: 100%;
+    background-color: #94b9af;
+    color: #335f72;
+    margin: 0 auto;
+    text-align: center;
+    max-height: 960px;
+
+    p {
+        @include garamond-bold();
+        text-transform: uppercase;
+        letter-spacing: 0.08em;
+        padding: 10px 20px;
+        line-height: 1.3em;
+    }
+
+    a {
+        color: #335f72;
+    }
+
+}
