@@ -299,14 +299,6 @@
 		"oAP": "/header.php",
 		"oF": 0
 		},
-	"/hurricane.php": {
-		"cB": 0,
-		"ft": 8192,
-		"hM": 0,
-		"oA": 0,
-		"oAP": "/hurricane.php",
-		"oF": 0
-		},
 	"/images/android-icon-144x144.png": {
 		"ft": 32768,
 		"iS": 9085,
@@ -4378,19 +4370,6 @@
 		"oS": 0,
 		"uL": 1
 		},
-	"/scss/hurricane.scss": {
-		"aP": 0,
-		"bl": 0,
-		"dP": 10,
-		"dS": 0,
-		"ft": 4,
-		"ma": 0,
-		"oA": 0,
-		"oAP": "/css/hurricane.css",
-		"oF": 0,
-		"oS": 0,
-		"uL": 1
-		},
 	"/scss/style-login.scss": {
 		"aP": 0,
 		"bl": 0,
@@ -4414,6 +4393,19 @@
 		"oA": 0,
 		"oAP": "/style.css",
 		"oF": 2,
+		"oS": 0,
+		"uL": 1
+		},
+	"/scss/top_message.scss": {
+		"aP": 0,
+		"bl": 0,
+		"dP": 10,
+		"dS": 0,
+		"ft": 4,
+		"ma": 0,
+		"oA": 0,
+		"oAP": "/css/top_message.css",
+		"oF": 0,
 		"oS": 0,
 		"uL": 1
 		},
@@ -4515,6 +4507,14 @@
 		"hM": 0,
 		"oA": 0,
 		"oAP": "/template-parts/single.php",
+		"oF": 0
+		},
+	"/top_message.php": {
+		"cB": 0,
+		"ft": 8192,
+		"hM": 0,
+		"oA": 0,
+		"oAP": "/top_message.php",
 		"oF": 0
 		}
 	},
